@@ -32,11 +32,11 @@ export default function FeaturesSection() {
   return (
     <section className="py-16 md:py-24 px-6 bg-background">
       <div className="max-w-5xl mx-auto">
-        <h2 className="font-serif font-bold text-5xl md:text-6xl text-center text-foreground mb-8" data-testid="text-features-heading">
+        <h2 className="font-serif font-bold text-5xl md:text-6xl text-foreground mb-6" data-testid="text-features-heading">
           Inbox chaos steals your time.
         </h2>
         
-        <div className="flex items-start justify-center mb-12">
+        <div className="mb-12">
           <div className="relative inline-flex items-start">
             <div className="bg-pink-50 border border-pink-200 rounded-full px-6 py-3.5 pr-16" data-testid="badge-time-wasted">
               <span className="text-base text-foreground">
@@ -49,7 +49,7 @@ export default function FeaturesSection() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 max-w-4xl mx-auto">
+        <div className="flex flex-wrap items-center gap-3">
           {features.slice(0, 3).map((feature, index) => (
             <div
               key={index}
@@ -64,7 +64,7 @@ export default function FeaturesSection() {
           ))}
         </div>
         
-        <div className="flex flex-wrap items-center justify-center gap-3 max-w-3xl mx-auto mt-3">
+        <div className="flex flex-wrap items-center gap-3 mt-3">
           {features.slice(3).map((feature, index) => (
             <div
               key={index + 3}
