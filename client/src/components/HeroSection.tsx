@@ -6,11 +6,11 @@ export default function HeroSection() {
     <section className="py-16 md:py-24 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="font-serif font-normal text-5xl md:text-7xl leading-tight mb-6 text-foreground" data-testid="text-hero-headline">
-          Build portfolios that stand out, faster
+          Building a portfolio was never meant to be hard.
         </h1>
         
         <p className="text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-8" data-testid="text-hero-description">
-          Designfolio is the portfolio builder for modern professionals. Showcase your work, publish instantly, and grow your career — with case-study templates, analytics, and zero code.
+          Designfolio helps you skip the busywork — structure, write, and publish your portfolio in hours, not weeks.
         </p>
 
         <div className="flex items-center justify-center gap-4 mb-8">
