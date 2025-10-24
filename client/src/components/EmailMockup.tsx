@@ -159,7 +159,7 @@ export default function EmailMockup() {
                       </div>
 
                       <Button 
-                        className="bg-primary text-primary-foreground hover:bg-primary rounded-lg"
+                        className="bg-primary text-primary-foreground rounded-lg"
                         data-testid="button-send"
                       >
                         Send
