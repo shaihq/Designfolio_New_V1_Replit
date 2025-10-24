@@ -8,7 +8,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center gap-2">
             <Hexagon className="h-5 w-5 text-foreground" data-testid="logo-icon" />
-            <span className="text-lg font-semibold text-foreground" data-testid="text-logo">Lynq</span>
+            <span className="text-lg font-semibold text-foreground" data-testid="text-logo">
+              Design<span className="italic">folio</span>
+            </span>
           </div>
           
           <div className="hidden md:flex items-center gap-8">

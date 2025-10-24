@@ -108,7 +108,7 @@ export default function EmailMockup() {
             <div className="flex-1 p-6 bg-card/50">
               <div className="bg-white rounded-xl shadow-lg p-6 max-w-2xl" data-testid="card-email-preview">
                 <h2 className="font-semibold text-xl mb-6 text-foreground" data-testid="text-email-subject">
-                  Would love more info on Lynq
+                  Would love more info on Designfolio
                 </h2>
 
                 <div className="mb-6 pb-6 border-b border-border">
@@ -119,7 +119,7 @@ export default function EmailMockup() {
                     <div className="flex-1">
                       <h3 className="font-semibold text-sm mb-1" data-testid="text-sender-name">Sam Jones</h3>
                       <div className="text-sm text-foreground/70 leading-relaxed space-y-2">
-                        <p>Hey Pete, I'd love to learn more about Lynq and how it could help us at Vital.</p>
+                        <p>Hey Pete, I'd love to learn more about Designfolio and how it could help us at Vital.</p>
                         <p>Do you have a deck or something you could share? Also would you be available to for a chat sometime next week?</p>
                         <p className="text-foreground/60">Cheers Sam</p>
                       </div>
@@ -141,7 +141,7 @@ export default function EmailMockup() {
                       
                       <div className="text-sm text-foreground/90 leading-relaxed space-y-3 mb-4" data-testid="text-email-body">
                         <p>Hey Sam,</p>
-                        <p>Thanks for reaching out about Lynq!</p>
+                        <p>Thanks for reaching out about Designfolio!</p>
                         <p>I've attached our deck to this email - it gives a good overview of what we do and how we've helped similar companies streamline their processes.</p>
                         <p>If you have any specific questions after looking it over, give me a shout and we can set up a quick call to dig deeper.</p>
                         <p>Cheers, Clara</p>
@@ -150,7 +150,7 @@ export default function EmailMockup() {
                       <div className="flex items-center gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-4 max-w-fit">
                         <FileText className="h-4 w-4 text-red-600" />
                         <div className="flex-1">
-                          <div className="text-xs font-medium text-foreground" data-testid="text-attachment-name">Lynq Sales Deck.pdf</div>
+                          <div className="text-xs font-medium text-foreground" data-testid="text-attachment-name">Designfolio Sales Deck.pdf</div>
                           <div className="text-xs text-muted-foreground">1.9 MB</div>
                         </div>
                         <button className="text-red-600 hover:text-red-700">
