@@ -5,17 +5,17 @@ export default function HeroSection() {
   return (
     <section className="py-16 md:py-24 px-6">
       <div className="max-w-4xl mx-auto text-center">
-        <p className="text-sm font-medium text-muted-foreground tracking-wider uppercase mb-6" data-testid="text-tagline">
+        <p className="font-serif text-base text-foreground/70 mb-6" data-testid="text-tagline">
           AI Email Assistant
         </p>
         
-        <h1 className="font-serif font-bold text-5xl md:text-7xl leading-tight mb-6 text-foreground" data-testid="text-hero-headline">
+        <h1 className="font-serif font-normal text-5xl md:text-7xl leading-tight mb-6 text-foreground" data-testid="text-hero-headline">
           Email Handled<span className="text-primary">*</span>
           <br />
           Save 6+ hours a week
         </h1>
         
-        <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-3xl mx-auto mb-8" data-testid="text-hero-description">
+        <p className="text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-8" data-testid="text-hero-description">
           Connect Gmail or Outlook in 30 seconds and let Emilia triage messages, write replies in your voice, and book meetings automatically—so you can focus on real work.
         </p>
 
