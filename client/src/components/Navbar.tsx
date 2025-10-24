@@ -26,7 +26,7 @@ export default function Navbar() {
             <a href="#login" className="text-[15px] text-foreground hover-elevate px-3 py-2 rounded-md" data-testid="link-login">
               Login
             </a>
-            <Button size="default" className="bg-foreground text-background hover:bg-foreground rounded-full" data-testid="button-getstarted">
+            <Button size="default" className="bg-foreground text-background rounded-full" data-testid="button-getstarted">
               Get Started—FREE
             </Button>
           </div>
