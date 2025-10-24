@@ -14,26 +14,20 @@ export default function Navbar() {
           </div>
           
           <div className="hidden md:flex items-center gap-8">
-            <a href="#pricing" className="text-[15px] text-foreground hover-elevate px-3 py-2 rounded-md" data-testid="link-pricing">
-              Pricing
+            <a href="#howitworks" className="text-[15px] text-foreground hover-elevate px-3 py-2 rounded-md" data-testid="link-howitworks">
+              How it works?
             </a>
-            <a href="#security" className="text-[15px] text-foreground hover-elevate px-3 py-2 rounded-md" data-testid="link-security">
-              Security
-            </a>
-            <a href="#compare" className="text-[15px] text-foreground hover-elevate px-3 py-2 rounded-md" data-testid="link-compare">
-              Compare
-            </a>
-            <a href="#docs" className="text-[15px] text-foreground hover-elevate px-3 py-2 rounded-md" data-testid="link-docs">
-              Docs
+            <a href="#otheraitools" className="text-[15px] text-foreground hover-elevate px-3 py-2 rounded-md" data-testid="link-otheraitools">
+              Other AI tools
             </a>
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="#signin" className="text-[15px] text-foreground hover-elevate px-3 py-2 rounded-md" data-testid="link-signin">
-              Sign in
+            <a href="#login" className="text-[15px] text-foreground hover-elevate px-3 py-2 rounded-md" data-testid="link-login">
+              Login
             </a>
             <Button size="default" className="bg-foreground text-background hover:bg-foreground rounded-full" data-testid="button-getstarted">
-              Get Started
+              Get Started—FREE
             </Button>
           </div>
         </div>
