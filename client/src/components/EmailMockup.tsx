@@ -28,7 +28,7 @@ export default function EmailMockup() {
     };
   }, []);
 
-  const cardOpacity = useTransform(scrollY, [scrollRange * 0.9, scrollRange], [0, 1]);
+  const cardOpacity = useTransform(scrollY, [scrollRange * 0.95, scrollRange], [0, 1]);
 
   return (
     <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6">
@@ -44,11 +44,16 @@ export default function EmailMockup() {
             <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-8 sm:mb-10">
               <div className="flex-shrink-0">
                 <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 rounded-2xl bg-gradient-to-br from-orange-200 to-orange-100 flex items-center justify-center overflow-hidden">
-                  <Avatar className="w-full h-full rounded-2xl">
-                    <AvatarFallback className="w-full h-full rounded-2xl bg-gradient-to-br from-orange-200 to-orange-100 text-foreground">
-                      <User className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16" />
-                    </AvatarFallback>
-                  </Avatar>
+                  <video 
+                    className="w-full h-full object-cover rounded-2xl"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    data-testid="video-avatar"
+                  >
+                    <source src="/avatarui1.mp4" type="video/mp4" />
+                  </video>
                 </div>
               </div>
 
