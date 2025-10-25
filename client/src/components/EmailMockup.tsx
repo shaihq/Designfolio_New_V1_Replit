@@ -37,8 +37,8 @@ export default function EmailMockup() {
         maxDeltaY = Math.max(maxDeltaY, deltaY);
       }
       
-      // Use same calculation as HeroSection - maximum distance either card needs to travel
-      const calculatedScrollRange = Math.max(maxDeltaY * 1.2, 400);
+      // Use same calculation as HeroSection - smaller multiplier for faster animation
+      const calculatedScrollRange = Math.max(maxDeltaY * 0.5, 300);
       setScrollRange(calculatedScrollRange);
     };
 
@@ -52,8 +52,7 @@ export default function EmailMockup() {
     };
   }, []);
   
-  const cardOpacity = useTransform(scrollY, [scrollRange * 0.6, scrollRange], [0, 1]);
-  const cardScale = useTransform(scrollY, [scrollRange * 0.6, scrollRange], [0.95, 1]);
+  const cardOpacity = useTransform(scrollY, [scrollRange * 1.0, scrollRange * 1.2], [0, 1]);
 
   return (
     <section className="py-8 sm:py-12 px-6">
@@ -93,7 +92,6 @@ export default function EmailMockup() {
                 className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg"
                 style={{
                   opacity: cardOpacity,
-                  scale: cardScale,
                 }}
                 data-testid="placeholder-project-1"
               >
@@ -117,7 +115,6 @@ export default function EmailMockup() {
                 className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg"
                 style={{
                   opacity: cardOpacity,
-                  scale: cardScale,
                 }}
                 data-testid="placeholder-project-2"
               >
