@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-visible min-h-[600px] sm:min-h-[650px] md:min-h-[500px] py-24 sm:py-28 md:py-16 lg:py-24 px-6">
+    <section className="relative overflow-visible py-20 sm:py-24 md:py-16 lg:py-24 px-6">
       <div className="absolute -left-16 top-4 sm:top-6 md:-left-8 lg:left-4 xl:left-16 md:top-20 lg:top-28 w-28 sm:w-32 md:w-48 lg:w-56 xl:w-64 z-0">
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-left">
           <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
@@ -39,8 +39,8 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10 h-full flex items-center justify-center">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-8 md:px-12 lg:px-0">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 md:px-0">
           <h1 className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-4 sm:mb-6 text-foreground" data-testid="text-hero-headline">
             Building a portfolio was never meant to be hard.
           </h1>
