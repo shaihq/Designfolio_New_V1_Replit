@@ -167,19 +167,7 @@ export default function HeroSection() {
           WebkitBackfaceVisibility: "hidden",
         }}
       >
-        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-left">
-          <div className="aspect-video relative overflow-hidden">
-            <img src="/left-banner.svg" alt="Portfolio banner" className="w-full h-full object-cover" />
-          </div>
-          <div className="p-2 sm:p-3 md:p-4">
-            <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-left-title">
-              Redesigning fitness app experience for 4M users.
-            </h3>
-            <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground/50" data-testid="text-project-left-category">
-              Project by Nandini
-            </p>
-          </div>
-        </div>
+        <img src="/left-banner.svg" alt="Portfolio banner" className="w-full h-full object-contain" data-testid="card-project-left" />
       </motion.div>
 
       <motion.div 
@@ -194,19 +182,7 @@ export default function HeroSection() {
           WebkitBackfaceVisibility: "hidden",
         }}
       >
-        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-right">
-          <div className="aspect-video relative overflow-hidden">
-            <img src="/right-banner-1.svg" alt="Portfolio banner" className="w-full h-full object-cover" />
-          </div>
-          <div className="p-2 sm:p-3 md:p-4">
-            <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-right-title">
-              Developed a Blockchain app on Next.JS
-            </h3>
-            <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground/50" data-testid="text-project-right-category">
-              Case Study by Chris
-            </p>
-          </div>
-        </div>
+        <img src="/right-banner-1.svg" alt="Portfolio banner" className="w-full h-full object-contain" data-testid="card-project-right" />
       </motion.div>
 
       <div className="max-w-6xl mx-auto relative z-10">
