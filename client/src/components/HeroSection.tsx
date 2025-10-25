@@ -47,8 +47,8 @@ export default function HeroSection() {
       }
       
       // Set scroll range based on the maximum distance either card needs to travel
-      // Use a multiplier to make the animation feel smooth (1.2x the actual distance)
-      const calculatedScrollRange = Math.max(maxDeltaY * 1.2, 400);
+      // Use a smaller multiplier for faster animation (0.5x the actual distance)
+      const calculatedScrollRange = Math.max(maxDeltaY * 0.5, 300);
       setScrollRange(calculatedScrollRange);
     };
 
@@ -88,8 +88,6 @@ export default function HeroSection() {
     [0, rightCardOffset.x]
   );
 
-  const cardOpacity = useTransform(scrollY, [0, scrollRange * 0.6, scrollRange], [1, 1, 0]);
-
   const leftCardRotate = useTransform(scrollY, [0, scrollRange], [-6, 0]);
   const rightCardRotate = useTransform(scrollY, [0, scrollRange], [6, 0]);
 
@@ -101,7 +99,6 @@ export default function HeroSection() {
         style={{
           y: leftCardTranslateY,
           x: leftCardTranslateX,
-          opacity: cardOpacity,
           rotate: leftCardRotate,
         }}
       >
@@ -128,7 +125,6 @@ export default function HeroSection() {
         style={{
           y: rightCardTranslateY,
           x: rightCardTranslateX,
-          opacity: cardOpacity,
           rotate: rightCardRotate,
         }}
       >
