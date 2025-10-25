@@ -1,4 +1,21 @@
+import { useState, useEffect } from "react";
+
 export default function PortfolioSection() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollProgress = Math.min(Math.max((scrollY - 300) / 400, 0), 1);
+  const cardOpacity = scrollProgress;
+  const cardScale = 0.95 + scrollProgress * 0.05;
+
   return (
     <section className="py-16 sm:py-20 md:py-24 px-6 bg-background">
       <div className="max-w-4xl mx-auto">
@@ -12,7 +29,11 @@ export default function PortfolioSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <div 
             id="portfolio-card-1" 
-            className="opacity-30 bg-white dark:bg-card rounded-xl lg:rounded-2xl border-2 border-dashed border-border overflow-hidden shadow-lg"
+            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transition-all duration-300"
+            style={{
+              opacity: Math.max(cardOpacity, 0.3),
+              transform: `scale(${cardScale})`,
+            }}
             data-testid="card-portfolio-placeholder-1"
           >
             <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
@@ -32,7 +53,11 @@ export default function PortfolioSection() {
 
           <div 
             id="portfolio-card-2"
-            className="opacity-30 bg-white dark:bg-card rounded-xl lg:rounded-2xl border-2 border-dashed border-border overflow-hidden shadow-lg"
+            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transition-all duration-300"
+            style={{
+              opacity: Math.max(cardOpacity, 0.3),
+              transform: `scale(${cardScale})`,
+            }}
             data-testid="card-portfolio-placeholder-2"
           >
             <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
