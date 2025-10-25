@@ -42,19 +42,6 @@ export default function EmailMockup() {
           }}
           data-testid="container-email-mockup"
         >
-          <div className="flex items-center justify-center mb-8">
-            <div className="bg-white/95 text-foreground border-0 px-6 py-3 rounded-full text-sm font-medium flex items-center gap-2" data-testid="badge-security">
-              <div className="bg-foreground text-background rounded-full p-1.5">
-                <Circle className="h-3 w-3 fill-current" />
-              </div>
-              <span>Private & Secure</span>
-              <span className="text-muted-foreground">•</span>
-              <span>SOC2 Certified</span>
-              <span className="text-muted-foreground">•</span>
-              <span>GDPR Certified</span>
-            </div>
-          </div>
-
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row min-h-[500px]">
             <div className="w-full md:w-64 bg-white border-r border-border p-4">
               <div className="space-y-1 mb-6">
