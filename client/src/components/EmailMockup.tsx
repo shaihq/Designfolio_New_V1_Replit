@@ -10,7 +10,10 @@ export default function EmailMockup() {
   useEffect(() => {
     const updateScrollRange = () => {
       const portfolioCard1 = document.getElementById("portfolio-card-1");
+      const portfolioCard2 = document.getElementById("portfolio-card-2");
       const heroSection = document.querySelector("section");
+      
+      let maxDeltaY = 0;
       
       if (portfolioCard1 && heroSection) {
         const heroRect = heroSection.getBoundingClientRect();
@@ -20,11 +23,23 @@ export default function EmailMockup() {
         const portfolio1AbsoluteTop = portfolio1Rect.top + window.scrollY;
         
         const deltaY = portfolio1AbsoluteTop - heroAbsoluteTop;
-        
-        // Use same calculation as HeroSection
-        const calculatedScrollRange = Math.max(deltaY * 1.2, 400);
-        setScrollRange(calculatedScrollRange);
+        maxDeltaY = Math.max(maxDeltaY, deltaY);
       }
+      
+      if (portfolioCard2 && heroSection) {
+        const heroRect = heroSection.getBoundingClientRect();
+        const portfolio2Rect = portfolioCard2.getBoundingClientRect();
+        
+        const heroAbsoluteTop = heroRect.top + window.scrollY;
+        const portfolio2AbsoluteTop = portfolio2Rect.top + window.scrollY;
+        
+        const deltaY = portfolio2AbsoluteTop - heroAbsoluteTop;
+        maxDeltaY = Math.max(maxDeltaY, deltaY);
+      }
+      
+      // Use same calculation as HeroSection - maximum distance either card needs to travel
+      const calculatedScrollRange = Math.max(maxDeltaY * 1.2, 400);
+      setScrollRange(calculatedScrollRange);
     };
 
     updateScrollRange();

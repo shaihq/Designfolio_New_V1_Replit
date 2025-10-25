@@ -16,6 +16,8 @@ export default function HeroSection() {
       const portfolioCard1 = document.getElementById("portfolio-card-1");
       const portfolioCard2 = document.getElementById("portfolio-card-2");
       
+      let maxDeltaY = 0;
+      
       if (portfolioCard1 && leftCardRef.current) {
         const leftRect = leftCardRef.current.getBoundingClientRect();
         const portfolio1Rect = portfolioCard1.getBoundingClientRect();
@@ -27,11 +29,7 @@ export default function HeroSection() {
         const deltaY = portfolio1AbsoluteTop - leftAbsoluteTop;
         
         setLeftCardOffset({ x: deltaX, y: deltaY });
-        
-        // Set scroll range based on the distance cards need to travel
-        // Use a multiplier to make the animation feel smooth (1.2x the actual distance)
-        const calculatedScrollRange = Math.max(deltaY * 1.2, 400);
-        setScrollRange(calculatedScrollRange);
+        maxDeltaY = Math.max(maxDeltaY, deltaY);
       }
       
       if (portfolioCard2 && rightCardRef.current) {
@@ -45,7 +43,13 @@ export default function HeroSection() {
         const deltaY = portfolio2AbsoluteTop - rightAbsoluteTop;
         
         setRightCardOffset({ x: deltaX, y: deltaY });
+        maxDeltaY = Math.max(maxDeltaY, deltaY);
       }
+      
+      // Set scroll range based on the maximum distance either card needs to travel
+      // Use a multiplier to make the animation feel smooth (1.2x the actual distance)
+      const calculatedScrollRange = Math.max(maxDeltaY * 1.2, 400);
+      setScrollRange(calculatedScrollRange);
     };
 
     updateCardPositions();
