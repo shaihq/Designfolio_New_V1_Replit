@@ -9,8 +9,8 @@ export default function HeroSection() {
   
   const [leftCardOffset, setLeftCardOffset] = useState({ x: 0, y: 0 });
   const [rightCardOffset, setRightCardOffset] = useState({ x: 0, y: 0 });
-  const [leftCardWidth, setLeftCardWidth] = useState({ start: 112, end: 200 });
-  const [rightCardWidth, setRightCardWidth] = useState({ start: 112, end: 200 });
+  const [leftCardScale, setLeftCardScale] = useState(1);
+  const [rightCardScale, setRightCardScale] = useState(1);
   const [scrollRange, setScrollRange] = useState(800);
 
   useEffect(() => {
@@ -30,8 +30,10 @@ export default function HeroSection() {
         const deltaX = portfolio1Rect.left - leftRect.left;
         const deltaY = portfolio1AbsoluteTop - leftAbsoluteTop;
         
+        const scaleRatio = portfolio1Rect.width / leftRect.width;
+        
         setLeftCardOffset({ x: deltaX, y: deltaY });
-        setLeftCardWidth({ start: leftRect.width, end: portfolio1Rect.width });
+        setLeftCardScale(scaleRatio);
         maxDeltaY = Math.max(maxDeltaY, deltaY);
       }
       
@@ -45,8 +47,10 @@ export default function HeroSection() {
         const deltaX = portfolio2Rect.left - rightRect.left;
         const deltaY = portfolio2AbsoluteTop - rightAbsoluteTop;
         
+        const scaleRatio = portfolio2Rect.width / rightRect.width;
+        
         setRightCardOffset({ x: deltaX, y: deltaY });
-        setRightCardWidth({ start: rightRect.width, end: portfolio2Rect.width });
+        setRightCardScale(scaleRatio);
         maxDeltaY = Math.max(maxDeltaY, deltaY);
       }
       
@@ -95,8 +99,8 @@ export default function HeroSection() {
   const leftCardRotate = useTransform(scrollY, [0, scrollRange], [-6, 0]);
   const rightCardRotate = useTransform(scrollY, [0, scrollRange], [6, 0]);
   
-  const leftWidth = useTransform(scrollY, [0, scrollRange], [leftCardWidth.start, leftCardWidth.end]);
-  const rightWidth = useTransform(scrollY, [0, scrollRange], [rightCardWidth.start, rightCardWidth.end]);
+  const leftScale = useTransform(scrollY, [0, scrollRange], [1, leftCardScale]);
+  const rightScale = useTransform(scrollY, [0, scrollRange], [1, rightCardScale]);
   
   const cardOpacity = useTransform(scrollY, [scrollRange * 0.95, scrollRange * 0.97], [1, 0]);
 
@@ -104,12 +108,12 @@ export default function HeroSection() {
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
       <motion.div 
         ref={leftCardRef}
-        className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0"
+        className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0 origin-top-left"
         style={{
           y: leftCardTranslateY,
           x: leftCardTranslateX,
           rotate: leftCardRotate,
-          width: leftWidth,
+          scale: leftScale,
           opacity: cardOpacity,
         }}
       >
@@ -132,12 +136,12 @@ export default function HeroSection() {
 
       <motion.div 
         ref={rightCardRef}
-        className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0"
+        className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0 origin-top-left"
         style={{
           y: rightCardTranslateY,
           x: rightCardTranslateX,
           rotate: rightCardRotate,
-          width: rightWidth,
+          scale: rightScale,
           opacity: cardOpacity,
         }}
       >
