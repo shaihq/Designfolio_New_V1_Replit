@@ -13,7 +13,7 @@ export default function EmailMockup() {
           data-testid="container-portfolio-mockup"
         >
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-8 md:p-12">
-            <div className="flex items-start gap-6">
+            <div className="flex items-start gap-6 mb-12">
               <div className="flex-shrink-0">
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-gradient-to-br from-orange-200 to-orange-100 flex items-center justify-center overflow-hidden">
                   <Avatar className="w-full h-full rounded-2xl">
@@ -32,6 +32,11 @@ export default function EmailMockup() {
                   A unicorn designer who can both design and code. Designed experiences in sports, medtech, gig economy, fintech, and designed gamified learning experiences.
                 </p>
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-200 rounded-2xl aspect-[4/3] animate-pulse" data-testid="placeholder-project-1"></div>
+              <div className="bg-gray-200 rounded-2xl aspect-[4/3] animate-pulse" data-testid="placeholder-project-2"></div>
             </div>
           </div>
         </div>
