@@ -24,39 +24,46 @@ export default function HeroSection() {
         const leftRect = leftCardRef.current.getBoundingClientRect();
         const portfolio1Rect = portfolioCard1.getBoundingClientRect();
         
-        const leftAbsoluteTop = leftRect.top + window.scrollY;
-        const portfolio1AbsoluteTop = portfolio1Rect.top + window.scrollY;
-        
-        const deltaX = portfolio1Rect.left - leftRect.left;
-        const deltaY = portfolio1AbsoluteTop - leftAbsoluteTop;
-        
         const scaleRatio = portfolio1Rect.width / leftRect.width;
+        
+        // Calculate center positions
+        const leftCenterX = leftRect.left + leftRect.width / 2;
+        const leftCenterY = leftRect.top + window.scrollY + leftRect.height / 2;
+        const portfolio1CenterX = portfolio1Rect.left + portfolio1Rect.width / 2;
+        const portfolio1CenterY = portfolio1Rect.top + window.scrollY + portfolio1Rect.height / 2;
+        
+        // Calculate offset from center to center
+        const deltaX = portfolio1CenterX - leftCenterX;
+        const deltaY = portfolio1CenterY - leftCenterY;
         
         setLeftCardOffset({ x: deltaX, y: deltaY });
         setLeftCardScale(scaleRatio);
-        maxDeltaY = Math.max(maxDeltaY, deltaY);
+        maxDeltaY = Math.max(maxDeltaY, Math.abs(deltaY));
       }
       
       if (portfolioCard2 && rightCardRef.current) {
         const rightRect = rightCardRef.current.getBoundingClientRect();
         const portfolio2Rect = portfolioCard2.getBoundingClientRect();
         
-        const rightAbsoluteTop = rightRect.top + window.scrollY;
-        const portfolio2AbsoluteTop = portfolio2Rect.top + window.scrollY;
-        
-        const deltaX = portfolio2Rect.left - rightRect.left;
-        const deltaY = portfolio2AbsoluteTop - rightAbsoluteTop;
-        
         const scaleRatio = portfolio2Rect.width / rightRect.width;
+        
+        // Calculate center positions
+        const rightCenterX = rightRect.left + rightRect.width / 2;
+        const rightCenterY = rightRect.top + window.scrollY + rightRect.height / 2;
+        const portfolio2CenterX = portfolio2Rect.left + portfolio2Rect.width / 2;
+        const portfolio2CenterY = portfolio2Rect.top + window.scrollY + portfolio2Rect.height / 2;
+        
+        // Calculate offset from center to center
+        const deltaX = portfolio2CenterX - rightCenterX;
+        const deltaY = portfolio2CenterY - rightCenterY;
         
         setRightCardOffset({ x: deltaX, y: deltaY });
         setRightCardScale(scaleRatio);
-        maxDeltaY = Math.max(maxDeltaY, deltaY);
+        maxDeltaY = Math.max(maxDeltaY, Math.abs(deltaY));
       }
       
       // Set scroll range based on the maximum distance either card needs to travel
-      // Use a smaller multiplier for faster animation (0.5x the actual distance)
-      const calculatedScrollRange = Math.max(maxDeltaY * 0.5, 300);
+      const calculatedScrollRange = Math.max(maxDeltaY * 1.2, 400);
       setScrollRange(calculatedScrollRange);
     };
 
@@ -108,7 +115,7 @@ export default function HeroSection() {
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
       <motion.div 
         ref={leftCardRef}
-        className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0 origin-top-left"
+        className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0 origin-center"
         style={{
           y: leftCardTranslateY,
           x: leftCardTranslateX,
@@ -136,7 +143,7 @@ export default function HeroSection() {
 
       <motion.div 
         ref={rightCardRef}
-        className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0 origin-top-left"
+        className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0 origin-center"
         style={{
           y: rightCardTranslateY,
           x: rightCardTranslateX,
