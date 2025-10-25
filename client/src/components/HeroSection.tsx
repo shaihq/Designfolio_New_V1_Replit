@@ -2,48 +2,48 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
-    <section className="py-16 md:py-24 px-6 relative">
+    <section className="py-16 md:py-24 px-6 relative overflow-hidden">
+      <div className="hidden lg:block absolute left-[5%] xl:left-[10%] top-28 w-64 z-10">
+        <div className="sticky" style={{ top: '100px' }}>
+          <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-left">
+            <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
+              </div>
+            </div>
+            <div className="p-4">
+              <h3 className="text-sm font-semibold text-foreground mb-1" data-testid="text-project-left-title">
+                Redesigning fitness app experience for 4M users.
+              </h3>
+              <p className="text-xs text-foreground/50" data-testid="text-project-left-category">
+                Project by Nandini
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden lg:block absolute right-[5%] xl:right-[10%] top-40 w-64 z-10">
+        <div className="sticky" style={{ top: '120px' }}>
+          <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-lg transform rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-right">
+            <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
+              </div>
+            </div>
+            <div className="p-4">
+              <h3 className="text-sm font-semibold text-foreground mb-1" data-testid="text-project-right-title">
+                Developed a Blockchain app on Next.JS
+              </h3>
+              <p className="text-xs text-foreground/50" data-testid="text-project-right-category">
+                Case Study by Chris
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto relative">
-        <div className="hidden lg:block absolute left-0 top-20 w-64 z-10">
-          <div className="sticky" style={{ top: '100px' }}>
-            <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-left">
-              <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
-                </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-1" data-testid="text-project-left-title">
-                  Redesigning fitness app experience for 4M users.
-                </h3>
-                <p className="text-xs text-foreground/50" data-testid="text-project-left-category">
-                  Project by Nandini
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="hidden lg:block absolute right-0 top-32 w-64 z-10">
-          <div className="sticky" style={{ top: '120px' }}>
-            <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-lg transform rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-right">
-              <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
-                </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-1" data-testid="text-project-right-title">
-                  Developed a Blockchain app on Next.JS
-                </h3>
-                <p className="text-xs text-foreground/50" data-testid="text-project-right-category">
-                  Case Study by Chris
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="font-serif font-normal text-5xl md:text-7xl leading-tight mb-6 text-foreground" data-testid="text-hero-headline">
             Building a portfolio was never meant to be hard.
