@@ -2,49 +2,45 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
-    <section className="py-16 md:py-24 px-6 relative overflow-visible">
-      <div className="absolute -left-12 top-0 md:-left-8 lg:left-4 xl:left-16 md:top-20 lg:top-28 w-28 sm:w-36 md:w-48 lg:w-56 xl:w-64 z-0">
-        <div className="sticky" style={{ top: '100px' }}>
-          <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-left">
-            <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
-              </div>
+    <section className="relative overflow-visible min-h-[600px] sm:min-h-[650px] md:min-h-[500px] py-24 sm:py-28 md:py-16 lg:py-24 px-6">
+      <div className="absolute -left-16 top-4 sm:top-6 md:-left-8 lg:left-4 xl:left-16 md:top-20 lg:top-28 w-28 sm:w-32 md:w-48 lg:w-56 xl:w-64 z-0">
+        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-left">
+          <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
             </div>
-            <div className="p-2 sm:p-3 md:p-4">
-              <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-left-title">
-                Redesigning fitness app experience for 4M users.
-              </h3>
-              <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground/50" data-testid="text-project-left-category">
-                Project by Nandini
-              </p>
-            </div>
+          </div>
+          <div className="p-2 sm:p-3 md:p-4">
+            <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-left-title">
+              Redesigning fitness app experience for 4M users.
+            </h3>
+            <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground/50" data-testid="text-project-left-category">
+              Project by Nandini
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="absolute -right-12 bottom-0 md:-right-8 lg:right-4 xl:right-16 md:top-32 lg:top-40 md:bottom-auto w-28 sm:w-36 md:w-48 lg:w-56 xl:w-64 z-0">
-        <div className="sticky" style={{ top: '120px' }}>
-          <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-right">
-            <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
-              </div>
+      <div className="absolute -right-16 bottom-4 sm:bottom-6 md:-right-8 lg:right-4 xl:right-16 md:top-32 lg:top-40 md:bottom-auto w-28 sm:w-32 md:w-48 lg:w-56 xl:w-64 z-0">
+        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-right">
+          <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
             </div>
-            <div className="p-2 sm:p-3 md:p-4">
-              <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-right-title">
-                Developed a Blockchain app on Next.JS
-              </h3>
-              <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground/50" data-testid="text-project-right-category">
-                Case Study by Chris
-              </p>
-            </div>
+          </div>
+          <div className="p-2 sm:p-3 md:p-4">
+            <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-right-title">
+              Developed a Blockchain app on Next.JS
+            </h3>
+            <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground/50" data-testid="text-project-right-category">
+              Case Study by Chris
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-7xl mx-auto relative z-10 h-full flex items-center justify-center">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-8 md:px-12 lg:px-0">
           <h1 className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-4 sm:mb-6 text-foreground" data-testid="text-hero-headline">
             Building a portfolio was never meant to be hard.
           </h1>
