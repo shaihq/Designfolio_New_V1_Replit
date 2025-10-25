@@ -1,7 +1,14 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { User } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function EmailMockup() {
+  const { scrollY } = useScroll();
+  
+  const scrollRange = 800;
+  const cardOpacity = useTransform(scrollY, [scrollRange * 0.6, scrollRange], [0, 1]);
+  const cardScale = useTransform(scrollY, [scrollRange * 0.6, scrollRange], [0.95, 1]);
+
   return (
     <section className="py-8 sm:py-12 px-6">
       <div className="max-w-4xl mx-auto">
@@ -35,8 +42,53 @@ export default function EmailMockup() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-              <div className="bg-gray-200 rounded-xl sm:rounded-2xl aspect-[4/3] animate-pulse" data-testid="placeholder-project-1"></div>
-              <div className="bg-gray-200 rounded-xl sm:rounded-2xl aspect-[4/3] animate-pulse" data-testid="placeholder-project-2"></div>
+              <motion.div 
+                id="portfolio-card-1"
+                className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg"
+                style={{
+                  opacity: cardOpacity,
+                  scale: cardScale,
+                }}
+                data-testid="placeholder-project-1"
+              >
+                <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
+                  </div>
+                </div>
+                <div className="p-3 sm:p-4 md:p-5">
+                  <h3 className="text-xs sm:text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2" data-testid="text-project-1-title">
+                    Redesigning fitness app experience for 4M users.
+                  </h3>
+                  <p className="text-[10px] sm:text-xs md:text-sm text-foreground/50" data-testid="text-project-1-category">
+                    Project by Nandini
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                id="portfolio-card-2"
+                className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg"
+                style={{
+                  opacity: cardOpacity,
+                  scale: cardScale,
+                }}
+                data-testid="placeholder-project-2"
+              >
+                <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
+                  </div>
+                </div>
+                <div className="p-3 sm:p-4 md:p-5">
+                  <h3 className="text-xs sm:text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2" data-testid="text-project-2-title">
+                    Developed a Blockchain app on Next.JS
+                  </h3>
+                  <p className="text-[10px] sm:text-xs md:text-sm text-foreground/50" data-testid="text-project-2-category">
+                    Case Study by Chris
+                  </p>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
