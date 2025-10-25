@@ -102,7 +102,7 @@ export default function HeroSection() {
   const leftScale = useTransform(scrollY, [0, scrollRange], [1, leftCardScale]);
   const rightScale = useTransform(scrollY, [0, scrollRange], [1, rightCardScale]);
   
-  const cardOpacity = useTransform(scrollY, [scrollRange * 0.92, scrollRange], [1, 0]);
+  const cardOpacity = useTransform(scrollY, [scrollRange * 0.95, scrollRange * 0.97], [1, 0]);
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
