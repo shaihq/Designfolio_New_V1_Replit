@@ -3,9 +3,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function PortfolioSection() {
   const { scrollY } = useScroll();
 
-  const scrollRange = 800;
-  const cardOpacity = useTransform(scrollY, [scrollRange * 0.6, scrollRange], [0, 1]);
-  const cardScale = useTransform(scrollY, [scrollRange * 0.6, scrollRange], [0.95, 1]);
+  const scrollRange = 400;
+  const cardScale = useTransform(scrollY, [scrollRange * 0.4, scrollRange * 0.8], [0.95, 1]);
 
   return (
     <section className="py-16 sm:py-20 md:py-24 px-6 bg-background">
@@ -22,7 +21,6 @@ export default function PortfolioSection() {
             id="portfolio-card-1" 
             className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg"
             style={{
-              opacity: cardOpacity,
               scale: cardScale,
             }}
             data-testid="card-portfolio-placeholder-1"
@@ -46,7 +44,6 @@ export default function PortfolioSection() {
             id="portfolio-card-2"
             className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg"
             style={{
-              opacity: cardOpacity,
               scale: cardScale,
             }}
             data-testid="card-portfolio-placeholder-2"
