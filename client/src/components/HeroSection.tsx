@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export default function HeroSection() {
   return (
     <section className="py-16 md:py-24 px-6 relative overflow-visible">
-      <div className="absolute -left-8 sm:-left-4 md:left-2 lg:left-8 xl:left-16 top-20 sm:top-24 md:top-28 w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 z-10">
+      <div className="absolute left-4 top-4 md:-left-8 lg:left-4 xl:left-16 md:top-20 lg:top-28 w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 z-10">
         <div className="sticky" style={{ top: '100px' }}>
           <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-left">
             <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
@@ -23,7 +23,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute -right-8 sm:-right-4 md:right-2 lg:right-8 xl:right-16 top-32 sm:top-36 md:top-40 w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 z-10">
+      <div className="absolute right-4 bottom-8 md:-right-8 lg:right-4 xl:right-16 md:top-32 lg:top-40 md:bottom-auto w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 z-10">
         <div className="sticky" style={{ top: '120px' }}>
           <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-right">
             <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
