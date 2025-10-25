@@ -4,14 +4,16 @@ import { User } from "lucide-react";
 export default function EmailMockup() {
   return (
     <section className="py-12 px-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative">
         <div 
-          className="rounded-3xl p-8 md:p-12 shadow-2xl"
+          className="rounded-3xl p-8 md:p-12 shadow-2xl pb-32 md:pb-40"
           style={{
             background: "linear-gradient(135deg, hsl(var(--gradient-start)) 0%, hsl(var(--gradient-end)) 100%)"
           }}
           data-testid="container-portfolio-mockup"
         >
+        </div>
+        <div className="absolute top-16 md:top-20 left-6 right-6 md:left-12 md:right-12">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-8 md:p-12">
             <div className="flex items-start gap-6 mb-12">
               <div className="flex-shrink-0">
