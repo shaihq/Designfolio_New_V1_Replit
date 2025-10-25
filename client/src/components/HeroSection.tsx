@@ -15,7 +15,7 @@ export default function HeroSection() {
 
         <Button 
           size="lg" 
-          className="bg-foreground text-background border border-foreground rounded-full px-10 text-base font-semibold"
+          className="bg-foreground text-background border border-foreground rounded-full px-10 py-6 text-base font-semibold hover:bg-foreground/80 transition-colors"
           data-testid="button-start-trial"
         >
           Start Your 7-Day Free Trial ($19)

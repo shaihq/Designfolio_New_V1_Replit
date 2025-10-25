@@ -28,7 +28,7 @@ export default function Navbar() {
             </a>
             <Button 
               size="default" 
-              className="bg-foreground text-background border border-foreground rounded-full px-6 font-medium" 
+              className="bg-foreground text-background border border-foreground rounded-full px-6 font-medium hover:bg-foreground/80 transition-colors" 
               data-testid="button-getstarted"
             >
               Get Started
