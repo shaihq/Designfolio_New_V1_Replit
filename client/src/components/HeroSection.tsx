@@ -13,16 +13,6 @@ export default function HeroSection() {
           Designfolio helps you skip the busywork — structure, write, and publish your portfolio in hours, not weeks.
         </p>
 
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground" data-testid="text-works-with">
-            <span>Works with</span>
-            <div className="flex items-center gap-3">
-              <Mail className="h-5 w-5 text-chart-4" />
-              <Mail className="h-5 w-5 text-primary" />
-            </div>
-          </div>
-        </div>
-
         <Button 
           size="lg" 
           className="bg-foreground text-background px-8 py-6 text-base font-semibold rounded-full min-h-12"
