@@ -103,7 +103,7 @@ export default function HeroSection() {
     [0, leftCardOffset.y],
     { clamp: true }
   );
-  const leftCardTranslateY = isMobile ? 0 : useSpring(leftCardTranslateYRaw, springConfig);
+  const leftCardTranslateYSpring = useSpring(leftCardTranslateYRaw, springConfig);
 
   const leftCardTranslateXRaw = useTransform(
     scrollY,
@@ -111,7 +111,7 @@ export default function HeroSection() {
     [0, leftCardOffset.x],
     { clamp: true }
   );
-  const leftCardTranslateX = isMobile ? 0 : useSpring(leftCardTranslateXRaw, springConfig);
+  const leftCardTranslateXSpring = useSpring(leftCardTranslateXRaw, springConfig);
 
   const rightCardTranslateYRaw = useTransform(
     scrollY,
@@ -119,7 +119,7 @@ export default function HeroSection() {
     [0, rightCardOffset.y],
     { clamp: true }
   );
-  const rightCardTranslateY = isMobile ? 0 : useSpring(rightCardTranslateYRaw, springConfig);
+  const rightCardTranslateYSpring = useSpring(rightCardTranslateYRaw, springConfig);
 
   const rightCardTranslateXRaw = useTransform(
     scrollY,
@@ -127,7 +127,7 @@ export default function HeroSection() {
     [0, rightCardOffset.x],
     { clamp: true }
   );
-  const rightCardTranslateX = isMobile ? 0 : useSpring(rightCardTranslateXRaw, springConfig);
+  const rightCardTranslateXSpring = useSpring(rightCardTranslateXRaw, springConfig);
 
   const leftCardRotateRaw = useTransform(
     scrollY, 
@@ -135,7 +135,7 @@ export default function HeroSection() {
     [-6, 0], 
     { clamp: true }
   );
-  const leftCardRotate = isMobile ? 0 : useSpring(leftCardRotateRaw, springConfig);
+  const leftCardRotateSpring = useSpring(leftCardRotateRaw, springConfig);
 
   const rightCardRotateRaw = useTransform(
     scrollY, 
@@ -143,13 +143,13 @@ export default function HeroSection() {
     [6, 0], 
     { clamp: true }
   );
-  const rightCardRotate = isMobile ? 0 : useSpring(rightCardRotateRaw, springConfig);
+  const rightCardRotateSpring = useSpring(rightCardRotateRaw, springConfig);
   
   const leftScaleRaw = useTransform(scrollY, [0, scrollRange], [1, leftCardScale], { clamp: true });
-  const leftScale = isMobile ? 1 : useSpring(leftScaleRaw, springConfig);
+  const leftScaleSpring = useSpring(leftScaleRaw, springConfig);
 
   const rightScaleRaw = useTransform(scrollY, [0, scrollRange], [1, rightCardScale], { clamp: true });
-  const rightScale = isMobile ? 1 : useSpring(rightScaleRaw, springConfig);
+  const rightScaleSpring = useSpring(rightScaleRaw, springConfig);
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
@@ -157,10 +157,10 @@ export default function HeroSection() {
         ref={leftCardRef}
         className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-10 origin-center will-change-transform"
         style={isMobile ? {} : {
-          y: leftCardTranslateY,
-          x: leftCardTranslateX,
-          rotate: leftCardRotate,
-          scale: leftScale,
+          y: leftCardTranslateYSpring,
+          x: leftCardTranslateXSpring,
+          rotate: leftCardRotateSpring,
+          scale: leftScaleSpring,
           backfaceVisibility: "hidden",
           WebkitBackfaceVisibility: "hidden",
         }}
@@ -198,10 +198,10 @@ export default function HeroSection() {
         ref={rightCardRef}
         className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-10 origin-center will-change-transform"
         style={isMobile ? {} : {
-          y: rightCardTranslateY,
-          x: rightCardTranslateX,
-          rotate: rightCardRotate,
-          scale: rightScale,
+          y: rightCardTranslateYSpring,
+          x: rightCardTranslateXSpring,
+          rotate: rightCardRotateSpring,
+          scale: rightScaleSpring,
           backfaceVisibility: "hidden",
           WebkitBackfaceVisibility: "hidden",
         }}
