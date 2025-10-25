@@ -13,7 +13,7 @@ export default function EmailMockup() {
           data-testid="container-portfolio-mockup"
         >
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-8 md:p-12">
-            <div className="flex items-start gap-6 mb-12">
+            <div className="flex items-start gap-6">
               <div className="flex-shrink-0">
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-gradient-to-br from-orange-200 to-orange-100 flex items-center justify-center overflow-hidden">
                   <Avatar className="w-full h-full rounded-2xl">
@@ -31,40 +31,6 @@ export default function EmailMockup() {
                 <p className="text-base md:text-lg text-foreground/60 leading-relaxed max-w-2xl" data-testid="text-portfolio-description">
                   A unicorn designer who can both design and code. Designed experiences in sports, medtech, gig economy, fintech, and designed gamified learning experiences.
                 </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-2xl border border-border overflow-hidden hover-elevate transition-all" data-testid="card-project-1">
-                <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-2" data-testid="text-project-1-title">
-                    Redesigning fitness app experience for 4M users.
-                  </h3>
-                  <p className="text-base text-foreground/50" data-testid="text-project-1-category">
-                    UX Case study
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl border border-border overflow-hidden hover-elevate transition-all" data-testid="card-project-2">
-                <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-2" data-testid="text-project-2-title">
-                    Developed a Blockchain app on Next.JS
-                  </h3>
-                  <p className="text-base text-foreground/50" data-testid="text-project-2-category">
-                    UX Case study
-                  </p>
-                </div>
               </div>
             </div>
           </div>
