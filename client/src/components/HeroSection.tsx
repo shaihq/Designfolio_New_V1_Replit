@@ -7,6 +7,7 @@ export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const leftCardRef = useRef<HTMLDivElement>(null);
   const rightCardRef = useRef<HTMLDivElement>(null);
+  const portfolioTriggerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const lastWidthRef = useRef<number>(0);
   
@@ -15,6 +16,7 @@ export default function HeroSection() {
   const [leftCardScale, setLeftCardScale] = useState(1);
   const [rightCardScale, setRightCardScale] = useState(1);
   const [scrollRange, setScrollRange] = useState(800);
+  const [animateCards, setAnimateCards] = useState(false);
 
   useEffect(() => {
     const updateCardPositions = () => {
@@ -153,6 +155,15 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
+      {isMobile && (
+        <motion.div
+          ref={portfolioTriggerRef}
+          className="absolute pointer-events-none"
+          style={{ top: "100vh" }}
+          onViewportEnter={() => setAnimateCards(true)}
+          viewport={{ once: true }}
+        />
+      )}
       <motion.div 
         ref={leftCardRef}
         className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-10 origin-center will-change-transform"
@@ -165,12 +176,11 @@ export default function HeroSection() {
           WebkitBackfaceVisibility: "hidden",
         }}
         initial={isMobile ? { opacity: 1, y: 0, x: 0, scale: 1 } : false}
-        whileInView={isMobile ? { 
+        animate={isMobile && animateCards ? { 
           y: leftCardOffset.y, 
           x: leftCardOffset.x, 
           scale: leftCardScale,
         } : {}}
-        viewport={isMobile ? { once: true, margin: "-20%" } : undefined}
         transition={isMobile ? { 
           duration: 0.6, 
           ease: [0.25, 0.1, 0.25, 1],
@@ -206,12 +216,11 @@ export default function HeroSection() {
           WebkitBackfaceVisibility: "hidden",
         }}
         initial={isMobile ? { opacity: 1, y: 0, x: 0, scale: 1 } : false}
-        whileInView={isMobile ? { 
+        animate={isMobile && animateCards ? { 
           y: rightCardOffset.y, 
           x: rightCardOffset.x, 
           scale: rightCardScale,
         } : {}}
-        viewport={isMobile ? { once: true, margin: "-20%" } : undefined}
         transition={isMobile ? { 
           duration: 0.6, 
           ease: [0.25, 0.1, 0.25, 1],
