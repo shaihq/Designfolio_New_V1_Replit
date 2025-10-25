@@ -161,10 +161,14 @@ export default function HeroSection() {
         style={{
           y: leftCardTranslateY,
           x: leftCardTranslateX,
+          z: 0,
           rotate: leftCardRotate,
           scale: leftScale,
           backfaceVisibility: "hidden",
           WebkitBackfaceVisibility: "hidden",
+          transformStyle: "preserve-3d",
+          WebkitFontSmoothing: "antialiased",
+          filter: "blur(0px)",
         }}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-left">
@@ -190,10 +194,14 @@ export default function HeroSection() {
         style={{
           y: rightCardTranslateY,
           x: rightCardTranslateX,
+          z: 0,
           rotate: rightCardRotate,
           scale: rightScale,
           backfaceVisibility: "hidden",
           WebkitBackfaceVisibility: "hidden",
+          transformStyle: "preserve-3d",
+          WebkitFontSmoothing: "antialiased",
+          filter: "blur(0px)",
         }}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-right">
