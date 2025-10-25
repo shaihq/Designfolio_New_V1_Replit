@@ -9,6 +9,8 @@ export default function HeroSection() {
   
   const [leftCardOffset, setLeftCardOffset] = useState({ x: 0, y: 0 });
   const [rightCardOffset, setRightCardOffset] = useState({ x: 0, y: 0 });
+  const [leftCardScale, setLeftCardScale] = useState(1);
+  const [rightCardScale, setRightCardScale] = useState(1);
   const [scrollRange, setScrollRange] = useState(800);
 
   useEffect(() => {
@@ -28,7 +30,10 @@ export default function HeroSection() {
         const deltaX = portfolio1Rect.left - leftRect.left;
         const deltaY = portfolio1AbsoluteTop - leftAbsoluteTop;
         
+        const scaleRatio = portfolio1Rect.width / leftRect.width;
+        
         setLeftCardOffset({ x: deltaX, y: deltaY });
+        setLeftCardScale(scaleRatio);
         maxDeltaY = Math.max(maxDeltaY, deltaY);
       }
       
@@ -42,7 +47,10 @@ export default function HeroSection() {
         const deltaX = portfolio2Rect.left - rightRect.left;
         const deltaY = portfolio2AbsoluteTop - rightAbsoluteTop;
         
+        const scaleRatio = portfolio2Rect.width / rightRect.width;
+        
         setRightCardOffset({ x: deltaX, y: deltaY });
+        setRightCardScale(scaleRatio);
         maxDeltaY = Math.max(maxDeltaY, deltaY);
       }
       
@@ -90,6 +98,9 @@ export default function HeroSection() {
 
   const leftCardRotate = useTransform(scrollY, [0, scrollRange], [-6, 0]);
   const rightCardRotate = useTransform(scrollY, [0, scrollRange], [6, 0]);
+  
+  const leftScale = useTransform(scrollY, [0, scrollRange], [1, leftCardScale]);
+  const rightScale = useTransform(scrollY, [0, scrollRange], [1, rightCardScale]);
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
@@ -100,6 +111,7 @@ export default function HeroSection() {
           y: leftCardTranslateY,
           x: leftCardTranslateX,
           rotate: leftCardRotate,
+          scale: leftScale,
         }}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-left">
@@ -126,6 +138,7 @@ export default function HeroSection() {
           y: rightCardTranslateY,
           x: rightCardTranslateX,
           rotate: rightCardRotate,
+          scale: rightScale,
         }}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-right">
