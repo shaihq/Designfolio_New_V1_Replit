@@ -4,7 +4,7 @@ import { Hexagon } from "lucide-react";
 export default function Navbar() {
   return (
     <nav className="border-b border-border bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <div className="flex items-center gap-2">
             <Hexagon className="h-4 w-4 sm:h-5 sm:w-5 text-foreground" data-testid="logo-icon" />

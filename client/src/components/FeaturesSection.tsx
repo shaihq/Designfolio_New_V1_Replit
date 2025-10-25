@@ -31,7 +31,7 @@ const features = [
 export default function FeaturesSection() {
   return (
     <section className="py-12 sm:py-16 md:py-24 px-6 bg-background">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <h2 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center text-foreground mb-4 sm:mb-6" data-testid="text-features-heading">
           Inbox chaos steals your time.
         </h2>

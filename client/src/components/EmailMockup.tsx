@@ -4,7 +4,7 @@ import { User } from "lucide-react";
 export default function EmailMockup() {
   return (
     <section className="py-8 sm:py-12 px-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div 
           className="rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12 shadow-2xl"
           style={{
