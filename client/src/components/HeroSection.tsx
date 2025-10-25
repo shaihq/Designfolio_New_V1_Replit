@@ -168,10 +168,8 @@ export default function HeroSection() {
         }}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-left">
-          <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
-            </div>
+          <div className="aspect-video relative overflow-hidden">
+            <img src="/left-banner.svg" alt="Portfolio banner" className="w-full h-full object-cover" />
           </div>
           <div className="p-2 sm:p-3 md:p-4">
             <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-left-title">
@@ -197,10 +195,8 @@ export default function HeroSection() {
         }}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-right">
-          <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
-            </div>
+          <div className="aspect-video relative overflow-hidden">
+            <img src="/right-banner-1.svg" alt="Portfolio banner" className="w-full h-full object-cover" />
           </div>
           <div className="p-2 sm:p-3 md:p-4">
             <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-right-title">
