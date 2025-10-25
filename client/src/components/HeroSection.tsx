@@ -86,32 +86,36 @@ export default function HeroSection() {
   const leftCardTranslateY = useTransform(
     scrollY,
     [0, scrollRange],
-    [0, leftCardOffset.y]
+    [0, leftCardOffset.y],
+    { clamp: true }
   );
 
   const leftCardTranslateX = useTransform(
     scrollY,
     [0, scrollRange],
-    [0, leftCardOffset.x]
+    [0, leftCardOffset.x],
+    { clamp: true }
   );
 
   const rightCardTranslateY = useTransform(
     scrollY,
     [0, scrollRange],
-    [0, rightCardOffset.y]
+    [0, rightCardOffset.y],
+    { clamp: true }
   );
 
   const rightCardTranslateX = useTransform(
     scrollY,
     [0, scrollRange],
-    [0, rightCardOffset.x]
+    [0, rightCardOffset.x],
+    { clamp: true }
   );
 
-  const leftCardRotate = useTransform(scrollY, [0, scrollRange], [-6, 0]);
-  const rightCardRotate = useTransform(scrollY, [0, scrollRange], [6, 0]);
+  const leftCardRotate = useTransform(scrollY, [0, scrollRange], [-6, 0], { clamp: true });
+  const rightCardRotate = useTransform(scrollY, [0, scrollRange], [6, 0], { clamp: true });
   
-  const leftScale = useTransform(scrollY, [0, scrollRange], [1, leftCardScale]);
-  const rightScale = useTransform(scrollY, [0, scrollRange], [1, rightCardScale]);
+  const leftScale = useTransform(scrollY, [0, scrollRange], [1, leftCardScale], { clamp: true });
+  const rightScale = useTransform(scrollY, [0, scrollRange], [1, rightCardScale], { clamp: true });
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
