@@ -122,17 +122,17 @@ export default function HeroSection() {
           scale: leftScale,
         }}
       >
-        <div className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-left">
+        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-left">
           <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
+              <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
             </div>
           </div>
-          <div className="p-4 sm:p-5">
-            <h3 className="text-sm sm:text-base font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-left-title">
+          <div className="p-2 sm:p-3 md:p-4">
+            <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-left-title">
               Redesigning fitness app experience for 4M users.
             </h3>
-            <p className="text-xs sm:text-sm text-foreground/50" data-testid="text-project-left-category">
+            <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground/50" data-testid="text-project-left-category">
               Project by Nandini
             </p>
           </div>
@@ -149,17 +149,17 @@ export default function HeroSection() {
           scale: rightScale,
         }}
       >
-        <div className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-right">
+        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-right">
           <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
+              <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
             </div>
           </div>
-          <div className="p-4 sm:p-5">
-            <h3 className="text-sm sm:text-base font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-right-title">
+          <div className="p-2 sm:p-3 md:p-4">
+            <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-right-title">
               Developed a Blockchain app on Next.JS
             </h3>
-            <p className="text-xs sm:text-sm text-foreground/50" data-testid="text-project-right-category">
+            <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground/50" data-testid="text-project-right-category">
               Case Study by Chris
             </p>
           </div>
