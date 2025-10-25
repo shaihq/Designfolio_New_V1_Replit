@@ -4,25 +4,50 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [portfolioOffset, setPortfolioOffset] = useState(0);
+  const leftCardRef = useRef<HTMLDivElement>(null);
+  const rightCardRef = useRef<HTMLDivElement>(null);
+  
+  const [leftCardOffset, setLeftCardOffset] = useState({ x: 0, y: 0 });
+  const [rightCardOffset, setRightCardOffset] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const updatePortfolioPosition = () => {
-      const portfolioCard = document.getElementById("portfolio-card-1");
-      if (portfolioCard && sectionRef.current) {
-        const heroRect = sectionRef.current.getBoundingClientRect();
-        const portfolioRect = portfolioCard.getBoundingClientRect();
-        const offset = portfolioRect.top - heroRect.top + window.scrollY - sectionRef.current.offsetTop;
-        setPortfolioOffset(offset);
+    const updateCardPositions = () => {
+      const portfolioCard1 = document.getElementById("portfolio-card-1");
+      const portfolioCard2 = document.getElementById("portfolio-card-2");
+      
+      if (portfolioCard1 && leftCardRef.current) {
+        const leftRect = leftCardRef.current.getBoundingClientRect();
+        const portfolio1Rect = portfolioCard1.getBoundingClientRect();
+        
+        const leftAbsoluteTop = leftRect.top + window.scrollY;
+        const portfolio1AbsoluteTop = portfolio1Rect.top + window.scrollY;
+        
+        const deltaX = portfolio1Rect.left - leftRect.left;
+        const deltaY = portfolio1AbsoluteTop - leftAbsoluteTop;
+        
+        setLeftCardOffset({ x: deltaX, y: deltaY });
+      }
+      
+      if (portfolioCard2 && rightCardRef.current) {
+        const rightRect = rightCardRef.current.getBoundingClientRect();
+        const portfolio2Rect = portfolioCard2.getBoundingClientRect();
+        
+        const rightAbsoluteTop = rightRect.top + window.scrollY;
+        const portfolio2AbsoluteTop = portfolio2Rect.top + window.scrollY;
+        
+        const deltaX = portfolio2Rect.left - rightRect.left;
+        const deltaY = portfolio2AbsoluteTop - rightAbsoluteTop;
+        
+        setRightCardOffset({ x: deltaX, y: deltaY });
       }
     };
 
-    updatePortfolioPosition();
-    window.addEventListener("resize", updatePortfolioPosition);
-    const timeoutId = setTimeout(updatePortfolioPosition, 100);
+    updateCardPositions();
+    window.addEventListener("resize", updateCardPositions);
+    const timeoutId = setTimeout(updateCardPositions, 100);
 
     return () => {
-      window.removeEventListener("resize", updatePortfolioPosition);
+      window.removeEventListener("resize", updateCardPositions);
       clearTimeout(timeoutId);
     };
   }, []);
@@ -30,12 +55,29 @@ export default function HeroSection() {
   const { scrollY } = useScroll();
 
   const scrollRange = 800;
-  const scrollProgress = useTransform(scrollY, [0, scrollRange], [0, 1]);
 
-  const cardTranslateY = useTransform(
+  const leftCardTranslateY = useTransform(
     scrollY,
     [0, scrollRange],
-    [0, portfolioOffset]
+    [0, leftCardOffset.y]
+  );
+
+  const leftCardTranslateX = useTransform(
+    scrollY,
+    [0, scrollRange],
+    [0, leftCardOffset.x]
+  );
+
+  const rightCardTranslateY = useTransform(
+    scrollY,
+    [0, scrollRange],
+    [0, rightCardOffset.y]
+  );
+
+  const rightCardTranslateX = useTransform(
+    scrollY,
+    [0, scrollRange],
+    [0, rightCardOffset.x]
   );
 
   const cardOpacity = useTransform(scrollY, [0, scrollRange * 0.6, scrollRange], [1, 1, 0]);
@@ -43,24 +85,13 @@ export default function HeroSection() {
   const leftCardRotate = useTransform(scrollY, [0, scrollRange], [-6, 0]);
   const rightCardRotate = useTransform(scrollY, [0, scrollRange], [6, 0]);
 
-  const leftCardTranslateX = useTransform(
-    scrollY,
-    [0, scrollRange],
-    [0, typeof window !== 'undefined' ? window.innerWidth * 0.15 : 100]
-  );
-
-  const rightCardTranslateX = useTransform(
-    scrollY,
-    [0, scrollRange],
-    [0, typeof window !== 'undefined' ? -window.innerWidth * 0.15 : -100]
-  );
-
   return (
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
       <motion.div 
+        ref={leftCardRef}
         className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0"
         style={{
-          y: cardTranslateY,
+          y: leftCardTranslateY,
           x: leftCardTranslateX,
           opacity: cardOpacity,
           rotate: leftCardRotate,
@@ -84,9 +115,10 @@ export default function HeroSection() {
       </motion.div>
 
       <motion.div 
+        ref={rightCardRef}
         className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0"
         style={{
-          y: cardTranslateY,
+          y: rightCardTranslateY,
           x: rightCardTranslateX,
           opacity: cardOpacity,
           rotate: rightCardRotate,
