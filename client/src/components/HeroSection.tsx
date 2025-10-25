@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
-    <section className="py-16 md:py-24 px-6 relative overflow-hidden">
-      <div className="hidden lg:block absolute left-[5%] xl:left-[10%] top-28 w-64 z-10">
+    <section className="py-16 md:py-24 px-6 relative overflow-visible">
+      <div className="absolute -left-20 md:-left-16 lg:left-4 xl:left-12 top-28 w-64 z-10">
         <div className="sticky" style={{ top: '100px' }}>
-          <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-left">
+          <div className="bg-white dark:bg-card rounded-2xl border border-border overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-left">
             <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
@@ -23,9 +23,9 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="hidden lg:block absolute right-[5%] xl:right-[10%] top-40 w-64 z-10">
+      <div className="absolute -right-20 md:-right-16 lg:right-4 xl:right-12 top-40 w-64 z-10">
         <div className="sticky" style={{ top: '120px' }}>
-          <div className="bg-white rounded-2xl border border-border overflow-hidden shadow-lg transform rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-right">
+          <div className="bg-white dark:bg-card rounded-2xl border border-border overflow-hidden shadow-lg transform rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-right">
             <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
