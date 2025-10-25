@@ -1,59 +1,7 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { User } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useState, useEffect } from "react";
 
 export default function EmailMockup() {
-  const { scrollY } = useScroll();
-  const [scrollRange, setScrollRange] = useState(800);
-  
-  useEffect(() => {
-    const updateScrollRange = () => {
-      const portfolioCard1 = document.getElementById("portfolio-card-1");
-      const portfolioCard2 = document.getElementById("portfolio-card-2");
-      const heroSection = document.querySelector("section");
-      
-      let maxDeltaY = 0;
-      
-      if (portfolioCard1 && heroSection) {
-        const heroRect = heroSection.getBoundingClientRect();
-        const portfolio1Rect = portfolioCard1.getBoundingClientRect();
-        
-        const heroAbsoluteTop = heroRect.top + window.scrollY;
-        const portfolio1AbsoluteTop = portfolio1Rect.top + window.scrollY;
-        
-        const deltaY = portfolio1AbsoluteTop - heroAbsoluteTop;
-        maxDeltaY = Math.max(maxDeltaY, deltaY);
-      }
-      
-      if (portfolioCard2 && heroSection) {
-        const heroRect = heroSection.getBoundingClientRect();
-        const portfolio2Rect = portfolioCard2.getBoundingClientRect();
-        
-        const heroAbsoluteTop = heroRect.top + window.scrollY;
-        const portfolio2AbsoluteTop = portfolio2Rect.top + window.scrollY;
-        
-        const deltaY = portfolio2AbsoluteTop - heroAbsoluteTop;
-        maxDeltaY = Math.max(maxDeltaY, deltaY);
-      }
-      
-      // Use same calculation as HeroSection - smaller multiplier for faster animation
-      const calculatedScrollRange = Math.max(maxDeltaY * 0.5, 300);
-      setScrollRange(calculatedScrollRange);
-    };
-
-    updateScrollRange();
-    window.addEventListener("resize", updateScrollRange);
-    const timeoutId = setTimeout(updateScrollRange, 100);
-
-    return () => {
-      window.removeEventListener("resize", updateScrollRange);
-      clearTimeout(timeoutId);
-    };
-  }, []);
-  
-  const cardOpacity = useTransform(scrollY, [scrollRange * 1.0, scrollRange * 1.2], [0, 1]);
-
   return (
     <section className="py-8 sm:py-12 px-6">
       <div className="max-w-4xl mx-auto">
@@ -87,12 +35,9 @@ export default function EmailMockup() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-              <motion.div 
+              <div 
                 id="portfolio-card-1"
-                className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg"
-                style={{
-                  opacity: cardOpacity,
-                }}
+                className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg opacity-0"
                 data-testid="placeholder-project-1"
               >
                 <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
@@ -108,14 +53,11 @@ export default function EmailMockup() {
                     Project by Nandini
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div 
+              <div 
                 id="portfolio-card-2"
-                className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg"
-                style={{
-                  opacity: cardOpacity,
-                }}
+                className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg opacity-0"
                 data-testid="placeholder-project-2"
               >
                 <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
@@ -131,7 +73,7 @@ export default function EmailMockup() {
                     Case Study by Chris
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
