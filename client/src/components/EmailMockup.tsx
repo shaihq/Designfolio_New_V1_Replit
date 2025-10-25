@@ -35,7 +35,7 @@ export default function EmailMockup() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-2xl border border-white/40 shadow-sm overflow-hidden hover-elevate transition-all" style={{ backdropFilter: 'blur(10px)' }} data-testid="card-project-1">
+              <div className="bg-white/95 rounded-2xl border-2 border-gray-100/60 shadow-lg backdrop-blur-sm overflow-hidden hover-elevate transition-all" data-testid="card-project-1">
                 <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
@@ -51,7 +51,7 @@ export default function EmailMockup() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl border border-white/40 shadow-sm overflow-hidden hover-elevate transition-all" style={{ backdropFilter: 'blur(10px)' }} data-testid="card-project-2">
+              <div className="bg-white/95 rounded-2xl border-2 border-gray-100/60 shadow-lg backdrop-blur-sm overflow-hidden hover-elevate transition-all" data-testid="card-project-2">
                 <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
