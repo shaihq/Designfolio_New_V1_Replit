@@ -45,11 +45,11 @@ export default function HeroSection() {
 
       <div className="max-w-7xl mx-auto relative">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="font-serif font-normal text-5xl md:text-7xl leading-tight mb-6 text-foreground" data-testid="text-hero-headline">
+          <h1 className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-4 sm:mb-6 text-foreground" data-testid="text-hero-headline">
             Building a portfolio was never meant to be hard.
           </h1>
           
-          <p className="text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-8" data-testid="text-hero-description">
+          <p className="text-base sm:text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" data-testid="text-hero-description">
             Designfolio helps you skip the busywork — structure, write, and publish your portfolio in hours, not weeks.
           </p>
 
