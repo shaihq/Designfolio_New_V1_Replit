@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function HeroSection() {
@@ -93,39 +93,65 @@ export default function HeroSection() {
 
   const { scrollY } = useScroll();
 
-  const leftCardTranslateY = useTransform(
+  // Spring configuration - more responsive on mobile for better performance
+  const springConfig = isMobile 
+    ? { stiffness: 200, damping: 30, mass: 0.5 }
+    : { stiffness: 100, damping: 30, mass: 1 };
+
+  const leftCardTranslateYRaw = useTransform(
     scrollY,
     [0, scrollRange],
     [0, leftCardOffset.y],
     { clamp: true }
   );
+  const leftCardTranslateY = useSpring(leftCardTranslateYRaw, springConfig);
 
-  const leftCardTranslateX = useTransform(
+  const leftCardTranslateXRaw = useTransform(
     scrollY,
     [0, scrollRange],
     [0, leftCardOffset.x],
     { clamp: true }
   );
+  const leftCardTranslateX = useSpring(leftCardTranslateXRaw, springConfig);
 
-  const rightCardTranslateY = useTransform(
+  const rightCardTranslateYRaw = useTransform(
     scrollY,
     [0, scrollRange],
     [0, rightCardOffset.y],
     { clamp: true }
   );
+  const rightCardTranslateY = useSpring(rightCardTranslateYRaw, springConfig);
 
-  const rightCardTranslateX = useTransform(
+  const rightCardTranslateXRaw = useTransform(
     scrollY,
     [0, scrollRange],
     [0, rightCardOffset.x],
     { clamp: true }
   );
+  const rightCardTranslateX = useSpring(rightCardTranslateXRaw, springConfig);
 
-  const leftCardRotate = useTransform(scrollY, [0, scrollRange], [-6, 0], { clamp: true });
-  const rightCardRotate = useTransform(scrollY, [0, scrollRange], [6, 0], { clamp: true });
+  // Simplify animations on mobile - no rotation, only translation and scale
+  const leftCardRotateRaw = useTransform(
+    scrollY, 
+    [0, scrollRange], 
+    isMobile ? [0, 0] : [-6, 0], 
+    { clamp: true }
+  );
+  const leftCardRotate = useSpring(leftCardRotateRaw, springConfig);
+
+  const rightCardRotateRaw = useTransform(
+    scrollY, 
+    [0, scrollRange], 
+    isMobile ? [0, 0] : [6, 0], 
+    { clamp: true }
+  );
+  const rightCardRotate = useSpring(rightCardRotateRaw, springConfig);
   
-  const leftScale = useTransform(scrollY, [0, scrollRange], [1, leftCardScale], { clamp: true });
-  const rightScale = useTransform(scrollY, [0, scrollRange], [1, rightCardScale], { clamp: true });
+  const leftScaleRaw = useTransform(scrollY, [0, scrollRange], [1, leftCardScale], { clamp: true });
+  const leftScale = useSpring(leftScaleRaw, springConfig);
+
+  const rightScaleRaw = useTransform(scrollY, [0, scrollRange], [1, rightCardScale], { clamp: true });
+  const rightScale = useSpring(rightScaleRaw, springConfig);
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
