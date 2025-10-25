@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-visible py-20 sm:py-24 md:py-16 lg:py-24 px-6">
-      <div className="absolute -left-16 top-4 sm:top-6 md:-left-8 lg:left-4 xl:left-16 md:top-20 lg:top-28 w-28 sm:w-32 md:w-48 lg:w-56 xl:w-64 z-0">
+    <section className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
+      <div className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0">
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-left">
           <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
@@ -21,7 +21,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute -right-16 bottom-4 sm:bottom-6 md:-right-8 lg:right-4 xl:right-16 md:top-32 lg:top-40 md:bottom-auto w-28 sm:w-32 md:w-48 lg:w-56 xl:w-64 z-0">
+      <div className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0">
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-right">
           <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
@@ -40,12 +40,12 @@ export default function HeroSection() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="max-w-3xl mx-auto text-center px-4 sm:px-6 md:px-0">
-          <h1 className="font-serif font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-4 sm:mb-6 text-foreground" data-testid="text-hero-headline">
+        <div className="max-w-3xl mx-auto text-center px-4 sm:px-6 md:px-12 lg:px-0">
+          <h1 className="font-serif font-normal text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-tight mb-4 sm:mb-6 text-foreground" data-testid="text-hero-headline">
             Building a portfolio was never meant to be hard.
           </h1>
           
-          <p className="text-base sm:text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" data-testid="text-hero-description">
+          <p className="text-base sm:text-lg md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" data-testid="text-hero-description">
             Designfolio helps you skip the busywork — structure, write, and publish your portfolio in hours, not weeks.
           </p>
 
