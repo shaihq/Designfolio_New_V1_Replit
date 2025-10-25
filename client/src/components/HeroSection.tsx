@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const leftCardRef = useRef<HTMLDivElement>(null);
   const rightCardRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   
   const [leftCardOffset, setLeftCardOffset] = useState({ x: 0, y: 0 });
   const [rightCardOffset, setRightCardOffset] = useState({ x: 0, y: 0 });
@@ -63,8 +65,9 @@ export default function HeroSection() {
       }
       
       // Set scroll range based on the maximum distance either card needs to travel
-      // Use a smaller multiplier for faster animation
-      const calculatedScrollRange = Math.max(maxDeltaY * 0.6, 300);
+      // Use a much smaller multiplier on mobile for faster animation (less scroll needed)
+      const multiplier = isMobile ? 0.15 : 0.6;
+      const calculatedScrollRange = Math.max(maxDeltaY * multiplier, 200);
       setScrollRange(calculatedScrollRange);
     };
 
@@ -76,7 +79,7 @@ export default function HeroSection() {
       window.removeEventListener("resize", updateCardPositions);
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [isMobile]);
 
   const { scrollY } = useScroll();
 
