@@ -1,7 +1,35 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { User } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function EmailMockup() {
+  const { scrollY } = useScroll();
+  const [scrollRange, setScrollRange] = useState(800);
+
+  useEffect(() => {
+    const updateScrollRange = () => {
+      const portfolioCard1 = document.getElementById("portfolio-card-1");
+      if (portfolioCard1) {
+        const rect = portfolioCard1.getBoundingClientRect();
+        const absoluteTop = rect.top + window.scrollY;
+        const calculatedRange = absoluteTop * 0.5;
+        setScrollRange(Math.max(calculatedRange, 300));
+      }
+    };
+
+    updateScrollRange();
+    window.addEventListener("resize", updateScrollRange);
+    const timeoutId = setTimeout(updateScrollRange, 100);
+
+    return () => {
+      window.removeEventListener("resize", updateScrollRange);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
+  const cardOpacity = useTransform(scrollY, [scrollRange * 0.7, scrollRange], [0, 1]);
+
   return (
     <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
@@ -35,9 +63,10 @@ export default function EmailMockup() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
-              <div 
+              <motion.div 
                 id="portfolio-card-1"
                 className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg"
+                style={{ opacity: cardOpacity }}
                 data-testid="placeholder-project-1"
               >
                 <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
@@ -53,11 +82,12 @@ export default function EmailMockup() {
                     Project by Nandini
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div 
+              <motion.div 
                 id="portfolio-card-2"
                 className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg"
+                style={{ opacity: cardOpacity }}
                 data-testid="placeholder-project-2"
               >
                 <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
@@ -73,7 +103,7 @@ export default function EmailMockup() {
                     Case Study by Chris
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

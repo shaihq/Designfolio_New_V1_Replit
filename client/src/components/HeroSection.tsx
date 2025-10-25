@@ -101,6 +101,8 @@ export default function HeroSection() {
   
   const leftScale = useTransform(scrollY, [0, scrollRange], [1, leftCardScale]);
   const rightScale = useTransform(scrollY, [0, scrollRange], [1, rightCardScale]);
+  
+  const cardOpacity = useTransform(scrollY, [scrollRange * 0.7, scrollRange], [1, 0]);
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
@@ -112,6 +114,7 @@ export default function HeroSection() {
           x: leftCardTranslateX,
           rotate: leftCardRotate,
           scale: leftScale,
+          opacity: cardOpacity,
         }}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-left">
@@ -139,6 +142,7 @@ export default function HeroSection() {
           x: rightCardTranslateX,
           rotate: rightCardRotate,
           scale: rightScale,
+          opacity: cardOpacity,
         }}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-right">
