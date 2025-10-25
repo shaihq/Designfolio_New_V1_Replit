@@ -63,7 +63,8 @@ export default function HeroSection() {
       }
       
       // Set scroll range based on the maximum distance either card needs to travel
-      const calculatedScrollRange = Math.max(maxDeltaY * 1.2, 400);
+      // Use a smaller multiplier for faster animation
+      const calculatedScrollRange = Math.max(maxDeltaY * 0.6, 300);
       setScrollRange(calculatedScrollRange);
     };
 
