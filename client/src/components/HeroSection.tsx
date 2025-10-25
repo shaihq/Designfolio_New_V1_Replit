@@ -45,75 +45,79 @@ export default function HeroSection() {
       };
       
       if (portfolioCard1 && leftCardRef.current) {
-        // Get portfolio card dimensions
-        const portfolio1Rect = portfolioCard1.getBoundingClientRect();
+        const leftElement = leftCardRef.current;
         
-        // Set card to match portfolio width
-        setLeftCardWidth(portfolio1Rect.width);
+        // Get portfolio card dimensions  
+        const portfolio1Rect = portfolioCard1.getBoundingClientRect();
         
         // Calculate initial scale (how small the card should appear in hero)
         const desiredHeroWidth = getDesiredHeroWidth();
         const initialScale = desiredHeroWidth / portfolio1Rect.width;
+        
+        // Set card dimensions
+        setLeftCardWidth(portfolio1Rect.width);
         setLeftInitialScale(initialScale);
         
-        // Temporarily disable transforms to get accurate position
-        const leftElement = leftCardRef.current;
+        // Temporarily disable ALL transforms to get base position
         const prevTransform = leftElement.style.transform;
         leftElement.style.transform = "none";
         
         const leftRect = leftElement.getBoundingClientRect();
         
-        // Calculate center positions
+        // Restore transform
+        leftElement.style.transform = prevTransform;
+        
+        // With transformOrigin: center, the center point doesn't move when scaling
+        // So we just calculate center-to-center offset of the full-sized cards
         const leftCenterX = leftRect.left + leftRect.width / 2;
         const leftCenterY = leftRect.top + window.scrollY + leftRect.height / 2;
+        
         const portfolio1CenterX = portfolio1Rect.left + portfolio1Rect.width / 2;
         const portfolio1CenterY = portfolio1Rect.top + window.scrollY + portfolio1Rect.height / 2;
         
-        // Calculate offset from center to center
         const deltaX = portfolio1CenterX - leftCenterX;
         const deltaY = portfolio1CenterY - leftCenterY;
         
         setLeftCardOffset({ x: deltaX, y: deltaY });
         maxDeltaY = Math.max(maxDeltaY, Math.abs(deltaY));
-        
-        // Restore transform
-        leftElement.style.transform = prevTransform;
       }
       
       if (portfolioCard2 && rightCardRef.current) {
+        const rightElement = rightCardRef.current;
+        
         // Get portfolio card dimensions
         const portfolio2Rect = portfolioCard2.getBoundingClientRect();
-        
-        // Set card to match portfolio width
-        setRightCardWidth(portfolio2Rect.width);
         
         // Calculate initial scale (how small the card should appear in hero)
         const desiredHeroWidth = getDesiredHeroWidth();
         const initialScale = desiredHeroWidth / portfolio2Rect.width;
+        
+        // Set card dimensions
+        setRightCardWidth(portfolio2Rect.width);
         setRightInitialScale(initialScale);
         
-        // Temporarily disable transforms to get accurate position
-        const rightElement = rightCardRef.current;
+        // Temporarily disable ALL transforms to get base position
         const prevTransform = rightElement.style.transform;
         rightElement.style.transform = "none";
         
         const rightRect = rightElement.getBoundingClientRect();
         
-        // Calculate center positions
+        // Restore transform
+        rightElement.style.transform = prevTransform;
+        
+        // With transformOrigin: center, the center point doesn't move when scaling
+        // So we just calculate center-to-center offset of the full-sized cards
         const rightCenterX = rightRect.left + rightRect.width / 2;
         const rightCenterY = rightRect.top + window.scrollY + rightRect.height / 2;
+        
         const portfolio2CenterX = portfolio2Rect.left + portfolio2Rect.width / 2;
         const portfolio2CenterY = portfolio2Rect.top + window.scrollY + portfolio2Rect.height / 2;
         
-        // Calculate offset from center to center
         const deltaX = portfolio2CenterX - rightCenterX;
         const deltaY = portfolio2CenterY - rightCenterY;
         
         setRightCardOffset({ x: deltaX, y: deltaY });
         maxDeltaY = Math.max(maxDeltaY, Math.abs(deltaY));
-        
-        // Restore transform
-        rightElement.style.transform = prevTransform;
       }
       
       // Set scroll range based on the maximum distance either card needs to travel
