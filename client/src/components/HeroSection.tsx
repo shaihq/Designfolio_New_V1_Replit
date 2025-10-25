@@ -1,32 +1,72 @@
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function HeroSection() {
-  const [scrollY, setScrollY] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [portfolioOffset, setPortfolioOffset] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
+    const updatePortfolioPosition = () => {
+      const portfolioCard = document.getElementById("portfolio-card-1");
+      if (portfolioCard && sectionRef.current) {
+        const heroRect = sectionRef.current.getBoundingClientRect();
+        const portfolioRect = portfolioCard.getBoundingClientRect();
+        const offset = portfolioRect.top - heroRect.top + window.scrollY - sectionRef.current.offsetTop;
+        setPortfolioOffset(offset);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    updatePortfolioPosition();
+    window.addEventListener("resize", updatePortfolioPosition);
+    const timeoutId = setTimeout(updatePortfolioPosition, 100);
+
+    return () => {
+      window.removeEventListener("resize", updatePortfolioPosition);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
-  const scrollProgress = Math.min(scrollY / 500, 1);
-  const cardTranslateY = scrollProgress * 300;
-  const cardOpacity = Math.max(1 - scrollProgress * 1.5, 0);
+  const { scrollY } = useScroll();
+
+  const scrollRange = 800;
+  const scrollProgress = useTransform(scrollY, [0, scrollRange], [0, 1]);
+
+  const cardTranslateY = useTransform(
+    scrollY,
+    [0, scrollRange],
+    [0, portfolioOffset]
+  );
+
+  const cardOpacity = useTransform(scrollY, [0, scrollRange * 0.6, scrollRange], [1, 1, 0]);
+
+  const leftCardRotate = useTransform(scrollY, [0, scrollRange], [-6, 0]);
+  const rightCardRotate = useTransform(scrollY, [0, scrollRange], [6, 0]);
+
+  const leftCardTranslateX = useTransform(
+    scrollY,
+    [0, scrollRange],
+    [0, typeof window !== 'undefined' ? window.innerWidth * 0.15 : 100]
+  );
+
+  const rightCardTranslateX = useTransform(
+    scrollY,
+    [0, scrollRange],
+    [0, typeof window !== 'undefined' ? -window.innerWidth * 0.15 : -100]
+  );
 
   return (
-    <section className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
-      <div 
-        className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0 transition-all duration-100"
+    <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
+      <motion.div 
+        className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0"
         style={{
-          transform: `translateY(${cardTranslateY}px)`,
+          y: cardTranslateY,
+          x: leftCardTranslateX,
           opacity: cardOpacity,
+          rotate: leftCardRotate,
         }}
       >
-        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-left">
+        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-left">
           <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
@@ -41,16 +81,18 @@ export default function HeroSection() {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div 
-        className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0 transition-all duration-100"
+      <motion.div 
+        className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-0"
         style={{
-          transform: `translateY(${cardTranslateY}px)`,
+          y: cardTranslateY,
+          x: rightCardTranslateX,
           opacity: cardOpacity,
+          rotate: rightCardRotate,
         }}
       >
-        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transform rotate-6 hover:rotate-0 transition-transform" data-testid="card-project-right">
+        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-right">
           <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
@@ -65,7 +107,7 @@ export default function HeroSection() {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="max-w-3xl mx-auto text-center px-4 sm:px-6 md:px-12 lg:px-0">

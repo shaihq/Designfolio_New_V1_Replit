@@ -1,20 +1,11 @@
-import { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function PortfolioSection() {
-  const [scrollY, setScrollY] = useState(0);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollProgress = Math.min(Math.max((scrollY - 300) / 400, 0), 1);
-  const cardOpacity = scrollProgress;
-  const cardScale = 0.95 + scrollProgress * 0.05;
+  const scrollRange = 800;
+  const cardOpacity = useTransform(scrollY, [scrollRange * 0.6, scrollRange], [0, 1]);
+  const cardScale = useTransform(scrollY, [scrollRange * 0.6, scrollRange], [0.95, 1]);
 
   return (
     <section className="py-16 sm:py-20 md:py-24 px-6 bg-background">
@@ -27,12 +18,12 @@ export default function PortfolioSection() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          <div 
+          <motion.div 
             id="portfolio-card-1" 
-            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transition-all duration-300"
+            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg"
             style={{
-              opacity: Math.max(cardOpacity, 0.3),
-              transform: `scale(${cardScale})`,
+              opacity: cardOpacity,
+              scale: cardScale,
             }}
             data-testid="card-portfolio-placeholder-1"
           >
@@ -49,14 +40,14 @@ export default function PortfolioSection() {
                 Project by Nandini
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div 
+          <motion.div 
             id="portfolio-card-2"
-            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg transition-all duration-300"
+            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg"
             style={{
-              opacity: Math.max(cardOpacity, 0.3),
-              transform: `scale(${cardScale})`,
+              opacity: cardOpacity,
+              scale: cardScale,
             }}
             data-testid="card-portfolio-placeholder-2"
           >
@@ -73,7 +64,7 @@ export default function PortfolioSection() {
                 Case Study by Chris
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
