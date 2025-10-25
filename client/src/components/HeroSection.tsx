@@ -8,6 +8,7 @@ export default function HeroSection() {
   const leftCardRef = useRef<HTMLDivElement>(null);
   const rightCardRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const lastWidthRef = useRef<number>(0);
   
   const [leftCardOffset, setLeftCardOffset] = useState({ x: 0, y: 0 });
   const [rightCardOffset, setRightCardOffset] = useState({ x: 0, y: 0 });
@@ -17,6 +18,15 @@ export default function HeroSection() {
 
   useEffect(() => {
     const updateCardPositions = () => {
+      const currentWidth = window.innerWidth;
+      
+      // Only recalculate if width actually changed (not just height from browser chrome)
+      if (lastWidthRef.current !== 0 && Math.abs(currentWidth - lastWidthRef.current) < 1) {
+        return;
+      }
+      
+      lastWidthRef.current = currentWidth;
+      
       const portfolioCard1 = document.getElementById("portfolio-card-1");
       const portfolioCard2 = document.getElementById("portfolio-card-2");
       
