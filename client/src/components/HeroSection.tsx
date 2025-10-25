@@ -93,10 +93,9 @@ export default function HeroSection() {
 
   const { scrollY } = useScroll();
 
-  // Spring configuration - more responsive on mobile for better performance
-  const springConfig = isMobile 
-    ? { stiffness: 200, damping: 30, mass: 0.5 }
-    : { stiffness: 100, damping: 30, mass: 1 };
+  // Desktop: scroll-linked animation with spring smoothing
+  // Mobile: no scroll tracking (animation handled by whileInView)
+  const springConfig = { stiffness: 100, damping: 30, mass: 1 };
 
   const leftCardTranslateYRaw = useTransform(
     scrollY,
@@ -104,7 +103,7 @@ export default function HeroSection() {
     [0, leftCardOffset.y],
     { clamp: true }
   );
-  const leftCardTranslateY = useSpring(leftCardTranslateYRaw, springConfig);
+  const leftCardTranslateY = isMobile ? 0 : useSpring(leftCardTranslateYRaw, springConfig);
 
   const leftCardTranslateXRaw = useTransform(
     scrollY,
@@ -112,7 +111,7 @@ export default function HeroSection() {
     [0, leftCardOffset.x],
     { clamp: true }
   );
-  const leftCardTranslateX = useSpring(leftCardTranslateXRaw, springConfig);
+  const leftCardTranslateX = isMobile ? 0 : useSpring(leftCardTranslateXRaw, springConfig);
 
   const rightCardTranslateYRaw = useTransform(
     scrollY,
@@ -120,7 +119,7 @@ export default function HeroSection() {
     [0, rightCardOffset.y],
     { clamp: true }
   );
-  const rightCardTranslateY = useSpring(rightCardTranslateYRaw, springConfig);
+  const rightCardTranslateY = isMobile ? 0 : useSpring(rightCardTranslateYRaw, springConfig);
 
   const rightCardTranslateXRaw = useTransform(
     scrollY,
@@ -128,37 +127,36 @@ export default function HeroSection() {
     [0, rightCardOffset.x],
     { clamp: true }
   );
-  const rightCardTranslateX = useSpring(rightCardTranslateXRaw, springConfig);
+  const rightCardTranslateX = isMobile ? 0 : useSpring(rightCardTranslateXRaw, springConfig);
 
-  // Simplify animations on mobile - no rotation, only translation and scale
   const leftCardRotateRaw = useTransform(
     scrollY, 
     [0, scrollRange], 
-    isMobile ? [0, 0] : [-6, 0], 
+    [-6, 0], 
     { clamp: true }
   );
-  const leftCardRotate = useSpring(leftCardRotateRaw, springConfig);
+  const leftCardRotate = isMobile ? 0 : useSpring(leftCardRotateRaw, springConfig);
 
   const rightCardRotateRaw = useTransform(
     scrollY, 
     [0, scrollRange], 
-    isMobile ? [0, 0] : [6, 0], 
+    [6, 0], 
     { clamp: true }
   );
-  const rightCardRotate = useSpring(rightCardRotateRaw, springConfig);
+  const rightCardRotate = isMobile ? 0 : useSpring(rightCardRotateRaw, springConfig);
   
   const leftScaleRaw = useTransform(scrollY, [0, scrollRange], [1, leftCardScale], { clamp: true });
-  const leftScale = useSpring(leftScaleRaw, springConfig);
+  const leftScale = isMobile ? 1 : useSpring(leftScaleRaw, springConfig);
 
   const rightScaleRaw = useTransform(scrollY, [0, scrollRange], [1, rightCardScale], { clamp: true });
-  const rightScale = useSpring(rightScaleRaw, springConfig);
+  const rightScale = isMobile ? 1 : useSpring(rightScaleRaw, springConfig);
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
       <motion.div 
         ref={leftCardRef}
         className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-10 origin-center will-change-transform"
-        style={{
+        style={isMobile ? {} : {
           y: leftCardTranslateY,
           x: leftCardTranslateX,
           rotate: leftCardRotate,
@@ -166,6 +164,18 @@ export default function HeroSection() {
           backfaceVisibility: "hidden",
           WebkitBackfaceVisibility: "hidden",
         }}
+        initial={isMobile ? { opacity: 1, y: 0, x: 0, scale: 1 } : false}
+        whileInView={isMobile ? { 
+          y: leftCardOffset.y, 
+          x: leftCardOffset.x, 
+          scale: leftCardScale,
+        } : {}}
+        viewport={isMobile ? { once: true, margin: "-20%" } : undefined}
+        transition={isMobile ? { 
+          duration: 0.6, 
+          ease: [0.25, 0.1, 0.25, 1],
+          delay: 0.1
+        } : undefined}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-left">
           <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
@@ -187,7 +197,7 @@ export default function HeroSection() {
       <motion.div 
         ref={rightCardRef}
         className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-10 origin-center will-change-transform"
-        style={{
+        style={isMobile ? {} : {
           y: rightCardTranslateY,
           x: rightCardTranslateX,
           rotate: rightCardRotate,
@@ -195,6 +205,18 @@ export default function HeroSection() {
           backfaceVisibility: "hidden",
           WebkitBackfaceVisibility: "hidden",
         }}
+        initial={isMobile ? { opacity: 1, y: 0, x: 0, scale: 1 } : false}
+        whileInView={isMobile ? { 
+          y: rightCardOffset.y, 
+          x: rightCardOffset.x, 
+          scale: rightCardScale,
+        } : {}}
+        viewport={isMobile ? { once: true, margin: "-20%" } : undefined}
+        transition={isMobile ? { 
+          duration: 0.6, 
+          ease: [0.25, 0.1, 0.25, 1],
+          delay: 0.15
+        } : undefined}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-right">
           <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
