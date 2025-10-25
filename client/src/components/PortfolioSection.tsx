@@ -25,10 +25,8 @@ export default function PortfolioSection() {
             }}
             data-testid="card-portfolio-placeholder-1"
           >
-            <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
-              </div>
+            <div className="aspect-video relative overflow-hidden">
+              <img src="/left-banner.svg" alt="Portfolio banner" className="w-full h-full object-cover" />
             </div>
             <div className="p-4 md:p-5">
               <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2" data-testid="text-portfolio-1-title">
@@ -48,10 +46,8 @@ export default function PortfolioSection() {
             }}
             data-testid="card-portfolio-placeholder-2"
           >
-            <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
-              </div>
+            <div className="aspect-video relative overflow-hidden">
+              <img src="/right-banner-1.svg" alt="Portfolio banner" className="w-full h-full object-cover" />
             </div>
             <div className="p-4 md:p-5">
               <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2" data-testid="text-portfolio-2-title">
