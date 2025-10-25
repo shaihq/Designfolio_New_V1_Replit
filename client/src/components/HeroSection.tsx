@@ -24,17 +24,22 @@ export default function HeroSection() {
         const leftRect = leftCardRef.current.getBoundingClientRect();
         const portfolio1Rect = portfolioCard1.getBoundingClientRect();
         
+        // Use width for scale calculation
         const scaleRatio = portfolio1Rect.width / leftRect.width;
         
-        // Calculate center positions
-        const leftCenterX = leftRect.left + leftRect.width / 2;
-        const leftCenterY = leftRect.top + window.scrollY + leftRect.height / 2;
-        const portfolio1CenterX = portfolio1Rect.left + portfolio1Rect.width / 2;
-        const portfolio1CenterY = portfolio1Rect.top + window.scrollY + portfolio1Rect.height / 2;
+        // Calculate top-left positions for accurate placement
+        const leftX = leftRect.left;
+        const leftY = leftRect.top + window.scrollY;
+        const portfolio1X = portfolio1Rect.left;
+        const portfolio1Y = portfolio1Rect.top + window.scrollY;
         
-        // Calculate offset from center to center
-        const deltaX = portfolio1CenterX - leftCenterX;
-        const deltaY = portfolio1CenterY - leftCenterY;
+        // Calculate the offset needed, accounting for the scale
+        // When scaling from center, we need to adjust the position
+        const scaledLeftWidth = leftRect.width * scaleRatio;
+        const scaledLeftHeight = leftRect.height * scaleRatio;
+        
+        const deltaX = portfolio1X - leftX + (portfolio1Rect.width - scaledLeftWidth) / 2;
+        const deltaY = portfolio1Y - leftY + (portfolio1Rect.height - scaledLeftHeight) / 2;
         
         setLeftCardOffset({ x: deltaX, y: deltaY });
         setLeftCardScale(scaleRatio);
@@ -45,17 +50,21 @@ export default function HeroSection() {
         const rightRect = rightCardRef.current.getBoundingClientRect();
         const portfolio2Rect = portfolioCard2.getBoundingClientRect();
         
+        // Use width for scale calculation
         const scaleRatio = portfolio2Rect.width / rightRect.width;
         
-        // Calculate center positions
-        const rightCenterX = rightRect.left + rightRect.width / 2;
-        const rightCenterY = rightRect.top + window.scrollY + rightRect.height / 2;
-        const portfolio2CenterX = portfolio2Rect.left + portfolio2Rect.width / 2;
-        const portfolio2CenterY = portfolio2Rect.top + window.scrollY + portfolio2Rect.height / 2;
+        // Calculate top-left positions for accurate placement
+        const rightX = rightRect.left;
+        const rightY = rightRect.top + window.scrollY;
+        const portfolio2X = portfolio2Rect.left;
+        const portfolio2Y = portfolio2Rect.top + window.scrollY;
         
-        // Calculate offset from center to center
-        const deltaX = portfolio2CenterX - rightCenterX;
-        const deltaY = portfolio2CenterY - rightCenterY;
+        // Calculate the offset needed, accounting for the scale
+        const scaledRightWidth = rightRect.width * scaleRatio;
+        const scaledRightHeight = rightRect.height * scaleRatio;
+        
+        const deltaX = portfolio2X - rightX + (portfolio2Rect.width - scaledRightWidth) / 2;
+        const deltaY = portfolio2Y - rightY + (portfolio2Rect.height - scaledRightHeight) / 2;
         
         setRightCardOffset({ x: deltaX, y: deltaY });
         setRightCardScale(scaleRatio);
