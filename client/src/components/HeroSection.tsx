@@ -9,6 +9,7 @@ export default function HeroSection() {
   
   const [leftCardOffset, setLeftCardOffset] = useState({ x: 0, y: 0 });
   const [rightCardOffset, setRightCardOffset] = useState({ x: 0, y: 0 });
+  const [scrollRange, setScrollRange] = useState(800);
 
   useEffect(() => {
     const updateCardPositions = () => {
@@ -26,6 +27,11 @@ export default function HeroSection() {
         const deltaY = portfolio1AbsoluteTop - leftAbsoluteTop;
         
         setLeftCardOffset({ x: deltaX, y: deltaY });
+        
+        // Set scroll range based on the distance cards need to travel
+        // Use a multiplier to make the animation feel smooth (1.2x the actual distance)
+        const calculatedScrollRange = Math.max(deltaY * 1.2, 400);
+        setScrollRange(calculatedScrollRange);
       }
       
       if (portfolioCard2 && rightCardRef.current) {
@@ -53,8 +59,6 @@ export default function HeroSection() {
   }, []);
 
   const { scrollY } = useScroll();
-
-  const scrollRange = 800;
 
   const leftCardTranslateY = useTransform(
     scrollY,

@@ -1,11 +1,42 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { User } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function EmailMockup() {
   const { scrollY } = useScroll();
+  const [scrollRange, setScrollRange] = useState(800);
   
-  const scrollRange = 800;
+  useEffect(() => {
+    const updateScrollRange = () => {
+      const portfolioCard1 = document.getElementById("portfolio-card-1");
+      const heroSection = document.querySelector("section");
+      
+      if (portfolioCard1 && heroSection) {
+        const heroRect = heroSection.getBoundingClientRect();
+        const portfolio1Rect = portfolioCard1.getBoundingClientRect();
+        
+        const heroAbsoluteTop = heroRect.top + window.scrollY;
+        const portfolio1AbsoluteTop = portfolio1Rect.top + window.scrollY;
+        
+        const deltaY = portfolio1AbsoluteTop - heroAbsoluteTop;
+        
+        // Use same calculation as HeroSection
+        const calculatedScrollRange = Math.max(deltaY * 1.2, 400);
+        setScrollRange(calculatedScrollRange);
+      }
+    };
+
+    updateScrollRange();
+    window.addEventListener("resize", updateScrollRange);
+    const timeoutId = setTimeout(updateScrollRange, 100);
+
+    return () => {
+      window.removeEventListener("resize", updateScrollRange);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+  
   const cardOpacity = useTransform(scrollY, [scrollRange * 0.6, scrollRange], [0, 1]);
   const cardScale = useTransform(scrollY, [scrollRange * 0.6, scrollRange], [0.95, 1]);
 
