@@ -28,7 +28,7 @@ export default function EmailMockup() {
     };
   }, []);
 
-  const cardOpacity = useTransform(scrollY, [scrollRange * 0.7, scrollRange], [0, 1]);
+  const cardOpacity = useTransform(scrollY, [scrollRange * 0.75, scrollRange * 0.95], [0, 1]);
 
   return (
     <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6">
