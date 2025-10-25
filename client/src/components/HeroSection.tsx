@@ -12,8 +12,10 @@ export default function HeroSection() {
   
   const [leftCardOffset, setLeftCardOffset] = useState({ x: 0, y: 0 });
   const [rightCardOffset, setRightCardOffset] = useState({ x: 0, y: 0 });
-  const [leftCardScale, setLeftCardScale] = useState(1);
-  const [rightCardScale, setRightCardScale] = useState(1);
+  const [leftInitialScale, setLeftInitialScale] = useState(1);
+  const [rightInitialScale, setRightInitialScale] = useState(1);
+  const [leftCardWidth, setLeftCardWidth] = useState<number | null>(null);
+  const [rightCardWidth, setRightCardWidth] = useState<number | null>(null);
   const [scrollRange, setScrollRange] = useState(800);
 
   useEffect(() => {
@@ -32,11 +34,34 @@ export default function HeroSection() {
       
       let maxDeltaY = 0;
       
+      // Desired hero widths (responsive based on breakpoint)
+      const getDesiredHeroWidth = () => {
+        if (currentWidth >= 1536) return 256; // 2xl:w-64
+        if (currentWidth >= 1280) return 224; // xl:w-56
+        if (currentWidth >= 1024) return 192; // lg:w-48
+        if (currentWidth >= 768) return 144;  // md:w-36
+        if (currentWidth >= 640) return 128;  // sm:w-32
+        return 112; // w-28
+      };
+      
       if (portfolioCard1 && leftCardRef.current) {
-        const leftRect = leftCardRef.current.getBoundingClientRect();
+        // Get portfolio card dimensions
         const portfolio1Rect = portfolioCard1.getBoundingClientRect();
         
-        const scaleRatio = portfolio1Rect.width / leftRect.width;
+        // Set card to match portfolio width
+        setLeftCardWidth(portfolio1Rect.width);
+        
+        // Calculate initial scale (how small the card should appear in hero)
+        const desiredHeroWidth = getDesiredHeroWidth();
+        const initialScale = desiredHeroWidth / portfolio1Rect.width;
+        setLeftInitialScale(initialScale);
+        
+        // Temporarily disable transforms to get accurate position
+        const leftElement = leftCardRef.current;
+        const prevTransform = leftElement.style.transform;
+        leftElement.style.transform = "none";
+        
+        const leftRect = leftElement.getBoundingClientRect();
         
         // Calculate center positions
         const leftCenterX = leftRect.left + leftRect.width / 2;
@@ -49,15 +74,30 @@ export default function HeroSection() {
         const deltaY = portfolio1CenterY - leftCenterY;
         
         setLeftCardOffset({ x: deltaX, y: deltaY });
-        setLeftCardScale(scaleRatio);
         maxDeltaY = Math.max(maxDeltaY, Math.abs(deltaY));
+        
+        // Restore transform
+        leftElement.style.transform = prevTransform;
       }
       
       if (portfolioCard2 && rightCardRef.current) {
-        const rightRect = rightCardRef.current.getBoundingClientRect();
+        // Get portfolio card dimensions
         const portfolio2Rect = portfolioCard2.getBoundingClientRect();
         
-        const scaleRatio = portfolio2Rect.width / rightRect.width;
+        // Set card to match portfolio width
+        setRightCardWidth(portfolio2Rect.width);
+        
+        // Calculate initial scale (how small the card should appear in hero)
+        const desiredHeroWidth = getDesiredHeroWidth();
+        const initialScale = desiredHeroWidth / portfolio2Rect.width;
+        setRightInitialScale(initialScale);
+        
+        // Temporarily disable transforms to get accurate position
+        const rightElement = rightCardRef.current;
+        const prevTransform = rightElement.style.transform;
+        rightElement.style.transform = "none";
+        
+        const rightRect = rightElement.getBoundingClientRect();
         
         // Calculate center positions
         const rightCenterX = rightRect.left + rightRect.width / 2;
@@ -70,8 +110,10 @@ export default function HeroSection() {
         const deltaY = portfolio2CenterY - rightCenterY;
         
         setRightCardOffset({ x: deltaX, y: deltaY });
-        setRightCardScale(scaleRatio);
         maxDeltaY = Math.max(maxDeltaY, Math.abs(deltaY));
+        
+        // Restore transform
+        rightElement.style.transform = prevTransform;
       }
       
       // Set scroll range based on the maximum distance either card needs to travel
@@ -147,28 +189,29 @@ export default function HeroSection() {
   );
   const rightCardRotate = useSpring(rightCardRotateRaw, springConfig);
   
-  const leftScaleRaw = useTransform(scrollY, [0, scrollRange], [1, leftCardScale], { clamp: true });
+  const leftScaleRaw = useTransform(scrollY, [0, scrollRange], [leftInitialScale, 1], { clamp: true });
   const leftScale = useSpring(leftScaleRaw, springConfig);
 
-  const rightScaleRaw = useTransform(scrollY, [0, scrollRange], [1, rightCardScale], { clamp: true });
+  const rightScaleRaw = useTransform(scrollY, [0, scrollRange], [rightInitialScale, 1], { clamp: true });
   const rightScale = useSpring(rightScaleRaw, springConfig);
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
       <motion.div 
         ref={leftCardRef}
-        className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-10 origin-center will-change-transform"
+        className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 z-10 will-change-transform"
         style={{
+          width: leftCardWidth ? `${leftCardWidth}px` : undefined,
           y: leftCardTranslateY,
           x: leftCardTranslateX,
           z: 0,
           rotate: leftCardRotate,
           scale: leftScale,
+          transformOrigin: "center",
           backfaceVisibility: "hidden",
           WebkitBackfaceVisibility: "hidden",
           transformStyle: "preserve-3d",
           WebkitFontSmoothing: "antialiased",
-          filter: "blur(0px)",
         }}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-left">
@@ -177,11 +220,11 @@ export default function HeroSection() {
               <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
             </div>
           </div>
-          <div className="p-2 sm:p-3 md:p-4">
-            <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-left-title">
+          <div className="p-4 md:p-5">
+            <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2" data-testid="text-project-left-title">
               Redesigning fitness app experience for 4M users.
             </h3>
-            <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground/50" data-testid="text-project-left-category">
+            <p className="text-xs md:text-sm text-foreground/50" data-testid="text-project-left-category">
               Project by Nandini
             </p>
           </div>
@@ -190,18 +233,19 @@ export default function HeroSection() {
 
       <motion.div 
         ref={rightCardRef}
-        className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto w-28 sm:w-32 md:w-36 lg:w-48 xl:w-56 2xl:w-64 z-10 origin-center will-change-transform"
+        className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto z-10 will-change-transform"
         style={{
+          width: rightCardWidth ? `${rightCardWidth}px` : undefined,
           y: rightCardTranslateY,
           x: rightCardTranslateX,
           z: 0,
           rotate: rightCardRotate,
           scale: rightScale,
+          transformOrigin: "center",
           backfaceVisibility: "hidden",
           WebkitBackfaceVisibility: "hidden",
           transformStyle: "preserve-3d",
           WebkitFontSmoothing: "antialiased",
-          filter: "blur(0px)",
         }}
       >
         <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg" data-testid="card-project-right">
@@ -210,11 +254,11 @@ export default function HeroSection() {
               <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
             </div>
           </div>
-          <div className="p-2 sm:p-3 md:p-4">
-            <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold text-foreground mb-0.5 sm:mb-1 line-clamp-2" data-testid="text-project-right-title">
+          <div className="p-4 md:p-5">
+            <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2" data-testid="text-project-right-title">
               Developed a Blockchain app on Next.JS
             </h3>
-            <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground/50" data-testid="text-project-right-category">
+            <p className="text-xs md:text-sm text-foreground/50" data-testid="text-project-right-category">
               Case Study by Chris
             </p>
           </div>
