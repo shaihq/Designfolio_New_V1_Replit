@@ -3,14 +3,11 @@ export default function EmailMockup() {
     <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
         <div 
-          className="rounded-2xl sm:rounded-3xl p-1 sm:p-1.5"
-          style={{
-            background: "linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--primary)) 100%)"
-          }}
+          className="rounded-2xl sm:rounded-3xl p-1 sm:p-1.5 gradient-border-animate"
           data-testid="container-portfolio-gradient"
         >
           <div 
-            className="bg-background dark:bg-card rounded-2xl sm:rounded-3xl p-8 sm:p-10 md:p-12"
+            className="bg-white rounded-2xl sm:rounded-3xl p-8 sm:p-10 md:p-12"
             data-testid="container-portfolio-mockup"
           >
             <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 pb-8 border-b border-border">
