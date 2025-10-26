@@ -218,7 +218,7 @@ export default function HeroSection() {
           top: '40%',
           bottom: '-120%',
           backgroundImage: `
-            radial-gradient(ellipse at center top, transparent 0%, hsl(var(--background)) 100%),
+            radial-gradient(ellipse 80% 60% at center, transparent 20%, hsl(var(--background)) 70%),
             linear-gradient(to right, hsl(var(--foreground) / 0.08) 1px, transparent 1px),
             linear-gradient(to bottom, hsl(var(--foreground) / 0.08) 1px, transparent 1px)
           `,
