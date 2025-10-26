@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -304,13 +305,26 @@ export default function HeroSection() {
             Skip the busywork with Designfolio — publish in hours, not weeks.
           </p>
 
-          <Button 
-            size="lg" 
-            className="bg-foreground text-background border border-foreground rounded-full px-6 sm:px-8 md:px-10 py-5 sm:py-5 md:py-6 text-sm sm:text-base font-semibold hover:bg-foreground/80 transition-colors"
-            data-testid="button-start-trial"
-          >
-            Start Your 7-Day Free Trial ($19)
-          </Button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-2xl mx-auto">
+            <div className="flex items-center bg-card border border-card-border rounded-full overflow-hidden w-full sm:flex-1">
+              <Input 
+                type="text" 
+                placeholder="Enter your name"
+                className="border-0 bg-transparent h-12 sm:h-14 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm sm:text-base"
+                data-testid="input-name"
+              />
+              <span className="text-sm sm:text-base text-muted-foreground pr-4 sm:pr-6 whitespace-nowrap">
+                .designfolio.me
+              </span>
+            </div>
+            <Button 
+              size="lg" 
+              className="bg-foreground text-background border border-foreground rounded-full px-6 sm:px-8 md:px-10 py-5 sm:py-5 md:py-6 text-sm sm:text-base font-semibold no-default-hover-elevate no-default-active-elevate hover:bg-foreground/90 transition-colors w-full sm:w-auto whitespace-nowrap"
+              data-testid="button-start-building"
+            >
+              Start Building — it's free
+            </Button>
+          </div>
         </div>
       </div>
     </section>
