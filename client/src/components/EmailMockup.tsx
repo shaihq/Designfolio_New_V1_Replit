@@ -59,49 +59,44 @@ export default function EmailMockup() {
               </div>
             </div>
 
-            <div className="pt-8">
-              <h4 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-6" data-testid="text-projects-heading">
-                Featured Projects
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div 
-                  id="portfolio-card-1"
-                  className="bg-card dark:bg-card/50 rounded-xl border border-border overflow-hidden shadow-sm hover-elevate"
-                  data-testid="placeholder-project-1"
-                >
-                  <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
-                    </div>
-                  </div>
-                  <div className="p-4 sm:p-5">
-                    <h3 className="font-heading text-base md:text-lg font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-1-title">
-                      Redesigning fitness app experience for 4M users.
-                    </h3>
-                    <p className="text-xs sm:text-sm text-foreground/50" data-testid="text-project-1-category">
-                      Project by Nandini
-                    </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 invisible">
+              <div 
+                id="portfolio-card-1"
+                className="bg-card rounded-xl border border-border overflow-hidden shadow-sm"
+                data-testid="placeholder-project-1"
+              >
+                <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
                   </div>
                 </div>
+                <div className="p-4 sm:p-5">
+                  <h3 className="font-heading text-base md:text-lg font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-1-title">
+                    Redesigning fitness app experience for 4M users.
+                  </h3>
+                  <p className="text-xs sm:text-sm text-foreground/50" data-testid="text-project-1-category">
+                    Project by Nandini
+                  </p>
+                </div>
+              </div>
 
-                <div 
-                  id="portfolio-card-2"
-                  className="bg-card dark:bg-card/50 rounded-xl border border-border overflow-hidden shadow-sm hover-elevate"
-                  data-testid="placeholder-project-2"
-                >
-                  <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
-                    </div>
+              <div 
+                id="portfolio-card-2"
+                className="bg-card rounded-xl border border-border overflow-hidden shadow-sm"
+                data-testid="placeholder-project-2"
+              >
+                <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
                   </div>
-                  <div className="p-4 sm:p-5">
-                    <h3 className="font-heading text-base md:text-lg font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-2-title">
-                      Developed a Blockchain app on Next.JS
-                    </h3>
-                    <p className="text-xs sm:text-sm text-foreground/50" data-testid="text-project-2-category">
-                      Case Study by Chris
-                    </p>
-                  </div>
+                </div>
+                <div className="p-4 sm:p-5">
+                  <h3 className="font-heading text-base md:text-lg font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-2-title">
+                    Developed a Blockchain app on Next.JS
+                  </h3>
+                  <p className="text-xs sm:text-sm text-foreground/50" data-testid="text-project-2-category">
+                    Case Study by Chris
+                  </p>
                 </div>
               </div>
             </div>
