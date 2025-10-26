@@ -56,7 +56,7 @@ export default function EmailMockup() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mt-8">
               <div 
                 id="portfolio-card-1"
                 className="bg-muted/30 dark:bg-muted/20 rounded-xl border border-dashed border-border overflow-hidden"
