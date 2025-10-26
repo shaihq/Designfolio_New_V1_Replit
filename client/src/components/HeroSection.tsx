@@ -214,7 +214,7 @@ export default function HeroSection() {
     <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
       <motion.div 
         ref={leftCardRef}
-        className="absolute -left-16 top-4 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 z-10 will-change-transform"
+        className="absolute -left-20 top-0 sm:-left-16 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 z-10 will-change-transform"
         style={{
           width: leftCardWidth ? `${leftCardWidth}px` : undefined,
           y: leftCardTranslateY,
@@ -248,7 +248,7 @@ export default function HeroSection() {
 
       <motion.div 
         ref={rightCardRef}
-        className="absolute -right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto z-10 will-change-transform"
+        className="absolute -right-20 bottom-0 sm:-right-16 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto z-10 will-change-transform"
         style={{
           width: rightCardWidth ? `${rightCardWidth}px` : undefined,
           y: rightCardTranslateY,
