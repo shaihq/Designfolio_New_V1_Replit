@@ -19,7 +19,7 @@ export default function PortfolioSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <motion.div 
             id="portfolio-card-1" 
-            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg"
+            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg flex flex-col"
             style={{
               scale: cardScale,
             }}
@@ -30,8 +30,8 @@ export default function PortfolioSection() {
                 <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
               </div>
             </div>
-            <div className="p-4 md:p-5">
-              <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2" data-testid="text-portfolio-1-title">
+            <div className="p-4 md:p-5 flex-1 flex flex-col">
+              <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-portfolio-1-title">
                 Redesigning fitness app experience for 4M users.
               </h3>
               <p className="text-xs md:text-sm text-foreground/50" data-testid="text-portfolio-1-category">
@@ -42,7 +42,7 @@ export default function PortfolioSection() {
 
           <motion.div 
             id="portfolio-card-2"
-            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg"
+            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg flex flex-col"
             style={{
               scale: cardScale,
             }}
@@ -53,8 +53,8 @@ export default function PortfolioSection() {
                 <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
               </div>
             </div>
-            <div className="p-4 md:p-5">
-              <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2" data-testid="text-portfolio-2-title">
+            <div className="p-4 md:p-5 flex-1 flex flex-col">
+              <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-portfolio-2-title">
                 Developed a Blockchain app on Next.JS
               </h3>
               <p className="text-xs md:text-sm text-foreground/50" data-testid="text-portfolio-2-category">
