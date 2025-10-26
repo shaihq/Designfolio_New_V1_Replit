@@ -1,6 +1,6 @@
 export default function EmailMockup() {
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
         <div 
           className="rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-14 shadow-2xl"
