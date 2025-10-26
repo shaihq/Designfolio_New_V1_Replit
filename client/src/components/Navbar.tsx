@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Navbar() {
   return (
@@ -31,17 +32,31 @@ export default function Navbar() {
             </a>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-4">
-            <a href="#login" className="text-sm sm:text-[15px] text-foreground hover-elevate px-2 sm:px-3 py-2 rounded-md" data-testid="link-login">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a href="#login" className="hidden sm:block text-sm sm:text-[15px] text-foreground hover-elevate px-2 sm:px-3 py-2 rounded-md" data-testid="link-login">
               Login
             </a>
-            <Button 
-              size="default" 
-              className="bg-foreground text-background border border-foreground rounded-full px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base font-medium hover:bg-foreground/80 transition-colors" 
-              data-testid="button-getstarted"
-            >
-              Get Started
-            </Button>
+            <div className="flex items-center gap-2">
+              <div className="hidden lg:flex items-center bg-card border border-card-border rounded-full overflow-hidden">
+                <Input 
+                  type="text" 
+                  placeholder="Enter your name"
+                  className="border-0 bg-transparent h-9 min-w-[140px] focus-visible:ring-0 focus-visible:ring-offset-0 text-sm"
+                  data-testid="input-name"
+                />
+                <span className="text-sm text-muted-foreground pr-3 whitespace-nowrap">
+                  .designfolio.me
+                </span>
+              </div>
+              <Button 
+                size="default" 
+                className="bg-foreground text-background border border-foreground rounded-full px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base font-medium no-default-hover-elevate no-default-active-elevate hover:bg-foreground/90 transition-colors" 
+                data-testid="button-start-building"
+              >
+                <span className="hidden sm:inline">Start Building — it's free</span>
+                <span className="sm:hidden">Get Started</span>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
