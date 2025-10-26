@@ -305,23 +305,23 @@ export default function HeroSection() {
             Skip the busywork with Designfolio — publish in hours, not weeks.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-2xl mx-auto">
-            <div className="flex items-center bg-white dark:bg-white border border-card-border rounded-full overflow-hidden w-full sm:flex-1">
+          <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto">
+            <div className="flex items-center bg-white dark:bg-white border-2 border-border rounded-full overflow-hidden w-full sm:flex-1 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all cursor-text">
               <Input 
                 type="text" 
                 placeholder="Enter your name"
-                className="border-0 bg-transparent h-12 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm sm:text-base text-foreground placeholder:text-muted-foreground"
+                className="border-0 bg-transparent h-14 sm:h-16 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 text-base sm:text-lg text-foreground placeholder:text-muted-foreground"
                 data-testid="input-name"
               />
-              <span className="text-sm sm:text-base text-muted-foreground pr-4 sm:pr-6 whitespace-nowrap">
+              <span className="text-base sm:text-lg text-muted-foreground pr-5 sm:pr-6 whitespace-nowrap font-medium">
                 .designfolio.me
               </span>
             </div>
             <Button 
-              className="bg-foreground text-background border border-foreground rounded-full h-12 px-6 sm:px-8 text-sm sm:text-base font-semibold no-default-hover-elevate no-default-active-elevate hover:bg-foreground/90 transition-colors w-full sm:w-auto whitespace-nowrap"
+              className="bg-foreground text-background border border-foreground rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate hover:bg-foreground/90 transition-colors w-full sm:w-auto whitespace-nowrap"
               data-testid="button-start-building"
             >
-              Start Building — it's free
+              Get started for free
             </Button>
           </div>
         </div>
