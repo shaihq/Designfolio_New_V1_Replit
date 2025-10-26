@@ -211,10 +211,10 @@ export default function HeroSection() {
   const rightScale = useSpring(rightScaleRaw, springConfig);
 
   return (
-    <section ref={sectionRef} className="relative overflow-x-hidden overflow-y-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
+    <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
       <motion.div 
         ref={leftCardRef}
-        className="absolute -left-32 -top-8 sm:-left-16 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 z-10 will-change-transform"
+        className="absolute -left-32 -top-8 sm:-left-16 sm:top-6 md:top-8 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 z-0 will-change-transform"
         style={{
           width: leftCardWidth ? `${leftCardWidth}px` : undefined,
           y: leftCardTranslateY,
@@ -248,7 +248,7 @@ export default function HeroSection() {
 
       <motion.div 
         ref={rightCardRef}
-        className="absolute -right-32 -bottom-8 sm:-right-16 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto z-10 will-change-transform"
+        className="absolute -right-32 -bottom-8 sm:-right-16 sm:bottom-6 md:bottom-8 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto z-0 will-change-transform"
         style={{
           width: rightCardWidth ? `${rightCardWidth}px` : undefined,
           y: rightCardTranslateY,
@@ -280,7 +280,7 @@ export default function HeroSection() {
         </div>
       </motion.div>
 
-      <div className="max-w-6xl mx-auto relative z-20">
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="max-w-3xl mx-auto text-center px-4 sm:px-6 md:px-12 lg:px-0">
           <h1 className="font-serif font-normal text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-tight mb-4 sm:mb-6 text-foreground" data-testid="text-hero-headline">
             Building a portfolio was never meant to be hard.
