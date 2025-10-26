@@ -22,16 +22,17 @@ export default function HeroSection() {
   const names = ["John", "Morgan", "Sarah", "Tom", "Brad"];
   const [currentNameIndex, setCurrentNameIndex] = useState(0);
   const [inputValue, setInputValue] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
-    if (inputValue) return;
+    if (inputValue || isFocused) return;
     
     const interval = setInterval(() => {
       setCurrentNameIndex((prev) => (prev + 1) % names.length);
     }, 2000);
 
     return () => clearInterval(interval);
-  }, [inputValue, names.length]);
+  }, [inputValue, isFocused, names.length]);
 
   useEffect(() => {
     const updateCardPositions = (force = false) => {
@@ -320,26 +321,31 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto">
-            <div className="relative flex items-center bg-white dark:bg-white border-2 border-border rounded-full overflow-visible w-full sm:flex-1 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all cursor-text">
-              <Input 
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                className="border-0 bg-transparent h-14 sm:h-16 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 text-base sm:text-lg text-foreground relative z-10"
-                data-testid="input-name"
-              />
-              {!inputValue && (
-                <motion.span
-                  key={currentNameIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute left-5 sm:left-6 top-1/2 -translate-y-1/2 pointer-events-none text-base sm:text-lg text-muted-foreground/60"
-                >
-                  {names[currentNameIndex]}
-                </motion.span>
-              )}
+            <div className="relative flex items-center bg-white dark:bg-white border-2 border-border rounded-full overflow-hidden w-full sm:flex-1 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all cursor-text">
+              <div className="relative flex-1 h-14 sm:h-16">
+                <Input 
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  placeholder={isFocused && !inputValue ? "username" : ""}
+                  className="border-0 bg-transparent h-full w-full px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 text-base sm:text-lg text-foreground placeholder:text-muted-foreground/60 relative z-10"
+                  data-testid="input-name"
+                />
+                {!inputValue && !isFocused && (
+                  <motion.span
+                    key={currentNameIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute left-5 sm:left-6 top-0 h-full flex items-center pointer-events-none text-base sm:text-lg text-muted-foreground/60"
+                  >
+                    {names[currentNameIndex]}
+                  </motion.span>
+                )}
+              </div>
               <span className="text-base sm:text-lg text-muted-foreground pr-5 sm:pr-6 whitespace-nowrap">
                 .designfolio.me
               </span>
