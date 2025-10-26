@@ -213,10 +213,12 @@ export default function HeroSection() {
   return (
     <section ref={sectionRef} className="relative overflow-visible py-12 sm:py-16 md:py-20 px-6">
       <div 
-        className="absolute inset-0 z-0"
+        className="absolute left-0 right-0 z-0"
         style={{
+          top: '40%',
+          bottom: '-120%',
           backgroundImage: `
-            radial-gradient(circle at center, transparent 0%, hsl(var(--background)) 100%),
+            radial-gradient(ellipse at center top, transparent 0%, hsl(var(--background)) 100%),
             linear-gradient(to right, hsl(var(--foreground) / 0.08) 1px, transparent 1px),
             linear-gradient(to bottom, hsl(var(--foreground) / 0.08) 1px, transparent 1px)
           `,
