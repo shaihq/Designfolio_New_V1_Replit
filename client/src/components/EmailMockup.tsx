@@ -36,8 +36,7 @@ export default function EmailMockup() {
               </div>
             </div>
 
-            <div className="flex justify-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 w-full max-w-4xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
                 <div 
                   id="portfolio-card-1"
                   className="bg-white dark:bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden shadow-lg invisible flex flex-col"
@@ -77,7 +76,6 @@ export default function EmailMockup() {
                     </p>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>
