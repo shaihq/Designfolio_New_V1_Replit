@@ -18,6 +18,20 @@ export default function HeroSection() {
   const [leftCardWidth, setLeftCardWidth] = useState<number | null>(null);
   const [rightCardWidth, setRightCardWidth] = useState<number | null>(null);
   const [scrollRange, setScrollRange] = useState(800);
+  
+  const names = ["John", "Morgan", "Sarah", "Tom", "Brad"];
+  const [currentNameIndex, setCurrentNameIndex] = useState(0);
+  const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    if (isFocused) return;
+    
+    const interval = setInterval(() => {
+      setCurrentNameIndex((prev) => (prev + 1) % names.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [isFocused, names.length]);
 
   useEffect(() => {
     const updateCardPositions = (force = false) => {
@@ -309,11 +323,13 @@ export default function HeroSection() {
             <div className="flex items-center bg-white dark:bg-white border-2 border-border rounded-full overflow-hidden w-full sm:flex-1 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all cursor-text">
               <Input 
                 type="text" 
-                placeholder="Enter your name"
-                className="border-0 bg-transparent h-14 sm:h-16 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 text-base sm:text-lg text-foreground placeholder:text-muted-foreground"
+                placeholder={names[currentNameIndex]}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                className="border-0 bg-transparent h-14 sm:h-16 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 text-base sm:text-lg text-foreground placeholder:text-base placeholder:sm:text-lg placeholder:text-muted-foreground/60"
                 data-testid="input-name"
               />
-              <span className="text-base sm:text-lg text-muted-foreground pr-5 sm:pr-6 whitespace-nowrap font-medium">
+              <span className="text-base sm:text-lg text-muted-foreground pr-5 sm:pr-6 whitespace-nowrap">
                 .designfolio.me
               </span>
             </div>
