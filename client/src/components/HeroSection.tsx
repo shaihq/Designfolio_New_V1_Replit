@@ -217,11 +217,10 @@ export default function HeroSection() {
         style={{
           backgroundImage: `
             radial-gradient(circle at center, transparent 0%, hsl(var(--background)) 100%),
-            linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-            linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)
+            linear-gradient(to right, hsl(var(--foreground) / 0.08) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--foreground) / 0.08) 1px, transparent 1px)
           `,
-          backgroundSize: 'cover, 80px 80px, 80px 80px',
-          opacity: 0.4
+          backgroundSize: 'cover, 80px 80px, 80px 80px'
         }}
       />
       
