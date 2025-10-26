@@ -19,11 +19,12 @@ export default function HeroSection() {
   const [scrollRange, setScrollRange] = useState(800);
 
   useEffect(() => {
-    const updateCardPositions = () => {
+    const updateCardPositions = (force = false) => {
       const currentWidth = window.innerWidth;
       
-      // Only recalculate if width actually changed (not just height from browser chrome)
-      if (lastWidthRef.current !== 0 && Math.abs(currentWidth - lastWidthRef.current) < 1) {
+      // Only skip recalculation if width unchanged AND not forced
+      // This allows recalculation when layout shifts due to fonts/height changes
+      if (!force && lastWidthRef.current !== 0 && Math.abs(currentWidth - lastWidthRef.current) < 1) {
         return;
       }
       
@@ -123,12 +124,26 @@ export default function HeroSection() {
       setScrollRange(calculatedScrollRange);
     };
 
+    // Initial calculation
     updateCardPositions();
-    window.addEventListener("resize", updateCardPositions);
-    const timeoutId = setTimeout(updateCardPositions, 100);
+    
+    // Wait for fonts to load, then recalculate after layout settles
+    document.fonts.ready.then(() => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          updateCardPositions(true);
+        });
+      });
+    });
+    
+    // Fallback timeout for browsers that don't support fonts API
+    const timeoutId = setTimeout(() => updateCardPositions(true), 300);
+    
+    const handleResize = () => updateCardPositions();
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", updateCardPositions);
+      window.removeEventListener("resize", handleResize);
       clearTimeout(timeoutId);
     };
   }, [isMobile]);
