@@ -87,10 +87,10 @@ export default {
         }
       },
       fontFamily: {
-        sans: ["GeneralSans", "var(--font-sans)"],
-        serif: ["GeneralSans", "var(--font-serif)"],
+        sans: ["Inter", "var(--font-sans)"],
+        serif: ["Inter", "var(--font-serif)"],
         heading: ["GeneralSans", "var(--font-heading)"],
-        mono: ["GeneralSans", "var(--font-mono)"],
+        mono: ["var(--font-mono)"],
       },
       keyframes: {
         "accordion-down": {
