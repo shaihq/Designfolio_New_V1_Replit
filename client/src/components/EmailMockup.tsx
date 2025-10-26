@@ -10,7 +10,7 @@ export default function EmailMockup() {
             className="bg-white rounded-2xl sm:rounded-3xl p-8 sm:p-10 md:p-12"
             data-testid="container-portfolio-mockup"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 pb-8 border-b border-border">
+            <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 pb-8">
               <div className="flex-shrink-0">
                 <div className="relative">
                   <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden ring-2 ring-primary/20 shadow-md">
@@ -30,7 +30,7 @@ export default function EmailMockup() {
 
               <div className="flex-1 min-w-0">
                 <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-2" data-testid="text-portfolio-name">
-                  Bruce Wayne
+                  Hey, I'm Morgan.
                 </h3>
                 <p className="text-sm sm:text-base md:text-lg text-foreground/60 mb-4" data-testid="text-portfolio-role">
                   Product Designer & Developer
