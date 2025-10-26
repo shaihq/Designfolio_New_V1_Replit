@@ -330,7 +330,7 @@ export default function HeroSection() {
                   onFocus={() => setIsFocused(true)}
                   onBlur={() => setIsFocused(false)}
                   placeholder={isFocused && !inputValue ? "username" : ""}
-                  className="border-0 bg-transparent h-full w-full px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 text-base sm:text-lg text-foreground placeholder:text-muted-foreground/60 relative z-10"
+                  className="border-0 bg-transparent h-full w-full px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60 relative z-10"
                   data-testid="input-name"
                 />
                 {!inputValue && !isFocused && (
@@ -340,7 +340,7 @@ export default function HeroSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute left-5 sm:left-6 top-0 h-full flex items-center pointer-events-none text-base sm:text-lg text-muted-foreground/60"
+                    className="absolute left-5 sm:left-6 top-0 h-full flex items-center pointer-events-none text-lg text-muted-foreground/60"
                   >
                     {names[currentNameIndex]}
                   </motion.span>
