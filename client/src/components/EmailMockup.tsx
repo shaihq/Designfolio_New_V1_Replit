@@ -27,7 +27,7 @@ export default function EmailMockup() {
               </div>
 
               <div className="flex-1 min-w-0">
-                <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-semibold text-foreground mb-3 sm:mb-4" data-testid="text-portfolio-name">
+                <h3 className="font-heading text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl font-semibold text-foreground mb-3 sm:mb-4" data-testid="text-portfolio-name">
                   Bruce Wayne 👋
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base lg:text-lg text-foreground/60 leading-relaxed" data-testid="text-portfolio-description">
