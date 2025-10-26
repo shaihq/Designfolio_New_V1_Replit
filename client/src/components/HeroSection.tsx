@@ -212,6 +212,17 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-12 sm:py-16 md:py-20 px-6">
+      <div 
+        className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.02]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px'
+        }}
+      />
+      
       <motion.div 
         ref={leftCardRef}
         className="absolute -left-40 -top-12 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 z-30 will-change-transform"
