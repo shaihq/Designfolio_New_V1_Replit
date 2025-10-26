@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   return (
-    <nav className="border-b border-border bg-background relative z-10">
+    <nav className="border-b border-border bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <div className="flex items-center" data-testid="logo-icon">
