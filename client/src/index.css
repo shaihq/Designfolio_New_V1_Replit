@@ -407,12 +407,12 @@
 
   .gradient-border-animate {
     background: linear-gradient(90deg, 
-      hsl(var(--accent)), 
-      hsl(var(--primary)), 
-      hsl(var(--accent)), 
-      hsl(var(--primary))
+      hsl(9 100% 62%), 
+      hsl(9 95% 75%), 
+      hsl(9 100% 62%), 
+      hsl(9 95% 75%)
     );
     background-size: 300% 100%;
-    animation: gradient-rotate 6s ease infinite;
+    animation: gradient-rotate 12s ease infinite;
   }
 }

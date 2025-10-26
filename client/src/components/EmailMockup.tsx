@@ -56,44 +56,44 @@ export default function EmailMockup() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 invisible">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
               <div 
                 id="portfolio-card-1"
-                className="bg-card rounded-xl border border-border overflow-hidden shadow-sm"
+                className="bg-muted/30 dark:bg-muted/20 rounded-xl border border-dashed border-border overflow-hidden"
                 data-testid="placeholder-project-1"
               >
-                <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
+                <div className="aspect-video bg-muted/40 dark:bg-muted/30 relative overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
+                    <div className="w-16 h-16 rounded-full bg-muted/50 dark:bg-muted/40 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-muted-foreground/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
                 <div className="p-4 sm:p-5">
-                  <h3 className="font-heading text-base md:text-lg font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-1-title">
-                    Redesigning fitness app experience for 4M users.
-                  </h3>
-                  <p className="text-xs sm:text-sm text-foreground/50" data-testid="text-project-1-category">
-                    Project by Nandini
-                  </p>
+                  <div className="h-5 bg-muted/40 dark:bg-muted/30 rounded mb-2 w-3/4"></div>
+                  <div className="h-4 bg-muted/30 dark:bg-muted/20 rounded w-1/2"></div>
                 </div>
               </div>
 
               <div 
                 id="portfolio-card-2"
-                className="bg-card rounded-xl border border-border overflow-hidden shadow-sm"
+                className="bg-muted/30 dark:bg-muted/20 rounded-xl border border-dashed border-border overflow-hidden"
                 data-testid="placeholder-project-2"
               >
-                <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
+                <div className="aspect-video bg-muted/40 dark:bg-muted/30 relative overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-3/4 h-3/4 bg-white/20 rounded-xl backdrop-blur-sm"></div>
+                    <div className="w-16 h-16 rounded-full bg-muted/50 dark:bg-muted/40 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-muted-foreground/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
                 <div className="p-4 sm:p-5">
-                  <h3 className="font-heading text-base md:text-lg font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-2-title">
-                    Developed a Blockchain app on Next.JS
-                  </h3>
-                  <p className="text-xs sm:text-sm text-foreground/50" data-testid="text-project-2-category">
-                    Case Study by Chris
-                  </p>
+                  <div className="h-5 bg-muted/40 dark:bg-muted/30 rounded mb-2 w-3/4"></div>
+                  <div className="h-4 bg-muted/30 dark:bg-muted/20 rounded w-1/2"></div>
                 </div>
               </div>
             </div>
