@@ -287,7 +287,7 @@ export default function HeroSection() {
           </h1>
           
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" data-testid="text-hero-description">
-            Designfolio helps you skip the busywork — structure, write, and publish your portfolio in hours, not weeks.
+            Skip the busywork with Designfolio — publish in hours, not weeks.
           </p>
 
           <Button 
