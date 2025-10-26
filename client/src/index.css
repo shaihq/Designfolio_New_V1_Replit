@@ -413,6 +413,6 @@
       hsl(9 100% 62%)
     );
     background-size: 300% 100%;
-    animation: gradient-rotate 12s ease infinite;
+    animation: gradient-rotate 8s ease infinite;
   }
 }
