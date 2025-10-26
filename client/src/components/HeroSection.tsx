@@ -321,7 +321,7 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto">
-            <div className="relative flex items-center bg-white dark:bg-white border-2 border-border rounded-full overflow-hidden w-full sm:flex-1 shadow-sm hover:shadow-md hover:border-foreground/20 transition-all cursor-text">
+            <div className="relative flex items-center bg-white dark:bg-white border-2 border-border rounded-full overflow-hidden w-full sm:flex-1 hover:border-foreground/30 focus-within:border-foreground/50 transition-colors cursor-text">
               <div className="relative flex-1 h-14 sm:h-16">
                 <Input 
                   type="text"
