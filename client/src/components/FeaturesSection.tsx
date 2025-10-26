@@ -32,7 +32,7 @@ export default function FeaturesSection() {
   return (
     <section className="py-12 sm:py-16 md:py-24 px-6 bg-background">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-foreground mb-4 sm:mb-6" data-testid="text-features-heading">
+        <h2 className="font-heading font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-foreground mb-4 sm:mb-6" data-testid="text-features-heading">
           Inbox chaos steals your time.
         </h2>
         

@@ -9,7 +9,7 @@ export default function PortfolioSection() {
   return (
     <section className="py-16 sm:py-20 md:py-24 px-6 bg-background">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-heading font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-center text-foreground mb-3 sm:mb-4" data-testid="text-portfolio-heading">
+        <h2 className="font-heading font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-center text-foreground mb-3 sm:mb-4" data-testid="text-portfolio-heading">
           Featured Case Studies
         </h2>
         <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-foreground/70 mb-8 sm:mb-12 md:mb-16" data-testid="text-portfolio-description">
