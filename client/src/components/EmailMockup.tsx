@@ -27,9 +27,9 @@ export default function EmailMockup() {
               </div>
 
               <div className="flex-1 min-w-0">
-                <h1 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-3 sm:mb-4" data-testid="text-portfolio-name">
+                <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-semibold text-foreground mb-3 sm:mb-4" data-testid="text-portfolio-name">
                   Bruce Wayne 👋
-                </h1>
+                </h3>
                 <p className="text-xs sm:text-sm md:text-base lg:text-lg text-foreground/60 leading-relaxed" data-testid="text-portfolio-description">
                   A unicorn designer who can both design and code. Designed experiences in sports, medtech, gig economy, fintech, and designed gamified learning experiences.
                 </p>
@@ -48,7 +48,7 @@ export default function EmailMockup() {
                   </div>
                 </div>
                 <div className="p-4 sm:p-5">
-                  <h3 className="text-sm sm:text-base font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-1-title">
+                  <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-1-title">
                     Redesigning fitness app experience for 4M users.
                   </h3>
                   <p className="text-xs sm:text-sm text-foreground/50" data-testid="text-project-1-category">
@@ -68,7 +68,7 @@ export default function EmailMockup() {
                   </div>
                 </div>
                 <div className="p-4 sm:p-5">
-                  <h3 className="text-sm sm:text-base font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-2-title">
+                  <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1.5 line-clamp-2" data-testid="text-project-2-title">
                     Developed a Blockchain app on Next.JS
                   </h3>
                   <p className="text-xs sm:text-sm text-foreground/50" data-testid="text-project-2-category">

@@ -9,7 +9,7 @@ export default function PortfolioSection() {
   return (
     <section className="py-16 sm:py-20 md:py-24 px-6 bg-background">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-heading font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-center text-foreground mb-3 sm:mb-4" data-testid="text-portfolio-heading">
+        <h2 className="font-heading font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl text-center text-foreground mb-3 sm:mb-4" data-testid="text-portfolio-heading">
           Featured Case Studies
         </h2>
         <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-foreground/70 mb-8 sm:mb-12 md:mb-16" data-testid="text-portfolio-description">
@@ -31,7 +31,7 @@ export default function PortfolioSection() {
               </div>
             </div>
             <div className="p-4 md:p-5 flex-1 flex flex-col">
-              <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-portfolio-1-title">
+              <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-portfolio-1-title">
                 Redesigning fitness app experience for 4M users.
               </h3>
               <p className="text-xs md:text-sm text-foreground/50" data-testid="text-portfolio-1-category">
@@ -54,7 +54,7 @@ export default function PortfolioSection() {
               </div>
             </div>
             <div className="p-4 md:p-5 flex-1 flex flex-col">
-              <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-portfolio-2-title">
+              <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-portfolio-2-title">
                 Developed a Blockchain app on Next.JS
               </h3>
               <p className="text-xs md:text-sm text-foreground/50" data-testid="text-portfolio-2-category">

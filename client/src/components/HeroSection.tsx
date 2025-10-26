@@ -236,7 +236,7 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="p-4 md:p-5 flex-1 flex flex-col">
-            <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-project-left-title">
+            <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-project-left-title">
               Redesigning fitness app experience for 4M users.
             </h3>
             <p className="text-xs md:text-sm text-foreground/50" data-testid="text-project-left-category">
@@ -270,7 +270,7 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="p-4 md:p-5 flex-1 flex flex-col">
-            <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-project-right-title">
+            <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-project-right-title">
               Developed a Blockchain app on Next.JS
             </h3>
             <p className="text-xs md:text-sm text-foreground/50" data-testid="text-project-right-category">
@@ -282,7 +282,7 @@ export default function HeroSection() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="max-w-3xl mx-auto text-center px-4 sm:px-6 md:px-12 lg:px-0">
-          <h1 className="font-heading font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground" data-testid="text-hero-headline">
+          <h1 className="font-heading font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl leading-tight mb-4 sm:mb-6 text-foreground" data-testid="text-hero-headline">
             Building a portfolio was never meant to be hard.
           </h1>
           
