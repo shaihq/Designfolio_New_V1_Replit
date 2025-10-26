@@ -30,7 +30,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="py-12 sm:py-16 md:py-24 px-6 bg-background">
+    <section className="py-12 sm:py-16 md:py-24 px-6 bg-background relative z-10">
       <div className="max-w-4xl mx-auto">
         <h2 className="font-heading font-semibold text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl text-center text-foreground mb-4 sm:mb-6" data-testid="text-features-heading">
           Inbox chaos steals your time.

@@ -211,7 +211,7 @@ export default function HeroSection() {
   const rightScale = useSpring(rightScaleRaw, springConfig);
 
   return (
-    <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6">
+    <section ref={sectionRef} className="relative overflow-visible py-20 sm:py-24 md:py-20 lg:py-16 xl:py-24 px-6 z-10">
       <motion.div 
         ref={leftCardRef}
         className="absolute -left-40 -top-12 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 z-0 will-change-transform"
