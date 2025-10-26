@@ -19,7 +19,7 @@ export default function PortfolioSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <motion.div 
             id="portfolio-card-1" 
-            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg flex flex-col"
+            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg flex flex-col relative z-20"
             style={{
               scale: cardScale,
             }}
@@ -42,7 +42,7 @@ export default function PortfolioSection() {
 
           <motion.div 
             id="portfolio-card-2"
-            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg flex flex-col"
+            className="bg-white dark:bg-card rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg flex flex-col relative z-20"
             style={{
               scale: cardScale,
             }}
