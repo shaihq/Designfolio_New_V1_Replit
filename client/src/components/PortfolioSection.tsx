@@ -7,7 +7,7 @@ export default function PortfolioSection() {
   const cardScale = useTransform(scrollY, [scrollRange * 0.4, scrollRange * 0.8], [0.95, 1]);
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 px-6 bg-background">
+    <section className="relative py-16 sm:py-20 md:py-24 px-6 bg-background z-0">
       <div className="max-w-4xl mx-auto">
         <h2 className="font-serif font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-foreground mb-3 sm:mb-4" data-testid="text-portfolio-heading">
           Featured Case Studies
