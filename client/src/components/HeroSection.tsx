@@ -321,18 +321,19 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto">
-            <div className="relative flex items-center bg-white dark:bg-white border-2 border-border rounded-full overflow-hidden w-full sm:flex-1 hover:border-foreground/30 focus-within:border-foreground/50 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-4 focus-within:ring-offset-background transition-all duration-200 cursor-text">
-              <div className="relative flex-1 h-14 sm:h-16">
-                <Input 
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onFocus={() => setIsFocused(true)}
-                  onBlur={() => setIsFocused(false)}
-                  placeholder={isFocused && !inputValue ? "username" : ""}
-                  className="border-0 bg-transparent h-full w-full px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60 relative z-10"
-                  data-testid="input-name"
-                />
+            <div className="relative w-full sm:flex-1">
+              <div className="flex items-center bg-white dark:bg-white border-2 border-border rounded-full w-full hover:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--ring)/0.2)] transition-shadow duration-300 ease-out cursor-text overflow-hidden">
+                <div className="relative flex-1 h-14 sm:h-16">
+                  <Input 
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    placeholder={isFocused && !inputValue ? "username" : ""}
+                    className="border-0 bg-transparent h-full w-full px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60 relative z-10"
+                    data-testid="input-name"
+                  />
                 {!inputValue && !isFocused && (
                   <motion.span
                     key={currentNameIndex}
@@ -345,10 +346,11 @@ export default function HeroSection() {
                     {names[currentNameIndex]}
                   </motion.span>
                 )}
+                </div>
+                <span className="text-base sm:text-lg text-muted-foreground pr-5 sm:pr-6 whitespace-nowrap">
+                  .designfolio.me
+                </span>
               </div>
-              <span className="text-base sm:text-lg text-muted-foreground pr-5 sm:pr-6 whitespace-nowrap">
-                .designfolio.me
-              </span>
             </div>
             <Button 
               className="bg-foreground text-background border border-foreground rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate hover:bg-foreground/90 transition-colors w-full sm:w-auto whitespace-nowrap"
