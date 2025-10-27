@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import EmailMockup from "@/components/EmailMockup";
+import TrustedBySection from "@/components/TrustedBySection";
 import FeaturesSection from "@/components/FeaturesSection";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <EmailMockup />
+      <TrustedBySection />
       <FeaturesSection />
     </div>
   );
