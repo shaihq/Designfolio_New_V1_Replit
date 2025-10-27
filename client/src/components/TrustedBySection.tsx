@@ -1,16 +1,15 @@
 export default function TrustedBySection() {
-  const companies = [
-    "Cognition",
-    "Etched",
-    "Delve",
-    "Coframe",
-    "Gamma",
-    "Linear",
-    "Notion",
-    "Vercel",
+  const companyLogos = [
+    "/company logos/companylogos01.svg",
+    "/company logos/companylogos02.svg",
+    "/company logos/companylogos03.svg",
+    "/company logos/companylogos04.svg",
+    "/company logos/companylogos05.svg",
+    "/company logos/companylogos06.svg",
+    "/company logos/companylogos07.svg",
   ];
 
-  const duplicatedCompanies = [...companies, ...companies];
+  const duplicatedLogos = [...companyLogos, ...companyLogos];
 
   return (
     <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 overflow-hidden">
@@ -35,29 +34,33 @@ export default function TrustedBySection() {
           />
           
           <div className="flex overflow-hidden">
-            <div className="flex animate-scroll">
-              {duplicatedCompanies.map((company, index) => (
+            <div className="flex animate-scroll items-center">
+              {duplicatedLogos.map((logo, index) => (
                 <div
-                  key={`${company}-${index}`}
-                  className="flex items-center justify-center px-8 sm:px-12 whitespace-nowrap flex-shrink-0"
-                  data-testid={`logo-${company.toLowerCase()}-${index}`}
+                  key={`${logo}-${index}`}
+                  className="flex items-center justify-center px-6 sm:px-10 flex-shrink-0"
+                  data-testid={`logo-company-${index}`}
                 >
-                  <span className="text-base sm:text-lg font-medium text-foreground/40">
-                    {company}
-                  </span>
+                  <img 
+                    src={logo} 
+                    alt={`Company logo ${index + 1}`}
+                    className="h-6 sm:h-8 w-auto opacity-50 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
+                  />
                 </div>
               ))}
             </div>
             
-            <div className="flex animate-scroll" aria-hidden="true">
-              {duplicatedCompanies.map((company, index) => (
+            <div className="flex animate-scroll items-center" aria-hidden="true">
+              {duplicatedLogos.map((logo, index) => (
                 <div
-                  key={`duplicate-${company}-${index}`}
-                  className="flex items-center justify-center px-8 sm:px-12 whitespace-nowrap flex-shrink-0"
+                  key={`duplicate-${logo}-${index}`}
+                  className="flex items-center justify-center px-6 sm:px-10 flex-shrink-0"
                 >
-                  <span className="text-base sm:text-lg font-medium text-foreground/40">
-                    {company}
-                  </span>
+                  <img 
+                    src={logo} 
+                    alt=""
+                    className="h-6 sm:h-8 w-auto opacity-50 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
+                  />
                 </div>
               ))}
             </div>
