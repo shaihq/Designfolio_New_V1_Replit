@@ -227,7 +227,7 @@ export default function HeroSection() {
   const rightScale = useSpring(rightScaleRaw, springConfig);
 
   return (
-    <section ref={sectionRef} className="relative overflow-visible py-12 sm:py-16 md:py-20 px-6">
+    <section ref={sectionRef} className="relative overflow-visible py-8 sm:py-12 md:py-16 px-6">
       <div 
         className="absolute left-0 right-0 z-0"
         style={{
