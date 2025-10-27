@@ -321,7 +321,7 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto">
-            <div className="relative flex items-center bg-white dark:bg-white border-2 border-border rounded-full overflow-hidden w-full sm:flex-1 hover:border-foreground/30 focus-within:border-foreground/50 transition-colors cursor-text">
+            <div className="relative flex items-center bg-white dark:bg-white border-2 border-border rounded-full overflow-hidden w-full sm:flex-1 hover:border-foreground/30 focus-within:border-foreground/50 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-4 focus-within:ring-offset-background transition-all duration-200 cursor-text">
               <div className="relative flex-1 h-14 sm:h-16">
                 <Input 
                   type="text"
