@@ -46,11 +46,12 @@ export default function EmailMockup() {
                     </svg>
                     Gotham City
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-accent text-accent-foreground text-xs sm:text-sm rounded-full" data-testid="badge-availability">
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                      <circle cx="10" cy="10" r="4" className="text-green-500" />
+                  <span className="relative inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-50/80 dark:bg-green-950/30 backdrop-blur-sm border border-green-200/50 dark:border-green-800/50 text-green-700 dark:text-green-400 text-xs sm:text-sm rounded-full overflow-hidden" data-testid="badge-availability">
+                    <span className="absolute inset-0 bg-gradient-to-r from-green-100/50 to-emerald-100/50 dark:from-green-900/20 dark:to-emerald-900/20 animate-pulse"></span>
+                    <svg className="w-3 h-3 relative z-10 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                      <circle cx="10" cy="10" r="4" className="text-green-500 dark:text-green-400" />
                     </svg>
-                    Available for work
+                    <span className="relative z-10 font-medium">Available for work</span>
                   </span>
                 </div>
               </div>
