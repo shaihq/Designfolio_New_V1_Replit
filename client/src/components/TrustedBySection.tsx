@@ -16,7 +16,7 @@ export default function TrustedBySection() {
           Trusted by 20000+ designers—humble brag
         </h3>
         
-        <div className="relative">
+        <div className="relative overflow-hidden">
           <div 
             className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-10 pointer-events-none"
             style={{
@@ -31,7 +31,7 @@ export default function TrustedBySection() {
             }}
           />
           
-          <div className="flex gap-0">
+          <div className="flex gap-0 overflow-hidden">
             <div className="flex animate-scroll items-center gap-0 shrink-0">
               {companyLogos.map((logo, index) => (
                 <div
