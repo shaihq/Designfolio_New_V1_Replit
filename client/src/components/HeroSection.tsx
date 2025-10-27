@@ -19,7 +19,7 @@ export default function HeroSection() {
   const [rightCardWidth, setRightCardWidth] = useState<number | null>(null);
   const [scrollRange, setScrollRange] = useState(800);
   
-  const names = ["John", "Morgan", "Sarah", "Tom", "Brad"];
+  const names = ["john", "morgan", "sarah", "tom", "brad"];
   const [currentNameIndex, setCurrentNameIndex] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -29,7 +29,7 @@ export default function HeroSection() {
     
     const interval = setInterval(() => {
       setCurrentNameIndex((prev) => (prev + 1) % names.length);
-    }, 2000);
+    }, 1400);
 
     return () => clearInterval(interval);
   }, [inputValue, isFocused, names.length]);
@@ -341,13 +341,13 @@ export default function HeroSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute left-5 sm:left-6 top-0 h-full flex items-center pointer-events-none text-lg text-muted-foreground/60"
+                    className="absolute left-5 sm:left-6 top-0 h-full flex items-center pointer-events-none text-lg text-foreground"
                   >
                     {names[currentNameIndex]}
                   </motion.span>
                 )}
                 </div>
-                <span className="text-base sm:text-lg text-muted-foreground pr-5 sm:pr-6 whitespace-nowrap">
+                <span className="text-base sm:text-lg text-muted-foreground/60 pr-5 sm:pr-6 whitespace-nowrap">
                   .designfolio.me
                 </span>
               </div>
