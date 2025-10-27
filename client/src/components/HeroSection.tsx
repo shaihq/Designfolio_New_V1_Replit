@@ -353,11 +353,13 @@ export default function HeroSection() {
               </div>
             </div>
             <Button 
-              className="relative text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate overflow-hidden w-full sm:w-auto whitespace-nowrap before:absolute before:inset-0 before:bg-black/0 before:transition-all before:duration-300 before:ease-out hover:before:bg-black/10"
+              className="text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors w-full sm:w-auto whitespace-nowrap"
               style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF553E'}
               data-testid="button-start-building"
             >
-              <span className="relative z-10">Get started for free</span>
+              Get started for free
             </Button>
           </div>
         </div>
