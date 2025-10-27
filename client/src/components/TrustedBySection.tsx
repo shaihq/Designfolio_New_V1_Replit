@@ -9,8 +9,6 @@ export default function TrustedBySection() {
     "/company logos/companylogos07.svg",
   ];
 
-  const duplicatedLogos = [...companyLogos, ...companyLogos];
-
   return (
     <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -33,11 +31,11 @@ export default function TrustedBySection() {
             }}
           />
           
-          <div className="flex overflow-hidden">
-            <div className="flex animate-scroll items-center">
-              {duplicatedLogos.map((logo, index) => (
+          <div className="flex gap-0">
+            <div className="flex animate-scroll items-center gap-0 shrink-0">
+              {companyLogos.map((logo, index) => (
                 <div
-                  key={`${logo}-${index}`}
+                  key={`first-${index}`}
                   className="flex items-center justify-center px-6 sm:px-10 flex-shrink-0"
                   data-testid={`logo-company-${index}`}
                 >
@@ -50,10 +48,10 @@ export default function TrustedBySection() {
               ))}
             </div>
             
-            <div className="flex animate-scroll items-center" aria-hidden="true">
-              {duplicatedLogos.map((logo, index) => (
+            <div className="flex animate-scroll items-center gap-0 shrink-0" aria-hidden="true">
+              {companyLogos.map((logo, index) => (
                 <div
-                  key={`duplicate-${logo}-${index}`}
+                  key={`second-${index}`}
                   className="flex items-center justify-center px-6 sm:px-10 flex-shrink-0"
                 >
                   <img 
