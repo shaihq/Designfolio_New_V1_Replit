@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export default function Navbar() {
   return (
     <nav className="border-b border-border bg-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <div className="flex items-center" data-testid="logo-icon">
             <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-6 sm:h-8 w-auto">
