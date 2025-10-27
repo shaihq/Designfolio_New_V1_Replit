@@ -11,7 +11,7 @@ export default function TrustedBySection() {
 
   return (
     <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h3 className="text-center text-sm sm:text-base font-medium text-foreground/50 mb-8 sm:mb-10" data-testid="text-trusted-heading">
           Trusted by 20000+ designers—humble brag
         </h3>
