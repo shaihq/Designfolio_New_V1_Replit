@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import shaiSignature from "@assets/shaisign_1761634274798.png";
 
 export default function Footer() {
   const names = ["john", "morgan", "sarah", "tom", "brad"];
@@ -70,8 +71,8 @@ export default function Footer() {
                 </div>
 
                 <div className="pt-4 space-y-2">
-                  <div className="text-2xl sm:text-3xl font-heading text-foreground" data-testid="text-signature">
-                    — Shai
+                  <div className="flex items-center" data-testid="image-signature">
+                    <img src={shaiSignature} alt="Shai's signature" className="h-8 sm:h-10 w-auto" />
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground font-semibold" data-testid="text-contact">
