@@ -65,7 +65,7 @@ export default function FeaturesSection() {
     <section className="py-8 sm:py-12 md:py-16 px-6 bg-background">
       <div className="max-w-5xl mx-auto">
         <h2 className="font-heading font-semibold text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl text-center text-foreground mb-4 sm:mb-6" data-testid="text-features-heading">
-          Your work deserves to be seen.
+          You wouldn't be here if your portfolio was already working. It's time for Designfolio.
         </h2>
         
         <div className="flex justify-center mb-8 sm:mb-12">
