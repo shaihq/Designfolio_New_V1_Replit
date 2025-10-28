@@ -13,13 +13,10 @@ export default function FeaturesShowcase() {
     <section className="w-full py-16 px-6">
       <div className="max-w-5xl mx-auto space-y-12">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          <div className="space-y-4">
+          <div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-heading leading-tight" data-testid="text-showcase-headline">
-              Build your portfolio in minutes, not months
+              Can telling your story be simple? Yes.
             </h2>
-            <p className="text-base text-muted-foreground leading-relaxed" data-testid="text-showcase-description">
-              Create a stunning portfolio with our intuitive platform. No coding required, just your creativity and a few clicks to showcase your best work.
-            </p>
           </div>
 
           <div className="space-y-3">
