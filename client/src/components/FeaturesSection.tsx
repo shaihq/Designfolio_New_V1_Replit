@@ -110,7 +110,7 @@ export default function FeaturesSection() {
                   background: 'linear-gradient(135deg, #FF6B35 0%, #FF8A65 100%)',
                   color: '#fff',
                   transform: 'rotate(-2deg)',
-                  fontFamily: "'Kalam', cursive"
+                  fontFamily: "'Covered By Your Grace', cursive"
                 }}
                 data-testid={`badge-step-${index}`}
               >
@@ -212,7 +212,7 @@ export default function FeaturesSection() {
                       background: 'linear-gradient(135deg, #FF6B35 0%, #FF8A65 100%)',
                       color: '#fff',
                       transform: 'rotate(-2deg)',
-                      fontFamily: "'Kalam', cursive"
+                      fontFamily: "'Covered By Your Grace', cursive"
                     }}
                     data-testid={`badge-step-${index}`}
                   >
