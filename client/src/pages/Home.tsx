@@ -4,6 +4,7 @@ import EmailMockup from "@/components/EmailMockup";
 import TrustedBySection from "@/components/TrustedBySection";
 import FeaturesSection from "@/components/FeaturesSection";
 import Footer from "@/components/Footer";
+import FooterBottom from "@/components/FooterBottom";
 import ScrollingBanner from "@/components/ScrollingBanner";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <TrustedBySection />
       <FeaturesSection />
       <Footer />
+      <FooterBottom />
       <ScrollingBanner />
     </div>
   );
