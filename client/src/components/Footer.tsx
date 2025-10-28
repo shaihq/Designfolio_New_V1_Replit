@@ -32,6 +32,14 @@ export default function Footer() {
                 <br />
                 not a quarter.
               </h2>
+              <div className="flex justify-center pt-4">
+                <img 
+                  src="/footerimage.svg" 
+                  alt="Footer illustration" 
+                  className="w-full max-w-md h-auto"
+                  data-testid="image-footer-illustration"
+                />
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
