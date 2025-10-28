@@ -126,9 +126,9 @@ export default function FeaturesSection() {
               return (
                 <Card
                   key={index}
-                  className="relative p-6 sm:p-8 hover-elevate transition-all duration-300 bg-card/30 border-border/40 overflow-visible"
+                  className="relative p-6 sm:p-8 transition-all duration-300 bg-background/60 border-border/30 overflow-visible shadow-none"
                   style={{
-                    boxShadow: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.02), inset 0 -2px 4px 0 rgb(0 0 0 / 0.02)'
+                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.08), inset 0 -3px 8px 0 rgb(0 0 0 / 0.05)'
                   }}
                   data-testid={`card-inspiration-${index}`}
                 >
@@ -211,9 +211,9 @@ export default function FeaturesSection() {
               return (
                 <Card
                   key={index}
-                  className="relative p-6 sm:p-8 hover-elevate transition-all duration-300 bg-card/30 border-border/40 overflow-visible"
+                  className="relative p-6 sm:p-8 transition-all duration-300 bg-background/60 border-border/30 overflow-visible shadow-none"
                   style={{
-                    boxShadow: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.02), inset 0 -2px 4px 0 rgb(0 0 0 / 0.02)'
+                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.08), inset 0 -3px 8px 0 rgb(0 0 0 / 0.05)'
                   }}
                   data-testid={`card-inspiration-${index}`}
                 >
