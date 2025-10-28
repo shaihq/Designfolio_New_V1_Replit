@@ -107,8 +107,8 @@ export default function FeaturesSection() {
               <div 
                 className="absolute -top-3 left-6 px-5 py-2 text-xs font-bold tracking-wide uppercase"
                 style={{
-                  background: 'linear-gradient(135deg, #fef08a 0%, #fde047 100%)',
-                  color: '#000',
+                  background: 'linear-gradient(135deg, #FF6B35 0%, #FF8A65 100%)',
+                  color: '#fff',
                   transform: 'rotate(-2deg)',
                   fontFamily: "'Kalam', cursive"
                 }}
@@ -209,8 +209,8 @@ export default function FeaturesSection() {
                   <div 
                     className="absolute -top-3 left-6 px-5 py-2 text-xs font-bold tracking-wide uppercase"
                     style={{
-                      background: 'linear-gradient(135deg, #fef08a 0%, #fde047 100%)',
-                      color: '#000',
+                      background: 'linear-gradient(135deg, #FF6B35 0%, #FF8A65 100%)',
+                      color: '#fff',
                       transform: 'rotate(-2deg)',
                       fontFamily: "'Kalam', cursive"
                     }}
