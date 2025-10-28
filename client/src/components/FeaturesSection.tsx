@@ -102,9 +102,13 @@ export default function FeaturesSection() {
               data-testid={`card-inspiration-${index}`}
             >
               <div 
-                className="absolute -top-3 left-6 bg-foreground text-background px-4 py-1.5 rounded-full text-xs font-bold tracking-wide"
+                className="absolute -top-3 left-6 px-5 py-2 text-xs font-bold tracking-wide uppercase"
                 style={{
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.08)'
+                  background: 'linear-gradient(135deg, #fef08a 0%, #fde047 100%)',
+                  color: '#000',
+                  transform: 'rotate(-2deg)',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08)',
+                  fontStyle: 'italic'
                 }}
                 data-testid={`badge-step-${index}`}
               >
