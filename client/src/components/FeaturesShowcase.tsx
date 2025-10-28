@@ -28,16 +28,14 @@ export default function FeaturesShowcase() {
 
           <div className="space-y-3">
             {features.map((feature, index) => (
-              <div key={index} className="flex items-center justify-between gap-3" data-testid={`feature-item-${index}`}>
-                <div className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-sm text-foreground">{feature}</span>
-                </div>
+              <div key={index} className="flex items-center gap-2" data-testid={`feature-item-${index}`}>
+                <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm text-foreground">{feature}</span>
                 <span 
-                  className="px-3 py-1 text-xs font-bold tracking-wide uppercase flex-shrink-0"
+                  className="px-2 py-0.5 text-xs font-bold tracking-wide uppercase flex-shrink-0"
                   style={{
-                    background: '#F59E0B',
-                    color: '#000',
+                    background: '#10B981',
+                    color: '#fff',
                     transform: 'rotate(-2deg)',
                     fontFamily: "'Kalam', cursive",
                     borderRadius: '4px'
