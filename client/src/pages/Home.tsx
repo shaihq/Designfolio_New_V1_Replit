@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import EmailMockup from "@/components/EmailMockup";
 import TrustedBySection from "@/components/TrustedBySection";
 import FeaturesSection from "@/components/FeaturesSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <EmailMockup />
       <TrustedBySection />
       <FeaturesSection />
+      <Footer />
     </div>
   );
 }
