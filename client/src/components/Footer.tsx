@@ -28,7 +28,9 @@ export default function Footer() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-heading leading-tight text-center" data-testid="text-footer-headline">
-                It was supposed to take a weekend, not a quarter.
+                It was supposed to take a weekend,
+                <br />
+                not a quarter.
               </h2>
             </div>
 
