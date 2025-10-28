@@ -96,11 +96,11 @@ export default function FeaturesSection() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:auto-rows-min">
+        <div className="columns-1 md:columns-2 gap-4 sm:gap-6 space-y-4 md:space-y-6">
           {inspirationCards.map((card, index) => (
             <Card
               key={index}
-              className="p-6 sm:p-8 hover-elevate transition-all duration-300 h-fit"
+              className="p-6 sm:p-8 hover-elevate transition-all duration-300 break-inside-avoid mb-4 md:mb-6"
               data-testid={`card-inspiration-${index}`}
             >
               <Badge 
