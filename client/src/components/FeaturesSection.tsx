@@ -91,7 +91,7 @@ export default function FeaturesSection() {
           ))}
         </div>
 
-        <div className="columns-1 md:columns-2 gap-4 sm:gap-6 space-y-4 md:space-y-6 pt-4">
+        <div className="columns-1 md:columns-2 gap-4 sm:gap-6 space-y-4 md:space-y-6 pt-6">
           {inspirationCards.map((card, index) => (
             <Card
               key={index}
