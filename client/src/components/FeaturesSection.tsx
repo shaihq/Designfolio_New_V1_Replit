@@ -95,7 +95,10 @@ export default function FeaturesSection() {
           {inspirationCards.map((card, index) => (
             <Card
               key={index}
-              className="p-6 sm:p-8 hover-elevate transition-all duration-300 break-inside-avoid mb-4 md:mb-6 bg-background border-border/50"
+              className="p-6 sm:p-8 hover-elevate transition-all duration-300 break-inside-avoid mb-4 md:mb-6 bg-card/30 border-border/40"
+              style={{
+                boxShadow: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.02), inset 0 -2px 4px 0 rgb(0 0 0 / 0.02)'
+              }}
               data-testid={`card-inspiration-${index}`}
             >
               <Badge 
