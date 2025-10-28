@@ -53,13 +53,11 @@ export default function FeaturesSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 auto-rows-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {inspirationCards.map((card, index) => (
             <Card
               key={index}
-              className={`p-6 sm:p-8 hover-elevate transition-all duration-300 ${
-                index === 2 ? 'md:row-span-2' : ''
-              }`}
+              className="p-6 sm:p-8 hover-elevate transition-all duration-300"
               data-testid={`card-inspiration-${index}`}
             >
               <Badge 
@@ -113,13 +111,13 @@ export default function FeaturesSection() {
               )}
 
               {card.type === "showcase" && (
-                <div className="bg-gradient-to-br from-orange-400 via-pink-400 to-purple-400 rounded-md p-6 min-h-[200px] flex items-center justify-center" data-testid="showcase-section">
-                  <div className="bg-card rounded-md shadow-lg p-4 w-full max-w-[250px]">
+                <div className="bg-gradient-to-br from-orange-400 via-pink-400 to-purple-400 rounded-md p-6 min-h-[280px] sm:min-h-[320px] flex items-center justify-center" data-testid="showcase-section">
+                  <div className="bg-card rounded-md shadow-lg p-4 w-full max-w-[280px]">
                     <div className="space-y-3">
-                      <div className="h-20 bg-gradient-to-br from-blue-500 to-purple-500 rounded-md" data-testid="showcase-image-1"></div>
+                      <div className="h-24 sm:h-28 bg-gradient-to-br from-blue-500 to-purple-500 rounded-md" data-testid="showcase-image-1"></div>
                       <div className="grid grid-cols-2 gap-2">
-                        <div className="h-12 bg-gradient-to-br from-green-400 to-blue-400 rounded-md" data-testid="showcase-image-2"></div>
-                        <div className="h-12 bg-gradient-to-br from-pink-400 to-red-400 rounded-md" data-testid="showcase-image-3"></div>
+                        <div className="h-14 sm:h-16 bg-gradient-to-br from-green-400 to-blue-400 rounded-md" data-testid="showcase-image-2"></div>
+                        <div className="h-14 sm:h-16 bg-gradient-to-br from-pink-400 to-red-400 rounded-md" data-testid="showcase-image-3"></div>
                       </div>
                       <div className="h-2 bg-muted rounded-full w-3/4" data-testid="showcase-line-1"></div>
                       <div className="h-2 bg-muted rounded-full w-1/2" data-testid="showcase-line-2"></div>
