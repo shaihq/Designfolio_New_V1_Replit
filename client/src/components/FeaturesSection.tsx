@@ -1,8 +1,36 @@
-import { Check, Zap, MousePointer2 } from "lucide-react";
+import { Check, Zap, MousePointer2, Clock, Calendar, Mail, MessageSquare, Volume2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+
+const features = [
+  {
+    icon: Clock,
+    title: "Slow Response Times",
+    color: "text-red-500"
+  },
+  {
+    icon: Calendar,
+    title: "Endless Back & Forth Booking Meetings",
+    color: "text-green-500"
+  },
+  {
+    icon: Mail,
+    title: "Hours Wasted Managing Email",
+    color: "text-blue-500"
+  },
+  {
+    icon: MessageSquare,
+    title: "Slow Replies Leading to Ghosted Leads",
+    color: "text-blue-500"
+  },
+  {
+    icon: Volume2,
+    title: "Leads Lost in the Noise",
+    color: "text-orange-500"
+  },
+];
 
 const inspirationCards = [
   {
@@ -51,6 +79,21 @@ export default function FeaturesSection() {
               90
             </div>
           </div>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="bg-white border border-border rounded-full px-3 sm:px-5 py-2 sm:py-3 flex items-center gap-2 sm:gap-2.5 hover-elevate cursor-pointer"
+              data-testid={`badge-feature-${index}`}
+            >
+              <feature.icon className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${feature.color}`} data-testid={`icon-feature-${index}`} />
+              <span className="text-xs sm:text-sm font-medium text-foreground whitespace-nowrap" data-testid={`text-feature-title-${index}`}>
+                {feature.title}
+              </span>
+            </div>
+          ))}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
