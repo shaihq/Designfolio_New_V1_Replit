@@ -136,19 +136,21 @@ export default function FeaturesSection() {
               )}
 
               {card.type === "profile" && (
-                <div className="space-y-4" data-testid="profile-section">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                      <span className="text-white font-semibold text-lg">B</span>
+                <div className="space-y-6 min-h-[280px] sm:min-h-[320px] flex flex-col justify-center" data-testid="profile-section">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                      <span className="text-white font-semibold text-2xl">B</span>
                     </div>
-                    <div>
-                      <p className="font-semibold text-foreground" data-testid="text-profile-name">Bruce Wayne</p>
+                    <div className="text-center">
+                      <p className="font-semibold text-foreground text-lg" data-testid="text-profile-name">Bruce Wayne</p>
                     </div>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="h-3 bg-muted rounded-md w-full" data-testid="skeleton-line-1"></div>
                     <div className="h-3 bg-muted rounded-md w-4/5" data-testid="skeleton-line-2"></div>
                     <div className="h-3 bg-muted rounded-md w-3/4" data-testid="skeleton-line-3"></div>
+                    <div className="h-3 bg-muted rounded-md w-full mt-4" data-testid="skeleton-line-4"></div>
+                    <div className="h-3 bg-muted rounded-md w-5/6" data-testid="skeleton-line-5"></div>
                   </div>
                 </div>
               )}
