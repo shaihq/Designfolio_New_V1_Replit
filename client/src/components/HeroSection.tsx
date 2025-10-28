@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useMotionTemplate } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function HeroSection() {
@@ -226,6 +226,12 @@ export default function HeroSection() {
   const rightScaleRaw = useTransform(scrollY, [0, scrollRange], [rightInitialScale, 1], { clamp: true });
   const rightScale = useSpring(rightScaleRaw, springConfig);
 
+  // Fade out shadow as cards reach profile section
+  const shadowOpacityRaw = useTransform(scrollY, [0, scrollRange], [1, 0], { clamp: true });
+  const shadowOpacity = useSpring(shadowOpacityRaw, springConfig);
+  
+  const cardBoxShadow = useMotionTemplate`0 10px 15px -3px rgba(0, 0, 0, ${useTransform(shadowOpacity, (v) => v * 0.1)}), 0 4px 6px -4px rgba(0, 0, 0, ${useTransform(shadowOpacity, (v) => v * 0.1)})`;
+
   return (
     <section ref={sectionRef} className="relative overflow-visible py-8 sm:py-12 md:py-16 px-6">
       <div 
@@ -259,7 +265,13 @@ export default function HeroSection() {
           WebkitFontSmoothing: "antialiased",
         }}
       >
-        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg flex flex-col" data-testid="card-project-left">
+        <motion.div 
+          className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden flex flex-col" 
+          style={{
+            boxShadow: cardBoxShadow
+          }}
+          data-testid="card-project-left"
+        >
           <div className="aspect-video bg-gradient-to-br from-purple-200 to-pink-200 relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
@@ -273,7 +285,7 @@ export default function HeroSection() {
               Project by Nandini
             </p>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
 
       <motion.div 
@@ -293,7 +305,13 @@ export default function HeroSection() {
           WebkitFontSmoothing: "antialiased",
         }}
       >
-        <div className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden shadow-lg flex flex-col" data-testid="card-project-right">
+        <motion.div 
+          className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden flex flex-col" 
+          style={{
+            boxShadow: cardBoxShadow
+          }}
+          data-testid="card-project-right"
+        >
           <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
@@ -307,7 +325,7 @@ export default function HeroSection() {
               Case Study by Chris
             </p>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
 
       <div className="max-w-5xl mx-auto relative z-50">
