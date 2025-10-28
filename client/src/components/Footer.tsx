@@ -32,11 +32,11 @@ export default function Footer() {
                 <br />
                 not a quarter.
               </h2>
-              <div className="flex justify-center pt-4">
+              <div className="pt-4">
                 <img 
                   src="/footerimage.svg" 
                   alt="Footer illustration" 
-                  className="w-full max-w-md h-auto"
+                  className="w-full h-auto"
                   data-testid="image-footer-illustration"
                 />
               </div>
