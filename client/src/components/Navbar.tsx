@@ -40,7 +40,7 @@ export default function Navbar() {
               className="bg-foreground text-background border border-foreground rounded-full px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base font-medium hover:bg-foreground/80 transition-colors" 
               data-testid="button-getstarted"
             >
-              Get Started
+              Try now!
             </Button>
           </div>
         </div>
