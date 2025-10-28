@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import shaiSignature from "@assets/shaisign_1761634274798.png";
+import shaiSignature from "@assets/shainow_1761634386828.png";
 
 export default function Footer() {
   const names = ["john", "morgan", "sarah", "tom", "brad"];
