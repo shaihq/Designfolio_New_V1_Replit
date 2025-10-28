@@ -65,19 +65,14 @@ export default function FeaturesSection() {
     <section className="py-8 sm:py-12 md:py-16 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-heading font-semibold text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl text-center text-foreground mb-4 sm:mb-6" data-testid="text-features-heading">
-          Inbox chaos steals your time.
+          Your work deserves to be seen.
         </h2>
         
         <div className="flex justify-center mb-8 sm:mb-12">
-          <div className="relative inline-flex items-start">
-            <div className="bg-pink-50 border border-pink-200 rounded-full px-4 sm:px-6 py-2.5 sm:py-3.5 pr-12 sm:pr-16" data-testid="badge-time-wasted">
-              <span className="text-sm sm:text-base text-foreground">
-                It's 4pm. Your last 3 'quick email checks' cost you 45 minutes...
-              </span>
-            </div>
-            <div className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center text-sm sm:text-base font-bold shadow-md">
-              90
-            </div>
+          <div className="bg-pink-50 border border-pink-200 rounded-full px-4 sm:px-6 py-2.5 sm:py-3.5" data-testid="badge-time-wasted">
+            <span className="text-sm sm:text-base text-foreground">
+              It's been 3 months. You've applied to 40+ jobs — but your work still lives in random Figma links.
+            </span>
           </div>
         </div>
 
