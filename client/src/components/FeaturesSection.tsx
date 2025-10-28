@@ -1,4 +1,4 @@
-import { Check, Zap, MousePointer2, Clock, Calendar, Mail, MessageSquare, Volume2 } from "lucide-react";
+import { Check, Zap, MousePointer2, BookOpen, Files, MessageCircleQuestion, Link2Off, CalendarX } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -6,29 +6,29 @@ import { Button } from "@/components/ui/button";
 
 const features = [
   {
-    icon: Clock,
-    title: "Slow Response Times",
+    icon: BookOpen,
+    title: "Endless hours learning Framer or Webflow",
+    color: "text-purple-500"
+  },
+  {
+    icon: Files,
+    title: "Projects scattered across Figma files and PDFs",
+    color: "text-blue-500"
+  },
+  {
+    icon: MessageCircleQuestion,
+    title: '"Can you share your work?" in every interview',
+    color: "text-orange-500"
+  },
+  {
+    icon: Link2Off,
+    title: "No clear story tying your skills together",
     color: "text-red-500"
   },
   {
-    icon: Calendar,
-    title: "Endless Back & Forth Booking Meetings",
-    color: "text-green-500"
-  },
-  {
-    icon: Mail,
-    title: "Hours Wasted Managing Email",
-    color: "text-blue-500"
-  },
-  {
-    icon: MessageSquare,
-    title: "Slow Replies Leading to Ghosted Leads",
-    color: "text-blue-500"
-  },
-  {
-    icon: Volume2,
-    title: "Leads Lost in the Noise",
-    color: "text-orange-500"
+    icon: CalendarX,
+    title: "Wasted weekends editing layouts instead of growing",
+    color: "text-pink-500"
   },
 ];
 
