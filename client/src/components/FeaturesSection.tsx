@@ -95,7 +95,7 @@ export default function FeaturesSection() {
           {inspirationCards.map((card, index) => (
             <Card
               key={index}
-              className="p-6 sm:p-8 hover-elevate transition-all duration-300 break-inside-avoid mb-4 md:mb-6 bg-card/30 border-border/40"
+              className="relative p-6 sm:p-8 pt-10 sm:pt-12 hover-elevate transition-all duration-300 break-inside-avoid mb-4 md:mb-6 bg-card/30 border-border/40"
               style={{
                 boxShadow: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.02), inset 0 -2px 4px 0 rgb(0 0 0 / 0.02)'
               }}
@@ -103,7 +103,7 @@ export default function FeaturesSection() {
             >
               <Badge 
                 variant="secondary" 
-                className="mb-4 text-xs font-medium shadow-sm"
+                className="absolute -top-2.5 left-6 text-xs font-semibold bg-gradient-to-b from-secondary/90 to-secondary border border-border shadow-md px-3 py-1"
                 data-testid={`badge-step-${index}`}
               >
                 {card.step}
