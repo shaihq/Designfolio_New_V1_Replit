@@ -1,23 +1,23 @@
 import { Star } from "lucide-react";
 
 const testimonials = [
-  "Perfect solution",
-  "Really great",
-  "Outstanding",
-  "Best app for teams",
-  "Awesome service",
-  "Gets better and better",
-  "Love it",
-  "Highly recommend",
-  "Game changer",
-  "Exactly what I needed",
+  "Built my site in hours.",
+  "Finally finished my portfolio.",
+  "Just works.",
+  "Got shortlisted the same week.",
+  "Clean design.",
+  "So clean. So fast.",
+  "Exactly what I needed.",
+  "Landed couple of interviews.",
 ];
 
 export default function ScrollingBanner() {
+  const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
+  
   return (
     <div className="w-full bg-foreground py-4 overflow-hidden" data-testid="banner-scrolling">
       <div className="flex animate-scroll whitespace-nowrap">
-        {[...testimonials, ...testimonials].map((text, index) => (
+        {duplicatedTestimonials.map((text, index) => (
           <div key={index} className="inline-flex items-center gap-2 px-6">
             <span className="text-background font-medium text-sm sm:text-base" data-testid={`text-testimonial-${index}`}>
               "{text}"
