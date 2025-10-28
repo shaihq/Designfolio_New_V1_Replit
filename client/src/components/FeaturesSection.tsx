@@ -91,11 +91,11 @@ export default function FeaturesSection() {
           ))}
         </div>
 
-        <div className="columns-1 md:columns-2 gap-4 sm:gap-6 space-y-4 md:space-y-6 pt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-6">
           {inspirationCards.map((card, index) => (
             <Card
               key={index}
-              className="relative p-6 sm:p-8 hover-elevate transition-all duration-300 break-inside-avoid mb-4 md:mb-6 bg-card/30 border-border/40 overflow-visible"
+              className="relative p-6 sm:p-8 hover-elevate transition-all duration-300 bg-card/30 border-border/40 overflow-visible"
               style={{
                 boxShadow: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.02), inset 0 -2px 4px 0 rgb(0 0 0 / 0.02)'
               }}
