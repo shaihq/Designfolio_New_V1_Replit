@@ -110,8 +110,7 @@ export default function FeaturesSection() {
                   background: 'linear-gradient(135deg, #fef08a 0%, #fde047 100%)',
                   color: '#000',
                   transform: 'rotate(-2deg)',
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08)',
-                  fontStyle: 'italic'
+                  fontFamily: "'Kalam', cursive"
                 }}
                 data-testid={`badge-step-${index}`}
               >
@@ -213,8 +212,7 @@ export default function FeaturesSection() {
                       background: 'linear-gradient(135deg, #fef08a 0%, #fde047 100%)',
                       color: '#000',
                       transform: 'rotate(-2deg)',
-                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08)',
-                      fontStyle: 'italic'
+                      fontFamily: "'Kalam', cursive"
                     }}
                     data-testid={`badge-step-${index}`}
                   >
