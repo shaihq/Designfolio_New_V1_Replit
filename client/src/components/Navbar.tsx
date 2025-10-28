@@ -1,36 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { useState, useEffect, useRef } from "react";
 
 export default function Navbar() {
-  const [isVisible, setIsVisible] = useState(true);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        setIsVisible(false);
-      } else if (currentScrollY < lastScrollY.current) {
-        setIsVisible(true);
-      }
-      
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
-    <nav 
-      className={`sticky top-0 z-50 border-b border-border bg-background transition-transform duration-300 ${
-        isVisible ? 'translate-y-0' : '-translate-y-full'
-      }`}
-    >
+    <nav className="border-b border-border bg-background">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <div className="flex items-center" data-testid="logo-icon">
