@@ -77,7 +77,7 @@ export default function FeaturesShowcase() {
               playsInline
               data-testid="video-thumbnail-1"
             >
-              <source src="/videos/casestudyai.mp4" type="video/mp4" />
+              <source src="/videos/designfolio_ai_case_study.mp4" type="video/mp4" />
             </video>
             <div className="space-y-3">
               <h3 className="text-lg font-semibold" data-testid="text-feature-title-1">
