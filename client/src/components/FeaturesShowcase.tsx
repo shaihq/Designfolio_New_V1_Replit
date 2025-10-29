@@ -1,6 +1,22 @@
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
+
+function FeatureCta({ children, testId }: { children: string; testId: string }) {
+  return (
+    <button 
+      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover-elevate active-elevate-2 border"
+      style={{
+        backgroundColor: 'hsl(221 83% 53% / 0.08)',
+        borderColor: 'hsl(221 83% 53% / 0.2)',
+        color: 'hsl(221 83% 53%)'
+      }}
+      data-testid={testId}
+    >
+      {children}
+      <ArrowRight className="w-4 h-4" />
+    </button>
+  );
+}
 
 export default function FeaturesShowcase() {
   const features = [
@@ -60,9 +76,9 @@ export default function FeaturesShowcase() {
               <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-feature-description-1">
                 Describe your project in a few lines — Designfolio shapes it into a clear, well-structured case study that actually sounds like you.
               </p>
-              <Button variant="secondary" size="sm" data-testid="button-cta-1">
+              <FeatureCta testId="button-cta-1">
                 Start with AI
-              </Button>
+              </FeatureCta>
             </div>
           </Card>
 
@@ -82,9 +98,9 @@ export default function FeaturesShowcase() {
               <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-feature-description-2">
                 Designfolio compares it with thousands of top portfolios and gives you an honest, easy-to-read report — what's strong, what's missing, and how to improve.
               </p>
-              <Button variant="secondary" size="sm" data-testid="button-cta-2">
+              <FeatureCta testId="button-cta-2">
                 Try Designfolio AI
-              </Button>
+              </FeatureCta>
             </div>
           </Card>
         </div>
