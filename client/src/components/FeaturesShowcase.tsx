@@ -54,10 +54,10 @@ export default function FeaturesShowcase() {
             </div>
             <div className="space-y-2">
               <h3 className="text-lg font-semibold" data-testid="text-feature-title-1">
-                Intuitive drag-and-drop builder
+                AI Case Study Writer
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-feature-description-1">
-                Arrange your projects effortlessly with our simple drag-and-drop interface. No technical skills needed.
+                Describe your project in a few lines — Designfolio shapes it into a clear, well-structured case study that actually sounds like you.
               </p>
             </div>
           </Card>
@@ -73,10 +73,10 @@ export default function FeaturesShowcase() {
             </div>
             <div className="space-y-2">
               <h3 className="text-lg font-semibold" data-testid="text-feature-title-2">
-                Real-time collaboration
+                AI Case Study Analyzer
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-feature-description-2">
-                Work together with your team in real-time. Share feedback and make updates instantly.
+                Designfolio compares it with thousands of top portfolios and gives you an honest, easy-to-read report — what's strong, what's missing, and how to improve.
               </p>
             </div>
           </Card>
