@@ -3,14 +3,26 @@ import { Check, ArrowRight } from "lucide-react";
 
 function FeatureCta({ children, testId }: { children: string; testId: string }) {
   return (
-    <a 
-      href="#"
-      className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-foreground/70 transition-colors group"
+    <button 
+      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border-2 transition-all group"
+      style={{
+        borderColor: '#FF553E',
+        color: '#FF553E',
+        backgroundColor: 'transparent'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundColor = '#FF553E';
+        e.currentTarget.style.color = '#ffffff';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundColor = 'transparent';
+        e.currentTarget.style.color = '#FF553E';
+      }}
       data-testid={testId}
     >
       {children}
-      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-    </a>
+      <ArrowRight className="w-4 h-4" />
+    </button>
   );
 }
 
