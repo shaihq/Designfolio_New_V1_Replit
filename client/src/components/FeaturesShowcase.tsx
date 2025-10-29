@@ -70,7 +70,7 @@ export default function FeaturesShowcase() {
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="p-4 space-y-4">
             <video 
-              className="aspect-video rounded-md w-full object-contain border" 
+              className="rounded-md w-full border" 
               autoPlay 
               muted 
               loop 
