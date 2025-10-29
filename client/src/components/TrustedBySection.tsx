@@ -9,28 +9,20 @@ export default function TrustedBySection({ backgroundColor }: { backgroundColor?
     "/company logos/companylogos07.svg",
   ];
 
-  const bgColor = backgroundColor === 'transparent' ? '#FFFFFF' : (backgroundColor || 'hsl(var(--background))');
-
   return (
-    <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 overflow-hidden">
+    <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 overflow-hidden w-full">
       <div className="max-w-5xl mx-auto">
-        <h3 className="text-center text-sm sm:text-base font-medium text-foreground/50 mb-8 sm:mb-10" data-testid="text-trusted-heading">
+        <h3 className="text-center text-xs sm:text-sm md:text-base font-medium text-foreground/50 mb-6 sm:mb-8 md:mb-10" data-testid="text-trusted-heading">
           Trusted by 20000+ designers—humble brag
         </h3>
         
         <div className="relative overflow-hidden">
           <div 
-            className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-10 pointer-events-none"
-            style={{
-              background: `linear-gradient(to right, ${bgColor} 0%, transparent 100%)`
-            }}
+            className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-40 z-10 pointer-events-none bg-gradient-to-r from-background to-transparent"
           />
           
           <div 
-            className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-10 pointer-events-none"
-            style={{
-              background: `linear-gradient(to left, ${bgColor} 0%, transparent 100%)`
-            }}
+            className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-background to-transparent"
           />
           
           <div className="flex gap-0 overflow-hidden">
@@ -38,13 +30,13 @@ export default function TrustedBySection({ backgroundColor }: { backgroundColor?
               {companyLogos.map((logo, index) => (
                 <div
                   key={`first-${index}`}
-                  className="flex items-center justify-center px-6 sm:px-10 flex-shrink-0"
+                  className="flex items-center justify-center px-4 sm:px-6 md:px-10 flex-shrink-0"
                   data-testid={`logo-company-${index}`}
                 >
                   <img 
                     src={logo} 
                     alt={`Company logo ${index + 1}`}
-                    className="h-6 sm:h-8 w-auto opacity-50 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
+                    className="h-5 sm:h-6 md:h-8 w-auto opacity-50 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
                   />
                 </div>
               ))}
@@ -54,12 +46,12 @@ export default function TrustedBySection({ backgroundColor }: { backgroundColor?
               {companyLogos.map((logo, index) => (
                 <div
                   key={`second-${index}`}
-                  className="flex items-center justify-center px-6 sm:px-10 flex-shrink-0"
+                  className="flex items-center justify-center px-4 sm:px-6 md:px-10 flex-shrink-0"
                 >
                   <img 
                     src={logo} 
                     alt=""
-                    className="h-6 sm:h-8 w-auto opacity-50 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
+                    className="h-5 sm:h-6 md:h-8 w-auto opacity-50 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
                   />
                 </div>
               ))}
