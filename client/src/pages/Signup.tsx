@@ -3,7 +3,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Mail, ArrowLeft, Check } from "lucide-react";
 import TrustedBySection from "@/components/TrustedBySection";
 
@@ -14,7 +13,6 @@ export default function Signup() {
     name: "",
     email: "",
     password: "",
-    agreeToTerms: false,
   });
 
   const handleDomainSubmit = (e: React.FormEvent) => {
@@ -191,17 +189,11 @@ export default function Signup() {
 
                 <div className="text-center mb-6">
                   <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
-                    Complete your profile
+                    Now, create your account.
                   </h1>
                   <p className="text-sm text-foreground/60" data-testid="text-signup-description">
-                    Fill in your details to continue
+                    Just a step away from claiming <span className="font-medium" style={{ color: '#FF553E' }}>{domain}.designfolio.me</span>
                   </p>
-                  {domain && (
-                    <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-muted rounded-full text-xs text-muted-foreground">
-                      <Check className="w-3 h-3 text-green-600" />
-                      <span className="font-medium text-foreground">{domain}.designfolio.me</span>
-                    </div>
-                  )}
                 </div>
 
               <form onSubmit={handleEmailSignup} className="space-y-5">
@@ -257,47 +249,32 @@ export default function Signup() {
                   </p>
                 </div>
 
-                <div className="flex items-start gap-2 pt-2">
-                  <Checkbox
-                    id="terms"
-                    checked={formData.agreeToTerms}
-                    onCheckedChange={(checked) => 
-                      setFormData({ ...formData, agreeToTerms: checked as boolean })
-                    }
-                    className="mt-0.5"
-                    data-testid="checkbox-terms"
-                  />
-                  <label
-                    htmlFor="terms"
-                    className="text-sm text-muted-foreground leading-relaxed cursor-pointer"
-                  >
-                    I agree to the{" "}
-                    <a href="#terms" className="hover:underline" style={{ color: '#FF553E' }} data-testid="link-terms">
-                      Terms of Service
-                    </a>{" "}
-                    and{" "}
-                    <a href="#privacy" className="hover:underline" style={{ color: '#FF553E' }} data-testid="link-privacy">
-                      Privacy Policy
-                    </a>
-                  </label>
-                </div>
-
                 <Button
                   type="submit"
-                  className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors mt-6"
-                  disabled={!formData.agreeToTerms}
+                  className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
                   data-testid="button-create-account"
                 >
                   Create account
                 </Button>
 
-                <div className="relative my-6">
+                <p className="text-center text-xs text-muted-foreground">
+                  By continuing, you agree to Designfolio's{" "}
+                  <a href="#terms" className="hover:underline" style={{ color: '#FF553E' }} data-testid="link-terms">
+                    Terms of Service
+                  </a>{" "}
+                  and{" "}
+                  <a href="#privacy" className="hover:underline" style={{ color: '#FF553E' }} data-testid="link-privacy">
+                    Privacy Policy
+                  </a>
+                </p>
+
+                <div className="relative my-5">
                   <div className="absolute inset-0 flex items-center">
                     <span className="w-full border-t border-border" />
                   </div>
                   <div className="relative flex justify-center text-xs uppercase">
                     <span className="bg-white px-3 text-muted-foreground font-medium">
-                      Or
+                      OR
                     </span>
                   </div>
                 </div>
