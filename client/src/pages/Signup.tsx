@@ -47,7 +47,7 @@ export default function Signup() {
 
         <div className="flex-1 flex items-center justify-center px-6">
           <div className="w-full max-w-md">
-            <Card className="bg-white pt-10 pb-6 px-6 sm:px-8 border-0 rounded-3xl">
+            <Card className="bg-white py-8 px-6 sm:px-8 border-0 rounded-3xl">
             <div className="text-center mb-6">
               <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
                 {showEmailForm ? "Create your account" : "Get started for free"}
