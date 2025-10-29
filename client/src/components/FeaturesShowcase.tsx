@@ -1,15 +1,19 @@
 import { Card } from "@/components/ui/card";
-import { Check, ArrowRight, Sparkles, Brain } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 
 function FeatureCta({ children, testId }: { children: string; testId: string }) {
   return (
     <button 
-      className="inline-flex items-center gap-1.5 text-sm font-medium group"
-      style={{ color: '#FF553E' }}
+      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover-elevate active-elevate-2 border"
+      style={{
+        backgroundColor: 'rgba(255, 85, 62, 0.08)',
+        borderColor: 'rgba(255, 85, 62, 0.25)',
+        color: '#FF553E'
+      }}
       data-testid={testId}
     >
       {children}
-      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+      <ArrowRight className="w-4 h-4" />
     </button>
   );
 }
@@ -56,11 +60,14 @@ export default function FeaturesShowcase() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <Card className="p-6 space-y-4 hover-elevate">
-            <div className="aspect-video rounded-lg flex items-center justify-center relative overflow-hidden" 
-                 style={{ background: 'linear-gradient(135deg, rgba(255, 85, 62, 0.08) 0%, rgba(255, 85, 62, 0.02) 100%)' }}
-                 data-testid="mock-thumbnail-1">
-              <Sparkles className="w-16 h-16" style={{ color: '#FF553E', opacity: 0.3 }} />
+          <Card className="p-4 space-y-4">
+            <div className="aspect-video bg-muted rounded-md flex items-center justify-center" data-testid="mock-thumbnail-1">
+              <div className="text-center space-y-2">
+                <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-primary/20 rounded-full"></div>
+                </div>
+                <p className="text-sm text-muted-foreground">Preview</p>
+              </div>
             </div>
             <div className="space-y-3">
               <h3 className="text-lg font-semibold" data-testid="text-feature-title-1">
@@ -75,11 +82,14 @@ export default function FeaturesShowcase() {
             </div>
           </Card>
 
-          <Card className="p-6 space-y-4 hover-elevate">
-            <div className="aspect-video rounded-lg flex items-center justify-center relative overflow-hidden" 
-                 style={{ background: 'linear-gradient(135deg, rgba(255, 85, 62, 0.08) 0%, rgba(255, 85, 62, 0.02) 100%)' }}
-                 data-testid="mock-thumbnail-2">
-              <Brain className="w-16 h-16" style={{ color: '#FF553E', opacity: 0.3 }} />
+          <Card className="p-4 space-y-4">
+            <div className="aspect-video bg-muted rounded-md flex items-center justify-center" data-testid="mock-thumbnail-2">
+              <div className="text-center space-y-2">
+                <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-primary/20 rounded-full"></div>
+                </div>
+                <p className="text-sm text-muted-foreground">Preview</p>
+              </div>
             </div>
             <div className="space-y-3">
               <h3 className="text-lg font-semibold" data-testid="text-feature-title-2">
