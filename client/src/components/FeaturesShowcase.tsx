@@ -6,9 +6,9 @@ function FeatureCta({ children, testId }: { children: string; testId: string }) 
     <button 
       className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover-elevate active-elevate-2 border"
       style={{
-        backgroundColor: 'hsl(221 83% 53% / 0.08)',
-        borderColor: 'hsl(221 83% 53% / 0.2)',
-        color: 'hsl(221 83% 53%)'
+        backgroundColor: 'rgba(255, 85, 62, 0.08)',
+        borderColor: 'rgba(255, 85, 62, 0.25)',
+        color: '#FF553E'
       }}
       data-testid={testId}
     >
