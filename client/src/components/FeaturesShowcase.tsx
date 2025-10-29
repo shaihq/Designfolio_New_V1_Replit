@@ -69,14 +69,16 @@ export default function FeaturesShowcase() {
 
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="p-4 space-y-4">
-            <div className="aspect-video bg-muted rounded-md flex items-center justify-center" data-testid="mock-thumbnail-1">
-              <div className="text-center space-y-2">
-                <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
-                  <div className="w-8 h-8 bg-primary/20 rounded-full"></div>
-                </div>
-                <p className="text-sm text-muted-foreground">Preview</p>
-              </div>
-            </div>
+            <video 
+              className="aspect-video rounded-md w-full object-cover" 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              data-testid="video-thumbnail-1"
+            >
+              <source src="/videos/casestudyai.mp4" type="video/mp4" />
+            </video>
             <div className="space-y-3">
               <h3 className="text-lg font-semibold" data-testid="text-feature-title-1">
                 AI Case Study Writer
