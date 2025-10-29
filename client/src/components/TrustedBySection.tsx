@@ -1,4 +1,4 @@
-export default function TrustedBySection() {
+export default function TrustedBySection({ backgroundColor }: { backgroundColor?: string }) {
   const companyLogos = [
     "/company logos/companylogos01.svg",
     "/company logos/companylogos02.svg",
@@ -8,6 +8,8 @@ export default function TrustedBySection() {
     "/company logos/companylogos06.svg",
     "/company logos/companylogos07.svg",
   ];
+
+  const bgColor = backgroundColor || 'hsl(var(--background))';
 
   return (
     <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 overflow-hidden">
@@ -20,14 +22,14 @@ export default function TrustedBySection() {
           <div 
             className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-10 pointer-events-none"
             style={{
-              background: 'linear-gradient(to right, hsl(var(--background)) 0%, transparent 100%)'
+              background: `linear-gradient(to right, ${bgColor} 0%, transparent 100%)`
             }}
           />
           
           <div 
             className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-10 pointer-events-none"
             style={{
-              background: 'linear-gradient(to left, hsl(var(--background)) 0%, transparent 100%)'
+              background: `linear-gradient(to left, ${bgColor} 0%, transparent 100%)`
             }}
           />
           

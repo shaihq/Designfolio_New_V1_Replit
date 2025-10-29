@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Mail, ArrowLeft } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
+import TrustedBySection from "@/components/TrustedBySection";
 
 export default function Signup() {
   const [showEmailForm, setShowEmailForm] = useState(false);
@@ -26,8 +27,8 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-6 py-12">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen flex flex-col px-6 py-12" style={{ backgroundColor: '#E8F4F8' }}>
+      <div className="max-w-md w-full mx-auto">
         <div className="relative">
           <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 bg-white rounded-full p-2">
             <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-6 w-auto" data-testid="logo-icon">
@@ -227,6 +228,8 @@ export default function Signup() {
             )}
           </Card>
         </div>
+        
+        <TrustedBySection backgroundColor="#E8F4F8" />
       </div>
     </div>
   );
