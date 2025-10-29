@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: 'GeneralSans';
   src: url('/fonts/GeneralSans-Regular.otf') format('opentype');
