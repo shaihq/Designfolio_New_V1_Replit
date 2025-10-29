@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -47,8 +47,8 @@ export default function Signup() {
 
         <div className="relative z-10 py-12 sm:py-16 md:py-20 lg:py-24 px-6">
           <div className="max-w-md mx-auto">
-            <div className="text-center mb-8">
-              <h1 className="font-heading font-semibold text-3xl sm:text-4xl md:text-5xl leading-tight mb-3 text-foreground" data-testid="text-signup-headline">
+            <div className="text-center mb-8 sm:mb-12">
+              <h1 className="font-heading font-semibold text-3xl sm:text-4xl md:text-5xl leading-tight mb-3 sm:mb-4 text-foreground" data-testid="text-signup-headline">
                 {showEmailForm ? "Create your account" : "Get started for free"}
               </h1>
               <p className="text-sm sm:text-base md:text-lg text-foreground/70 leading-relaxed" data-testid="text-signup-description">
@@ -59,34 +59,10 @@ export default function Signup() {
               </p>
             </div>
 
-            <Card className="shadow-lg">
-              <CardHeader className="space-y-1 pb-4">
-                {showEmailForm && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="w-fit -ml-2 mb-2"
-                    onClick={() => setShowEmailForm(false)}
-                    data-testid="button-back"
-                  >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    Back
-                  </Button>
-                )}
-                <CardTitle className="text-xl sm:text-2xl">
-                  {showEmailForm ? "Sign up with email" : "Choose your signup method"}
-                </CardTitle>
-                <CardDescription>
-                  {showEmailForm 
-                    ? "Create a secure account to get started" 
-                    : "Select how you'd like to create your account"
-                  }
-                </CardDescription>
-              </CardHeader>
-              
-              <CardContent>
+            <Card>
+              <CardContent className="pt-6">
                 {!showEmailForm ? (
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <Button
                       variant="outline"
                       className="w-full min-h-12 text-base font-medium gap-3"
@@ -118,7 +94,7 @@ export default function Signup() {
                       Sign up with Email
                     </Button>
 
-                    <p className="text-center text-xs text-muted-foreground mt-6 pt-4">
+                    <p className="text-center text-sm text-muted-foreground mt-6 pt-2">
                       Already have an account?{" "}
                       <a href="#login" className="text-primary hover:underline font-medium" data-testid="link-login">
                         Log in
@@ -126,9 +102,21 @@ export default function Signup() {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleEmailSignup} className="space-y-4">
+                  <form onSubmit={handleEmailSignup} className="space-y-5">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="w-fit -ml-2 -mt-2 mb-2"
+                      onClick={() => setShowEmailForm(false)}
+                      data-testid="button-back"
+                    >
+                      <ArrowLeft className="w-4 h-4 mr-2" />
+                      Back
+                    </Button>
+
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full name</Label>
+                      <Label htmlFor="name" className="text-sm font-medium">Full name</Label>
                       <Input
                         id="name"
                         type="text"
@@ -141,7 +129,7 @@ export default function Signup() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email address</Label>
+                      <Label htmlFor="email" className="text-sm font-medium">Email address</Label>
                       <Input
                         id="email"
                         type="email"
@@ -154,7 +142,7 @@ export default function Signup() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="password">Password</Label>
+                      <Label htmlFor="password" className="text-sm font-medium">Password</Label>
                       <Input
                         id="password"
                         type="password"
@@ -164,23 +152,24 @@ export default function Signup() {
                         required
                         data-testid="input-password"
                       />
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-xs text-muted-foreground pt-1">
                         Must be at least 8 characters long
                       </p>
                     </div>
 
-                    <div className="flex items-start space-x-2 pt-2">
+                    <div className="flex items-start space-x-2 pt-1">
                       <Checkbox
                         id="terms"
                         checked={formData.agreeToTerms}
                         onCheckedChange={(checked) => 
                           setFormData({ ...formData, agreeToTerms: checked as boolean })
                         }
+                        className="mt-0.5"
                         data-testid="checkbox-terms"
                       />
                       <label
                         htmlFor="terms"
-                        className="text-sm text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        className="text-sm text-muted-foreground leading-relaxed cursor-pointer"
                       >
                         I agree to the{" "}
                         <a href="#terms" className="text-primary hover:underline" data-testid="link-terms">
@@ -224,7 +213,7 @@ export default function Signup() {
                       Sign up with Google
                     </Button>
 
-                    <p className="text-center text-xs text-muted-foreground mt-6 pt-4">
+                    <p className="text-center text-sm text-muted-foreground mt-6 pt-2">
                       Already have an account?{" "}
                       <a href="#login" className="text-primary hover:underline font-medium" data-testid="link-login-alt">
                         Log in
