@@ -62,7 +62,7 @@ export default function Signup() {
               <div>
                 <div className="text-center mb-8">
                   <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
-                    Claim your unique link
+                    First, claim your unique link
                   </h1>
                   <p className="text-sm text-foreground/60" data-testid="text-signup-description">
                     Choose your personal domain to get started
@@ -108,7 +108,7 @@ export default function Signup() {
 
                   <p className="text-center text-sm text-foreground/70 mt-6">
                     Already have an account?{" "}
-                    <a href="#login" className="text-primary hover:underline font-medium" data-testid="link-login">
+                    <a href="#login" className="hover:underline font-medium" style={{ color: '#FF553E' }} data-testid="link-login">
                       Log in
                     </a>
                   </p>
@@ -177,7 +177,7 @@ export default function Signup() {
 
                   <p className="text-center text-sm text-foreground/70 mt-8 pt-4">
                     Already have an account?{" "}
-                    <a href="#login" className="text-primary hover:underline font-medium" data-testid="link-login">
+                    <a href="#login" className="hover:underline font-medium" style={{ color: '#FF553E' }} data-testid="link-login">
                       Log in
                     </a>
                   </p>
@@ -278,11 +278,11 @@ export default function Signup() {
                     className="text-sm text-muted-foreground leading-relaxed cursor-pointer"
                   >
                     I agree to the{" "}
-                    <a href="#terms" className="text-primary hover:underline" data-testid="link-terms">
+                    <a href="#terms" className="hover:underline" style={{ color: '#FF553E' }} data-testid="link-terms">
                       Terms of Service
                     </a>{" "}
                     and{" "}
-                    <a href="#privacy" className="text-primary hover:underline" data-testid="link-privacy">
+                    <a href="#privacy" className="hover:underline" style={{ color: '#FF553E' }} data-testid="link-privacy">
                       Privacy Policy
                     </a>
                   </label>
@@ -321,7 +321,7 @@ export default function Signup() {
 
                 <p className="text-center text-sm text-foreground/70 mt-8 pt-4">
                   Already have an account?{" "}
-                  <a href="#login" className="text-primary hover:underline font-medium" data-testid="link-login-alt">
+                  <a href="#login" className="hover:underline font-medium" style={{ color: '#FF553E' }} data-testid="link-login-alt">
                     Log in
                   </a>
                 </p>
