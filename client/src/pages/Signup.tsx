@@ -27,12 +27,7 @@ export default function Signup() {
   };
 
   return (
-    <div 
-      className="min-h-screen flex flex-col px-6 py-12"
-      style={{
-        background: 'linear-gradient(135deg, #F0F4FF 0%, #FFEEF5 50%, #FFFFFF 100%)'
-      }}
-    >
+    <div className="min-h-screen bg-background flex flex-col px-6 py-12">
       <div className="max-w-md w-full mx-auto flex flex-col items-center">
         <div className="mb-8">
           <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto" data-testid="logo-icon">
@@ -52,7 +47,7 @@ export default function Signup() {
         </div>
 
         <div className="w-full">
-          <Card className="bg-white pt-10 pb-6 px-6 sm:px-8">
+          <Card className="bg-white pt-10 pb-6 px-6 sm:px-8 border-0 rounded-3xl">
             <div className="text-center mb-6">
               <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
                 {showEmailForm ? "Create your account" : "Get started for free"}
