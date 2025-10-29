@@ -25,7 +25,7 @@ export default function Navbar() {
   }, [lastScrollY]);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 border-b border-border bg-background transition-transform duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-[9999] border-b border-border bg-background transition-transform duration-300 ${
       isVisible ? 'translate-y-0' : '-translate-y-full'
     }`}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
