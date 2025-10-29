@@ -99,7 +99,7 @@ export default function Signup() {
 
                   <Button
                     type="submit"
-                    className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                    className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
                     disabled={!domain.trim()}
                     data-testid="button-claim-domain"
                   >
@@ -290,7 +290,7 @@ export default function Signup() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors mt-6"
+                  className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors mt-6"
                   disabled={!formData.agreeToTerms}
                   data-testid="button-create-account"
                 >
