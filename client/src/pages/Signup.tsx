@@ -30,7 +30,7 @@ export default function Signup() {
     <div 
       className="min-h-screen flex flex-col px-6 py-12"
       style={{
-        background: 'linear-gradient(to bottom, #FFF5F0 0%, #FFFFFF 100%)'
+        background: 'linear-gradient(135deg, #F0F4FF 0%, #FFEEF5 50%, #FFFFFF 100%)'
       }}
     >
       <div className="max-w-md w-full mx-auto flex flex-col items-center">
