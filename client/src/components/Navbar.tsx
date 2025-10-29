@@ -52,7 +52,7 @@ export default function Navbar() {
               How it works?
             </a>
             <a href="#otheraitools" className="text-sm sm:text-[15px] text-foreground hover-elevate px-3 py-2 rounded-md" data-testid="link-otheraitools">
-              Other AI tools
+              Build with AI
             </a>
           </div>
 
