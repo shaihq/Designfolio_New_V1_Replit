@@ -153,7 +153,7 @@ export default function Signup() {
                   </div>
                   <div className="relative flex justify-center text-xs uppercase">
                     <span className="bg-white px-3 text-muted-foreground font-medium">
-                      Or continue with
+                      OR
                     </span>
                   </div>
                 </div>
