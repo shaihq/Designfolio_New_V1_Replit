@@ -6,17 +6,17 @@ function FeatureCta({ children, testId }: { children: string; testId: string }) 
     <button 
       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border-2 transition-all group"
       style={{
-        borderColor: '#FF553E',
-        color: '#FF553E',
+        borderColor: '#000000',
+        color: '#000000',
         backgroundColor: 'transparent'
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = '#FF553E';
+        e.currentTarget.style.backgroundColor = '#000000';
         e.currentTarget.style.color = '#ffffff';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.backgroundColor = 'transparent';
-        e.currentTarget.style.color = '#FF553E';
+        e.currentTarget.style.color = '#000000';
       }}
       data-testid={testId}
     >
