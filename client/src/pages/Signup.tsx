@@ -74,7 +74,7 @@ export default function Signup() {
                     <Label htmlFor="domain" className="text-sm font-medium text-foreground">
                       Your Domain
                     </Label>
-                    <div className="flex items-center gap-0 border-2 border-border rounded-md overflow-hidden bg-white focus-within:border-primary transition-colors">
+                    <div className="flex items-center bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
                       <Input
                         id="domain"
                         type="text"
@@ -82,12 +82,12 @@ export default function Signup() {
                         value={domain}
                         onChange={(e) => setDomain(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
                         required
-                        className="border-0 focus-visible:ring-0 text-base flex-1"
+                        className="border-0 bg-transparent h-14 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60 flex-1"
                         data-testid="input-domain"
                       />
-                      <div className="bg-muted px-4 py-2 text-sm text-muted-foreground border-l border-border">
+                      <span className="text-base sm:text-lg text-muted-foreground/60 pr-5 sm:pr-6 whitespace-nowrap">
                         .designfolio.me
-                      </div>
+                      </span>
                     </div>
                     {domain && (
                       <div className="flex items-center gap-2 text-sm text-green-600 mt-2">
@@ -99,7 +99,10 @@ export default function Signup() {
 
                   <Button
                     type="submit"
-                    className="w-full rounded-full h-12 text-base font-semibold"
+                    className="w-full text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                    style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF553E'}
                     disabled={!domain.trim()}
                     data-testid="button-claim-domain"
                   >
@@ -214,44 +217,50 @@ export default function Signup() {
 
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-sm font-medium text-foreground">Full name</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="John Doe"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                    className="bg-white border-2 border-border rounded-md"
-                    data-testid="input-name"
-                  />
+                  <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="John Doe"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      required
+                      className="border-0 bg-transparent h-14 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60"
+                      data-testid="input-name"
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-sm font-medium text-foreground">Email address</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="john@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                    className="bg-white border-2 border-border rounded-md"
-                    data-testid="input-email"
-                  />
+                  <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      required
+                      className="border-0 bg-transparent h-14 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60"
+                      data-testid="input-email"
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="password" className="text-sm font-medium text-foreground">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Create a strong password"
-                    value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    required
-                    className="bg-white border-2 border-border rounded-md"
-                    data-testid="input-password"
-                  />
+                  <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                    <Input
+                      id="password"
+                      type="password"
+                      placeholder="Create a strong password"
+                      value={formData.password}
+                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                      required
+                      className="border-0 bg-transparent h-14 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60"
+                      data-testid="input-password"
+                    />
+                  </div>
                   <p className="text-xs text-muted-foreground pt-1">
                     Must be at least 8 characters long
                   </p>
@@ -284,7 +293,7 @@ export default function Signup() {
 
                 <Button
                   type="submit"
-                  className="w-full text-white rounded-full h-14 px-8 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors mt-6"
+                  className="w-full text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors mt-6"
                   style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
                   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF553E'}
