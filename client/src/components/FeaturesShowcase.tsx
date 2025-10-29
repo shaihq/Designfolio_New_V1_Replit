@@ -36,7 +36,7 @@ export default function FeaturesShowcase() {
 
   return (
     <section id="otheraitools" className="w-full py-16 px-6">
-      <div className="max-w-5xl mx-auto space-y-12">
+      <div className="max-w-5xl mx-auto space-y-12 xl:px-0 px-0">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           <div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-heading leading-tight" data-testid="text-showcase-headline">
@@ -80,8 +80,8 @@ export default function FeaturesShowcase() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <Card className="p-4 space-y-4">
+        <div className="grid md:grid-cols-2 gap-6 xl:gap-6 max-xl:-mx-6">
+          <Card className="p-4 space-y-4 max-xl:mx-6 max-md:mx-0">
             <video 
               className="rounded-md w-full border" 
               autoPlay 
@@ -105,7 +105,7 @@ export default function FeaturesShowcase() {
             </div>
           </Card>
 
-          <Card className="p-4 space-y-4">
+          <Card className="p-4 space-y-4 max-xl:mx-6 max-md:mx-0">
             <video 
               className="rounded-md w-full border" 
               autoPlay 
