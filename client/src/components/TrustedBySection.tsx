@@ -9,7 +9,7 @@ export default function TrustedBySection({ backgroundColor }: { backgroundColor?
     "/company logos/companylogos07.svg",
   ];
 
-  const bgColor = backgroundColor || 'hsl(var(--background))';
+  const bgColor = backgroundColor === 'transparent' ? '#FFFFFF' : (backgroundColor || 'hsl(var(--background))');
 
   return (
     <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 overflow-hidden">
