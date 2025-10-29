@@ -63,7 +63,7 @@ export default function Signup() {
             {!showEmailForm ? (
               <div className="space-y-4">
                 <div 
-                  className="bg-background border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                  className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
                   onClick={handleGoogleSignup}
                   data-testid="button-signup-google"
                 >
@@ -85,7 +85,7 @@ export default function Signup() {
                 </div>
 
                 <div 
-                  className="bg-background border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                  className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
                   onClick={() => setShowEmailForm(true)}
                   data-testid="button-signup-email"
                 >
@@ -208,7 +208,7 @@ export default function Signup() {
                 </div>
 
                 <div 
-                  className="bg-background border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                  className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
                   onClick={handleGoogleSignup}
                   data-testid="button-signup-google-alt"
                 >
