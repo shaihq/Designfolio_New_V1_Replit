@@ -128,17 +128,11 @@ export default function Signup() {
 
                 <div className="text-center mb-6">
                   <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
-                    Create your account
+                    Now, create your account.
                   </h1>
                   <p className="text-sm text-foreground/60" data-testid="text-signup-description">
-                    Choose how you'd like to sign up
+                    Just a step away from claiming <span className="font-medium" style={{ color: '#FF553E' }}>{domain}.designfolio.me</span>
                   </p>
-                  {domain && (
-                    <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-muted rounded-full text-xs text-muted-foreground">
-                      <Check className="w-3 h-3 text-green-600" />
-                      <span className="font-medium text-foreground">{domain}.designfolio.me</span>
-                    </div>
-                  )}
                 </div>
               
                 <div className="space-y-4">
