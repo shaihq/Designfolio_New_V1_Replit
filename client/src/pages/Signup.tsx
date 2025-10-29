@@ -82,10 +82,10 @@ export default function Signup() {
                         value={domain}
                         onChange={(e) => setDomain(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
                         required
-                        className="border-0 bg-transparent h-14 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60 flex-1"
+                        className="border-0 bg-transparent h-11 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60 flex-1"
                         data-testid="input-domain"
                       />
-                      <span className="text-base sm:text-lg text-muted-foreground/60 pr-5 sm:pr-6 whitespace-nowrap">
+                      <span className="text-sm text-muted-foreground/60 pr-4 whitespace-nowrap">
                         .designfolio.me
                       </span>
                     </div>
@@ -99,10 +99,7 @@ export default function Signup() {
 
                   <Button
                     type="submit"
-                    className="w-full text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
-                    style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF553E'}
+                    className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
                     disabled={!domain.trim()}
                     data-testid="button-claim-domain"
                   >
@@ -225,7 +222,7 @@ export default function Signup() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
-                      className="border-0 bg-transparent h-14 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60"
+                      className="border-0 bg-transparent h-11 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
                       data-testid="input-name"
                     />
                   </div>
@@ -241,7 +238,7 @@ export default function Signup() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
-                      className="border-0 bg-transparent h-14 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60"
+                      className="border-0 bg-transparent h-11 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
                       data-testid="input-email"
                     />
                   </div>
@@ -257,7 +254,7 @@ export default function Signup() {
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                       required
-                      className="border-0 bg-transparent h-14 px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60"
+                      className="border-0 bg-transparent h-11 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
                       data-testid="input-password"
                     />
                   </div>
@@ -293,10 +290,7 @@ export default function Signup() {
 
                 <Button
                   type="submit"
-                  className="w-full text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors mt-6"
-                  style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF553E'}
+                  className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors mt-6"
                   disabled={!formData.agreeToTerms}
                   data-testid="button-create-account"
                 >
