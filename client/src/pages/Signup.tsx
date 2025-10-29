@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Mail, ArrowLeft } from "lucide-react";
-import { SiGoogle } from "react-icons/si";
 import TrustedBySection from "@/components/TrustedBySection";
 
 export default function Signup() {
@@ -67,7 +66,7 @@ export default function Signup() {
                   onClick={handleGoogleSignup}
                   data-testid="button-signup-google"
                 >
-                  <SiGoogle className="w-5 h-5 text-foreground" />
+                  <img src="/googlesignup.svg" alt="" className="w-5 h-5" />
                   <span className="text-base font-medium text-foreground">
                     Sign up with Google
                   </span>
@@ -212,7 +211,7 @@ export default function Signup() {
                   onClick={handleGoogleSignup}
                   data-testid="button-signup-google-alt"
                 >
-                  <SiGoogle className="w-5 h-5 text-foreground" />
+                  <img src="/googlesignup.svg" alt="" className="w-5 h-5" />
                   <span className="text-base font-medium text-foreground">
                     Sign up with Google
                   </span>
