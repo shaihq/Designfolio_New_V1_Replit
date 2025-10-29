@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
@@ -60,13 +61,15 @@ export default function Navbar() {
             <a href="#login" className="text-sm sm:text-[15px] text-foreground hover-elevate px-2 sm:px-3 py-2 rounded-md" data-testid="link-login">
               Login
             </a>
-            <Button 
-              size="default" 
-              className="bg-foreground text-background border border-foreground rounded-full px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base font-medium hover:bg-foreground/80 transition-colors" 
-              data-testid="button-getstarted"
-            >
-              It's Free → Try now!
-            </Button>
+            <Link href="/signup">
+              <Button 
+                size="default" 
+                className="bg-foreground text-background border border-foreground rounded-full px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base font-medium hover:bg-foreground/80 transition-colors" 
+                data-testid="button-getstarted"
+              >
+                It's Free → Try now!
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
