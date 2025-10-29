@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
 export default function FeaturesShowcase() {
@@ -52,13 +53,16 @@ export default function FeaturesShowcase() {
                 <p className="text-sm text-muted-foreground">Preview</p>
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <h3 className="text-lg font-semibold" data-testid="text-feature-title-1">
                 AI Case Study Writer
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-feature-description-1">
                 Describe your project in a few lines — Designfolio shapes it into a clear, well-structured case study that actually sounds like you.
               </p>
+              <Button variant="secondary" size="sm" data-testid="button-cta-1">
+                Start with AI
+              </Button>
             </div>
           </Card>
 
@@ -71,13 +75,16 @@ export default function FeaturesShowcase() {
                 <p className="text-sm text-muted-foreground">Preview</p>
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <h3 className="text-lg font-semibold" data-testid="text-feature-title-2">
                 AI Case Study Analyzer
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-feature-description-2">
                 Designfolio compares it with thousands of top portfolios and gives you an honest, easy-to-read report — what's strong, what's missing, and how to improve.
               </p>
+              <Button variant="secondary" size="sm" data-testid="button-cta-2">
+                Try Designfolio AI
+              </Button>
             </div>
           </Card>
         </div>
