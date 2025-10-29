@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Mail, ArrowLeft } from "lucide-react";
+import { Mail, ArrowLeft, Check } from "lucide-react";
 import TrustedBySection from "@/components/TrustedBySection";
 
 export default function Signup() {
-  const [showEmailForm, setShowEmailForm] = useState(false);
+  const [signupStep, setSignupStep] = useState<'domain' | 'method' | 'email'>('domain');
+  const [domain, setDomain] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,13 +17,21 @@ export default function Signup() {
     agreeToTerms: false,
   });
 
+  const handleDomainSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (domain.trim()) {
+      console.log("Domain claimed:", domain);
+      setSignupStep('method');
+    }
+  };
+
   const handleEmailSignup = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email signup:", formData);
+    console.log("Email signup:", { domain, ...formData });
   };
 
   const handleGoogleSignup = () => {
-    console.log("Google signup clicked");
+    console.log("Google signup clicked with domain:", domain);
   };
 
   return (
@@ -48,25 +57,96 @@ export default function Signup() {
         <div className="flex-1 flex items-center justify-center px-6">
           <div className="w-full max-w-md">
             <Card className="bg-white py-8 px-6 sm:px-8 border-0 rounded-3xl">
-            <div className="text-center mb-6">
-              <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
-                {showEmailForm ? "Create your account" : "Get started for free"}
-              </h1>
-              <p className="text-sm text-foreground/60" data-testid="text-signup-description">
-                {showEmailForm 
-                  ? "Fill in your details to continue" 
-                  : "Join thousands managing their inbox smarter"
-                }
-              </p>
-            </div>
+            
+            {signupStep === 'domain' ? (
+              <div>
+                <div className="text-center mb-8">
+                  <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
+                    Claim your unique link
+                  </h1>
+                  <p className="text-sm text-foreground/60" data-testid="text-signup-description">
+                    Choose your personal domain to get started
+                  </p>
+                </div>
 
-            {!showEmailForm ? (
-              <div className="space-y-4">
-                <div 
-                  className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
-                  onClick={handleGoogleSignup}
-                  data-testid="button-signup-google"
+                <form onSubmit={handleDomainSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="domain" className="text-sm font-medium text-foreground">
+                      Your Domain
+                    </Label>
+                    <div className="flex items-center gap-0 border-2 border-border rounded-md overflow-hidden bg-white focus-within:border-primary transition-colors">
+                      <Input
+                        id="domain"
+                        type="text"
+                        placeholder="yourname"
+                        value={domain}
+                        onChange={(e) => setDomain(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
+                        required
+                        className="border-0 focus-visible:ring-0 text-base flex-1"
+                        data-testid="input-domain"
+                      />
+                      <div className="bg-muted px-4 py-2 text-sm text-muted-foreground border-l border-border">
+                        .designfolio.me
+                      </div>
+                    </div>
+                    {domain && (
+                      <div className="flex items-center gap-2 text-sm text-green-600 mt-2">
+                        <Check className="w-4 h-4" />
+                        <span>{domain}.designfolio.me is available!</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full rounded-full h-12 text-base font-semibold"
+                    disabled={!domain.trim()}
+                    data-testid="button-claim-domain"
+                  >
+                    Continue
+                  </Button>
+
+                  <p className="text-center text-sm text-foreground/70 mt-6">
+                    Already have an account?{" "}
+                    <a href="#login" className="text-primary hover:underline font-medium" data-testid="link-login">
+                      Log in
+                    </a>
+                  </p>
+                </form>
+              </div>
+            ) : signupStep === 'method' ? (
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setSignupStep('domain')}
+                  className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground -ml-2 mb-6 hover-elevate px-2 py-1 rounded-md"
+                  data-testid="button-back-to-domain"
                 >
+                  <ArrowLeft className="w-4 h-4" />
+                  Back
+                </button>
+
+                <div className="text-center mb-6">
+                  <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
+                    Create your account
+                  </h1>
+                  <p className="text-sm text-foreground/60" data-testid="text-signup-description">
+                    Choose how you'd like to sign up
+                  </p>
+                  {domain && (
+                    <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-muted rounded-full text-xs text-muted-foreground">
+                      <Check className="w-3 h-3 text-green-600" />
+                      <span className="font-medium text-foreground">{domain}.designfolio.me</span>
+                    </div>
+                  )}
+                </div>
+              
+                <div className="space-y-4">
+                  <div 
+                    className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                    onClick={handleGoogleSignup}
+                    data-testid="button-signup-google"
+                  >
                   <img src="/googlesignup.svg" alt="" className="w-5 h-5" />
                   <span className="text-base font-medium text-foreground">
                     Sign up with Google
@@ -84,35 +164,53 @@ export default function Signup() {
                   </div>
                 </div>
 
-                <div 
-                  className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
-                  onClick={() => setShowEmailForm(true)}
-                  data-testid="button-signup-email"
-                >
-                  <Mail className="w-5 h-5 text-foreground" />
-                  <span className="text-base font-medium text-foreground">
-                    Sign up with Email
-                  </span>
-                </div>
+                  <div 
+                    className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                    onClick={() => setSignupStep('email')}
+                    data-testid="button-signup-email"
+                  >
+                    <Mail className="w-5 h-5 text-foreground" />
+                    <span className="text-base font-medium text-foreground">
+                      Sign up with Email
+                    </span>
+                  </div>
 
-                <p className="text-center text-sm text-foreground/70 mt-8 pt-4">
-                  Already have an account?{" "}
-                  <a href="#login" className="text-primary hover:underline font-medium" data-testid="link-login">
-                    Log in
-                  </a>
-                </p>
+                  <p className="text-center text-sm text-foreground/70 mt-8 pt-4">
+                    Already have an account?{" "}
+                    <a href="#login" className="text-primary hover:underline font-medium" data-testid="link-login">
+                      Log in
+                    </a>
+                  </p>
+                </div>
               </div>
             ) : (
-              <form onSubmit={handleEmailSignup} className="space-y-5">
+              <div>
                 <button
                   type="button"
-                  onClick={() => setShowEmailForm(false)}
+                  onClick={() => setSignupStep('method')}
                   className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground -ml-2 mb-4 hover-elevate px-2 py-1 rounded-md"
                   data-testid="button-back"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Back
                 </button>
+
+                <div className="text-center mb-6">
+                  <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
+                    Complete your profile
+                  </h1>
+                  <p className="text-sm text-foreground/60" data-testid="text-signup-description">
+                    Fill in your details to continue
+                  </p>
+                  {domain && (
+                    <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-muted rounded-full text-xs text-muted-foreground">
+                      <Check className="w-3 h-3 text-green-600" />
+                      <span className="font-medium text-foreground">{domain}.designfolio.me</span>
+                    </div>
+                  )}
+                </div>
+
+              <form onSubmit={handleEmailSignup} className="space-y-5">
 
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-sm font-medium text-foreground">Full name</Label>
@@ -225,6 +323,7 @@ export default function Signup() {
                   </a>
                 </p>
               </form>
+              </div>
             )}
             </Card>
           </div>
