@@ -106,14 +106,16 @@ export default function FeaturesShowcase() {
           </Card>
 
           <Card className="p-4 space-y-4">
-            <div className="aspect-video bg-muted rounded-md flex items-center justify-center" data-testid="mock-thumbnail-2">
-              <div className="text-center space-y-2">
-                <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
-                  <div className="w-8 h-8 bg-primary/20 rounded-full"></div>
-                </div>
-                <p className="text-sm text-muted-foreground">Preview</p>
-              </div>
-            </div>
+            <video 
+              className="rounded-md w-full border" 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+              data-testid="video-thumbnail-2"
+            >
+              <source src="/videos/designfolio_ai_analyze.mp4" type="video/mp4" />
+            </video>
             <div className="space-y-3">
               <h3 className="text-lg font-semibold" data-testid="text-feature-title-2">
                 AI Case Study Analyzer
