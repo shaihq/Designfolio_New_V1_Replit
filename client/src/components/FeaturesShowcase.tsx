@@ -35,7 +35,7 @@ export default function FeaturesShowcase() {
   ];
 
   return (
-    <section className="w-full py-16 px-6">
+    <section id="otheraitools" className="w-full py-16 px-6">
       <div className="max-w-5xl mx-auto space-y-12">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           <div>
