@@ -181,16 +181,31 @@ export default function Signup() {
                       />
                     </div>
                     <div className="flex items-center gap-2 text-sm pt-1">
-                      <span className="text-foreground/70">Time left: {timeLeft} sec</span>
-                      <button
-                        type="button"
-                        onClick={handleResendCode}
-                        disabled={timeLeft > 0}
-                        className="text-red-400 hover:text-red-500 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-red-400"
-                        data-testid="button-resend-code"
-                      >
-                        Resend code
-                      </button>
+                      {timeLeft > 0 ? (
+                        <>
+                          <span className="text-foreground/70">Time left: {timeLeft} sec</span>
+                          <button
+                            type="button"
+                            disabled
+                            className="text-red-400 font-medium opacity-50 cursor-not-allowed"
+                            data-testid="button-resend-code"
+                          >
+                            Resend code
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <span className="text-foreground/70">Didn't received the code?</span>
+                          <button
+                            type="button"
+                            onClick={handleResendCode}
+                            className="text-red-400 hover:text-red-500 font-medium"
+                            data-testid="button-resend-code"
+                          >
+                            Resend code
+                          </button>
+                        </>
+                      )}
                     </div>
                   </div>
 
