@@ -109,7 +109,7 @@ export default function Signup() {
             <motion.div
               initial={false}
               animate={{ height: contentHeight || "auto" }}
-              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
             >
               <div ref={contentRef}>
             <AnimatePresence mode="wait" initial={false}>
