@@ -10,7 +10,7 @@ export default function TrustedBySection({ backgroundColor }: { backgroundColor?
   ];
 
   const fadeClass = backgroundColor === "transparent" 
-    ? "from-muted/30" 
+    ? "from-background" 
     : "from-background";
 
   return (
