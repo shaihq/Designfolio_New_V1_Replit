@@ -34,19 +34,22 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col relative overflow-hidden">
-      {/* Simple Background Shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Top Row */}
-        <div className="absolute top-0 left-0 w-72 h-72 bg-muted/30 rounded-[4rem]" />
-        <div className="absolute top-0 right-0 w-72 h-72 bg-muted/30 rounded-[4rem]" />
+      {/* Simple 3x3 Grid Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none grid grid-cols-3 grid-rows-3 gap-8 p-8">
+        {/* Row 1 */}
+        <div className="bg-muted/25 rounded-[4rem]" />
+        <div className="bg-muted/30 rounded-[5rem]" />
+        <div className="bg-muted/25 rounded-[4rem]" />
         
-        {/* Middle Row */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-0 w-64 h-80 bg-muted/25 rounded-[4rem]" />
-        <div className="absolute top-1/2 -translate-y-1/2 right-0 w-64 h-80 bg-muted/25 rounded-[4rem]" />
+        {/* Row 2 */}
+        <div className="bg-muted/30 rounded-[5rem]" />
+        <div className="bg-muted/25 rounded-[4rem]" />
+        <div className="bg-muted/30 rounded-[5rem]" />
         
-        {/* Bottom Row */}
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-muted/30 rounded-[4rem]" />
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-muted/30 rounded-[4rem]" />
+        {/* Row 3 */}
+        <div className="bg-muted/25 rounded-[4rem]" />
+        <div className="bg-muted/30 rounded-[5rem]" />
+        <div className="bg-muted/25 rounded-[4rem]" />
       </div>
       
       <div className="flex-1 flex flex-col relative z-10">
