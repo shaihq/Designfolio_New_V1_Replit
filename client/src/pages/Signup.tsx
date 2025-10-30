@@ -109,18 +109,18 @@ export default function Signup() {
             <motion.div
               initial={false}
               animate={{ height: contentHeight || "auto" }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
               style={{ overflow: "hidden" }}
             >
               <div ref={contentRef}>
-            <AnimatePresence mode="sync" initial={false}>
+            <AnimatePresence mode="wait" initial={false}>
             {signupStep === 'domain' ? (
               <motion.div
                 key="domain"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
               >
                 <div className="text-center mb-8">
                   <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
@@ -192,7 +192,7 @@ export default function Signup() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
               >
                 <button
                   type="button"
@@ -220,7 +220,7 @@ export default function Signup() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
                       className="space-y-4"
                     >
                       <div 
@@ -269,7 +269,7 @@ export default function Signup() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
                     >
 
               <form onSubmit={handleEmailSignup} className="space-y-5">
