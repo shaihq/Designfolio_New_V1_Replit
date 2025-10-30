@@ -34,21 +34,43 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col relative overflow-hidden">
-      {/* Flat Background Card Shapes - Grid Layout */}
+      {/* Flat Background Card Shapes - Full Grid Layout */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Top Row */}
-        <div className="absolute -top-32 -left-32 w-80 h-80 bg-muted/40 rounded-[5rem]" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[32rem] h-72 bg-muted/30 rounded-[6rem]" />
-        <div className="absolute -top-32 -right-32 w-80 h-80 bg-muted/40 rounded-[5rem]" />
+        {/* Row 1 - Top */}
+        <div className="absolute top-0 left-0 w-64 h-64 bg-muted/40 rounded-[4rem]" />
+        <div className="absolute top-0 left-80 w-80 h-64 bg-muted/30 rounded-[5rem]" />
+        <div className="absolute top-0 left-[26rem] w-64 h-64 bg-muted/35 rounded-[4rem]" />
+        <div className="absolute top-0 right-80 w-80 h-64 bg-muted/30 rounded-[5rem]" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-muted/40 rounded-[4rem]" />
         
-        {/* Middle Row */}
-        <div className="absolute top-1/2 -translate-y-1/2 -left-40 w-72 h-96 bg-muted/35 rounded-[5rem]" />
-        <div className="absolute top-1/2 -translate-y-1/2 -right-40 w-72 h-96 bg-muted/35 rounded-[5rem]" />
+        {/* Row 2 */}
+        <div className="absolute top-72 left-0 w-80 h-80 bg-muted/35 rounded-[5rem]" />
+        <div className="absolute top-72 left-[22rem] w-64 h-80 bg-muted/40 rounded-[4rem]" />
+        <div className="absolute top-72 left-1/2 -translate-x-1/2 w-72 h-80 bg-muted/30 rounded-[5rem]" />
+        <div className="absolute top-72 right-[22rem] w-64 h-80 bg-muted/40 rounded-[4rem]" />
+        <div className="absolute top-72 right-0 w-80 h-80 bg-muted/35 rounded-[5rem]" />
         
-        {/* Bottom Row */}
-        <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-muted/40 rounded-[5rem]" />
-        <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[32rem] h-72 bg-muted/30 rounded-[6rem]" />
-        <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-muted/40 rounded-[5rem]" />
+        {/* Row 3 - Middle */}
+        <div className="absolute top-[26rem] left-0 w-64 h-72 bg-muted/40 rounded-[4rem]" />
+        <div className="absolute top-[26rem] left-72 w-80 h-72 bg-muted/30 rounded-[5rem]" />
+        <div className="absolute top-[26rem] left-[24rem] w-64 h-72 bg-muted/35 rounded-[4rem]" />
+        <div className="absolute top-[26rem] right-[24rem] w-64 h-72 bg-muted/35 rounded-[4rem]" />
+        <div className="absolute top-[26rem] right-72 w-80 h-72 bg-muted/30 rounded-[5rem]" />
+        <div className="absolute top-[26rem] right-0 w-64 h-72 bg-muted/40 rounded-[4rem]" />
+        
+        {/* Row 4 */}
+        <div className="absolute bottom-72 left-0 w-80 h-80 bg-muted/35 rounded-[5rem]" />
+        <div className="absolute bottom-72 left-[22rem] w-64 h-80 bg-muted/40 rounded-[4rem]" />
+        <div className="absolute bottom-72 left-1/2 -translate-x-1/2 w-72 h-80 bg-muted/30 rounded-[5rem]" />
+        <div className="absolute bottom-72 right-[22rem] w-64 h-80 bg-muted/40 rounded-[4rem]" />
+        <div className="absolute bottom-72 right-0 w-80 h-80 bg-muted/35 rounded-[5rem]" />
+        
+        {/* Row 5 - Bottom */}
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-muted/40 rounded-[4rem]" />
+        <div className="absolute bottom-0 left-80 w-80 h-64 bg-muted/30 rounded-[5rem]" />
+        <div className="absolute bottom-0 left-[26rem] w-64 h-64 bg-muted/35 rounded-[4rem]" />
+        <div className="absolute bottom-0 right-80 w-80 h-64 bg-muted/30 rounded-[5rem]" />
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-muted/40 rounded-[4rem]" />
       </div>
       
       <div className="flex-1 flex flex-col relative z-10">
