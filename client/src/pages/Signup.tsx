@@ -34,25 +34,21 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col relative overflow-hidden">
-      {/* Subtle Background Card Shapes */}
+      {/* Flat Background Card Shapes - Grid Layout */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Top Left Card */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-card/60 border border-border/30 rounded-[5rem] shadow-lg" />
+        {/* Top Row */}
+        <div className="absolute -top-32 -left-32 w-80 h-80 bg-muted/40 rounded-[5rem]" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[32rem] h-72 bg-muted/30 rounded-[6rem]" />
+        <div className="absolute -top-32 -right-32 w-80 h-80 bg-muted/40 rounded-[5rem]" />
         
-        {/* Top Right Card */}
-        <div className="absolute -top-20 right-20 w-80 h-[28rem] bg-card/50 border border-border/30 rounded-[4rem] shadow-md rotate-12" />
+        {/* Middle Row */}
+        <div className="absolute top-1/2 -translate-y-1/2 -left-40 w-72 h-96 bg-muted/35 rounded-[5rem]" />
+        <div className="absolute top-1/2 -translate-y-1/2 -right-40 w-72 h-96 bg-muted/35 rounded-[5rem]" />
         
-        {/* Middle Left Card */}
-        <div className="absolute top-1/3 -left-40 w-[30rem] h-80 bg-card/55 border border-border/30 rounded-[6rem] shadow-lg -rotate-6" />
-        
-        {/* Middle Right Card */}
-        <div className="absolute top-1/2 -right-32 w-96 h-96 bg-card/60 border border-border/30 rounded-[5rem] shadow-md" />
-        
-        {/* Bottom Left Card */}
-        <div className="absolute -bottom-40 -left-20 w-[28rem] h-[28rem] bg-card/50 border border-border/30 rounded-[5rem] shadow-lg rotate-6" />
-        
-        {/* Bottom Right Card */}
-        <div className="absolute bottom-10 -right-40 w-[32rem] h-80 bg-card/55 border border-border/30 rounded-[6rem] shadow-md -rotate-12" />
+        {/* Bottom Row */}
+        <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-muted/40 rounded-[5rem]" />
+        <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[32rem] h-72 bg-muted/30 rounded-[6rem]" />
+        <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-muted/40 rounded-[5rem]" />
       </div>
       
       <div className="flex-1 flex flex-col relative z-10">
