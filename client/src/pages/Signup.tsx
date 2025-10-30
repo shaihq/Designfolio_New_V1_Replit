@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, ArrowLeft, Check } from "lucide-react";
 import TrustedBySection from "@/components/TrustedBySection";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Signup() {
   const [signupStep, setSignupStep] = useState<'domain' | 'method' | 'email'>('domain');
@@ -74,10 +75,16 @@ export default function Signup() {
 
         <div className="flex-1 flex items-center justify-center px-6">
           <div className="w-full max-w-md">
-            <Card className="bg-white/95 backdrop-blur-sm py-8 px-6 sm:px-8 border-0 rounded-3xl shadow-2xl">
-            
+            <Card className="bg-white/95 backdrop-blur-sm py-8 px-6 sm:px-8 border-0 rounded-3xl shadow-2xl overflow-hidden">
+            <AnimatePresence mode="wait">
             {signupStep === 'domain' ? (
-              <div>
+              <motion.div
+                key="domain"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
                 <div className="text-center mb-8">
                   <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
                     First, claim your unique link
@@ -107,12 +114,22 @@ export default function Signup() {
                         .designfolio.me
                       </span>
                     </div>
-                    {domain && (
-                      <div className="flex items-center gap-2 text-sm text-green-600 mt-2">
-                        <Check className="w-4 h-4" />
-                        <span>{domain}.designfolio.me is available!</span>
-                      </div>
-                    )}
+                    <AnimatePresence>
+                      {domain && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                          animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="flex items-center gap-2 text-sm text-green-600">
+                            <Check className="w-4 h-4" />
+                            <span>{domain}.designfolio.me is available!</span>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
 
                   <Button
@@ -131,9 +148,15 @@ export default function Signup() {
                     </a>
                   </p>
                 </form>
-              </div>
+              </motion.div>
             ) : signupStep === 'method' ? (
-              <div>
+              <motion.div
+                key="method"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
                 <button
                   type="button"
                   onClick={() => setSignupStep('domain')}
@@ -194,9 +217,15 @@ export default function Signup() {
                     </a>
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ) : (
-              <div>
+              <motion.div
+                key="email"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
                 <button
                   type="button"
                   onClick={() => setSignupStep('method')}
@@ -218,7 +247,12 @@ export default function Signup() {
 
               <form onSubmit={handleEmailSignup} className="space-y-5">
 
-                <div className="space-y-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                  className="space-y-2"
+                >
                   <Label htmlFor="name" className="text-sm font-medium text-foreground">Full name</Label>
                   <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
                     <Input
@@ -232,9 +266,14 @@ export default function Signup() {
                       data-testid="input-name"
                     />
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="space-y-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                  className="space-y-2"
+                >
                   <Label htmlFor="email" className="text-sm font-medium text-foreground">Email address</Label>
                   <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
                     <Input
@@ -248,9 +287,14 @@ export default function Signup() {
                       data-testid="input-email"
                     />
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="space-y-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                  className="space-y-2"
+                >
                   <Label htmlFor="password" className="text-sm font-medium text-foreground">Password</Label>
                   <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
                     <Input
@@ -267,7 +311,7 @@ export default function Signup() {
                   <p className="text-xs text-muted-foreground pt-1">
                     Must be at least 8 characters long
                   </p>
-                </div>
+                </motion.div>
 
                 <Button
                   type="submit"
@@ -317,8 +361,9 @@ export default function Signup() {
                   </a>
                 </p>
               </form>
-              </div>
+              </motion.div>
             )}
+            </AnimatePresence>
             </Card>
           </div>
         </div>
