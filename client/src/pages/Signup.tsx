@@ -37,22 +37,22 @@ export default function Signup() {
       {/* Subtle Background Card Shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Top Left Card */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-card/30 rounded-[5rem] shadow-sm" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-card/60 border border-border/30 rounded-[5rem] shadow-lg" />
         
         {/* Top Right Card */}
-        <div className="absolute -top-20 right-20 w-80 h-[28rem] bg-card/25 rounded-[4rem] shadow-sm rotate-12" />
+        <div className="absolute -top-20 right-20 w-80 h-[28rem] bg-card/50 border border-border/30 rounded-[4rem] shadow-md rotate-12" />
         
         {/* Middle Left Card */}
-        <div className="absolute top-1/3 -left-40 w-[30rem] h-80 bg-card/20 rounded-[6rem] shadow-sm -rotate-6" />
+        <div className="absolute top-1/3 -left-40 w-[30rem] h-80 bg-card/55 border border-border/30 rounded-[6rem] shadow-lg -rotate-6" />
         
         {/* Middle Right Card */}
-        <div className="absolute top-1/2 -right-32 w-96 h-96 bg-card/30 rounded-[5rem] shadow-sm" />
+        <div className="absolute top-1/2 -right-32 w-96 h-96 bg-card/60 border border-border/30 rounded-[5rem] shadow-md" />
         
         {/* Bottom Left Card */}
-        <div className="absolute -bottom-40 -left-20 w-[28rem] h-[28rem] bg-card/25 rounded-[5rem] shadow-sm rotate-6" />
+        <div className="absolute -bottom-40 -left-20 w-[28rem] h-[28rem] bg-card/50 border border-border/30 rounded-[5rem] shadow-lg rotate-6" />
         
         {/* Bottom Right Card */}
-        <div className="absolute bottom-10 -right-40 w-[32rem] h-80 bg-card/20 rounded-[6rem] shadow-sm -rotate-12" />
+        <div className="absolute bottom-10 -right-40 w-[32rem] h-80 bg-card/55 border border-border/30 rounded-[6rem] shadow-md -rotate-12" />
       </div>
       
       <div className="flex-1 flex flex-col relative z-10">
