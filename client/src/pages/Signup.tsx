@@ -32,13 +32,15 @@ function useMeasuredHeight() {
 }
 
 export default function Signup() {
-  const [signupStep, setSignupStep] = useState<'domain' | 'method' | 'email'>('domain');
+  const [signupStep, setSignupStep] = useState<'domain' | 'method' | 'email' | 'verify'>('domain');
   const [domain, setDomain] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
   });
+  const [verificationCode, setVerificationCode] = useState("");
+  const [timeLeft, setTimeLeft] = useState(26);
   const [contentRef, contentHeight] = useMeasuredHeight();
 
   const handleDomainSubmit = (e: React.FormEvent) => {
@@ -52,6 +54,18 @@ export default function Signup() {
   const handleEmailSignup = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email signup:", { domain, ...formData });
+    setSignupStep('verify');
+    setTimeLeft(26);
+  };
+
+  const handleVerifyEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Verification code:", verificationCode);
+  };
+
+  const handleResendCode = () => {
+    console.log("Resending code");
+    setTimeLeft(26);
   };
 
   const handleGoogleSignup = () => {
@@ -113,7 +127,84 @@ export default function Signup() {
             >
               <div ref={contentRef}>
             <AnimatePresence mode="wait" initial={false}>
-            {signupStep === 'domain' ? (
+            {signupStep === 'verify' ? (
+              <motion.div
+                key="verify"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setSignupStep('email')}
+                  className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground -ml-2 mb-6 hover-elevate px-2 py-1 rounded-md"
+                  data-testid="button-back-to-signup"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Go Back
+                </button>
+
+                <div className="mb-8">
+                  <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-verify-headline">
+                    Verify Email
+                  </h1>
+                  <p className="text-sm text-foreground/60" data-testid="text-verify-description">
+                    We have sent an email to with a verification code. Please enter it below confirm your email.
+                  </p>
+                </div>
+
+                <form onSubmit={handleVerifyEmail} className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="verification-code" className="text-sm font-medium text-foreground">
+                      Verification code<span className="text-red-500">*</span>
+                    </Label>
+                    <div className="bg-white dark:bg-white border-2 border-border rounded-2xl hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                      <Input
+                        id="verification-code"
+                        type="text"
+                        placeholder="Enter one time code"
+                        value={verificationCode}
+                        onChange={(e) => setVerificationCode(e.target.value)}
+                        required
+                        className="border-0 bg-transparent h-14 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        data-testid="input-verification-code"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2 text-sm pt-1">
+                      <span className="text-foreground/70">Time left: {timeLeft} sec</span>
+                      <button
+                        type="button"
+                        onClick={handleResendCode}
+                        className="text-red-400 hover:text-red-500 font-medium"
+                        data-testid="button-resend-code"
+                      >
+                        Resend code
+                      </button>
+                    </div>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                    data-testid="button-confirm"
+                  >
+                    Confirm
+                  </Button>
+
+                  <div className="text-center">
+                    <button
+                      type="button"
+                      onClick={() => setSignupStep('email')}
+                      className="text-sm text-foreground/70 hover:text-foreground font-medium hover:underline"
+                      data-testid="button-change-email"
+                    >
+                      Change email address
+                    </button>
+                  </div>
+                </form>
+              </motion.div>
+            ) : signupStep === 'domain' ? (
               <motion.div
                 key="domain"
                 initial={{ opacity: 0, y: 10 }}
