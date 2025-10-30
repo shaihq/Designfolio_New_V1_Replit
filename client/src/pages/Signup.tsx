@@ -74,7 +74,12 @@ export default function Signup() {
         </div>
 
         <div className="flex-1 flex items-center justify-center px-6">
-          <div className="w-full max-w-md">
+          <motion.div
+            className="w-full max-w-md"
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
             <Card className="bg-white/95 backdrop-blur-sm py-8 px-6 sm:px-8 border-0 rounded-3xl shadow-2xl overflow-hidden">
             <AnimatePresence mode="wait">
             {signupStep === 'domain' ? (
@@ -365,7 +370,7 @@ export default function Signup() {
             )}
             </AnimatePresence>
             </Card>
-          </div>
+          </motion.div>
         </div>
 
         <TrustedBySection backgroundColor="transparent" />
