@@ -18,19 +18,11 @@ export default function TrustedBySection({ backgroundColor }: { backgroundColor?
         
         <div className="relative overflow-hidden">
           <div 
-            className={`absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-40 z-10 pointer-events-none ${
-              backgroundColor === "transparent" 
-                ? "bg-gradient-to-r from-muted/25 via-muted/15 to-transparent" 
-                : "bg-gradient-to-r from-background to-transparent"
-            }`}
+            className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-40 z-10 pointer-events-none bg-gradient-to-r from-background to-transparent"
           />
           
           <div 
-            className={`absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-40 z-10 pointer-events-none ${
-              backgroundColor === "transparent" 
-                ? "bg-gradient-to-l from-muted/25 via-muted/15 to-transparent" 
-                : "bg-gradient-to-l from-background to-transparent"
-            }`}
+            className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-background to-transparent"
           />
           
           <div className="flex gap-0 overflow-hidden">
