@@ -154,78 +154,9 @@ export default function Signup() {
                   </p>
                 </form>
               </motion.div>
-            ) : signupStep === 'method' ? (
-              <motion.div
-                key="method"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-              >
-                <button
-                  type="button"
-                  onClick={() => setSignupStep('domain')}
-                  className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground -ml-2 mb-6 hover-elevate px-2 py-1 rounded-md"
-                  data-testid="button-back-to-domain"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  Back
-                </button>
-
-                <div className="text-center mb-6">
-                  <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
-                    Now, create your account.
-                  </h1>
-                  <p className="text-sm text-foreground/60" data-testid="text-signup-description">
-                    Just a step away from claiming <span className="font-medium" style={{ color: '#FF553E' }}>{domain}.designfolio.me</span>
-                  </p>
-                </div>
-              
-                <div className="space-y-4">
-                  <div 
-                    className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
-                    onClick={handleGoogleSignup}
-                    data-testid="button-signup-google"
-                  >
-                  <img src="/googlesignup.svg" alt="" className="w-5 h-5" />
-                  <span className="text-base font-medium text-foreground">
-                    Sign up with Google
-                  </span>
-                </div>
-
-                <div className="relative my-6">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t border-border" />
-                  </div>
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-white px-3 text-muted-foreground font-medium">
-                      OR
-                    </span>
-                  </div>
-                </div>
-
-                  <div 
-                    className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
-                    onClick={() => setSignupStep('email')}
-                    data-testid="button-signup-email"
-                  >
-                    <Mail className="w-5 h-5 text-foreground" />
-                    <span className="text-base font-medium text-foreground">
-                      Sign up with Email
-                    </span>
-                  </div>
-
-                  <p className="text-center text-sm text-foreground/70 mt-8 pt-4">
-                    Already have an account?{" "}
-                    <a href="#login" className="hover:underline font-medium" style={{ color: '#FF553E' }} data-testid="link-login">
-                      Log in
-                    </a>
-                  </p>
-                </div>
-              </motion.div>
             ) : (
               <motion.div
-                key="email"
+                key="account"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -233,9 +164,9 @@ export default function Signup() {
               >
                 <button
                   type="button"
-                  onClick={() => setSignupStep('method')}
-                  className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground -ml-2 mb-4 hover-elevate px-2 py-1 rounded-md"
-                  data-testid="button-back"
+                  onClick={() => signupStep === 'email' ? setSignupStep('method') : setSignupStep('domain')}
+                  className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground -ml-2 mb-6 hover-elevate px-2 py-1 rounded-md"
+                  data-testid={signupStep === 'email' ? "button-back" : "button-back-to-domain"}
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Back
@@ -249,6 +180,65 @@ export default function Signup() {
                     Just a step away from claiming <span className="font-medium" style={{ color: '#FF553E' }}>{domain}.designfolio.me</span>
                   </p>
                 </div>
+
+                <AnimatePresence mode="wait">
+                  {signupStep === 'method' ? (
+                    <motion.div
+                      key="method-content"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="space-y-4"
+                    >
+                      <div 
+                        className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                        onClick={handleGoogleSignup}
+                        data-testid="button-signup-google"
+                      >
+                        <img src="/googlesignup.svg" alt="" className="w-5 h-5" />
+                        <span className="text-base font-medium text-foreground">
+                          Sign up with Google
+                        </span>
+                      </div>
+
+                      <div className="relative my-6">
+                        <div className="absolute inset-0 flex items-center">
+                          <span className="w-full border-t border-border" />
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase">
+                          <span className="bg-white px-3 text-muted-foreground font-medium">
+                            OR
+                          </span>
+                        </div>
+                      </div>
+
+                      <div 
+                        className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                        onClick={() => setSignupStep('email')}
+                        data-testid="button-signup-email"
+                      >
+                        <Mail className="w-5 h-5 text-foreground" />
+                        <span className="text-base font-medium text-foreground">
+                          Sign up with Email
+                        </span>
+                      </div>
+
+                      <p className="text-center text-sm text-foreground/70 mt-8 pt-4">
+                        Already have an account?{" "}
+                        <a href="#login" className="hover:underline font-medium" style={{ color: '#FF553E' }} data-testid="link-login">
+                          Log in
+                        </a>
+                      </p>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="email-content"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    >
 
               <form onSubmit={handleEmailSignup} className="space-y-5">
 
@@ -366,6 +356,9 @@ export default function Signup() {
                   </a>
                 </p>
               </form>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             )}
             </AnimatePresence>
