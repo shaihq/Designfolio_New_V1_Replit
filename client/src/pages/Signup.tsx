@@ -105,12 +105,11 @@ export default function Signup() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
           >
-            <Card className="bg-white/95 backdrop-blur-sm py-8 px-6 sm:px-8 border-0 rounded-3xl shadow-2xl">
+            <Card className="bg-white/95 backdrop-blur-sm py-8 px-6 sm:px-8 border-0 rounded-3xl shadow-2xl overflow-hidden">
             <motion.div
               initial={false}
               animate={{ height: contentHeight || "auto" }}
               transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-              style={{ overflow: "hidden" }}
             >
               <div ref={contentRef}>
             <AnimatePresence mode="wait" initial={false}>
