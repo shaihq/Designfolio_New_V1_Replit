@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,6 +6,30 @@ import { Label } from "@/components/ui/label";
 import { Mail, ArrowLeft, Check } from "lucide-react";
 import TrustedBySection from "@/components/TrustedBySection";
 import { motion, AnimatePresence } from "framer-motion";
+
+function useMeasuredHeight() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number | undefined>(undefined);
+
+  useLayoutEffect(() => {
+    if (!ref.current) return;
+
+    const measureHeight = () => {
+      if (ref.current) {
+        setHeight(ref.current.offsetHeight);
+      }
+    };
+
+    measureHeight();
+
+    const resizeObserver = new ResizeObserver(measureHeight);
+    resizeObserver.observe(ref.current);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  return [ref, height] as const;
+}
 
 export default function Signup() {
   const [signupStep, setSignupStep] = useState<'domain' | 'method' | 'email'>('domain');
@@ -15,6 +39,7 @@ export default function Signup() {
     email: "",
     password: "",
   });
+  const [contentRef, contentHeight] = useMeasuredHeight();
 
   const handleDomainSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,10 +104,16 @@ export default function Signup() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            layout
           >
-            <Card className="bg-white/95 backdrop-blur-sm py-8 px-6 sm:px-8 border-0 rounded-3xl shadow-2xl overflow-hidden transition-all duration-300 ease-out">
-            <AnimatePresence mode="wait">
+            <Card className="bg-white/95 backdrop-blur-sm py-8 px-6 sm:px-8 border-0 rounded-3xl shadow-2xl">
+            <motion.div
+              initial={false}
+              animate={{ height: contentHeight || "auto" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              style={{ overflow: "hidden" }}
+            >
+              <div ref={contentRef}>
+            <AnimatePresence mode="sync" initial={false}>
             {signupStep === 'domain' ? (
               <motion.div
                 key="domain"
@@ -363,6 +394,8 @@ export default function Signup() {
               </motion.div>
             )}
             </AnimatePresence>
+              </div>
+            </motion.div>
             </Card>
           </motion.div>
         </div>
