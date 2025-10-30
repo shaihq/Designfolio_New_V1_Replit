@@ -33,8 +33,35 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <div className="flex-1 flex flex-col">
+    <div className="min-h-screen relative overflow-hidden flex flex-col">
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200" />
+      
+      {/* Decorative Background Shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Top Left Shape */}
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-br from-gray-200/40 to-gray-300/30 rounded-[4rem] rotate-12 blur-3xl" />
+        
+        {/* Top Right Shape */}
+        <div className="absolute top-40 -right-32 w-96 h-96 bg-gradient-to-bl from-gray-300/30 to-gray-200/40 rounded-[5rem] -rotate-12 blur-2xl" />
+        
+        {/* Middle Left Shape */}
+        <div className="absolute top-1/3 -left-40 w-[28rem] h-72 bg-gradient-to-r from-gray-200/50 to-gray-300/30 rounded-[6rem] rotate-45 blur-3xl" />
+        
+        {/* Middle Right Shape */}
+        <div className="absolute top-1/2 right-0 w-80 h-80 bg-gradient-to-l from-gray-300/40 to-gray-200/30 rounded-[5rem] -rotate-6 blur-2xl" />
+        
+        {/* Bottom Left Shape */}
+        <div className="absolute bottom-20 -left-28 w-96 h-96 bg-gradient-to-tr from-gray-200/30 to-gray-300/40 rounded-[7rem] rotate-45 blur-3xl" />
+        
+        {/* Bottom Right Shape */}
+        <div className="absolute -bottom-32 right-10 w-[30rem] h-80 bg-gradient-to-tl from-gray-300/30 to-gray-200/50 rounded-[6rem] -rotate-12 blur-2xl" />
+        
+        {/* Center Accent Shape */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-white/20 to-gray-100/30 rounded-[8rem] rotate-6 blur-3xl" />
+      </div>
+      
+      <div className="flex-1 flex flex-col relative z-10">
         <div className="pt-8 pb-4 flex justify-center">
           <a href="/" className="cursor-pointer" data-testid="link-home">
             <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto" data-testid="logo-icon">
@@ -56,7 +83,7 @@ export default function Signup() {
 
         <div className="flex-1 flex items-center justify-center px-6">
           <div className="w-full max-w-md">
-            <Card className="bg-white py-8 px-6 sm:px-8 border-0 rounded-3xl">
+            <Card className="bg-white/95 backdrop-blur-sm py-8 px-6 sm:px-8 border-0 rounded-3xl shadow-2xl">
             
             {signupStep === 'domain' ? (
               <div>
