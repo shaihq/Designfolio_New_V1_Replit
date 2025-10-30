@@ -254,13 +254,6 @@ export default function Signup() {
                           Sign up with Email
                         </span>
                       </div>
-
-                      <p className="text-center text-sm text-foreground/70 mt-8 pt-4">
-                        Already have an account?{" "}
-                        <a href="#login" className="hover:underline font-medium" style={{ color: '#FF553E' }} data-testid="link-login">
-                          Log in
-                        </a>
-                      </p>
                     </motion.div>
                   ) : (
                     <motion.div
@@ -379,13 +372,6 @@ export default function Signup() {
                     Sign up with Google
                   </span>
                 </div>
-
-                <p className="text-center text-sm text-foreground/70 mt-8 pt-4">
-                  Already have an account?{" "}
-                  <a href="#login" className="hover:underline font-medium" style={{ color: '#FF553E' }} data-testid="link-login-alt">
-                    Log in
-                  </a>
-                </p>
               </form>
                     </motion.div>
                   )}
