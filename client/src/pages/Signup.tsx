@@ -80,10 +80,10 @@ export default function Signup() {
             {signupStep === 'domain' ? (
               <motion.div
                 key="domain"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <div className="text-center mb-8">
                   <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-signup-headline">
@@ -152,10 +152,10 @@ export default function Signup() {
             ) : signupStep === 'method' ? (
               <motion.div
                 key="method"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
               >
                 <button
                   type="button"
@@ -221,10 +221,10 @@ export default function Signup() {
             ) : (
               <motion.div
                 key="email"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
               >
                 <button
                   type="button"
