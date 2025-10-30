@@ -33,35 +33,8 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex flex-col">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-gray-50 to-slate-200" />
-      
-      {/* Decorative Background Shapes */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Top Left Shape */}
-        <div className="absolute -top-20 -left-20 w-80 h-80 bg-gradient-to-br from-slate-200/70 to-gray-300/60 rounded-[4rem] rotate-12 blur-2xl" />
-        
-        {/* Top Right Shape */}
-        <div className="absolute top-40 -right-32 w-96 h-96 bg-gradient-to-bl from-blue-100/50 to-slate-200/60 rounded-[5rem] -rotate-12 blur-xl" />
-        
-        {/* Middle Left Shape */}
-        <div className="absolute top-1/3 -left-40 w-[28rem] h-72 bg-gradient-to-r from-gray-200/80 to-slate-300/50 rounded-[6rem] rotate-45 blur-2xl" />
-        
-        {/* Middle Right Shape */}
-        <div className="absolute top-1/2 right-0 w-80 h-80 bg-gradient-to-l from-indigo-100/40 to-slate-200/70 rounded-[5rem] -rotate-6 blur-xl" />
-        
-        {/* Bottom Left Shape */}
-        <div className="absolute bottom-20 -left-28 w-96 h-96 bg-gradient-to-tr from-slate-200/60 to-gray-300/70 rounded-[7rem] rotate-45 blur-2xl" />
-        
-        {/* Bottom Right Shape */}
-        <div className="absolute -bottom-32 right-10 w-[30rem] h-80 bg-gradient-to-tl from-purple-100/40 to-slate-200/80 rounded-[6rem] -rotate-12 blur-xl" />
-        
-        {/* Center Accent Shape */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-white/40 to-slate-100/60 rounded-[8rem] rotate-6 blur-2xl" />
-      </div>
-      
-      <div className="flex-1 flex flex-col relative z-10">
+    <div className="min-h-screen bg-background flex flex-col">
+      <div className="flex-1 flex flex-col">
         <div className="pt-8 pb-4 flex justify-center">
           <a href="/" className="cursor-pointer" data-testid="link-home">
             <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto" data-testid="logo-icon">
