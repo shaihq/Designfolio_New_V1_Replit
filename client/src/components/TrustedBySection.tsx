@@ -9,6 +9,10 @@ export default function TrustedBySection({ backgroundColor }: { backgroundColor?
     "/company logos/companylogos07.svg",
   ];
 
+  const fadeClass = backgroundColor === "transparent" 
+    ? "from-muted/30" 
+    : "from-background";
+
   return (
     <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 overflow-hidden w-full">
       <div className="max-w-5xl mx-auto">
@@ -18,11 +22,11 @@ export default function TrustedBySection({ backgroundColor }: { backgroundColor?
         
         <div className="relative overflow-hidden">
           <div 
-            className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-40 z-10 pointer-events-none bg-gradient-to-r from-background to-transparent"
+            className={`absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-40 z-10 pointer-events-none bg-gradient-to-r ${fadeClass} to-transparent`}
           />
           
           <div 
-            className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-background to-transparent"
+            className={`absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-40 z-10 pointer-events-none bg-gradient-to-l ${fadeClass} to-transparent`}
           />
           
           <div className="flex gap-0 overflow-hidden">
