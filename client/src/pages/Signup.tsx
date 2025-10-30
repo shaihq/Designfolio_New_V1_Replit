@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,8 +40,17 @@ export default function Signup() {
     password: "",
   });
   const [verificationCode, setVerificationCode] = useState("");
-  const [timeLeft, setTimeLeft] = useState(26);
+  const [timeLeft, setTimeLeft] = useState(30);
   const [contentRef, contentHeight] = useMeasuredHeight();
+
+  useEffect(() => {
+    if (signupStep === 'verify' && timeLeft > 0) {
+      const timer = setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [signupStep, timeLeft]);
 
   const handleDomainSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,7 +64,7 @@ export default function Signup() {
     e.preventDefault();
     console.log("Email signup:", { domain, ...formData });
     setSignupStep('verify');
-    setTimeLeft(26);
+    setTimeLeft(30);
   };
 
   const handleVerifyEmail = (e: React.FormEvent) => {
@@ -65,7 +74,7 @@ export default function Signup() {
 
   const handleResendCode = () => {
     console.log("Resending code");
-    setTimeLeft(26);
+    setTimeLeft(30);
   };
 
   const handleGoogleSignup = () => {
@@ -159,7 +168,7 @@ export default function Signup() {
                     <Label htmlFor="verification-code" className="text-sm font-medium text-foreground">
                       Verification code<span className="text-red-500">*</span>
                     </Label>
-                    <div className="bg-white dark:bg-white border-2 border-border rounded-2xl hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                    <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
                       <Input
                         id="verification-code"
                         type="text"
@@ -167,7 +176,7 @@ export default function Signup() {
                         value={verificationCode}
                         onChange={(e) => setVerificationCode(e.target.value)}
                         required
-                        className="border-0 bg-transparent h-14 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        className="border-0 bg-transparent h-11 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
                         data-testid="input-verification-code"
                       />
                     </div>
@@ -176,7 +185,8 @@ export default function Signup() {
                       <button
                         type="button"
                         onClick={handleResendCode}
-                        className="text-red-400 hover:text-red-500 font-medium"
+                        disabled={timeLeft > 0}
+                        className="text-red-400 hover:text-red-500 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-red-400"
                         data-testid="button-resend-code"
                       >
                         Resend code
