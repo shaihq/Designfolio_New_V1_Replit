@@ -132,25 +132,33 @@ export default function Footer() {
         
         <div className="mt-8 pt-6 border-t border-border">
           <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-3">
-            <Link href="/privacy-policy">
-              <a className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-privacy-policy">
-                Privacy Policy
-              </a>
+            <Link 
+              href="/privacy-policy" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors" 
+              data-testid="link-privacy-policy"
+            >
+              Privacy Policy
             </Link>
-            <Link href="/terms-conditions">
-              <a className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-terms-conditions">
-                Terms & Conditions
-              </a>
+            <Link 
+              href="/terms-conditions" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors" 
+              data-testid="link-terms-conditions"
+            >
+              Terms & Conditions
             </Link>
-            <Link href="/refund-policy">
-              <a className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-refund-policy">
-                Refund/Cancellation Policy
-              </a>
+            <Link 
+              href="/refund-policy" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors" 
+              data-testid="link-refund-policy"
+            >
+              Refund/Cancellation Policy
             </Link>
-            <Link href="/contact">
-              <a className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-contact">
-                Contact/Support
-              </a>
+            <Link 
+              href="/contact" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors" 
+              data-testid="link-contact"
+            >
+              Contact/Support
             </Link>
           </div>
         </div>
