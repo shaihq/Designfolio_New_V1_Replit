@@ -1,20 +1,17 @@
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
-import { ArrowLeft, Mail, MessageCircle, FileQuestion } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Mail, MessageCircle, FileQuestion } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import FooterBottom from "@/components/FooterBottom";
 
 export default function Contact() {
   return (
     <div className="min-h-screen w-full bg-background">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <Link href="/">
-          <Button variant="ghost" className="mb-8 -ml-2" data-testid="button-back">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
-          </Button>
-        </Link>
-
-        <Card className="p-8 sm:p-12">
+      <Navbar />
+      <div className="pt-16 sm:pt-20">
+        <div className="max-w-4xl mx-auto px-6 py-12">
+          <Card className="p-8 sm:p-12">
           <h1 className="text-4xl font-bold mb-6" data-testid="text-page-title">
             Contact & Support
           </h1>
@@ -156,7 +153,10 @@ export default function Contact() {
               </div>
             </section>
           </div>
-        </Card>
+          </Card>
+        </div>
+        <Footer />
+        <FooterBottom />
       </div>
     </div>
   );
