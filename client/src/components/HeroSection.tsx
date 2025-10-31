@@ -334,15 +334,44 @@ export default function HeroSection() {
 
       <div className="max-w-5xl mx-auto relative z-50">
         <div className="max-w-3xl mx-auto text-center px-4 sm:px-6 md:px-12 lg:px-0">
-          <h1 className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground" data-testid="text-hero-headline">
+          <motion.h1 
+            className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground" 
+            data-testid="text-hero-headline"
+            initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.1,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+          >
             Building a portfolio was never meant to be hard.
-          </h1>
+          </motion.h1>
           
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" data-testid="text-hero-description">
+          <motion.p 
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" 
+            data-testid="text-hero-description"
+            initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.3,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+          >
             Skip the busywork with Designfolio — publish in hours, not weeks.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto">
+          <motion.div 
+            className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto"
+            initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.5,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+          >
             <div className="relative w-full sm:flex-1">
               <div className="flex items-center bg-white dark:bg-white border-2 border-border rounded-full w-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out cursor-text overflow-hidden">
                 <div className="relative flex-1 h-14 sm:h-16">
@@ -383,7 +412,7 @@ export default function HeroSection() {
             >
               Get started for free
             </Button>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
