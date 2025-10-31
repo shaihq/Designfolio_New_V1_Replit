@@ -11,6 +11,7 @@ export default function Footer() {
   const [currentNameIndex, setCurrentNameIndex] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (inputValue || isFocused) return;
@@ -87,12 +88,19 @@ export default function Footer() {
 
             <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto pt-4">
               <div className="relative w-full sm:flex-1">
-                <div className="flex items-center bg-white dark:bg-white border-2 border-border rounded-full w-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out cursor-text overflow-hidden">
+                <div className={`flex items-center bg-white dark:bg-white border-2 rounded-full w-full transition-all duration-300 ease-out cursor-text overflow-hidden ${
+                  error 
+                    ? 'border-red-500 shadow-[0_0_0_4px_rgba(239,68,68,0.12)]' 
+                    : 'border-border hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)]'
+                }`}>
                   <div className="relative flex-1 h-14 sm:h-16">
                     <Input 
                       type="text"
                       value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
+                      onChange={(e) => {
+                        setInputValue(e.target.value);
+                        if (error) setError("");
+                      }}
                       onFocus={() => setIsFocused(true)}
                       onBlur={() => setIsFocused(false)}
                       placeholder={isFocused && !inputValue ? "username" : ""}
@@ -116,8 +124,20 @@ export default function Footer() {
                     .designfolio.me
                   </span>
                 </div>
+                {error && (
+                  <p className="text-sm text-red-500 mt-2 ml-5" data-testid="error-username-footer">
+                    {error}
+                  </p>
+                )}
               </div>
               <Button 
+                onClick={() => {
+                  if (!inputValue.trim()) {
+                    setError("Username is required");
+                    return;
+                  }
+                  console.log("Username submitted:", inputValue);
+                }}
                 className="text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors w-full sm:w-auto whitespace-nowrap"
                 style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}

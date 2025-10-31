@@ -431,7 +431,7 @@ export default function Signup() {
                   </Label>
                   <div className={`bg-white dark:bg-white border-2 rounded-full transition-all duration-300 ease-out ${
                     fieldErrors.name 
-                      ? 'border-red-500' 
+                      ? 'border-red-500 shadow-[0_0_0_4px_rgba(239,68,68,0.12)]' 
                       : 'border-border hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)]'
                   }`}>
                     <Input
@@ -467,7 +467,7 @@ export default function Signup() {
                   </Label>
                   <div className={`bg-white dark:bg-white border-2 rounded-full transition-all duration-300 ease-out ${
                     fieldErrors.email 
-                      ? 'border-red-500' 
+                      ? 'border-red-500 shadow-[0_0_0_4px_rgba(239,68,68,0.12)]' 
                       : 'border-border hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)]'
                   }`}>
                     <Input
@@ -503,7 +503,7 @@ export default function Signup() {
                   </Label>
                   <div className={`bg-white dark:bg-white border-2 rounded-full transition-all duration-300 ease-out ${
                     fieldErrors.password 
-                      ? 'border-red-500' 
+                      ? 'border-red-500 shadow-[0_0_0_4px_rgba(239,68,68,0.12)]' 
                       : 'border-border hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)]'
                   }`}>
                     <Input
