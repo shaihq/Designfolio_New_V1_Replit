@@ -131,8 +131,8 @@ export default function FeaturesSection() {
                   whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{
-                    duration: 0.6,
-                    delay: index * 0.15,
+                    duration: 0.4,
+                    delay: index * 0.08,
                     ease: [0.22, 1, 0.36, 1]
                   }}
                 >
@@ -227,8 +227,8 @@ export default function FeaturesSection() {
                   whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{
-                    duration: 0.6,
-                    delay: index * 0.15,
+                    duration: 0.4,
+                    delay: index * 0.08,
                     ease: [0.22, 1, 0.36, 1]
                   }}
                 >
