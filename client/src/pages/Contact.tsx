@@ -30,7 +30,7 @@ export default function Contact() {
               <h2 className="text-2xl font-semibold mb-4" data-testid="text-section-email">
                 Email Support
               </h2>
-              <Card className="p-6 bg-card">
+              <div className="p-6 bg-muted/50 rounded-md border border-border">
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-primary/10 rounded-md">
                     <Mail className="w-6 h-6 text-primary" data-testid="icon-email" />
@@ -54,7 +54,7 @@ export default function Contact() {
                     </p>
                   </div>
                 </div>
-              </Card>
+              </div>
             </section>
 
             <section>
@@ -62,7 +62,7 @@ export default function Contact() {
                 What We Can Help With
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
-                <Card className="p-6 bg-card">
+                <div className="p-6 bg-muted/50 rounded-md border border-border">
                   <div className="flex items-start gap-3">
                     <MessageCircle className="w-5 h-5 text-primary mt-1" data-testid="icon-questions" />
                     <div>
@@ -74,9 +74,9 @@ export default function Contact() {
                       </p>
                     </div>
                   </div>
-                </Card>
+                </div>
 
-                <Card className="p-6 bg-card">
+                <div className="p-6 bg-muted/50 rounded-md border border-border">
                   <div className="flex items-start gap-3">
                     <FileQuestion className="w-5 h-5 text-primary mt-1" data-testid="icon-technical" />
                     <div>
@@ -88,7 +88,7 @@ export default function Contact() {
                       </p>
                     </div>
                   </div>
-                </Card>
+                </div>
               </div>
             </section>
 
@@ -142,7 +142,7 @@ export default function Contact() {
             </section>
 
             <section className="pt-4">
-              <Card className="p-6 bg-primary/5 border-primary/20">
+              <div className="p-6 bg-primary/5 border border-primary/20 rounded-md">
                 <p className="text-center" data-testid="text-feedback">
                   Have feedback or suggestions?{" "}
                   <a 
@@ -153,7 +153,7 @@ export default function Contact() {
                     We'd love to hear from you
                   </a>
                 </p>
-              </Card>
+              </div>
             </section>
           </div>
         </Card>
