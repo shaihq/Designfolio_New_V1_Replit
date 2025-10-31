@@ -41,10 +41,26 @@ export default function Login() {
   const [resetEmail, setResetEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<{[key: string]: string}>({});
   const [contentRef, contentHeight] = useMeasuredHeight();
 
   const handleEmailLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    const errors: {[key: string]: string} = {};
+    
+    if (!formData.email) {
+      errors.email = "Email is required";
+    }
+    if (!formData.password) {
+      errors.password = "Password is required";
+    }
+    
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+    
+    setFieldErrors({});
     console.log("Email login:", formData);
   };
 
@@ -227,20 +243,33 @@ export default function Login() {
                     className="space-y-2"
                   >
                     <Label htmlFor="email" className="text-sm font-medium text-foreground">
-                      Email
+                      Email<span className="text-red-500">*</span>
                     </Label>
-                    <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                    <div className={`bg-white dark:bg-white border-2 rounded-full transition-all duration-300 ease-out ${
+                      fieldErrors.email 
+                        ? 'border-red-500' 
+                        : 'border-border hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)]'
+                    }`}>
                       <Input
                         id="email"
                         type="email"
                         placeholder="you@example.com"
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        required
+                        onChange={(e) => {
+                          setFormData({ ...formData, email: e.target.value });
+                          if (fieldErrors.email) {
+                            setFieldErrors({ ...fieldErrors, email: "" });
+                          }
+                        }}
                         className="border-0 bg-transparent h-11 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
                         data-testid="input-email"
                       />
                     </div>
+                    {fieldErrors.email && (
+                      <p className="text-sm text-red-500 mt-1" data-testid="error-email">
+                        {fieldErrors.email}
+                      </p>
+                    )}
                   </motion.div>
 
                   <motion.div
@@ -250,20 +279,33 @@ export default function Login() {
                     className="space-y-2"
                   >
                     <Label htmlFor="password" className="text-sm font-medium text-foreground">
-                      Password
+                      Password<span className="text-red-500">*</span>
                     </Label>
-                    <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                    <div className={`bg-white dark:bg-white border-2 rounded-full transition-all duration-300 ease-out ${
+                      fieldErrors.password 
+                        ? 'border-red-500' 
+                        : 'border-border hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)]'
+                    }`}>
                       <Input
                         id="password"
                         type="password"
                         placeholder="Enter your password"
                         value={formData.password}
-                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                        required
+                        onChange={(e) => {
+                          setFormData({ ...formData, password: e.target.value });
+                          if (fieldErrors.password) {
+                            setFieldErrors({ ...fieldErrors, password: "" });
+                          }
+                        }}
                         className="border-0 bg-transparent h-11 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
                         data-testid="input-password"
                       />
                     </div>
+                    {fieldErrors.password && (
+                      <p className="text-sm text-red-500 mt-1" data-testid="error-password">
+                        {fieldErrors.password}
+                      </p>
+                    )}
                   </motion.div>
 
                   <div className="flex items-center justify-end">
