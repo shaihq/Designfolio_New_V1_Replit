@@ -337,10 +337,10 @@ export default function HeroSection() {
           <motion.h1 
             className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground" 
             data-testid="text-hero-headline"
-            initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+            initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
             animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
             transition={{ 
-              duration: 0.8, 
+              duration: 0.6, 
               delay: 0.1,
               ease: [0.22, 1, 0.36, 1]
             }}
@@ -351,11 +351,11 @@ export default function HeroSection() {
           <motion.p 
             className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" 
             data-testid="text-hero-description"
-            initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+            initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
             animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
             transition={{ 
-              duration: 0.8, 
-              delay: 0.3,
+              duration: 0.6, 
+              delay: 0.2,
               ease: [0.22, 1, 0.36, 1]
             }}
           >
@@ -364,11 +364,11 @@ export default function HeroSection() {
 
           <motion.div 
             className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto"
-            initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+            initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
             animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
             transition={{ 
-              duration: 0.8, 
-              delay: 0.5,
+              duration: 0.6, 
+              delay: 0.35,
               ease: [0.22, 1, 0.36, 1]
             }}
           >
