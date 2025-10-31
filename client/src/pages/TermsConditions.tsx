@@ -1,9 +1,13 @@
 import { Card } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import FooterBottom from "@/components/FooterBottom";
+import { useEffect } from "react";
 
 export default function TermsConditions() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen w-full bg-background">
       <Navbar />
@@ -99,7 +103,6 @@ export default function TermsConditions() {
           </div>
           </Card>
         </div>
-        <Footer />
         <FooterBottom />
       </div>
     </div>
