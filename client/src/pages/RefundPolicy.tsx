@@ -19,113 +19,126 @@ export default function RefundPolicy() {
           </h1>
           
           <div className="space-y-6 text-foreground">
-            <p className="text-sm text-muted-foreground" data-testid="text-last-updated">
-              Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            <p className="text-sm text-muted-foreground" data-testid="text-effective-date">
+              Effective Date: October 31, 2025
+            </p>
+
+            <p className="leading-relaxed" data-testid="text-intro">
+              At Designfolio Labs LLP, we value transparency and fairness in every transaction. This Refund & Cancellation Policy outlines how payments, refunds, and cancellations are handled for all products and services offered under the Designfolio brand.
             </p>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-overview">
-                Policy Overview
+              <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-nature">
+                1. Nature of Our Product
               </h2>
-              <p className="leading-relaxed" data-testid="text-overview-content">
-                We want you to be completely satisfied with Designfolio. This Refund & Cancellation Policy outlines the terms and conditions regarding refunds and cancellations for our services.
+              <p className="leading-relaxed" data-testid="text-nature-content">
+                Designfolio is a SaaS-based website builder that provides users with instant access to premium tools and templates after successful payment. Because access is delivered immediately upon purchase, the product is considered a digital good that cannot be returned or revoked once delivered.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-free-trial">
-                Free Trial Period
+              <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-payment">
+                2. Payment Terms
               </h2>
-              <p className="leading-relaxed" data-testid="text-free-trial-content">
-                Designfolio offers a free tier that allows you to explore our platform at no cost. You can upgrade to a paid plan at any time. There are no charges or cancellation requirements for free accounts.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-cancellation">
-                Subscription Cancellation
-              </h2>
-              <p className="leading-relaxed mb-3" data-testid="text-cancellation-intro">
-                You may cancel your subscription at any time:
-              </p>
-              <ul className="list-disc pl-6 space-y-2" data-testid="list-cancellation-details">
-                <li>Cancellations take effect at the end of the current billing period</li>
-                <li>You will retain access to paid features until the end of your billing period</li>
-                <li>No partial refunds are provided for unused time within a billing period</li>
-                <li>You can cancel through your account settings or by contacting support</li>
-                <li>After cancellation, your account will revert to the free tier</li>
+              <ul className="list-disc pl-6 space-y-2" data-testid="list-payment-terms">
+                <li>All payments are one-time lifetime purchases made securely through Razorpay.</li>
+                <li>Once a payment is successfully completed, the user gains instant access to the Designfolio Pro features.</li>
+                <li>No recurring or subscription-based charges are applied unless explicitly introduced and agreed to by the user in the future.</li>
               </ul>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-refunds">
-                Refund Policy
+                3. Refund Policy
               </h2>
-              <p className="leading-relaxed mb-3" data-testid="text-refunds-intro">
-                We offer refunds under the following circumstances:
+              <p className="leading-relaxed mb-3 font-semibold" data-testid="text-no-refund">
+                All purchases are non-refundable.
               </p>
-              <ul className="list-disc pl-6 space-y-2 mb-3" data-testid="list-refund-circumstances">
-                <li>Within 14 days of your first payment if you're unsatisfied with the service</li>
-                <li>If you were charged in error or duplicate charges occurred</li>
-                <li>If there was a technical issue that prevented you from using the service</li>
+              <p className="leading-relaxed mb-3" data-testid="text-refund-reason">
+                Since the product is digital and access is provided immediately, Designfolio does not issue refunds once an account has been activated.
+              </p>
+              <p className="leading-relaxed mb-2" data-testid="text-exceptional-cases">
+                Refunds will only be considered in exceptional cases such as:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 mb-3" data-testid="list-exceptional-cases">
+                <li>Duplicate payments due to a technical error.</li>
+                <li>Payment deducted but access not delivered within 24 hours.</li>
               </ul>
-              <p className="leading-relaxed" data-testid="text-refunds-note">
-                Refunds are processed within 5-10 business days and will be issued to the original payment method.
+              <p className="leading-relaxed" data-testid="text-refund-request">
+                If any such case arises, users must email{" "}
+                <a 
+                  href="mailto:shai@designfolio.me" 
+                  className="text-primary hover:underline"
+                  data-testid="link-refund-email"
+                >
+                  shai@designfolio.me
+                </a>
+                {" "}within 48 hours of the transaction, including payment proof and account details. Each request will be reviewed individually.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-no-refund">
-                Non-Refundable Situations
+              <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-cancellations">
+                4. Cancellations
               </h2>
-              <p className="leading-relaxed mb-3" data-testid="text-no-refund-intro">
-                Refunds will not be provided in the following cases:
+              <p className="leading-relaxed mb-3" data-testid="text-cancellation-intro">
+                As Designfolio operates on a lifetime access model, there is no recurring billing and therefore no cancellation of subscriptions.
               </p>
-              <ul className="list-disc pl-6 space-y-2" data-testid="list-no-refund-situations">
-                <li>All payments made for Designfolio Pro (Lifetime) are non-refundable</li>
-                <li>After 14 days from the initial payment date</li>
-                <li>For renewal charges (unless cancelled before renewal date)</li>
-                <li>If your account was terminated due to violation of our Terms of Service</li>
-                <li>For change of mind after using the service beyond the refund period</li>
-              </ul>
+              <p className="leading-relaxed" data-testid="text-cancellation-access">
+                Users may choose to discontinue using the service at any time; however, no refunds or partial credits will be issued for unused access.
+              </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-process">
-                How to Request a Refund
+              <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-disputes">
+                5. Payment Disputes
               </h2>
-              <p className="leading-relaxed mb-3" data-testid="text-process-intro">
-                To request a refund:
+              <p className="leading-relaxed" data-testid="text-disputes-content">
+                If a payment dispute or chargeback is initiated with a bank or payment provider, Designfolio Labs LLP reserves the right to suspend the associated account until the matter is resolved. We encourage customers to contact us first to resolve any payment-related issues quickly.
               </p>
-              <ol className="list-decimal pl-6 space-y-2" data-testid="list-refund-process">
-                <li>Contact us at{" "}
-                  <a 
-                    href="mailto:shai@designfolio.me" 
-                    className="text-primary hover:underline"
-                    data-testid="link-refund-email"
-                  >
-                    shai@designfolio.me
-                  </a>
-                </li>
-                <li>Include your account email and transaction details</li>
-                <li>Provide a brief explanation of your refund request</li>
-                <li>We will review and respond within 2-3 business days</li>
-              </ol>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-contact">
-                Questions?
+                6. Contact for Payment Support
               </h2>
-              <p className="leading-relaxed" data-testid="text-contact-content">
-                If you have questions about our Refund & Cancellation Policy, please reach out to us at{" "}
+              <p className="leading-relaxed mb-3" data-testid="text-contact-intro">
+                For all payment or refund-related queries:
+              </p>
+              <div className="space-y-1 pl-6" data-testid="contact-details">
+                <p className="leading-relaxed" data-testid="text-contact-email">
+                  📩 Email:{" "}
+                  <a 
+                    href="mailto:shai@designfolio.me" 
+                    className="text-primary hover:underline"
+                    data-testid="link-support-email"
+                  >
+                    shai@designfolio.me
+                  </a>
+                </p>
+                <p className="leading-relaxed" data-testid="text-response-time">
+                  🕒 Response Time: Within 48 hours (Mon – Fri)
+                </p>
+                <p className="leading-relaxed" data-testid="text-address">
+                  🏢 Address: No. 87, 1st Floor, 4th Cross St, Phase-1, Tirumalai Nagar, Perungudi, Chennai, Tamil Nadu 600096
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-updates">
+                7. Policy Updates
+              </h2>
+              <p className="leading-relaxed" data-testid="text-updates-content">
+                This policy may be updated from time to time to reflect changes in business or legal requirements. The latest version will always be available at{" "}
                 <a 
-                  href="mailto:shai@designfolio.me" 
+                  href="https://designfolio.me/refund-policy" 
                   className="text-primary hover:underline"
-                  data-testid="link-contact-email"
+                  data-testid="link-policy-url"
                 >
-                  shai@designfolio.me
+                  designfolio.me/refund-policy
                 </a>
+                .
               </p>
             </section>
           </div>
