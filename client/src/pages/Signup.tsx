@@ -146,7 +146,11 @@ export default function Signup() {
               >
                 <button
                   type="button"
-                  onClick={() => setSignupStep('email')}
+                  onClick={() => {
+                    setSignupStep('email');
+                    setFormData({ name: "", email: "", password: "" });
+                    setVerificationCode("");
+                  }}
                   className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground -ml-2 mb-6 hover-elevate px-2 py-1 rounded-md"
                   data-testid="button-back-to-signup"
                 >
@@ -220,7 +224,11 @@ export default function Signup() {
                   <div className="text-center">
                     <button
                       type="button"
-                      onClick={() => setSignupStep('email')}
+                      onClick={() => {
+                        setSignupStep('email');
+                        setFormData({ name: "", email: "", password: "" });
+                        setVerificationCode("");
+                      }}
                       className="text-sm text-foreground/70 hover:text-foreground font-medium hover:underline"
                       data-testid="button-change-email"
                     >
