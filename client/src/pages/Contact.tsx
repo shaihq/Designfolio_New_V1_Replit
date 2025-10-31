@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
-import { Mail, MessageCircle, FileQuestion } from "lucide-react";
+import { Mail, MessageCircle, FileQuestion, MapPin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterBottom from "@/components/FooterBottom";
 import { useEffect } from "react";
@@ -52,6 +52,24 @@ export default function Contact() {
                     </a>
                     <p className="text-sm text-muted-foreground mt-2" data-testid="text-response-time">
                       We typically respond within 24-48 hours
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4" data-testid="text-section-address">
+                Address
+              </h2>
+              <div className="p-6 bg-muted/50 rounded-md border border-border">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-primary/10 rounded-md">
+                    <MapPin className="w-6 h-6 text-primary" data-testid="icon-address" />
+                  </div>
+                  <div>
+                    <p className="leading-relaxed" data-testid="text-address">
+                      No. 87, 1st Floor, 4th Cross St, Phase-1, Tirumalai Nagar, Perungudi, Chennai, Tamil Nadu 600096
                     </p>
                   </div>
                 </div>
