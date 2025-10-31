@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Mail, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
+import TrustedBySection from "@/components/TrustedBySection";
 
 function useMeasuredHeight() {
   const ref = useRef<HTMLDivElement>(null);
@@ -292,6 +293,8 @@ export default function Login() {
             </Card>
           </motion.div>
         </div>
+
+        <TrustedBySection backgroundColor="transparent" />
       </div>
     </div>
   );
