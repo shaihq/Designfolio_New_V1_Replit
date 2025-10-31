@@ -467,13 +467,17 @@ export default function Signup() {
 
                 <p className="text-center text-xs text-muted-foreground">
                   By continuing, you agree to Designfolio's{" "}
-                  <a href="#terms" className="hover:underline" style={{ color: '#FF553E' }} data-testid="link-terms">
-                    Terms of Service
-                  </a>{" "}
+                  <Link href="/terms-conditions">
+                    <a className="hover:underline" style={{ color: '#FF553E' }} data-testid="link-terms">
+                      Terms of Service
+                    </a>
+                  </Link>{" "}
                   and{" "}
-                  <a href="#privacy" className="hover:underline" style={{ color: '#FF553E' }} data-testid="link-privacy">
-                    Privacy Policy
-                  </a>
+                  <Link href="/privacy-policy">
+                    <a className="hover:underline" style={{ color: '#FF553E' }} data-testid="link-privacy">
+                      Privacy Policy
+                    </a>
+                  </Link>
                 </p>
 
                 <div className="relative my-5">

@@ -29,7 +29,7 @@ export default function FooterBottom() {
               className="text-sm text-muted-foreground hover-elevate px-2 py-1 rounded-md transition-colors" 
               data-testid="link-refund"
             >
-              Refund/Cancellation Policy
+              Refund Policy
             </Link>
             <Link 
               href="/contact" 
