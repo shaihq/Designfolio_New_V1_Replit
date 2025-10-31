@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Lottie from "lottie-react";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -124,14 +125,24 @@ export default function FeaturesSection() {
             {inspirationCards.filter((_, index) => index % 2 === 0).map((card, originalIndex) => {
               const index = originalIndex * 2;
               return (
-                <Card
+                <motion.div
                   key={index}
-                  className="relative p-6 sm:p-8 transition-all duration-300 bg-muted/40 border-border/30 overflow-visible shadow-none"
-                  style={{
-                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.08), inset 0 -3px 8px 0 rgb(0 0 0 / 0.05)'
+                  initial={{ opacity: 0, filter: "blur(4px)", y: 20 }}
+                  whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.15,
+                    ease: [0.22, 1, 0.36, 1]
                   }}
-                  data-testid={`card-inspiration-${index}`}
                 >
+                  <Card
+                    className="relative p-6 sm:p-8 transition-all duration-300 bg-muted/40 border-border/30 overflow-visible shadow-none"
+                    style={{
+                      boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.08), inset 0 -3px 8px 0 rgb(0 0 0 / 0.05)'
+                    }}
+                    data-testid={`card-inspiration-${index}`}
+                  >
               <div 
                 className="absolute -top-3 left-6 px-5 py-2 text-xs font-bold tracking-wide uppercase"
                 style={{
@@ -201,6 +212,7 @@ export default function FeaturesSection() {
                 </div>
               )}
             </Card>
+          </motion.div>
               );
             })}
           </div>
@@ -209,14 +221,24 @@ export default function FeaturesSection() {
             {inspirationCards.filter((_, index) => index % 2 === 1).map((card, originalIndex) => {
               const index = originalIndex * 2 + 1;
               return (
-                <Card
+                <motion.div
                   key={index}
-                  className="relative p-6 sm:p-8 transition-all duration-300 bg-muted/40 border-border/30 overflow-visible shadow-none"
-                  style={{
-                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.08), inset 0 -3px 8px 0 rgb(0 0 0 / 0.05)'
+                  initial={{ opacity: 0, filter: "blur(4px)", y: 20 }}
+                  whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.15,
+                    ease: [0.22, 1, 0.36, 1]
                   }}
-                  data-testid={`card-inspiration-${index}`}
                 >
+                  <Card
+                    className="relative p-6 sm:p-8 transition-all duration-300 bg-muted/40 border-border/30 overflow-visible shadow-none"
+                    style={{
+                      boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.08), inset 0 -3px 8px 0 rgb(0 0 0 / 0.05)'
+                    }}
+                    data-testid={`card-inspiration-${index}`}
+                  >
                   <div 
                     className="absolute -top-3 left-6 px-5 py-2 text-xs font-bold tracking-wide uppercase"
                     style={{
@@ -286,6 +308,7 @@ export default function FeaturesSection() {
                     </div>
                   )}
                 </Card>
+          </motion.div>
               );
             })}
           </div>
