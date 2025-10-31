@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import shaiSignature from "@assets/shainow_1761634386828.png";
 
 export default function Footer() {
@@ -128,6 +129,31 @@ export default function Footer() {
             </div>
           </div>
         </Card>
+        
+        <div className="mt-8 pt-6 border-t border-border">
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-3">
+            <Link href="/privacy-policy">
+              <a className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-privacy-policy">
+                Privacy Policy
+              </a>
+            </Link>
+            <Link href="/terms-conditions">
+              <a className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-terms-conditions">
+                Terms & Conditions
+              </a>
+            </Link>
+            <Link href="/refund-policy">
+              <a className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-refund-policy">
+                Refund/Cancellation Policy
+              </a>
+            </Link>
+            <Link href="/contact">
+              <a className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-contact">
+                Contact/Support
+              </a>
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );
