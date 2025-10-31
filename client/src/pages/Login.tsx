@@ -33,11 +33,14 @@ function useMeasuredHeight() {
 }
 
 export default function Login() {
-  const [loginStep, setLoginStep] = useState<'method' | 'email'>('method');
+  const [loginStep, setLoginStep] = useState<'method' | 'email' | 'forgot-password' | 'reset-sent'>('method');
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [resetEmail, setResetEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [contentRef, contentHeight] = useMeasuredHeight();
 
   const handleEmailLogin = (e: React.FormEvent) => {
@@ -47,6 +50,32 @@ export default function Login() {
 
   const handleGoogleLogin = () => {
     console.log("Google login clicked");
+  };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: resetEmail }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setLoginStep('reset-sent');
+      } else {
+        setError(data.message || "An error occurred");
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -163,7 +192,7 @@ export default function Login() {
                   </Link>
                 </p>
               </motion.div>
-            ) : (
+            ) : loginStep === 'email' ? (
               <motion.div
                 key="email"
                 initial={{ opacity: 0, y: 10 }}
@@ -240,6 +269,10 @@ export default function Login() {
                   <div className="flex items-center justify-end">
                     <button
                       type="button"
+                      onClick={() => {
+                        setResetEmail(formData.email);
+                        setLoginStep('forgot-password');
+                      }}
                       className="text-sm font-medium hover:underline"
                       style={{ color: '#FF553E' }}
                       data-testid="link-forgot-password"
@@ -285,6 +318,144 @@ export default function Login() {
                     </Link>
                   </p>
                 </form>
+              </motion.div>
+            ) : loginStep === 'forgot-password' ? (
+              <motion.div
+                key="forgot-password"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setLoginStep('email')}
+                  className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground -ml-2 mb-6 hover-elevate px-2 py-1 rounded-md"
+                  data-testid="button-back-forgot"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Back
+                </button>
+
+                <div className="text-center mb-6">
+                  <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-forgot-headline">
+                    Reset your password
+                  </h1>
+                  <p className="text-sm text-foreground/60" data-testid="text-forgot-description">
+                    Enter your email and we'll send you instructions to reset your password
+                  </p>
+                </div>
+
+                <form onSubmit={handleForgotPassword} className="space-y-5">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                    className="space-y-2"
+                  >
+                    <Label htmlFor="reset-email" className="text-sm font-medium text-foreground">
+                      Email
+                    </Label>
+                    <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                      <Input
+                        id="reset-email"
+                        type="email"
+                        placeholder="you@example.com"
+                        value={resetEmail}
+                        onChange={(e) => setResetEmail(e.target.value)}
+                        required
+                        className="border-0 bg-transparent h-11 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        data-testid="input-reset-email"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-sm text-red-600 text-center"
+                      data-testid="text-error"
+                    >
+                      {error}
+                    </motion.div>
+                  )}
+
+                  <Button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                    data-testid="button-reset-submit"
+                  >
+                    {isLoading ? "Sending..." : "Send reset link"}
+                  </Button>
+
+                  <p className="text-center text-sm text-foreground/70 mt-6">
+                    Remember your password?{" "}
+                    <button
+                      type="button"
+                      onClick={() => setLoginStep('email')}
+                      className="hover:underline font-medium"
+                      style={{ color: '#FF553E' }}
+                      data-testid="link-back-to-login"
+                    >
+                      Back to login
+                    </button>
+                  </p>
+                </form>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="reset-sent"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <div className="text-center mb-6">
+                  <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                    <svg 
+                      className="w-8 h-8 text-green-600" 
+                      fill="none" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth="2" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <h1 className="font-semibold text-2xl mb-2 text-foreground" data-testid="text-reset-sent-headline">
+                    Check your email
+                  </h1>
+                  <p className="text-sm text-foreground/60" data-testid="text-reset-sent-description">
+                    We've sent password reset instructions to <strong>{resetEmail}</strong>
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="text-sm text-foreground/70 text-center">
+                    Didn't receive the email? Check your spam folder or{" "}
+                    <button
+                      type="button"
+                      onClick={() => setLoginStep('forgot-password')}
+                      className="font-medium hover:underline"
+                      style={{ color: '#FF553E' }}
+                      data-testid="link-try-again"
+                    >
+                      try again
+                    </button>
+                  </p>
+
+                  <Button
+                    onClick={() => setLoginStep('email')}
+                    className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                    data-testid="button-back-to-login"
+                  >
+                    Back to login
+                  </Button>
+                </div>
               </motion.div>
             )}
             </AnimatePresence>
