@@ -314,17 +314,19 @@ export default function HeroSection() {
           }}
           data-testid="card-project-right"
         >
-          <div className="aspect-video bg-gradient-to-br from-green-400 to-emerald-300 relative overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-3/4 h-3/4 bg-white/20 rounded-md lg:rounded-xl backdrop-blur-sm"></div>
-            </div>
+          <div className="aspect-video relative overflow-hidden">
+            <img 
+              src="/casestudyux2.svg" 
+              alt="Blockchain crypto app case study" 
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="p-4 md:p-5 flex-1 flex flex-col">
             <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-project-right-title">
-              Developed a Blockchain app on Next.JS
+              Built a blockchain crypto app using Next.js
             </h3>
             <p className="text-xs md:text-sm text-foreground/50" data-testid="text-project-right-category">
-              Case Study by Chris
+              Launched on Product Hunt
             </p>
           </div>
         </motion.div>
