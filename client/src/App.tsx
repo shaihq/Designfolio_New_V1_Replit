@@ -7,6 +7,8 @@ import Home from "@/pages/Home";
 import Signup from "@/pages/Signup";
 import Login from "@/pages/Login";
 import ResetPassword from "@/pages/ResetPassword";
+import Onboarding from "@/pages/Onboarding";
+import Dashboard from "@/pages/Dashboard";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsConditions from "@/pages/TermsConditions";
 import RefundPolicy from "@/pages/RefundPolicy";
@@ -20,6 +22,8 @@ function Router() {
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
       <Route path="/reset-password" component={ResetPassword} />
+      <Route path="/onboarding" component={Onboarding} />
+      <Route path="/dashboard" component={Dashboard} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/terms-conditions" component={TermsConditions} />
       <Route path="/refund-policy" component={RefundPolicy} />
