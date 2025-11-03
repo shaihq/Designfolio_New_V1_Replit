@@ -217,10 +217,10 @@ export default function Onboarding() {
               transition={{ duration: 0.3 }}
             >
               <h1 className="text-4xl font-bold mb-4 text-foreground" data-testid="text-step3-title">
-                What are you interested in?
+                Choose your top skills
               </h1>
               <p className="text-lg text-foreground/60 mb-10" data-testid="text-step3-description">
-                Pick a few areas that match your creative interests
+                Pick a few skills to get started.
               </p>
 
               <div className="flex flex-wrap gap-3 mb-12">
