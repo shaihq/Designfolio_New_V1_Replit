@@ -2,16 +2,30 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ArrowRight, Check } from "lucide-react";
 
-type OnboardingStep = 1 | 2 | 3;
+type OnboardingStep = 1 | 2 | 3 | 4;
 
 export default function Onboarding() {
   const [, setLocation] = useLocation();
   const [currentStep, setCurrentStep] = useState<OnboardingStep>(1);
+  const [selectedRole, setSelectedRole] = useState<string>("");
+  const [customRole, setCustomRole] = useState<string>("");
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [selectedExperience, setSelectedExperience] = useState<string>("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+
+  const roles = [
+    { label: "Product Designers", emoji: "🎨", bgColor: "#FFE5E5", borderColor: "#FFB3B3" },
+    { label: "Developer / Engineer", emoji: "💻", bgColor: "#E0F2FF", borderColor: "#B3D9FF" },
+    { label: "Data Scientists", emoji: "📊", bgColor: "#F3E5FF", borderColor: "#D9B3FF" },
+    { label: "No-Code Makers", emoji: "🚀", bgColor: "#FFE8D5", borderColor: "#FFCF9F" },
+    { label: "Growth Marketers", emoji: "📈", bgColor: "#D5F5E3", borderColor: "#A3E4C0" },
+    { label: "Brand / Content Strategists", emoji: "✍️", bgColor: "#FFF9E5", borderColor: "#FFECB3" },
+    { label: "Graphic Designers", emoji: "🖌️", bgColor: "#F0E5FF", borderColor: "#D9B3FF" },
+    { label: "Others", emoji: "✨", bgColor: "#F5F5F5", borderColor: "#D9D9D9" }
+  ];
 
   const goals = [
     "Build portfolio",
@@ -56,7 +70,7 @@ export default function Onboarding() {
   };
 
   const handleNext = () => {
-    if (currentStep < 3) {
+    if (currentStep < 4) {
       setCurrentStep((currentStep + 1) as OnboardingStep);
     } else {
       setLocation("/dashboard");
@@ -64,9 +78,15 @@ export default function Onboarding() {
   };
 
   const canProceed = () => {
-    if (currentStep === 1) return selectedGoals.length > 0;
-    if (currentStep === 2) return selectedExperience !== "";
-    if (currentStep === 3) return selectedInterests.length > 0;
+    if (currentStep === 1) {
+      if (selectedRole === "Others") {
+        return customRole.trim() !== "";
+      }
+      return selectedRole !== "";
+    }
+    if (currentStep === 2) return selectedGoals.length > 0;
+    if (currentStep === 3) return selectedExperience !== "";
+    if (currentStep === 4) return selectedInterests.length > 0;
     return false;
   };
 
@@ -75,18 +95,20 @@ export default function Onboarding() {
       <div className="w-full max-w-2xl">
         <div className="mb-8">
           <div className="flex gap-1 mb-3" data-testid="progress-bar">
-            {[1, 2, 3].map((step) => {
+            {[1, 2, 3, 4].map((step) => {
               const isCompleted = step < currentStep;
               const isCurrent = step === currentStep;
               const isActive = isCompleted || isCurrent;
               
               let gradient = '';
               if (step === 1) {
-                gradient = 'linear-gradient(90deg, #FF9A56 0%, #FF7B9C 100%)';
+                gradient = 'linear-gradient(90deg, #FF9A56 0%, #FF8A7A 100%)';
               } else if (step === 2) {
-                gradient = 'linear-gradient(90deg, #FF7B9C 0%, #E374C8 100%)';
+                gradient = 'linear-gradient(90deg, #FF8A7A 0%, #F77BB1 100%)';
+              } else if (step === 3) {
+                gradient = 'linear-gradient(90deg, #F77BB1 0%, #D97DD8 100%)';
               } else {
-                gradient = 'linear-gradient(90deg, #E374C8 0%, #B47EE8 100%)';
+                gradient = 'linear-gradient(90deg, #D97DD8 0%, #B47EE8 100%)';
               }
               
               return (
@@ -119,7 +141,7 @@ export default function Onboarding() {
 
           <div className="flex items-center gap-1.5" data-testid="text-step-indicator">
             <span className="text-sm font-semibold text-foreground">
-              {Math.round((currentStep / 3) * 100)}% of magic completed
+              {Math.round((currentStep / 4) * 100)}% of magic completed
             </span>
             <span className="text-sm font-semibold text-foreground/40">+</span>
           </div>
@@ -135,9 +157,92 @@ export default function Onboarding() {
               transition={{ duration: 0.3 }}
             >
               <h1 className="text-2xl font-semibold mb-2 text-foreground" data-testid="text-step1-title">
-                What are your main goals?
+                What describes you the best?
               </h1>
               <p className="text-sm text-foreground/60 mb-8" data-testid="text-step1-description">
+                Help us tailor your experience to match your professional journey
+              </p>
+
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                {roles.map((role) => {
+                  const isSelected = selectedRole === role.label;
+                  const isOthers = role.label === "Others";
+                  return (
+                    <button
+                      key={role.label}
+                      onClick={() => setSelectedRole(role.label)}
+                      className="px-4 py-3 rounded-2xl border-2 text-sm font-medium transition-all hover-elevate text-left flex items-center gap-3 relative"
+                      style={
+                        isSelected
+                          ? { backgroundColor: role.bgColor, borderColor: role.borderColor, color: 'hsl(var(--foreground))' }
+                          : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
+                      }
+                      data-testid={`button-role-${role.label.toLowerCase().replace(/[\s\/]/g, '-')}`}
+                    >
+                      <span className="text-2xl">{role.emoji}</span>
+                      <span className="flex-1">{role.label}</span>
+                      <AnimatePresence>
+                        {isSelected && (
+                          <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0, opacity: 0 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                          >
+                            <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <AnimatePresence>
+                {selectedRole === "Others" && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="mb-8"
+                  >
+                    <Input
+                      type="text"
+                      placeholder="Tell us your role..."
+                      value={customRole}
+                      onChange={(e) => setCustomRole(e.target.value)}
+                      className="w-full h-11 rounded-full border-2"
+                      data-testid="input-custom-role"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <Button
+                onClick={handleNext}
+                disabled={!canProceed()}
+                className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                data-testid="button-next"
+              >
+                Continue
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </motion.div>
+          )}
+
+          {currentStep === 2 && (
+            <motion.div
+              key="step2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h1 className="text-2xl font-semibold mb-2 text-foreground" data-testid="text-step2-title">
+                What are your main goals?
+              </h1>
+              <p className="text-sm text-foreground/60 mb-8" data-testid="text-step2-description">
                 Select all that apply to help us personalize your experience
               </p>
 
@@ -186,18 +291,18 @@ export default function Onboarding() {
             </motion.div>
           )}
 
-          {currentStep === 2 && (
+          {currentStep === 3 && (
             <motion.div
-              key="step2"
+              key="step3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h1 className="text-2xl font-semibold mb-2 text-foreground" data-testid="text-step2-title">
+              <h1 className="text-2xl font-semibold mb-2 text-foreground" data-testid="text-step3-title">
                 What's your experience level?
               </h1>
-              <p className="text-sm text-foreground/60 mb-8" data-testid="text-step2-description">
+              <p className="text-sm text-foreground/60 mb-8" data-testid="text-step3-description">
                 This helps us recommend the right features for you
               </p>
 
@@ -251,7 +356,7 @@ export default function Onboarding() {
 
               <div className="flex gap-3">
                 <Button
-                  onClick={() => setCurrentStep(1)}
+                  onClick={() => setCurrentStep(2)}
                   variant="outline"
                   className="h-11 text-base font-semibold rounded-full px-6"
                   data-testid="button-back"
@@ -271,18 +376,18 @@ export default function Onboarding() {
             </motion.div>
           )}
 
-          {currentStep === 3 && (
+          {currentStep === 4 && (
             <motion.div
-              key="step3"
+              key="step4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h1 className="text-2xl font-semibold mb-2 text-foreground" data-testid="text-step3-title">
+              <h1 className="text-2xl font-semibold mb-2 text-foreground" data-testid="text-step4-title">
                 Choose your top skills
               </h1>
-              <p className="text-sm text-foreground/60 mb-8" data-testid="text-step3-description">
+              <p className="text-sm text-foreground/60 mb-8" data-testid="text-step4-description">
                 Pick a few skills to get started.
               </p>
 
@@ -321,7 +426,7 @@ export default function Onboarding() {
 
               <div className="flex gap-3">
                 <Button
-                  onClick={() => setCurrentStep(2)}
+                  onClick={() => setCurrentStep(3)}
                   variant="outline"
                   className="h-11 text-base font-semibold rounded-full px-6"
                   data-testid="button-back"
