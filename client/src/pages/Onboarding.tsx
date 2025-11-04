@@ -74,38 +74,48 @@ export default function Onboarding() {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-6">
-      <div className="w-full max-w-2xl">
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-8">
+      <div className="w-full max-w-3xl">
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-10">
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex items-center gap-3">
                 <div
-                  className={`flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all ${
+                  className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all font-semibold ${
                     step === currentStep
-                      ? "border-foreground bg-foreground text-background"
+                      ? "text-white"
                       : step < currentStep
-                      ? "border-foreground bg-foreground text-background"
+                      ? "text-white"
                       : "border-border bg-transparent text-muted-foreground"
                   }`}
+                  style={
+                    step <= currentStep
+                      ? { backgroundColor: '#FF553E', borderColor: '#FF553E' }
+                      : {}
+                  }
                   data-testid={`stepper-${step}`}
                 >
                   {step < currentStep ? (
-                    <Check className="w-4 h-4" />
+                    <Check className="w-5 h-5" />
                   ) : (
-                    <span className="text-sm font-medium">{step}</span>
+                    <span className="text-sm">{step}</span>
                   )}
                 </div>
                 {step < 3 && (
-                  <div className={`h-0.5 w-12 transition-all ${
-                    step < currentStep ? "bg-foreground" : "bg-border"
-                  }`} />
+                  <div 
+                    className="h-0.5 w-16 transition-all"
+                    style={
+                      step < currentStep
+                        ? { backgroundColor: '#FF553E' }
+                        : { backgroundColor: 'hsl(var(--border))' }
+                    }
+                  />
                 )}
               </div>
             ))}
           </div>
 
-          <p className="text-sm text-muted-foreground mb-2" data-testid="text-step-indicator">
-            Step {currentStep}
+          <p className="text-sm font-medium text-muted-foreground mb-2" data-testid="text-step-indicator">
+            Step {currentStep} of 3
           </p>
         </div>
 
@@ -118,23 +128,34 @@ export default function Onboarding() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h1 className="text-4xl font-bold mb-4 text-foreground" data-testid="text-step1-title">
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-foreground" data-testid="text-step1-title">
                 What are your main goals?
               </h1>
-              <p className="text-lg text-foreground/60 mb-10" data-testid="text-step1-description">
+              <p className="text-lg sm:text-xl text-foreground/60 mb-12" data-testid="text-step1-description">
                 Select all that apply to help us personalize your experience
               </p>
 
-              <div className="flex flex-wrap gap-3 mb-12">
+              <div className="flex flex-wrap gap-3 mb-16">
                 {goals.map((goal) => (
                   <button
                     key={goal}
                     onClick={() => handleGoalToggle(goal)}
-                    className={`px-6 py-3 rounded-full border-2 text-base font-medium transition-all hover-elevate ${
+                    className="px-6 py-3.5 rounded-full border-2 text-base font-medium transition-all hover-elevate"
+                    style={
                       selectedGoals.includes(goal)
-                        ? "bg-foreground text-background border-foreground"
-                        : "bg-transparent text-foreground border-border"
-                    }`}
+                        ? { backgroundColor: '#FF553E', borderColor: '#FF553E', color: 'white' }
+                        : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
+                    }
+                    onMouseEnter={(e) => {
+                      if (selectedGoals.includes(goal)) {
+                        e.currentTarget.style.backgroundColor = '#E64935';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (selectedGoals.includes(goal)) {
+                        e.currentTarget.style.backgroundColor = '#FF553E';
+                      }
+                    }}
                     data-testid={`button-goal-${goal.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {goal}
@@ -145,7 +166,10 @@ export default function Onboarding() {
               <Button
                 onClick={handleNext}
                 disabled={!canProceed()}
-                className="w-full sm:w-auto min-w-[200px] h-12 text-base font-semibold rounded-full"
+                className="text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors w-full sm:w-auto whitespace-nowrap"
+                style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF553E'}
                 data-testid="button-next"
               >
                 Continue
@@ -162,23 +186,34 @@ export default function Onboarding() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h1 className="text-4xl font-bold mb-4 text-foreground" data-testid="text-step2-title">
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-foreground" data-testid="text-step2-title">
                 What's your experience level?
               </h1>
-              <p className="text-lg text-foreground/60 mb-10" data-testid="text-step2-description">
+              <p className="text-lg sm:text-xl text-foreground/60 mb-12" data-testid="text-step2-description">
                 This helps us recommend the right features for you
               </p>
 
-              <div className="flex flex-col gap-3 mb-12">
+              <div className="flex flex-col gap-3 mb-16">
                 {experienceLevels.map((level) => (
                   <button
                     key={level}
                     onClick={() => setSelectedExperience(level)}
-                    className={`px-6 py-4 rounded-full border-2 text-base font-medium transition-all hover-elevate text-left ${
+                    className="px-6 py-4 rounded-full border-2 text-base font-medium transition-all hover-elevate text-left"
+                    style={
                       selectedExperience === level
-                        ? "bg-foreground text-background border-foreground"
-                        : "bg-transparent text-foreground border-border"
-                    }`}
+                        ? { backgroundColor: '#FF553E', borderColor: '#FF553E', color: 'white' }
+                        : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
+                    }
+                    onMouseEnter={(e) => {
+                      if (selectedExperience === level) {
+                        e.currentTarget.style.backgroundColor = '#E64935';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (selectedExperience === level) {
+                        e.currentTarget.style.backgroundColor = '#FF553E';
+                      }
+                    }}
                     data-testid={`button-experience-${level.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {level}
@@ -186,11 +221,11 @@ export default function Onboarding() {
                 ))}
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   onClick={() => setCurrentStep(1)}
                   variant="outline"
-                  className="h-12 text-base font-semibold rounded-full px-8"
+                  className="h-14 sm:h-16 text-base sm:text-lg font-semibold rounded-full px-8 sm:px-10 order-2 sm:order-1"
                   data-testid="button-back"
                 >
                   Back
@@ -198,7 +233,10 @@ export default function Onboarding() {
                 <Button
                   onClick={handleNext}
                   disabled={!canProceed()}
-                  className="flex-1 sm:flex-initial sm:min-w-[200px] h-12 text-base font-semibold rounded-full"
+                  className="text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors w-full sm:flex-1 whitespace-nowrap order-1 sm:order-2"
+                  style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF553E'}
                   data-testid="button-next"
                 >
                   Continue
@@ -216,23 +254,34 @@ export default function Onboarding() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h1 className="text-4xl font-bold mb-4 text-foreground" data-testid="text-step3-title">
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-foreground" data-testid="text-step3-title">
                 Choose your top skills
               </h1>
-              <p className="text-lg text-foreground/60 mb-10" data-testid="text-step3-description">
+              <p className="text-lg sm:text-xl text-foreground/60 mb-12" data-testid="text-step3-description">
                 Pick a few skills to get started.
               </p>
 
-              <div className="flex flex-wrap gap-3 mb-12">
+              <div className="flex flex-wrap gap-3 mb-16">
                 {interests.map((interest) => (
                   <button
                     key={interest}
                     onClick={() => handleInterestToggle(interest)}
-                    className={`px-6 py-3 rounded-full border-2 text-base font-medium transition-all hover-elevate ${
+                    className="px-6 py-3.5 rounded-full border-2 text-base font-medium transition-all hover-elevate"
+                    style={
                       selectedInterests.includes(interest)
-                        ? "bg-foreground text-background border-foreground"
-                        : "bg-transparent text-foreground border-border"
-                    }`}
+                        ? { backgroundColor: '#FF553E', borderColor: '#FF553E', color: 'white' }
+                        : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
+                    }
+                    onMouseEnter={(e) => {
+                      if (selectedInterests.includes(interest)) {
+                        e.currentTarget.style.backgroundColor = '#E64935';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (selectedInterests.includes(interest)) {
+                        e.currentTarget.style.backgroundColor = '#FF553E';
+                      }
+                    }}
                     data-testid={`button-interest-${interest.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {interest}
@@ -240,11 +289,11 @@ export default function Onboarding() {
                 ))}
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   onClick={() => setCurrentStep(2)}
                   variant="outline"
-                  className="h-12 text-base font-semibold rounded-full px-8"
+                  className="h-14 sm:h-16 text-base sm:text-lg font-semibold rounded-full px-8 sm:px-10 order-2 sm:order-1"
                   data-testid="button-back"
                 >
                   Back
@@ -252,7 +301,10 @@ export default function Onboarding() {
                 <Button
                   onClick={handleNext}
                   disabled={!canProceed()}
-                  className="flex-1 sm:flex-initial sm:min-w-[200px] h-12 text-base font-semibold rounded-full"
+                  className="text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors w-full sm:flex-1 whitespace-nowrap order-1 sm:order-2"
+                  style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF553E'}
                   data-testid="button-complete"
                 >
                   Get Started
