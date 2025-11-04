@@ -190,7 +190,7 @@ export default function Onboarding() {
                             exit={{ scale: 0, opacity: 0 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
                           >
-                            <Check className="w-4 h-4" style={{ color: role.borderColor }} />
+                            <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
                           </motion.div>
                         )}
                       </AnimatePresence>
