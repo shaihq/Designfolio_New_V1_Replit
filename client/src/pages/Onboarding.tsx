@@ -286,15 +286,25 @@ export default function Onboarding() {
                 })}
               </div>
 
-              <Button
-                onClick={handleNext}
-                disabled={!canProceed()}
-                className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
-                data-testid="button-next"
-              >
-                Continue
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              <div className="flex gap-3">
+                <Button
+                  onClick={() => setCurrentStep(1)}
+                  variant="outline"
+                  className="h-11 text-base font-semibold rounded-full px-6"
+                  data-testid="button-back"
+                >
+                  Back
+                </Button>
+                <Button
+                  onClick={handleNext}
+                  disabled={!canProceed()}
+                  className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                  data-testid="button-next"
+                >
+                  Continue
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </div>
             </motion.div>
           )}
 
