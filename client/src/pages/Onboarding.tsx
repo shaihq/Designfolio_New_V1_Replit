@@ -76,47 +76,46 @@ export default function Onboarding() {
     <div className="min-h-screen bg-background flex items-center justify-center p-6">
       <div className="w-full max-w-2xl">
         <div className="mb-8">
-          <div className="flex items-center gap-2 mb-6">
-            {[1, 2, 3].map((step) => (
-              <div key={step} className="flex items-center gap-2">
+          <div className="flex gap-1 mb-3" data-testid="progress-bar">
+            {[1, 2, 3].map((step) => {
+              const isCompleted = step < currentStep;
+              const isCurrent = step === currentStep;
+              
+              let gradient = '';
+              if (step === 1) {
+                gradient = isCompleted || isCurrent
+                  ? 'linear-gradient(90deg, #FFA726 0%, #FF6F00 100%)'
+                  : 'linear-gradient(90deg, #E0E0E0 0%, #BDBDBD 100%)';
+              } else if (step === 2) {
+                gradient = isCompleted || isCurrent
+                  ? 'linear-gradient(90deg, #EC407A 0%, #AB47BC 100%)'
+                  : 'linear-gradient(90deg, #E0E0E0 0%, #BDBDBD 100%)';
+              } else {
+                gradient = isCompleted || isCurrent
+                  ? 'linear-gradient(90deg, #42A5F5 0%, #1E88E5 100%)'
+                  : 'linear-gradient(90deg, #E0E0E0 0%, #BDBDBD 100%)';
+              }
+              
+              return (
                 <div
-                  className={`flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all ${
-                    step === currentStep
-                      ? "text-white"
-                      : step < currentStep
-                      ? "text-white"
-                      : "border-border bg-transparent text-muted-foreground"
-                  }`}
-                  style={
-                    step <= currentStep
-                      ? { backgroundColor: '#FF553E', borderColor: '#FF553E' }
-                      : {}
-                  }
+                  key={step}
+                  className="flex-1 h-2 rounded-full transition-all duration-500 ease-out"
+                  style={{
+                    background: gradient,
+                    opacity: isCompleted || isCurrent ? 1 : 0.3,
+                  }}
                   data-testid={`stepper-${step}`}
-                >
-                  {step < currentStep ? (
-                    <Check className="w-4 h-4" />
-                  ) : (
-                    <span className="text-xs font-medium">{step}</span>
-                  )}
-                </div>
-                {step < 3 && (
-                  <div 
-                    className="h-0.5 w-12 transition-all"
-                    style={
-                      step < currentStep
-                        ? { backgroundColor: '#FF553E' }
-                        : { backgroundColor: 'hsl(var(--border))' }
-                    }
-                  />
-                )}
-              </div>
-            ))}
+                />
+              );
+            })}
           </div>
 
-          <p className="text-xs text-muted-foreground" data-testid="text-step-indicator">
-            Step {currentStep} of 3
-          </p>
+          <div className="flex items-center gap-1.5" data-testid="text-step-indicator">
+            <span className="text-sm font-semibold text-foreground">
+              {Math.round((currentStep / 3) * 100)}% of magic completed
+            </span>
+            <span className="text-sm font-semibold text-foreground/40">+</span>
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
