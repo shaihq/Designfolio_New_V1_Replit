@@ -23,11 +23,9 @@ export default function Onboarding() {
   ];
 
   const experienceLevels = [
-    "Just starting out",
-    "Some experience",
-    "Intermediate",
-    "Advanced",
-    "Expert"
+    { label: "Just starting out", image: "/startingout.png" },
+    { label: "Intermediate", image: "/intermediate.png" },
+    { label: "Advanced", image: "/advanced.png" }
   ];
 
   const interests = [
@@ -203,21 +201,37 @@ export default function Onboarding() {
                 This helps us recommend the right features for you
               </p>
 
-              <div className="flex flex-col gap-2 mb-8">
+              <div className="flex flex-col gap-3 mb-8">
                 {experienceLevels.map((level) => {
-                  const isSelected = selectedExperience === level;
+                  const isSelected = selectedExperience === level.label;
                   return (
-                    <button
-                      key={level}
-                      onClick={() => setSelectedExperience(level)}
-                      className="px-5 py-3 rounded-full border-2 text-sm font-medium transition-all hover-elevate text-left flex items-center gap-2"
+                    <motion.button
+                      key={level.label}
+                      onClick={() => setSelectedExperience(level.label)}
+                      className="px-6 py-4 rounded-2xl border-2 text-base font-medium transition-all hover-elevate text-left flex items-center gap-4 relative overflow-hidden"
                       style={
                         isSelected
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
-                      data-testid={`button-experience-${level.toLowerCase().replace(/\s+/g, '-')}`}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.98 }}
+                      data-testid={`button-experience-${level.label.toLowerCase().replace(/\s+/g, '-')}`}
                     >
+                      <motion.img 
+                        src={level.image} 
+                        alt={level.label}
+                        className="w-12 h-12 object-contain"
+                        animate={isSelected ? {
+                          scale: [1, 1.1, 1],
+                          rotate: [0, 5, -5, 0]
+                        } : {}}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeInOut"
+                        }}
+                      />
+                      <span className="flex-1">{level.label}</span>
                       <AnimatePresence>
                         {isSelected && (
                           <motion.div
@@ -226,12 +240,11 @@ export default function Onboarding() {
                             exit={{ scale: 0, opacity: 0 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
                           >
-                            <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
+                            <Check className="w-5 h-5" style={{ color: '#FF553E' }} />
                           </motion.div>
                         )}
                       </AnimatePresence>
-                      <span>{level}</span>
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
