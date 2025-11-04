@@ -144,7 +144,19 @@ export default function Onboarding() {
             <span className="text-sm font-semibold text-foreground">
               {Math.round((currentStep / 4) * 100)}% of magic completed
             </span>
-            <img src="/heartonfire.png" alt="heart on fire" className="w-4 h-4" />
+            <motion.img 
+              key={currentStep}
+              src="/heartonfire.png" 
+              alt="heart on fire" 
+              className="w-6 h-6"
+              initial={{ scale: 0 }}
+              animate={{ scale: [0, 1.3, 1] }}
+              transition={{ 
+                duration: 0.5,
+                times: [0, 0.6, 1],
+                ease: [0.34, 1.56, 0.64, 1]
+              }}
+            />
           </div>
         </div>
 
