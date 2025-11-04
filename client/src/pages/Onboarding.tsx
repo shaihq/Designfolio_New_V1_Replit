@@ -144,21 +144,36 @@ export default function Onboarding() {
               </p>
 
               <div className="flex flex-wrap gap-2 mb-8">
-                {goals.map((goal) => (
-                  <button
-                    key={goal}
-                    onClick={() => handleGoalToggle(goal)}
-                    className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate"
-                    style={
-                      selectedGoals.includes(goal)
-                        ? { backgroundColor: '#FF553E', borderColor: '#FF553E', color: 'white' }
-                        : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
-                    }
-                    data-testid={`button-goal-${goal.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    {goal}
-                  </button>
-                ))}
+                {goals.map((goal) => {
+                  const isSelected = selectedGoals.includes(goal);
+                  return (
+                    <button
+                      key={goal}
+                      onClick={() => handleGoalToggle(goal)}
+                      className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate relative flex items-center gap-2"
+                      style={
+                        isSelected
+                          ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
+                          : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
+                      }
+                      data-testid={`button-goal-${goal.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
+                      <AnimatePresence>
+                        {isSelected && (
+                          <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0, opacity: 0 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                          >
+                            <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                      <span>{goal}</span>
+                    </button>
+                  );
+                })}
               </div>
 
               <Button
@@ -189,21 +204,36 @@ export default function Onboarding() {
               </p>
 
               <div className="flex flex-col gap-2 mb-8">
-                {experienceLevels.map((level) => (
-                  <button
-                    key={level}
-                    onClick={() => setSelectedExperience(level)}
-                    className="px-5 py-3 rounded-full border-2 text-sm font-medium transition-all hover-elevate text-left"
-                    style={
-                      selectedExperience === level
-                        ? { backgroundColor: '#FF553E', borderColor: '#FF553E', color: 'white' }
-                        : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
-                    }
-                    data-testid={`button-experience-${level.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    {level}
-                  </button>
-                ))}
+                {experienceLevels.map((level) => {
+                  const isSelected = selectedExperience === level;
+                  return (
+                    <button
+                      key={level}
+                      onClick={() => setSelectedExperience(level)}
+                      className="px-5 py-3 rounded-full border-2 text-sm font-medium transition-all hover-elevate text-left flex items-center gap-2"
+                      style={
+                        isSelected
+                          ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
+                          : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
+                      }
+                      data-testid={`button-experience-${level.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
+                      <AnimatePresence>
+                        {isSelected && (
+                          <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0, opacity: 0 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                          >
+                            <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                      <span>{level}</span>
+                    </button>
+                  );
+                })}
               </div>
 
               <div className="flex gap-3">
@@ -244,21 +274,36 @@ export default function Onboarding() {
               </p>
 
               <div className="flex flex-wrap gap-2 mb-8">
-                {interests.map((interest) => (
-                  <button
-                    key={interest}
-                    onClick={() => handleInterestToggle(interest)}
-                    className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate"
-                    style={
-                      selectedInterests.includes(interest)
-                        ? { backgroundColor: '#FF553E', borderColor: '#FF553E', color: 'white' }
-                        : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
-                    }
-                    data-testid={`button-interest-${interest.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    {interest}
-                  </button>
-                ))}
+                {interests.map((interest) => {
+                  const isSelected = selectedInterests.includes(interest);
+                  return (
+                    <button
+                      key={interest}
+                      onClick={() => handleInterestToggle(interest)}
+                      className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate relative flex items-center gap-2"
+                      style={
+                        isSelected
+                          ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
+                          : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
+                      }
+                      data-testid={`button-interest-${interest.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
+                      <AnimatePresence>
+                        {isSelected && (
+                          <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0, opacity: 0 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                          >
+                            <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                      <span>{interest}</span>
+                    </button>
+                  );
+                })}
               </div>
 
               <div className="flex gap-3">
