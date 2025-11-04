@@ -144,7 +144,7 @@ export default function Onboarding() {
             <span className="text-sm font-semibold text-foreground">
               {Math.round((currentStep / 4) * 100)}% of magic completed
             </span>
-            <span className="text-sm font-semibold text-foreground/40">+</span>
+            <img src="/heartonfire.png" alt="heart on fire" className="w-4 h-4" />
           </div>
         </div>
 
