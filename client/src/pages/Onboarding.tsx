@@ -84,11 +84,11 @@ export default function Onboarding() {
               
               let gradient = '';
               if (step === 1) {
-                gradient = 'linear-gradient(90deg, #FFA726 0%, #FF6F00 100%)';
+                gradient = 'linear-gradient(90deg, #FF9A56 0%, #FF7B9C 100%)';
               } else if (step === 2) {
-                gradient = 'linear-gradient(90deg, #EC407A 0%, #AB47BC 100%)';
+                gradient = 'linear-gradient(90deg, #FF7B9C 0%, #E374C8 100%)';
               } else {
-                gradient = 'linear-gradient(90deg, #42A5F5 0%, #1E88E5 100%)';
+                gradient = 'linear-gradient(90deg, #E374C8 0%, #B47EE8 100%)';
               }
               
               return (
