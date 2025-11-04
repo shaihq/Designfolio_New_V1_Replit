@@ -3,6 +3,7 @@ import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { ArrowRight, Check } from "lucide-react";
 
 type OnboardingStep = 1 | 2 | 3 | 4;
@@ -189,7 +190,7 @@ export default function Onboarding() {
                             exit={{ scale: 0, opacity: 0 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
                           >
-                            <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
+                            <Check className="w-4 h-4" style={{ color: role.borderColor }} />
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -205,16 +206,22 @@ export default function Onboarding() {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="mb-8"
+                    className="mb-8 space-y-2"
                   >
-                    <Input
-                      type="text"
-                      placeholder="Tell us your role..."
-                      value={customRole}
-                      onChange={(e) => setCustomRole(e.target.value)}
-                      className="w-full h-11 rounded-full border-2"
-                      data-testid="input-custom-role"
-                    />
+                    <Label htmlFor="custom-role" className="text-sm font-medium text-foreground">
+                      Your Role
+                    </Label>
+                    <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                      <Input
+                        id="custom-role"
+                        type="text"
+                        placeholder="Tell us your role..."
+                        value={customRole}
+                        onChange={(e) => setCustomRole(e.target.value)}
+                        className="border-0 bg-transparent h-11 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        data-testid="input-custom-role"
+                      />
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
