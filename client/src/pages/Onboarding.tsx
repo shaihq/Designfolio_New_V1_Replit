@@ -80,32 +80,41 @@ export default function Onboarding() {
             {[1, 2, 3].map((step) => {
               const isCompleted = step < currentStep;
               const isCurrent = step === currentStep;
+              const isActive = isCompleted || isCurrent;
               
               let gradient = '';
               if (step === 1) {
-                gradient = isCompleted || isCurrent
-                  ? 'linear-gradient(90deg, #FFA726 0%, #FF6F00 100%)'
-                  : 'linear-gradient(90deg, #E0E0E0 0%, #BDBDBD 100%)';
+                gradient = 'linear-gradient(90deg, #FFA726 0%, #FF6F00 100%)';
               } else if (step === 2) {
-                gradient = isCompleted || isCurrent
-                  ? 'linear-gradient(90deg, #EC407A 0%, #AB47BC 100%)'
-                  : 'linear-gradient(90deg, #E0E0E0 0%, #BDBDBD 100%)';
+                gradient = 'linear-gradient(90deg, #EC407A 0%, #AB47BC 100%)';
               } else {
-                gradient = isCompleted || isCurrent
-                  ? 'linear-gradient(90deg, #42A5F5 0%, #1E88E5 100%)'
-                  : 'linear-gradient(90deg, #E0E0E0 0%, #BDBDBD 100%)';
+                gradient = 'linear-gradient(90deg, #42A5F5 0%, #1E88E5 100%)';
               }
               
               return (
                 <div
                   key={step}
-                  className="flex-1 h-2 rounded-full transition-all duration-500 ease-out"
+                  className="flex-1 h-2 rounded-full overflow-hidden"
                   style={{
-                    background: gradient,
-                    opacity: isCompleted || isCurrent ? 1 : 0.3,
+                    backgroundColor: '#E5E5E5',
                   }}
                   data-testid={`stepper-${step}`}
-                />
+                >
+                  <motion.div
+                    className="h-full rounded-full"
+                    style={{
+                      background: gradient,
+                    }}
+                    initial={{ width: '0%' }}
+                    animate={{ 
+                      width: isActive ? '100%' : '0%'
+                    }}
+                    transition={{ 
+                      duration: 0.6,
+                      ease: [0.4, 0, 0.2, 1]
+                    }}
+                  />
+                </div>
               );
             })}
           </div>
