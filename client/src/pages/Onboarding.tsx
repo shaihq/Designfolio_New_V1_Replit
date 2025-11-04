@@ -71,8 +71,19 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-6">
-      <div className="w-full max-w-2xl">
+    <div className="min-h-screen bg-background flex items-center justify-center p-6 relative overflow-hidden">
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `
+            radial-gradient(ellipse 80% 60% at center, transparent 20%, hsl(var(--background)) 70%),
+            linear-gradient(to right, hsl(var(--foreground) / 0.08) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--foreground) / 0.08) 1px, transparent 1px)
+          `,
+          backgroundSize: 'cover, 80px 80px, 80px 80px'
+        }}
+      />
+      <div className="w-full max-w-2xl relative z-10">
         <div className="mb-8">
           <div className="flex gap-1 mb-3" data-testid="progress-bar">
             {[1, 2, 3].map((step) => {
