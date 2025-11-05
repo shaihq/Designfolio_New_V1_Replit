@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { 
   Sparkles, 
   Share2, 
@@ -10,7 +11,8 @@ import {
   Plus,
   Link as LinkIcon,
   Sparkle,
-  Pencil
+  Pencil,
+  Menu
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -52,8 +54,8 @@ export default function Dashboard() {
                 </svg>
               </Link>
 
-              {/* Nav Actions */}
-              <div className="flex items-center gap-3">
+              {/* Nav Actions - Desktop */}
+              <div className="hidden md:flex items-center gap-3">
                 <Button 
                   variant="outline" 
                   size="icon"
@@ -90,6 +92,72 @@ export default function Dashboard() {
                     {user.name.charAt(0).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
+              </div>
+
+              {/* Mobile Menu */}
+              <div className="md:hidden">
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      size="icon"
+                      className="rounded-full h-11 w-11"
+                      data-testid="button-menu"
+                    >
+                      <Menu className="w-5 h-5" />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent className="w-80">
+                    <div className="flex flex-col gap-4 mt-8">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Avatar className="w-11 h-11" data-testid="avatar-user-mobile">
+                          <AvatarImage src={user.avatar} alt={user.name} />
+                          <AvatarFallback className="text-base" style={{ backgroundColor: '#FF553E', color: '#FFFFFF' }}>
+                            {user.name.charAt(0).toUpperCase()}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-semibold">{user.name}</div>
+                          <div className="text-sm text-foreground/50">{user.role}</div>
+                        </div>
+                      </div>
+                      
+                      <Button 
+                        className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors w-full justify-center"
+                        data-testid="button-publish-site-mobile"
+                      >
+                        Publish Site
+                      </Button>
+                      
+                      <div className="border-t pt-4 flex flex-col gap-2">
+                        <Button 
+                          variant="outline" 
+                          className="rounded-full h-11 w-full justify-start gap-3"
+                          data-testid="button-insights-mobile"
+                        >
+                          <Sparkles className="w-5 h-5" />
+                          <span>Insights</span>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="rounded-full h-11 w-full justify-start gap-3"
+                          data-testid="button-notifications-mobile"
+                        >
+                          <Bell className="w-5 h-5" />
+                          <span>Notifications</span>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="rounded-full h-11 w-full justify-start gap-3"
+                          data-testid="button-share-mobile"
+                        >
+                          <Share2 className="w-5 h-5" />
+                          <span>Share</span>
+                        </Button>
+                      </div>
+                    </div>
+                  </SheetContent>
+                </Sheet>
               </div>
             </div>
           </Card>
