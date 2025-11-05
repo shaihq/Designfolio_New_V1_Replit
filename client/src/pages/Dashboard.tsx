@@ -10,7 +10,8 @@ import {
   Bell, 
   Plus,
   Link as LinkIcon,
-  Sparkle
+  Sparkle,
+  Pencil
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -107,7 +108,7 @@ export default function Dashboard() {
                 className="absolute top-0 right-0 rounded-full"
                 data-testid="button-edit-profile"
               >
-                <LinkIcon className="w-5 h-5" />
+                <Pencil className="w-5 h-5" />
               </Button>
 
               {/* Profile Info */}
