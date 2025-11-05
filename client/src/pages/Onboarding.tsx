@@ -25,6 +25,7 @@ export default function Onboarding() {
     { label: "Growth Marketers", emoji: "📈", bgColor: "#D5F5E3", borderColor: "#A3E4C0" },
     { label: "Brand / Content Strategists", emoji: "✍️", bgColor: "#FFF9E5", borderColor: "#FFECB3" },
     { label: "Graphic Designers", emoji: "🖌️", bgColor: "#F0E5FF", borderColor: "#D9B3FF" },
+    { label: "Founder", emoji: "💡", bgColor: "#FFF0E5", borderColor: "#FFD4A3" },
     { label: "Others", emoji: "✨", bgColor: "#F5F5F5", borderColor: "#D9D9D9" }
   ];
 
@@ -249,17 +250,15 @@ export default function Onboarding() {
                 )}
               </AnimatePresence>
 
-              {selectedRole === "Others" && (
-                <Button
-                  onClick={handleNext}
-                  disabled={!canProceed()}
-                  className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
-                  data-testid="button-next"
-                >
-                  Continue
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              )}
+              <Button
+                onClick={handleNext}
+                disabled={!canProceed()}
+                className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                data-testid="button-next"
+              >
+                Continue
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
             </motion.div>
           )}
 
@@ -326,14 +325,25 @@ export default function Onboarding() {
                 })}
               </div>
 
-              <Button
-                onClick={() => setCurrentStep(1)}
-                variant="outline"
-                className="h-11 text-base font-semibold rounded-full px-6"
-                data-testid="button-back"
-              >
-                Back
-              </Button>
+              <div className="flex gap-3">
+                <Button
+                  onClick={() => setCurrentStep(1)}
+                  variant="outline"
+                  className="h-11 text-base font-semibold rounded-full px-6"
+                  data-testid="button-back"
+                >
+                  Back
+                </Button>
+                <Button
+                  onClick={handleNext}
+                  disabled={!canProceed()}
+                  className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                  data-testid="button-next"
+                >
+                  Continue
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </div>
             </motion.div>
           )}
 
@@ -400,14 +410,25 @@ export default function Onboarding() {
                 })}
               </div>
 
-              <Button
-                onClick={() => setCurrentStep(2)}
-                variant="outline"
-                className="h-11 text-base font-semibold rounded-full px-6"
-                data-testid="button-back"
-              >
-                Back
-              </Button>
+              <div className="flex gap-3">
+                <Button
+                  onClick={() => setCurrentStep(2)}
+                  variant="outline"
+                  className="h-11 text-base font-semibold rounded-full px-6"
+                  data-testid="button-back"
+                >
+                  Back
+                </Button>
+                <Button
+                  onClick={handleNext}
+                  disabled={!canProceed()}
+                  className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                  data-testid="button-next"
+                >
+                  Continue
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </div>
             </motion.div>
           )}
 
