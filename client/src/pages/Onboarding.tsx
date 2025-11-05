@@ -18,16 +18,16 @@ export default function Onboarding() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
   const roles = [
-    { label: "Product Designers", emoji: "🎨", bgColor: "#FFE5E5", borderColor: "#FFB3B3" },
-    { label: "Developer / Engineer", emoji: "💻", bgColor: "#E0F2FF", borderColor: "#B3D9FF" },
-    { label: "Data Scientists", emoji: "📊", bgColor: "#F3E5FF", borderColor: "#D9B3FF" },
-    { label: "No-Code Makers", emoji: "🚀", bgColor: "#FFE8D5", borderColor: "#FFCF9F" },
-    { label: "Growth Marketers", emoji: "📈", bgColor: "#D5F5E3", borderColor: "#A3E4C0" },
-    { label: "Brand / Content Strategists", emoji: "✍️", bgColor: "#FFF9E5", borderColor: "#FFECB3" },
-    { label: "Graphic Designers", emoji: "🖌️", bgColor: "#F0E5FF", borderColor: "#D9B3FF" },
-    { label: "Founder", emoji: "💡", bgColor: "#FFF0E5", borderColor: "#FFD4A3" },
-    { label: "Educator/Teacher", emoji: "👨‍🏫", bgColor: "#E8F5E9", borderColor: "#A5D6A7" },
-    { label: "Others", emoji: "✨", bgColor: "#F5F5F5", borderColor: "#D9D9D9" }
+    { label: "Product Designers", emoji: "🎨", bgColor: "#FFF5F0", borderColor: "#FF553E" },
+    { label: "Developer / Engineer", emoji: "💻", bgColor: "#FFF5F0", borderColor: "#FF553E" },
+    { label: "Data Scientists", emoji: "📊", bgColor: "#FFF5F0", borderColor: "#FF553E" },
+    { label: "No-Code Makers", emoji: "🚀", bgColor: "#FFF5F0", borderColor: "#FF553E" },
+    { label: "Growth Marketers", emoji: "📈", bgColor: "#FFF5F0", borderColor: "#FF553E" },
+    { label: "Brand / Content Strategists", emoji: "✍️", bgColor: "#FFF5F0", borderColor: "#FF553E" },
+    { label: "Graphic Designers", emoji: "🖌️", bgColor: "#FFF5F0", borderColor: "#FF553E" },
+    { label: "Founder", emoji: "💡", bgColor: "#FFF5F0", borderColor: "#FF553E" },
+    { label: "Educator/Teacher", emoji: "👨‍🏫", bgColor: "#FFF5F0", borderColor: "#FF553E" },
+    { label: "Others", emoji: "✨", bgColor: "#FFF5F0", borderColor: "#FF553E" }
   ];
 
   const goals = [
