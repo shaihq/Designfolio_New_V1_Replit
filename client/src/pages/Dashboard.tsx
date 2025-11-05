@@ -143,14 +143,14 @@ export default function Dashboard() {
           </Card>
 
           {/* My Works Section */}
-          <div>
-            <h2 className="text-2xl font-semibold mb-6 px-1" data-testid="text-section-title">
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
+            <h2 className="text-2xl font-semibold mb-6" data-testid="text-section-title">
               My works
             </h2>
             
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-16" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
+            <div className="bg-muted/30 rounded-2xl p-16" style={{ boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.03), inset 0 2px 8px rgba(0,0,0,0.04)' }}>
               <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
-                <div className="w-20 h-20 rounded-2xl bg-muted/50 flex items-center justify-center mb-8">
+                <div className="w-20 h-20 rounded-2xl bg-background flex items-center justify-center mb-8">
                   <FileText className="w-10 h-10 text-muted-foreground" />
                 </div>
                 
@@ -180,8 +180,8 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
-            </Card>
-          </div>
+            </div>
+          </Card>
         </main>
       </div>
     </div>
