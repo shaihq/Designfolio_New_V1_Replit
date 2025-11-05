@@ -161,19 +161,19 @@ export default function Dashboard() {
                 boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.08), inset 0 -3px 8px 0 rgb(0 0 0 / 0.05)'
               }}
             >
-              <div className="flex flex-col items-center justify-center text-center max-w-md mx-auto">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-50 to-pink-50 border border-border/40 flex items-center justify-center mb-6">
-                  <FileText className="w-9 h-9 text-foreground/70" />
+              <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
+                <div className="w-20 h-20 rounded-2xl bg-background flex items-center justify-center mb-6">
+                  <FileText className="w-10 h-10 text-muted-foreground" />
                 </div>
                 
-                <h3 className="text-2xl font-semibold mb-2 text-foreground" data-testid="text-empty-state-title">
+                <h3 className="text-2xl font-semibold mb-2" data-testid="text-empty-state-title">
                   Upload your first case study
                 </h3>
-                <p className="text-foreground/50 mb-8" data-testid="text-empty-state-description">
+                <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
                   Show off your best work
                 </p>
                 
-                <div className="flex gap-3">
+                <div className="flex gap-4">
                   <Button 
                     className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
                     data-testid="button-add-case-study"
@@ -181,14 +181,15 @@ export default function Dashboard() {
                     <Plus className="w-5 h-5" />
                     Add case study
                   </Button>
-                  <Button 
-                    variant="outline"
-                    className="rounded-full h-11 px-6 text-base font-medium flex items-center gap-2"
+                  <div 
+                    className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
                     data-testid="button-write-using-ai"
                   >
-                    <Sparkles className="w-5 h-5" />
-                    Write using AI
-                  </Button>
+                    <Sparkles className="w-5 h-5 text-foreground" />
+                    <span className="text-base font-medium text-foreground">
+                      Write using AI
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
