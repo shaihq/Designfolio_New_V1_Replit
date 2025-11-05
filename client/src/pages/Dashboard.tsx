@@ -30,12 +30,12 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-6">
         {/* Floating Navbar */}
-        <div className="pt-4 pb-4">
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm px-6 py-3">
+        <div className="pt-6 pb-6">
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm px-8 py-4">
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link href="/" className="cursor-pointer" data-testid="link-home">
-                <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-6 w-auto" data-testid="logo-icon">
+                <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto" data-testid="logo-icon">
                   <path d="M15.4028 0.779664C15.6377 -0.259891 17.1189 -0.259886 17.3537 0.779669L18.9775 7.96851C19.1297 8.64225 19.9029 8.9625 20.4869 8.59371L26.7184 4.65866C27.6195 4.08962 28.6669 5.137 28.0979 6.03812L24.1628 12.2696C23.794 12.8537 24.1143 13.6268 24.788 13.779L31.9769 15.4028C33.0164 15.6377 33.0164 17.1189 31.9769 17.3537L24.788 18.9775C24.1143 19.1297 23.794 19.9029 24.1628 20.4869L28.0979 26.7184C28.6669 27.6195 27.6195 28.6669 26.7184 28.0979L20.4869 24.1628C19.9029 23.794 19.1297 24.1143 18.9775 24.788L17.3537 31.9769C17.1189 33.0164 15.6377 33.0164 15.4028 31.9769L13.779 24.788C13.6268 24.1143 12.8537 23.794 12.2696 24.1628L6.03812 28.0979C5.137 28.6669 4.08963 27.6195 4.65866 26.7184L8.59371 20.4869C8.9625 19.9029 8.64225 19.1297 7.96851 18.9775L0.779664 17.3537C-0.259891 17.1189 -0.259886 15.6377 0.779669 15.4028L7.96851 13.779C8.64225 13.6268 8.9625 12.8537 8.59371 12.2696L4.65866 6.03812C4.08962 5.137 5.137 4.08963 6.03812 4.65866L12.2696 8.59371C12.8537 8.9625 13.6268 8.64225 13.779 7.96851L15.4028 0.779664Z" fill="#FF553E"/>
                   <path d="M152.495 17.7614C152.495 13.6364 155.72 10.3864 159.745 10.3864C163.27 10.3864 165.645 12.6364 165.645 15.9864C165.645 20.1114 162.445 23.3614 158.395 23.3614C154.87 23.3614 152.495 21.1114 152.495 17.7614ZM155.495 17.5364C155.495 19.4864 156.67 20.7614 158.57 20.7614C160.82 20.7614 162.645 18.7364 162.645 16.2114C162.645 14.2364 161.47 12.9614 159.595 12.9614C157.345 12.9614 155.495 14.9864 155.495 17.5364Z" fill="currentColor"/>
                   <path d="M150.066 8.21142C149.166 8.21142 148.541 7.53642 148.541 6.68643C148.541 5.58642 149.516 4.58643 150.641 4.58643C151.516 4.58643 152.166 5.23642 152.166 6.11143C152.166 7.18642 151.166 8.21142 150.066 8.21142ZM146.266 23.0614L148.216 10.7114H151.141L149.191 23.0614H146.266Z" fill="currentColor"/>
@@ -52,30 +52,30 @@ export default function Dashboard() {
               </Link>
 
               {/* Nav Actions */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <Button 
                   variant="ghost" 
                   size="icon"
-                  className="rounded-full w-9 h-9"
+                  className="rounded-full"
                   data-testid="button-insights"
                 >
-                  <Sparkles className="w-4 h-4" />
+                  <Sparkles className="w-5 h-5" />
                 </Button>
                 <Button 
                   variant="ghost" 
                   size="icon"
-                  className="rounded-full w-9 h-9"
+                  className="rounded-full"
                   data-testid="button-notifications"
                 >
-                  <Bell className="w-4 h-4" />
+                  <Bell className="w-5 h-5" />
                 </Button>
                 <Button 
                   variant="ghost" 
                   size="icon"
-                  className="rounded-full w-9 h-9"
+                  className="rounded-full"
                   data-testid="button-share"
                 >
-                  <Share2 className="w-4 h-4" />
+                  <Share2 className="w-5 h-5" />
                 </Button>
                 <Button 
                   className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
@@ -83,9 +83,9 @@ export default function Dashboard() {
                 >
                   Publish Site
                 </Button>
-                <Avatar className="w-9 h-9" data-testid="avatar-user">
+                <Avatar className="w-11 h-11" data-testid="avatar-user">
                   <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="bg-primary text-primary-foreground text-sm">
+                  <AvatarFallback className="bg-primary text-primary-foreground text-base">
                     {user.name.charAt(0).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
@@ -95,34 +95,34 @@ export default function Dashboard() {
         </div>
 
         {/* Main Content */}
-        <main className="py-6">
+        <main className="py-8">
           {/* Profile Card */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm p-6 mb-6">
-            <div className="flex items-start gap-6">
-              <Avatar className="w-24 h-24 rounded-2xl" data-testid="avatar-profile">
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm p-8 mb-8">
+            <div className="flex items-start gap-8">
+              <Avatar className="w-32 h-32 rounded-2xl" data-testid="avatar-profile">
                 <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="bg-gradient-to-br from-orange-400 to-pink-400 text-white text-3xl font-semibold rounded-2xl">
+                <AvatarFallback className="bg-gradient-to-br from-orange-400 to-pink-400 text-white text-4xl font-semibold rounded-2xl">
                   {user.name.charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               
               <div className="flex-1">
-                <div className="flex items-start justify-between mb-3">
+                <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h1 className="text-3xl font-semibold mb-1 font-heading" data-testid="text-user-name">
+                    <h1 className="text-4xl font-semibold mb-2 font-heading" data-testid="text-user-name">
                       {user.name}
                     </h1>
-                    <p className="text-sm text-foreground/60" data-testid="text-user-role">
+                    <p className="text-base text-foreground/60" data-testid="text-user-role">
                       {user.role}
                     </p>
                   </div>
                   <Button 
                     variant="ghost" 
                     size="icon"
-                    className="rounded-full w-8 h-8"
+                    className="rounded-full"
                     data-testid="button-copy-link"
                   >
-                    <LinkIcon className="w-4 h-4" />
+                    <LinkIcon className="w-5 h-5" />
                   </Button>
                 </div>
                 
@@ -131,7 +131,7 @@ export default function Dashboard() {
                     <Badge 
                       key={index} 
                       variant="secondary"
-                      className="px-3 py-1 rounded-full text-xs font-normal"
+                      className="px-4 py-1.5 rounded-full text-sm font-normal"
                       data-testid={`badge-category-${index}`}
                     >
                       {category}
@@ -144,24 +144,24 @@ export default function Dashboard() {
 
           {/* My Works Section */}
           <div>
-            <h2 className="text-lg font-semibold mb-4 px-1" data-testid="text-section-title">
+            <h2 className="text-2xl font-semibold mb-6 px-1" data-testid="text-section-title">
               My works
             </h2>
             
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm p-12">
-              <div className="flex flex-col items-center justify-center text-center max-w-md mx-auto">
-                <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center mb-6">
-                  <FileText className="w-8 h-8 text-muted-foreground" />
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm p-16">
+              <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
+                <div className="w-20 h-20 rounded-2xl bg-muted/50 flex items-center justify-center mb-8">
+                  <FileText className="w-10 h-10 text-muted-foreground" />
                 </div>
                 
-                <h3 className="text-lg font-semibold mb-2" data-testid="text-empty-state-title">
+                <h3 className="text-2xl font-semibold mb-3" data-testid="text-empty-state-title">
                   Upload your first case study
                 </h3>
-                <p className="text-sm text-foreground/60 mb-8" data-testid="text-empty-state-description">
+                <p className="text-base text-foreground/60 mb-10" data-testid="text-empty-state-description">
                   Show off your best work
                 </p>
                 
-                <div className="flex gap-3">
+                <div className="flex gap-4">
                   <Button 
                     className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
                     data-testid="button-add-case-study"
@@ -170,7 +170,7 @@ export default function Dashboard() {
                     Add case study
                   </Button>
                   <div 
-                    className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                    className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
                     data-testid="button-write-using-ai"
                   >
                     <Sparkles className="w-5 h-5 text-foreground" />
