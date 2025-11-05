@@ -99,18 +99,18 @@ export default function Dashboard() {
         {/* Main Content */}
         <main className="pb-6">
           {/* Profile Card */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mb-6" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
-            <div className="relative">
-              {/* Edit Button - Top Right */}
-              <Button 
-                variant="ghost" 
-                size="icon"
-                className="absolute top-0 right-0 rounded-full"
-                data-testid="button-edit-profile"
-              >
-                <Pencil className="w-5 h-5" />
-              </Button>
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mb-6 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
+            {/* Edit Button - Top Right */}
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="absolute top-4 right-4 rounded-full"
+              data-testid="button-edit-profile"
+            >
+              <Pencil className="w-5 h-5" />
+            </Button>
 
+            <div>
               {/* Profile Info */}
               <div className="flex items-start gap-6 mb-8">
                 <Avatar className="w-32 h-32 rounded-2xl" data-testid="avatar-profile">
