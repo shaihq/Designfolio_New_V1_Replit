@@ -13,7 +13,7 @@ export default function Onboarding() {
   const [currentStep, setCurrentStep] = useState<OnboardingStep>(1);
   const [selectedRole, setSelectedRole] = useState<string>("");
   const [customRole, setCustomRole] = useState<string>("");
-  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
+  const [selectedGoal, setSelectedGoal] = useState<string>("");
   const [selectedExperience, setSelectedExperience] = useState<string>("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
@@ -29,12 +29,8 @@ export default function Onboarding() {
   ];
 
   const goals = [
-    "Build portfolio",
-    "Showcase projects",
     "Get hired",
-    "Personal branding",
-    "Share knowledge",
-    "Network"
+    "Personal Branding"
   ];
 
   const experienceLevels = [
@@ -63,19 +59,18 @@ export default function Onboarding() {
     }
   };
 
+  const handleGoalSelect = (goal: string) => {
+    setSelectedGoal(goal);
+    setTimeout(() => {
+      setCurrentStep(3);
+    }, 400);
+  };
+
   const handleExperienceSelect = (experience: string) => {
     setSelectedExperience(experience);
     setTimeout(() => {
       setCurrentStep(4);
     }, 400);
-  };
-
-  const handleGoalToggle = (goal: string) => {
-    setSelectedGoals(prev => 
-      prev.includes(goal) 
-        ? prev.filter(g => g !== goal)
-        : [...prev, goal]
-    );
   };
 
   const handleInterestToggle = (interest: string) => {
@@ -101,7 +96,7 @@ export default function Onboarding() {
       }
       return selectedRole !== "";
     }
-    if (currentStep === 2) return selectedGoals.length > 0;
+    if (currentStep === 2) return selectedGoal !== "";
     if (currentStep === 3) return selectedExperience !== "";
     if (currentStep === 4) return selectedInterests.length > 0;
     return false;
@@ -277,20 +272,20 @@ export default function Onboarding() {
               transition={{ duration: 0.3 }}
             >
               <h1 className="text-2xl font-semibold mb-2 text-foreground" data-testid="text-step2-title">
-                What are your main goals?
+                What is your main goal with Designfolio?
               </h1>
               <p className="text-sm text-foreground/60 mb-8" data-testid="text-step2-description">
-                Select all that apply to help us personalize your experience
+                Choose the one that matters most to you
               </p>
 
-              <div className="flex flex-wrap gap-2 mb-8">
+              <div className="flex flex-col gap-3 mb-8">
                 {goals.map((goal) => {
-                  const isSelected = selectedGoals.includes(goal);
+                  const isSelected = selectedGoal === goal;
                   return (
                     <button
                       key={goal}
-                      onClick={() => handleGoalToggle(goal)}
-                      className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate relative flex items-center gap-2"
+                      onClick={() => handleGoalSelect(goal)}
+                      className="px-6 py-4 rounded-2xl border-2 text-base font-medium transition-all hover-elevate text-left flex items-center gap-4 relative"
                       style={
                         isSelected
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
@@ -298,6 +293,7 @@ export default function Onboarding() {
                       }
                       data-testid={`button-goal-${goal.toLowerCase().replace(/\s+/g, '-')}`}
                     >
+                      <span className="flex-1">{goal}</span>
                       <AnimatePresence>
                         {isSelected && (
                           <motion.div
@@ -306,35 +302,23 @@ export default function Onboarding() {
                             exit={{ scale: 0, opacity: 0 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
                           >
-                            <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
+                            <Check className="w-5 h-5" style={{ color: '#FF553E' }} />
                           </motion.div>
                         )}
                       </AnimatePresence>
-                      <span>{goal}</span>
                     </button>
                   );
                 })}
               </div>
 
-              <div className="flex gap-3">
-                <Button
-                  onClick={() => setCurrentStep(1)}
-                  variant="outline"
-                  className="h-11 text-base font-semibold rounded-full px-6"
-                  data-testid="button-back"
-                >
-                  Back
-                </Button>
-                <Button
-                  onClick={handleNext}
-                  disabled={!canProceed()}
-                  className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
-                  data-testid="button-next"
-                >
-                  Continue
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </div>
+              <Button
+                onClick={() => setCurrentStep(1)}
+                variant="outline"
+                className="h-11 text-base font-semibold rounded-full px-6"
+                data-testid="button-back"
+              >
+                Back
+              </Button>
             </motion.div>
           )}
 
