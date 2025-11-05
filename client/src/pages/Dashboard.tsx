@@ -27,24 +27,11 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Background pattern - same as signup */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none grid grid-cols-3 grid-rows-3 gap-8 p-8">
-        <div className="bg-muted/25 rounded-[4rem]" />
-        <div className="bg-muted/30 rounded-[5rem]" />
-        <div className="bg-muted/25 rounded-[4rem]" />
-        <div className="bg-muted/30 rounded-[5rem]" />
-        <div className="bg-muted/25 rounded-[4rem]" />
-        <div className="bg-muted/30 rounded-[5rem]" />
-        <div className="bg-muted/25 rounded-[4rem]" />
-        <div className="bg-muted/30 rounded-[5rem]" />
-        <div className="bg-muted/25 rounded-[4rem]" />
-      </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-6">
+    <div className="min-h-screen bg-background">
+      <div className="max-w-4xl mx-auto px-6">
         {/* Floating Navbar */}
         <div className="pt-6 pb-4">
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-3xl shadow-lg px-6 py-3">
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm px-6 py-3">
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link href="/" className="cursor-pointer" data-testid="link-home">
@@ -110,7 +97,7 @@ export default function Dashboard() {
         {/* Main Content */}
         <main className="py-4">
           {/* Profile Card */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-3xl shadow-lg p-6 mb-6">
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm p-6 mb-6">
             <div className="flex items-start gap-6">
               <Avatar className="w-24 h-24 rounded-2xl" data-testid="avatar-profile">
                 <AvatarImage src={user.avatar} alt={user.name} />
@@ -161,7 +148,7 @@ export default function Dashboard() {
               My works
             </h2>
             
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-3xl shadow-lg p-12">
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm p-12">
               <div className="flex flex-col items-center justify-center text-center max-w-md mx-auto">
                 <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center mb-6">
                   <FileText className="w-8 h-8 text-muted-foreground" />
