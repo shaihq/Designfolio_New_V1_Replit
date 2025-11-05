@@ -30,8 +30,8 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-6">
         {/* Floating Navbar */}
-        <div className="pt-6 pb-6">
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl px-8 py-4" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
+        <div className="pt-6">
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl px-8 py-4 mb-6" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link href="/" className="cursor-pointer" data-testid="link-home">
@@ -95,9 +95,9 @@ export default function Dashboard() {
         </div>
 
         {/* Main Content */}
-        <main className="py-8">
+        <main>
           {/* Profile Card */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl p-8 mb-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl p-8 mb-6" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
             <div className="flex items-start gap-8">
               <Avatar className="w-32 h-32 rounded-2xl" data-testid="avatar-profile">
                 <AvatarImage src={user.avatar} alt={user.name} />
