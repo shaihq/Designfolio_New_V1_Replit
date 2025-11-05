@@ -9,7 +9,8 @@ import {
   Share2, 
   Bell, 
   Plus,
-  Link as LinkIcon
+  Link as LinkIcon,
+  Sparkle
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -126,17 +127,17 @@ export default function Dashboard() {
                   </Button>
                 </div>
                 
-                <div className="flex flex-wrap gap-2" data-testid="container-categories">
-                  {user.categories.map((category, index) => (
-                    <Badge 
-                      key={index} 
-                      variant="secondary"
-                      className="px-4 py-1.5 rounded-full text-sm font-normal"
-                      data-testid={`badge-category-${index}`}
-                    >
-                      {category}
-                    </Badge>
-                  ))}
+                <div className="relative overflow-hidden" data-testid="container-categories">
+                  <div className="flex gap-3 animate-scroll">
+                    {[...user.categories, ...user.categories].map((category, index) => (
+                      <div key={index} className="flex items-center gap-3 shrink-0">
+                        <span className="text-sm text-foreground/70 whitespace-nowrap">
+                          {category}
+                        </span>
+                        <Sparkle className="w-3 h-3 text-foreground/30 fill-foreground/30" />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
