@@ -16,8 +16,8 @@ import { Link } from "wouter";
 
 export default function Dashboard() {
   const [user] = useState({
-    name: "tet",
-    role: "tete",
+    name: "Morgan",
+    role: "Product Designer @Apple",
     avatar: "",
     categories: [
       "Design Systems and Style Guides",
@@ -113,14 +113,14 @@ export default function Dashboard() {
 
             {/* Profile Info */}
             <div className="p-8 pb-6">
-              <div className="flex items-start gap-6">
+              <div className="flex items-center gap-6">
                 <div className="w-32 h-32 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFB088' }} data-testid="avatar-profile">
                   <img src="/advanced.png" alt={user.name} className="w-24 h-24 object-contain" />
                 </div>
                 
-                <div className="flex-1 pt-2">
+                <div className="flex-1">
                   <h1 className="text-4xl font-semibold mb-2 font-heading" data-testid="text-user-name">
-                    {user.name}
+                    Hey, I'm {user.name}
                   </h1>
                   <p className="text-base text-foreground/50" data-testid="text-user-role">
                     {user.role}
