@@ -114,12 +114,9 @@ export default function Dashboard() {
             <div>
               {/* Profile Info */}
               <div className="flex items-start gap-6 mb-8">
-                <Avatar className="w-32 h-32 rounded-2xl" data-testid="avatar-profile">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="bg-gradient-to-br from-orange-400 to-pink-400 text-white text-4xl font-semibold rounded-2xl">
-                    {user.name.charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
+                <div className="w-32 h-32 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFB088' }} data-testid="avatar-profile">
+                  <img src="/advanced.png" alt={user.name} className="w-24 h-24 object-contain" />
+                </div>
                 
                 <div className="flex-1 pt-2">
                   <h1 className="text-4xl font-semibold mb-2 font-heading" data-testid="text-user-name">
