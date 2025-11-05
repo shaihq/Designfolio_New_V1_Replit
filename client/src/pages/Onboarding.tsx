@@ -571,14 +571,13 @@ export default function Onboarding() {
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
                       variants={{
-                        hidden: { opacity: 0, scale: 0.8 },
+                        hidden: { opacity: 0, y: 10 },
                         visible: { 
                           opacity: 1, 
-                          scale: 1,
+                          y: 0,
                           transition: {
-                            type: "spring",
-                            stiffness: 400,
-                            damping: 25
+                            duration: 0.3,
+                            ease: [0.4, 0, 0.2, 1]
                           }
                         }
                       }}
