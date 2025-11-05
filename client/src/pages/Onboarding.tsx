@@ -29,8 +29,8 @@ export default function Onboarding() {
   ];
 
   const goals = [
-    "Get hired",
-    "Personal Branding"
+    { label: "Get hired", image: "/gethiredhand.png" },
+    { label: "Personal Branding", image: "/personalbrandinghand.png" }
   ];
 
   const experienceLevels = [
@@ -280,20 +280,35 @@ export default function Onboarding() {
 
               <div className="flex flex-col gap-3 mb-8">
                 {goals.map((goal) => {
-                  const isSelected = selectedGoal === goal;
+                  const isSelected = selectedGoal === goal.label;
                   return (
-                    <button
-                      key={goal}
-                      onClick={() => handleGoalSelect(goal)}
-                      className="px-6 py-4 rounded-2xl border-2 text-base font-medium transition-all hover-elevate text-left flex items-center gap-4 relative"
+                    <motion.button
+                      key={goal.label}
+                      onClick={() => handleGoalSelect(goal.label)}
+                      className="px-6 py-4 rounded-2xl border-2 text-base font-medium transition-all hover-elevate text-left flex items-center gap-4 relative overflow-hidden"
                       style={
                         isSelected
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
-                      data-testid={`button-goal-${goal.toLowerCase().replace(/\s+/g, '-')}`}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.98 }}
+                      data-testid={`button-goal-${goal.label.toLowerCase().replace(/\s+/g, '-')}`}
                     >
-                      <span className="flex-1">{goal}</span>
+                      <motion.img 
+                        src={goal.image} 
+                        alt={goal.label}
+                        className="w-12 h-12 object-contain"
+                        animate={isSelected ? {
+                          scale: [1, 1.1, 1],
+                          rotate: [0, 5, -5, 0]
+                        } : {}}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeInOut"
+                        }}
+                      />
+                      <span className="flex-1">{goal.label}</span>
                       <AnimatePresence>
                         {isSelected && (
                           <motion.div
@@ -306,7 +321,7 @@ export default function Onboarding() {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
