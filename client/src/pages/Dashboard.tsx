@@ -96,7 +96,7 @@ export default function Dashboard() {
         </div>
 
         {/* Main Content */}
-        <main>
+        <main className="pb-6">
           {/* Profile Card */}
           <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mb-6" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
             <div className="relative">
