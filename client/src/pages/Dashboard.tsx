@@ -86,7 +86,7 @@ export default function Dashboard() {
                 </Button>
                 <Avatar className="w-11 h-11" data-testid="avatar-user">
                   <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="bg-primary text-primary-foreground text-base">
+                  <AvatarFallback className="text-base" style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
                     {user.name.charAt(0).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
