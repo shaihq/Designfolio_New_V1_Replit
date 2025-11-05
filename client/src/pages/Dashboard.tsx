@@ -152,20 +152,20 @@ export default function Dashboard() {
             </h2>
             
             <div 
-              className="bg-muted/40 border border-border/30 rounded-2xl p-16 shadow-none"
+              className="bg-muted/40 border border-border/30 rounded-2xl p-10 shadow-none"
               style={{
                 boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.08), inset 0 -3px 8px 0 rgb(0 0 0 / 0.05)'
               }}
             >
               <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
-                <div className="w-20 h-20 rounded-2xl bg-background flex items-center justify-center mb-8">
+                <div className="w-20 h-20 rounded-2xl bg-background flex items-center justify-center mb-6">
                   <FileText className="w-10 h-10 text-muted-foreground" />
                 </div>
                 
-                <h3 className="text-2xl font-semibold mb-3" data-testid="text-empty-state-title">
+                <h3 className="text-2xl font-semibold mb-2" data-testid="text-empty-state-title">
                   Upload your first case study
                 </h3>
-                <p className="text-base text-foreground/60 mb-10" data-testid="text-empty-state-description">
+                <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
                   Show off your best work
                 </p>
                 
