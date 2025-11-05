@@ -13,7 +13,8 @@ import {
   Link as LinkIcon,
   Sparkle,
   Pencil,
-  Menu
+  Menu,
+  MessageSquare
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -309,6 +310,59 @@ export default function Dashboard() {
                       <Sparkles className="w-5 h-5 text-foreground" />
                       <span className="text-base font-medium text-foreground">
                         Write using AI
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+
+          {/* Testimonials Section */}
+          <motion.div
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
+          >
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+              <h2 className="text-2xl font-semibold mb-6" data-testid="text-testimonials-title">
+                Testimonials
+              </h2>
+              
+              <div 
+                className="border border-border/30 rounded-2xl p-10 shadow-none"
+                style={{
+                  backgroundColor: '#F6F2EF',
+                  boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                }}
+              >
+                <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
+                  <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#FFB088' }}>
+                    <MessageSquare className="w-10 h-10 text-white" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-semibold mb-2" data-testid="text-testimonials-empty-title">
+                    Add your first testimonial
+                  </h3>
+                  <p className="text-base text-foreground/60 mb-6" data-testid="text-testimonials-empty-description">
+                    Share what others are saying about you
+                  </p>
+                  
+                  <div className="flex gap-4">
+                    <Button 
+                      className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                      data-testid="button-add-testimonial"
+                    >
+                      <Plus className="w-5 h-5" />
+                      Add testimonial
+                    </Button>
+                    <div 
+                      className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                      data-testid="button-request-testimonial"
+                    >
+                      <LinkIcon className="w-5 h-5 text-foreground" />
+                      <span className="text-base font-medium text-foreground">
+                        Request testimonial
                       </span>
                     </div>
                   </div>
