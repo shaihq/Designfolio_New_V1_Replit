@@ -54,6 +54,22 @@ export default function Onboarding() {
     "Writing"
   ];
 
+  const handleRoleSelect = (role: string) => {
+    setSelectedRole(role);
+    if (role !== "Others") {
+      setTimeout(() => {
+        setCurrentStep(2);
+      }, 400);
+    }
+  };
+
+  const handleExperienceSelect = (experience: string) => {
+    setSelectedExperience(experience);
+    setTimeout(() => {
+      setCurrentStep(4);
+    }, 400);
+  };
+
   const handleGoalToggle = (goal: string) => {
     setSelectedGoals(prev => 
       prev.includes(goal) 
@@ -183,7 +199,7 @@ export default function Onboarding() {
                   return (
                     <button
                       key={role.label}
-                      onClick={() => setSelectedRole(role.label)}
+                      onClick={() => handleRoleSelect(role.label)}
                       className="px-4 py-3 rounded-2xl border-2 text-sm font-medium transition-all hover-elevate text-left flex items-center gap-3 relative"
                       style={
                         isSelected
@@ -238,15 +254,17 @@ export default function Onboarding() {
                 )}
               </AnimatePresence>
 
-              <Button
-                onClick={handleNext}
-                disabled={!canProceed()}
-                className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
-                data-testid="button-next"
-              >
-                Continue
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              {selectedRole === "Others" && (
+                <Button
+                  onClick={handleNext}
+                  disabled={!canProceed()}
+                  className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                  data-testid="button-next"
+                >
+                  Continue
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              )}
             </motion.div>
           )}
 
@@ -341,7 +359,7 @@ export default function Onboarding() {
                   return (
                     <motion.button
                       key={level.label}
-                      onClick={() => setSelectedExperience(level.label)}
+                      onClick={() => handleExperienceSelect(level.label)}
                       className="px-6 py-4 rounded-2xl border-2 text-base font-medium transition-all hover-elevate text-left flex items-center gap-4 relative overflow-hidden"
                       style={
                         isSelected
@@ -383,25 +401,14 @@ export default function Onboarding() {
                 })}
               </div>
 
-              <div className="flex gap-3">
-                <Button
-                  onClick={() => setCurrentStep(2)}
-                  variant="outline"
-                  className="h-11 text-base font-semibold rounded-full px-6"
-                  data-testid="button-back"
-                >
-                  Back
-                </Button>
-                <Button
-                  onClick={handleNext}
-                  disabled={!canProceed()}
-                  className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
-                  data-testid="button-next"
-                >
-                  Continue
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </div>
+              <Button
+                onClick={() => setCurrentStep(2)}
+                variant="outline"
+                className="h-11 text-base font-semibold rounded-full px-6"
+                data-testid="button-back"
+              >
+                Back
+              </Button>
             </motion.div>
           )}
 
