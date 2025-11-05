@@ -184,7 +184,7 @@ export default function Dashboard() {
         {/* Main Content */}
         <main className="pb-6">
           {/* Profile Card */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl overflow-hidden mb-6 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl overflow-hidden mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
             {/* Edit Button - Top Right */}
             <div className="absolute top-4 right-4 z-10">
               <Button 
