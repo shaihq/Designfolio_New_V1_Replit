@@ -552,7 +552,7 @@ export default function Onboarding() {
                   visible: {
                     opacity: 1,
                     transition: {
-                      staggerChildren: 0.04,
+                      staggerChildren: 0.015,
                       delayChildren: 0.1
                     }
                   }
@@ -575,8 +575,8 @@ export default function Onboarding() {
                         visible: { 
                           opacity: 1,
                           transition: {
-                            duration: 0.3,
-                            ease: [0.4, 0, 0.2, 1]
+                            duration: 0.2,
+                            ease: "easeOut"
                           }
                         }
                       }}
