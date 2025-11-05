@@ -78,7 +78,7 @@ export default function Dashboard() {
                   <Share2 className="w-4 h-4" />
                 </Button>
                 <Button 
-                  className="bg-foreground text-background rounded-full px-4 text-sm font-medium h-9"
+                  className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
                   data-testid="button-publish-site"
                 >
                   Publish Site
@@ -163,20 +163,21 @@ export default function Dashboard() {
                 
                 <div className="flex gap-3">
                   <Button 
-                    className="bg-foreground text-background rounded-full px-5 gap-2 text-sm font-medium"
+                    className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
                     data-testid="button-add-case-study"
                   >
-                    <Plus className="w-4 h-4" />
+                    <Plus className="w-5 h-5" />
                     Add case study
                   </Button>
-                  <Button 
-                    variant="outline"
-                    className="rounded-full px-5 gap-2 text-sm font-medium border-2"
+                  <div 
+                    className="bg-white border border-border rounded-full px-5 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
                     data-testid="button-write-using-ai"
                   >
-                    <Sparkles className="w-4 h-4" />
-                    Write using AI
-                  </Button>
+                    <Sparkles className="w-5 h-5 text-foreground" />
+                    <span className="text-base font-medium text-foreground">
+                      Write using AI
+                    </span>
+                  </div>
                 </div>
               </div>
             </Card>
