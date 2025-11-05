@@ -31,7 +31,7 @@ export default function Dashboard() {
       <div className="max-w-4xl mx-auto px-6">
         {/* Floating Navbar */}
         <div className="pt-6 pb-6">
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl px-8 py-4" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.04), 0 0 24px rgba(0,0,0,0.06)' }}>
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl px-8 py-4" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 24px rgba(0,0,0,0.04)' }}>
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link href="/" className="cursor-pointer" data-testid="link-home">
@@ -97,7 +97,7 @@ export default function Dashboard() {
         {/* Main Content */}
         <main className="py-8">
           {/* Profile Card */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl p-8 mb-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.04), 0 0 24px rgba(0,0,0,0.06)' }}>
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl p-8 mb-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 24px rgba(0,0,0,0.04)' }}>
             <div className="flex items-start gap-8">
               <Avatar className="w-32 h-32 rounded-2xl" data-testid="avatar-profile">
                 <AvatarImage src={user.avatar} alt={user.name} />
@@ -148,7 +148,7 @@ export default function Dashboard() {
               My works
             </h2>
             
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl p-16" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.04), 0 0 24px rgba(0,0,0,0.06)' }}>
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl p-16" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 24px rgba(0,0,0,0.04)' }}>
               <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
                 <div className="w-20 h-20 rounded-2xl bg-muted/50 flex items-center justify-center mb-8">
                   <FileText className="w-10 h-10 text-muted-foreground" />
