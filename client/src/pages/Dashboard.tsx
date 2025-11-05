@@ -58,7 +58,7 @@ export default function Dashboard() {
                 <Button 
                   variant="outline" 
                   size="icon"
-                  className="rounded-full"
+                  className="rounded-full h-11 w-11"
                   data-testid="button-insights"
                 >
                   <Sparkles className="w-5 h-5" />
@@ -66,7 +66,7 @@ export default function Dashboard() {
                 <Button 
                   variant="outline" 
                   size="icon"
-                  className="rounded-full"
+                  className="rounded-full h-11 w-11"
                   data-testid="button-notifications"
                 >
                   <Bell className="w-5 h-5" />
@@ -74,7 +74,7 @@ export default function Dashboard() {
                 <Button 
                   variant="outline" 
                   size="icon"
-                  className="rounded-full"
+                  className="rounded-full h-11 w-11"
                   data-testid="button-share"
                 >
                   <Share2 className="w-5 h-5" />
@@ -105,7 +105,7 @@ export default function Dashboard() {
               <Button 
                 variant="outline" 
                 size="icon"
-                className="rounded-full"
+                className="rounded-full h-11 w-11"
                 data-testid="button-edit-profile"
               >
                 <Pencil className="w-5 h-5" />
