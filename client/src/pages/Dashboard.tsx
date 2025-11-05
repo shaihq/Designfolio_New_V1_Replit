@@ -30,7 +30,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-6">
         {/* Floating Navbar */}
-        <div className="pt-6 pb-4">
+        <div className="pt-4 pb-4">
           <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm px-6 py-3">
             <div className="flex items-center justify-between">
               {/* Logo */}
@@ -95,7 +95,7 @@ export default function Dashboard() {
         </div>
 
         {/* Main Content */}
-        <main className="py-4">
+        <main className="py-6">
           {/* Profile Card */}
           <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-sm p-6 mb-6">
             <div className="flex items-start gap-6">
