@@ -26,6 +26,7 @@ export default function Onboarding() {
     { label: "Brand / Content Strategists", emoji: "✍️", bgColor: "#FFF9E5", borderColor: "#FFECB3" },
     { label: "Graphic Designers", emoji: "🖌️", bgColor: "#F0E5FF", borderColor: "#D9B3FF" },
     { label: "Founder", emoji: "💡", bgColor: "#FFF0E5", borderColor: "#FFD4A3" },
+    { label: "Educator/Teacher", emoji: "👨‍🏫", bgColor: "#E8F5E9", borderColor: "#A5D6A7" },
     { label: "Others", emoji: "✨", bgColor: "#F5F5F5", borderColor: "#D9D9D9" }
   ];
 
