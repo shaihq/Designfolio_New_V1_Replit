@@ -191,24 +191,15 @@ export default function Onboarding() {
 
               <motion.div 
                 className="grid grid-cols-2 gap-3 mb-8"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.05,
-                      delayChildren: 0.1
-                    }
-                  }
-                }}
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
                 {roles.map((role, index) => {
                   const isSelected = selectedRole === role.label;
                   const isOthers = role.label === "Others";
                   return (
-                    <motion.button
+                    <button
                       key={role.label}
                       onClick={() => handleRoleSelect(role.label)}
                       className="px-4 py-3 rounded-2xl border-2 text-sm font-medium transition-all hover-elevate text-left flex items-center gap-3 relative overflow-hidden"
@@ -217,21 +208,6 @@ export default function Onboarding() {
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
-                      variants={{
-                        hidden: { opacity: 0, y: 20, scale: 0.95 },
-                        visible: { 
-                          opacity: 1, 
-                          y: 0, 
-                          scale: 1,
-                          transition: {
-                            type: "spring",
-                            stiffness: 300,
-                            damping: 24
-                          }
-                        }
-                      }}
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.98 }}
                       data-testid={`button-role-${role.label.toLowerCase().replace(/[\s\/]/g, '-')}`}
                     >
                       <motion.img 
@@ -260,7 +236,7 @@ export default function Onboarding() {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </motion.button>
+                    </button>
                   );
                 })}
               </motion.div>
@@ -321,23 +297,14 @@ export default function Onboarding() {
 
               <motion.div 
                 className="flex flex-col gap-3 mb-8"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.1,
-                      delayChildren: 0.1
-                    }
-                  }
-                }}
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
                 {goals.map((goal) => {
                   const isSelected = selectedGoal === goal.label;
                   return (
-                    <motion.button
+                    <button
                       key={goal.label}
                       onClick={() => handleGoalSelect(goal.label)}
                       className="px-6 py-4 rounded-2xl border-2 text-base font-medium transition-all hover-elevate text-left flex items-center gap-4 relative overflow-hidden"
@@ -346,21 +313,6 @@ export default function Onboarding() {
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
-                      variants={{
-                        hidden: { opacity: 0, x: -30, scale: 0.95 },
-                        visible: { 
-                          opacity: 1, 
-                          x: 0, 
-                          scale: 1,
-                          transition: {
-                            type: "spring",
-                            stiffness: 300,
-                            damping: 24
-                          }
-                        }
-                      }}
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.98 }}
                       data-testid={`button-goal-${goal.label.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       <motion.img 
@@ -389,7 +341,7 @@ export default function Onboarding() {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </motion.button>
+                    </button>
                   );
                 })}
               </motion.div>
@@ -433,23 +385,14 @@ export default function Onboarding() {
 
               <motion.div 
                 className="flex flex-col gap-3 mb-8"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.1,
-                      delayChildren: 0.1
-                    }
-                  }
-                }}
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
                 {experienceLevels.map((level) => {
                   const isSelected = selectedExperience === level.label;
                   return (
-                    <motion.button
+                    <button
                       key={level.label}
                       onClick={() => handleExperienceSelect(level.label)}
                       className="px-6 py-4 rounded-2xl border-2 text-base font-medium transition-all hover-elevate text-left flex items-center gap-4 relative overflow-hidden"
@@ -458,21 +401,6 @@ export default function Onboarding() {
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
-                      variants={{
-                        hidden: { opacity: 0, x: -30, scale: 0.95 },
-                        visible: { 
-                          opacity: 1, 
-                          x: 0, 
-                          scale: 1,
-                          transition: {
-                            type: "spring",
-                            stiffness: 300,
-                            damping: 24
-                          }
-                        }
-                      }}
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.98 }}
                       data-testid={`button-experience-${level.label.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       <motion.img 
@@ -501,7 +429,7 @@ export default function Onboarding() {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </motion.button>
+                    </button>
                   );
                 })}
               </motion.div>
@@ -545,23 +473,14 @@ export default function Onboarding() {
 
               <motion.div 
                 className="flex flex-wrap gap-2 mb-8"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.015,
-                      delayChildren: 0.1
-                    }
-                  }
-                }}
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
                 {interests.map((interest) => {
                   const isSelected = selectedInterests.includes(interest);
                   return (
-                    <motion.button
+                    <button
                       key={interest}
                       onClick={() => handleInterestToggle(interest)}
                       className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate relative flex items-center gap-2"
@@ -570,16 +489,6 @@ export default function Onboarding() {
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
-                      variants={{
-                        hidden: { opacity: 0 },
-                        visible: { 
-                          opacity: 1,
-                          transition: {
-                            duration: 0.2,
-                            ease: "easeOut"
-                          }
-                        }
-                      }}
                       data-testid={`button-interest-${interest.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       <AnimatePresence>
@@ -595,7 +504,7 @@ export default function Onboarding() {
                         )}
                       </AnimatePresence>
                       <span>{interest}</span>
-                    </motion.button>
+                    </button>
                   );
                 })}
               </motion.div>
