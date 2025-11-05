@@ -152,8 +152,9 @@ export default function Dashboard() {
             </h2>
             
             <div 
-              className="bg-muted/40 border border-border/30 rounded-2xl p-10 shadow-none"
+              className="border border-border/30 rounded-2xl p-10 shadow-none"
               style={{
+                backgroundColor: 'hsl(38 30% 93%)',
                 boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.08), inset 0 -3px 8px 0 rgb(0 0 0 / 0.05)'
               }}
             >
