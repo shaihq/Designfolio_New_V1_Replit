@@ -101,14 +101,16 @@ export default function Dashboard() {
           {/* Profile Card */}
           <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mb-6 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
             {/* Edit Button - Top Right */}
-            <Button 
-              variant="ghost" 
-              size="icon"
-              className="absolute top-4 right-4 rounded-full"
-              data-testid="button-edit-profile"
-            >
-              <Pencil className="w-5 h-5" />
-            </Button>
+            <div className="absolute top-4 right-4">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="rounded-full"
+                data-testid="button-edit-profile"
+              >
+                <Pencil className="w-5 h-5" />
+              </Button>
+            </div>
 
             <div>
               {/* Profile Info */}
