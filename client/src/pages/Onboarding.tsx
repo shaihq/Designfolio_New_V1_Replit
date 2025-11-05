@@ -18,16 +18,16 @@ export default function Onboarding() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
   const roles = [
-    { label: "Product Designers", emoji: "🎨", bgColor: "#FFF5F0", borderColor: "#FF553E" },
-    { label: "Developer / Engineer", emoji: "💻", bgColor: "#FFF5F0", borderColor: "#FF553E" },
-    { label: "Data Scientists", emoji: "📊", bgColor: "#FFF5F0", borderColor: "#FF553E" },
-    { label: "No-Code Makers", emoji: "🚀", bgColor: "#FFF5F0", borderColor: "#FF553E" },
-    { label: "Growth Marketers", emoji: "📈", bgColor: "#FFF5F0", borderColor: "#FF553E" },
-    { label: "Brand / Content Strategists", emoji: "✍️", bgColor: "#FFF5F0", borderColor: "#FF553E" },
-    { label: "Graphic Designers", emoji: "🖌️", bgColor: "#FFF5F0", borderColor: "#FF553E" },
-    { label: "Founder", emoji: "💡", bgColor: "#FFF5F0", borderColor: "#FF553E" },
-    { label: "Educator/Teacher", emoji: "👨‍🏫", bgColor: "#FFF5F0", borderColor: "#FF553E" },
-    { label: "Others", emoji: "✨", bgColor: "#FFF5F0", borderColor: "#FF553E" }
+    { label: "Product Designers", image: "/onboarding-animated-icons/productdesigner.png" },
+    { label: "Developer / Engineer", image: "/onboarding-animated-icons/developer.png" },
+    { label: "Data Scientists", image: "/onboarding-animated-icons/datascientist.png" },
+    { label: "No-Code Makers", image: "/onboarding-animated-icons/nocodemakers.png" },
+    { label: "Growth Marketers", image: "/onboarding-animated-icons/growthmarketer.png" },
+    { label: "Brand / Content Strategists", image: "/onboarding-animated-icons/contentwriting.png" },
+    { label: "Graphic Designers", image: "/onboarding-animated-icons/graphicdesigner.png" },
+    { label: "Founder", image: "/onboarding-animated-icons/founder.png" },
+    { label: "Educator/Teacher", image: "/onboarding-animated-icons/teacher.png" },
+    { label: "Others", image: "/onboarding-animated-icons/others.png" }
   ];
 
   const goals = [
@@ -194,18 +194,32 @@ export default function Onboarding() {
                   const isSelected = selectedRole === role.label;
                   const isOthers = role.label === "Others";
                   return (
-                    <button
+                    <motion.button
                       key={role.label}
                       onClick={() => handleRoleSelect(role.label)}
-                      className="px-4 py-3 rounded-2xl border-2 text-sm font-medium transition-all hover-elevate text-left flex items-center gap-3 relative"
+                      className="px-4 py-3 rounded-2xl border-2 text-sm font-medium transition-all hover-elevate text-left flex items-center gap-3 relative overflow-hidden"
                       style={
                         isSelected
-                          ? { backgroundColor: role.bgColor, borderColor: role.borderColor, color: 'hsl(var(--foreground))' }
+                          ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.98 }}
                       data-testid={`button-role-${role.label.toLowerCase().replace(/[\s\/]/g, '-')}`}
                     >
-                      <span className="text-2xl">{role.emoji}</span>
+                      <motion.img 
+                        src={role.image} 
+                        alt={role.label}
+                        className="w-10 h-10 object-contain"
+                        animate={isSelected ? {
+                          scale: [1, 1.1, 1],
+                          rotate: [0, 5, -5, 0]
+                        } : {}}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeInOut"
+                        }}
+                      />
                       <span className="flex-1">{role.label}</span>
                       <AnimatePresence>
                         {isSelected && (
@@ -219,7 +233,7 @@ export default function Onboarding() {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
