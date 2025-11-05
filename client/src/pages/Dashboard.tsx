@@ -7,180 +7,195 @@ import {
   FileText, 
   Sparkles, 
   Share2, 
-  Settings, 
   Bell, 
   Plus,
-  Upload
+  Link as LinkIcon
 } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Dashboard() {
   const [user] = useState({
-    name: "Alex Johnson",
-    role: "Product Designer",
+    name: "tet",
+    role: "tete",
     avatar: "",
     categories: [
       "Design Systems and Style Guides",
       "Human-Centered Design",
-      "Branding and Conceptualization"
+      "Ethnographic Research",
+      "Design Thinking"
     ]
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-background sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="cursor-pointer" data-testid="link-home">
-            <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto" data-testid="logo-icon">
-              <path d="M15.4028 0.779664L10.1341 9.55991L5.13779 7.96851L15.4028 0.779664Z" fill="#FF553E"/>
-              <path d="M4.1666 15.4033L0.77832 10.1346L7.96717 5.13828L4.1666 15.4033Z" fill="#FF553E"/>
-              <path d="M0.77832 22.8655L4.1666 17.5969L7.96717 27.8619L0.77832 22.8655Z" fill="#FF553E"/>
-              <path d="M10.1341 23.4401L5.13779 24.9976L15.4028 32.2203L10.1341 23.4401Z" fill="#FF553E"/>
-              <path d="M17.5969 28.8317L22.8655 32.2199L24.9976 27.862L17.5969 28.8317Z" fill="#FF553E"/>
-              <path d="M23.4401 22.8655L27.8619 24.9976L32.2202 15.4028L23.4401 22.8655Z" fill="#FF553E"/>
-              <path d="M28.8317 10.1341L32.2199 5.13779L22.8655 0.779541L28.8317 10.1341Z" fill="#FF553E"/>
-              <path d="M15.4028 4.1666L17.5969 7.96717L24.9976 5.13779L15.4028 4.1666Z" fill="#FF553E"/>
-              <path d="M52.9609 23.0614V10.7114H55.7859V12.1364C56.5859 10.9864 58.0109 10.3364 59.6359 10.3364C62.7109 10.3364 64.3109 12.2364 64.3109 15.4614V23.0614H61.2609V16.1364C61.2609 14.0864 60.2859 13.1114 58.7109 13.1114C56.8859 13.1114 55.9859 14.3364 55.9859 16.2364V23.0614H52.9609Z" fill="currentColor"/>
-              <path d="M70.7344 23.4114C66.7594 23.4114 64.2344 20.8364 64.2344 16.6864C64.2344 12.5364 66.7594 9.98633 70.7344 9.98633C74.7094 9.98633 77.2344 12.5364 77.2344 16.6864C77.2344 20.8364 74.7094 23.4114 70.7344 23.4114ZM70.7344 20.4864C72.9594 20.4864 74.1094 18.9114 74.1094 16.6864C74.1094 14.4614 72.9594 12.9114 70.7344 12.9114C68.5094 12.9114 67.3594 14.4614 67.3594 16.6864C67.3594 18.9114 68.5094 20.4864 70.7344 20.4864Z" fill="currentColor"/>
-              <path d="M87.4531 23.0614H84.4031V21.4364C83.5781 22.7114 82.1281 23.4114 80.4781 23.4114C77.9781 23.4114 76.1031 21.8114 76.1031 18.8864V10.7114H79.1531V17.5864C79.1531 19.6364 80.1531 20.6364 81.7281 20.6364C83.5781 20.6364 84.4031 19.4114 84.4031 17.4114V10.7114H87.4531V23.0614Z" fill="currentColor"/>
-              <path d="M95.8086 23.4114C92.4086 23.4114 90.1836 21.3114 90.1836 17.6114V10.7114H93.2336V17.0614C93.2336 19.2614 94.3586 20.4864 96.0586 20.4864C96.6586 20.4864 97.2836 20.3614 97.7586 20.1364L98.4086 22.8614C97.7086 23.2364 96.7586 23.4114 95.8086 23.4114Z" fill="currentColor"/>
-              <path d="M106.761 23.0614H103.711V10.7114H106.536L106.786 12.3114C107.561 11.0614 109.061 10.3364 110.736 10.3364C113.836 10.3364 115.436 12.2614 115.436 15.4614V23.0614H112.386V16.1864C112.386 14.1114 111.361 13.1114 109.786 13.1114C107.911 13.1114 106.761 14.4114 106.761 16.4114V23.0614Z" fill="currentColor"/>
-              <path d="M121.574 23.4114C118.024 23.4114 115.649 20.9114 115.649 16.6864C115.649 12.4614 118.024 9.98633 121.574 9.98633C123.324 9.98633 124.699 10.5614 125.699 11.5614L123.824 13.7114C123.249 13.1614 122.474 12.9114 121.649 12.9114C119.624 12.9114 118.774 14.3864 118.774 16.6864C118.774 18.9864 119.624 20.4864 121.649 20.4864C122.474 20.4864 123.249 20.2114 123.824 19.6614L125.699 21.8114C124.699 22.8114 123.324 23.4114 121.574 23.4114Z" fill="currentColor"/>
-              <path d="M135.387 23.0614H132.087L128.212 18.3614V23.0614H125.162V6.26133H128.212V17.0114L131.987 10.7114H135.237L130.837 17.6364L135.387 23.0614Z" fill="currentColor"/>
-              <path d="M144.15 23.4114C140.15 23.4114 137.625 20.8364 137.625 16.6864C137.625 12.5364 140.15 9.98633 144.125 9.98633C148.1 9.98633 150.625 12.5364 150.625 16.6864C150.625 20.8364 148.1 23.4114 144.15 23.4114ZM144.15 20.4864C146.375 20.4864 147.525 18.9114 147.525 16.6864C147.525 14.4614 146.375 12.9114 144.15 12.9114C141.925 12.9114 140.775 14.4614 140.775 16.6864C140.775 18.9114 141.925 20.4864 144.15 20.4864Z" fill="currentColor"/>
-            </svg>
-          </Link>
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Background pattern - same as signup */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none grid grid-cols-3 grid-rows-3 gap-8 p-8">
+        <div className="bg-muted/25 rounded-[4rem]" />
+        <div className="bg-muted/30 rounded-[5rem]" />
+        <div className="bg-muted/25 rounded-[4rem]" />
+        <div className="bg-muted/30 rounded-[5rem]" />
+        <div className="bg-muted/25 rounded-[4rem]" />
+        <div className="bg-muted/30 rounded-[5rem]" />
+        <div className="bg-muted/25 rounded-[4rem]" />
+        <div className="bg-muted/30 rounded-[5rem]" />
+        <div className="bg-muted/25 rounded-[4rem]" />
+      </div>
 
-          {/* Header Actions */}
-          <div className="flex items-center gap-3">
-            <Button 
-              variant="ghost" 
-              size="icon"
-              data-testid="button-insights"
-            >
-              <Sparkles className="w-5 h-5" />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="icon"
-              data-testid="button-notifications"
-            >
-              <Bell className="w-5 h-5" />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="icon"
-              data-testid="button-share"
-            >
-              <Share2 className="w-5 h-5" />
-            </Button>
-            <Button 
-              variant="default"
-              className="gap-2"
-              data-testid="button-publish-site"
-            >
-              Publish Site
-            </Button>
-            <Avatar data-testid="avatar-user">
-              <AvatarImage src={user.avatar} alt={user.name} />
-              <AvatarFallback className="bg-primary text-primary-foreground">
-                {user.name.split(' ').map(n => n[0]).join('')}
-              </AvatarFallback>
-            </Avatar>
-          </div>
-        </div>
-      </header>
+      <div className="relative z-10">
+        {/* Floating Navbar */}
+        <div className="pt-6 pb-4 px-6">
+          <Card className="max-w-6xl mx-auto bg-white/95 backdrop-blur-sm border-0 rounded-3xl shadow-lg px-6 py-3">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <Link href="/" className="cursor-pointer" data-testid="link-home">
+                <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-6 w-auto" data-testid="logo-icon">
+                  <path d="M15.4028 0.779664C15.6377 -0.259891 17.1189 -0.259886 17.3537 0.779669L18.9775 7.96851C19.1297 8.64225 19.9029 8.9625 20.4869 8.59371L26.7184 4.65866C27.6195 4.08962 28.6669 5.137 28.0979 6.03812L24.1628 12.2696C23.794 12.8537 24.1143 13.6268 24.788 13.779L31.9769 15.4028C33.0164 15.6377 33.0164 17.1189 31.9769 17.3537L24.788 18.9775C24.1143 19.1297 23.794 19.9029 24.1628 20.4869L28.0979 26.7184C28.6669 27.6195 27.6195 28.6669 26.7184 28.0979L20.4869 24.1628C19.9029 23.794 19.1297 24.1143 18.9775 24.788L17.3537 31.9769C17.1189 33.0164 15.6377 33.0164 15.4028 31.9769L13.779 24.788C13.6268 24.1143 12.8537 23.794 12.2696 24.1628L6.03812 28.0979C5.137 28.6669 4.08963 27.6195 4.65866 26.7184L8.59371 20.4869C8.9625 19.9029 8.64225 19.1297 7.96851 18.9775L0.779664 17.3537C-0.259891 17.1189 -0.259886 15.6377 0.779669 15.4028L7.96851 13.779C8.64225 13.6268 8.9625 12.8537 8.59371 12.2696L4.65866 6.03812C4.08962 5.137 5.137 4.08963 6.03812 4.65866L12.2696 8.59371C12.8537 8.9625 13.6268 8.64225 13.779 7.96851L15.4028 0.779664Z" fill="#FF553E"/>
+                  <path d="M152.495 17.7614C152.495 13.6364 155.72 10.3864 159.745 10.3864C163.27 10.3864 165.645 12.6364 165.645 15.9864C165.645 20.1114 162.445 23.3614 158.395 23.3614C154.87 23.3614 152.495 21.1114 152.495 17.7614ZM155.495 17.5364C155.495 19.4864 156.67 20.7614 158.57 20.7614C160.82 20.7614 162.645 18.7364 162.645 16.2114C162.645 14.2364 161.47 12.9614 159.595 12.9614C157.345 12.9614 155.495 14.9864 155.495 17.5364Z" fill="currentColor"/>
+                  <path d="M150.066 8.21142C149.166 8.21142 148.541 7.53642 148.541 6.68643C148.541 5.58642 149.516 4.58643 150.641 4.58643C151.516 4.58643 152.166 5.23642 152.166 6.11143C152.166 7.18642 151.166 8.21142 150.066 8.21142ZM146.266 23.0614L148.216 10.7114H151.141L149.191 23.0614H146.266Z" fill="currentColor"/>
+                  <path d="M143.064 23.0614H140.139L143.064 4.46143H146.014L143.064 23.0614Z" fill="currentColor"/>
+                  <path d="M125.591 17.7614C125.591 13.6364 128.816 10.3864 132.841 10.3864C136.366 10.3864 138.741 12.6364 138.741 15.9864C138.741 20.1114 135.541 23.3614 131.491 23.3614C127.966 23.3614 125.591 21.1114 125.591 17.7614ZM128.591 17.5364C128.591 19.4864 129.766 20.7614 131.666 20.7614C133.916 20.7614 135.741 18.7364 135.741 16.2114C135.741 14.2364 134.566 12.9614 132.691 12.9614C130.441 12.9614 128.591 14.9864 128.591 17.5364Z" fill="currentColor"/>
+                  <path d="M118.183 10.7114H119.933L120.183 9.16142C120.683 6.06143 122.408 4.46143 125.233 4.46143C125.733 4.46143 126.283 4.48643 126.733 4.58643L126.333 7.11143C125.983 7.11143 125.658 7.08642 125.308 7.08642C123.983 7.08642 123.308 7.71143 123.083 9.16142L122.833 10.7114H125.733L125.333 13.1614H122.458L120.883 23.0614H117.983L119.558 13.1614H117.783L118.183 10.7114Z" fill="currentColor"/>
+                  <path d="M106.761 23.0614H103.711V10.7114H106.536L106.786 12.3114C107.561 11.0614 109.061 10.3364 110.736 10.3364C113.836 10.3364 115.436 12.2614 115.436 15.4614V23.0614H112.386V16.1864C112.386 14.1114 111.361 13.1114 109.786 13.1114C107.911 13.1114 106.761 14.4114 106.761 16.4114V23.0614Z" fill="currentColor"/>
+                  <path d="M87.6544 16.6114C87.6544 13.0114 90.0044 10.3114 93.5294 10.3114C95.3794 10.3114 96.8294 11.0864 97.5544 12.4114L97.7294 10.7114H100.554V22.4364C100.554 26.5614 98.0794 29.1364 94.0794 29.1364C90.5294 29.1364 88.1044 27.1114 87.7294 23.8114H90.7794C90.9794 25.4114 92.2044 26.3614 94.0794 26.3614C96.1794 26.3614 97.5294 25.0364 97.5294 22.9864V20.9364C96.7544 22.0864 95.2294 22.8114 93.4544 22.8114C89.9544 22.8114 87.6544 20.1864 87.6544 16.6114ZM90.7294 16.5364C90.7294 18.6114 92.0544 20.1614 94.0544 20.1614C96.1544 20.1614 97.4544 18.6864 97.4544 16.5364C97.4544 14.4364 96.1794 12.9864 94.0544 12.9864C92.0294 12.9864 90.7294 14.5114 90.7294 16.5364Z" fill="currentColor"/>
+                  <path d="M83.6782 8.2364C82.6282 8.2364 81.8032 7.4114 81.8032 6.3864C81.8032 5.3614 82.6282 4.5614 83.6782 4.5614C84.6782 4.5614 85.5032 5.3614 85.5032 6.3864C85.5032 7.4114 84.6782 8.2364 83.6782 8.2364ZM82.1532 23.0614V10.7114H85.2032V23.0614H82.1532Z" fill="currentColor"/>
+                  <path d="M69.631 19.3114H72.531C72.556 20.3864 73.356 21.0614 74.756 21.0614C76.181 21.0614 76.956 20.4864 76.956 19.5864C76.956 18.9614 76.631 18.5114 75.531 18.2614L73.306 17.7364C71.081 17.2364 70.006 16.1864 70.006 14.2114C70.006 11.7864 72.056 10.3364 74.906 10.3364C77.681 10.3364 79.556 11.9364 79.581 14.3364H76.681C76.656 13.2864 75.956 12.6114 74.781 12.6114C73.581 12.6114 72.881 13.1614 72.881 14.0864C72.881 14.7864 73.431 15.2364 74.481 15.4864L76.706 16.0114C78.781 16.4864 79.831 17.4364 79.831 19.3364C79.831 21.8364 77.706 23.3864 74.656 23.3864C71.581 23.3864 69.631 21.7364 69.631 19.3114Z" fill="currentColor"/>
+                  <path d="M62.1899 23.3864C58.5149 23.3864 55.9399 20.7114 55.9399 16.8864C55.9399 13.0114 58.4649 10.3364 62.0899 10.3364C65.7899 10.3364 68.1399 12.8114 68.1399 16.6614V17.5864L58.8399 17.6114C59.0649 19.7864 60.2149 20.8864 62.2399 20.8864C63.9149 20.8864 65.0149 20.2364 65.3649 19.0614H68.1899C67.6649 21.7614 65.4149 23.3864 62.1899 23.3864ZM62.1149 12.8364C60.3149 12.8364 59.2149 13.8114 58.9149 15.6614H65.1149C65.1149 13.9614 63.9399 12.8364 62.1149 12.8364Z" fill="currentColor"/>
+                  <path d="M46.2614 23.3864C42.6864 23.3864 40.4614 20.7614 40.4614 16.9364C40.4614 13.0864 42.7114 10.3364 46.4364 10.3364C48.1614 10.3364 49.6864 11.0614 50.4614 12.2864V4.46143H53.4864V23.0614H50.6864L50.4864 21.1364C49.7364 22.5614 48.1364 23.3864 46.2614 23.3864ZM46.9364 20.5864C49.0614 20.5864 50.4364 19.0614 50.4364 16.8364C50.4364 14.6114 49.0614 13.0614 46.9364 13.0614C44.8114 13.0614 43.5114 14.6364 43.5114 16.8364C43.5114 19.0364 44.8114 20.5864 46.9364 20.5864Z" fill="currentColor"/>
+                </svg>
+              </Link>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-8">
-        {/* Profile Section */}
-        <Card className="p-6 mb-8">
-          <div className="flex items-start gap-6">
-            <Avatar className="w-20 h-20" data-testid="avatar-profile">
-              <AvatarImage src={user.avatar} alt={user.name} />
-              <AvatarFallback className="bg-primary text-primary-foreground text-2xl">
-                {user.name.split(' ').map(n => n[0]).join('')}
-              </AvatarFallback>
-            </Avatar>
-            
-            <div className="flex-1">
-              <div className="flex items-center justify-between mb-2">
-                <div>
-                  <h1 className="text-2xl font-semibold mb-1" data-testid="text-user-name">
-                    {user.name}
-                  </h1>
-                  <p className="text-muted-foreground" data-testid="text-user-role">
-                    {user.role}
-                  </p>
-                </div>
+              {/* Nav Actions */}
+              <div className="flex items-center gap-2">
                 <Button 
                   variant="ghost" 
                   size="icon"
-                  data-testid="button-settings"
-                >
-                  <Settings className="w-5 h-5" />
-                </Button>
-              </div>
-              
-              <div className="flex flex-wrap gap-2 mt-4" data-testid="container-categories">
-                {user.categories.map((category, index) => (
-                  <Badge 
-                    key={index} 
-                    variant="secondary"
-                    className="px-3 py-1"
-                    data-testid={`badge-category-${index}`}
-                  >
-                    {category}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Card>
-
-        {/* My Works Section */}
-        <div>
-          <h2 className="text-xl font-semibold mb-4" data-testid="text-section-title">
-            My works
-          </h2>
-          
-          <Card className="p-12">
-            <div className="flex flex-col items-center justify-center text-center max-w-md mx-auto">
-              <div className="w-16 h-16 rounded-md bg-muted flex items-center justify-center mb-6">
-                <FileText className="w-8 h-8 text-muted-foreground" />
-              </div>
-              
-              <h3 className="text-lg font-semibold mb-2" data-testid="text-empty-state-title">
-                Upload your first case study
-              </h3>
-              <p className="text-muted-foreground mb-6" data-testid="text-empty-state-description">
-                Show off your best work
-              </p>
-              
-              <div className="flex gap-3">
-                <Button 
-                  variant="default"
-                  className="gap-2"
-                  data-testid="button-add-case-study"
-                >
-                  <Plus className="w-4 h-4" />
-                  Add case study
-                </Button>
-                <Button 
-                  variant="outline"
-                  className="gap-2"
-                  data-testid="button-write-using-ai"
+                  className="rounded-full w-9 h-9"
+                  data-testid="button-insights"
                 >
                   <Sparkles className="w-4 h-4" />
-                  Write using AI
                 </Button>
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  className="rounded-full w-9 h-9"
+                  data-testid="button-notifications"
+                >
+                  <Bell className="w-4 h-4" />
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  className="rounded-full w-9 h-9"
+                  data-testid="button-share"
+                >
+                  <Share2 className="w-4 h-4" />
+                </Button>
+                <Button 
+                  className="bg-foreground text-background rounded-full px-4 text-sm font-medium h-9"
+                  data-testid="button-publish-site"
+                >
+                  Publish Site
+                </Button>
+                <Avatar className="w-9 h-9" data-testid="avatar-user">
+                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarFallback className="bg-primary text-primary-foreground text-sm">
+                    {user.name.charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
               </div>
             </div>
           </Card>
         </div>
-      </main>
+
+        {/* Main Content */}
+        <main className="max-w-6xl mx-auto px-6 py-4">
+          {/* Profile Card */}
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-3xl shadow-lg p-6 mb-6">
+            <div className="flex items-start gap-6">
+              <Avatar className="w-24 h-24 rounded-2xl" data-testid="avatar-profile">
+                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarFallback className="bg-gradient-to-br from-orange-400 to-pink-400 text-white text-3xl font-semibold rounded-2xl">
+                  {user.name.charAt(0).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+              
+              <div className="flex-1">
+                <div className="flex items-start justify-between mb-3">
+                  <div>
+                    <h1 className="text-3xl font-semibold mb-1 font-heading" data-testid="text-user-name">
+                      {user.name}
+                    </h1>
+                    <p className="text-sm text-foreground/60" data-testid="text-user-role">
+                      {user.role}
+                    </p>
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="rounded-full w-8 h-8"
+                    data-testid="button-copy-link"
+                  >
+                    <LinkIcon className="w-4 h-4" />
+                  </Button>
+                </div>
+                
+                <div className="flex flex-wrap gap-2" data-testid="container-categories">
+                  {user.categories.map((category, index) => (
+                    <Badge 
+                      key={index} 
+                      variant="secondary"
+                      className="px-3 py-1 rounded-full text-xs font-normal"
+                      data-testid={`badge-category-${index}`}
+                    >
+                      {category}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* My Works Section */}
+          <div>
+            <h2 className="text-lg font-semibold mb-4 px-1" data-testid="text-section-title">
+              My works
+            </h2>
+            
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-3xl shadow-lg p-12">
+              <div className="flex flex-col items-center justify-center text-center max-w-md mx-auto">
+                <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center mb-6">
+                  <FileText className="w-8 h-8 text-muted-foreground" />
+                </div>
+                
+                <h3 className="text-lg font-semibold mb-2" data-testid="text-empty-state-title">
+                  Upload your first case study
+                </h3>
+                <p className="text-sm text-foreground/60 mb-8" data-testid="text-empty-state-description">
+                  Show off your best work
+                </p>
+                
+                <div className="flex gap-3">
+                  <Button 
+                    className="bg-foreground text-background rounded-full px-5 gap-2 text-sm font-medium"
+                    data-testid="button-add-case-study"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add case study
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    className="rounded-full px-5 gap-2 text-sm font-medium border-2"
+                    data-testid="button-write-using-ai"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    Write using AI
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
