@@ -31,6 +31,33 @@ export default function Dashboard() {
     ]
   });
 
+  const testimonials = [
+    {
+      id: 1,
+      name: "Sarah Chen",
+      role: "VP of Product",
+      company: "Stripe",
+      text: "Morgan's approach to design thinking transformed how our team tackles complex problems. Their ability to balance user needs with business goals is exceptional.",
+      avatar: ""
+    },
+    {
+      id: 2,
+      name: "James Rodriguez",
+      role: "Design Director",
+      company: "Airbnb",
+      text: "Working with Morgan was a game-changer for our design system. Their attention to detail and strategic thinking helped us scale our product across multiple platforms seamlessly.",
+      avatar: ""
+    },
+    {
+      id: 3,
+      name: "Emily Watson",
+      role: "Head of UX",
+      company: "Shopify",
+      text: "Morgan brings a unique blend of creativity and analytical thinking. Their ethnographic research methods uncovered insights that shaped our entire product strategy.",
+      avatar: ""
+    }
+  ];
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -343,48 +370,51 @@ export default function Dashboard() {
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-              <h2 className="text-2xl font-semibold mb-6" data-testid="text-testimonials-title">
-                Testimonials
-              </h2>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-semibold" data-testid="text-testimonials-title">
+                  Testimonials
+                </h2>
+                <Button 
+                  variant="outline"
+                  size="icon"
+                  className="rounded-full h-11 w-11"
+                  data-testid="button-add-testimonial"
+                >
+                  <Plus className="w-5 h-5" />
+                </Button>
+              </div>
               
-              <div 
-                className="border border-border/30 rounded-2xl p-10 shadow-none"
-                style={{
-                  backgroundColor: '#F6F2EF',
-                  boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
-                }}
-              >
-                <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
-                  <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: '#FFB088' }}>
-                    <MessageSquare className="w-10 h-10 text-white" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-semibold mb-2" data-testid="text-testimonials-empty-title">
-                    Add your first testimonial
-                  </h3>
-                  <p className="text-base text-foreground/60 mb-6" data-testid="text-testimonials-empty-description">
-                    Share what others are saying about you
-                  </p>
-                  
-                  <div className="flex gap-4">
-                    <Button 
-                      className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
-                      data-testid="button-add-testimonial"
-                    >
-                      <Plus className="w-5 h-5" />
-                      Add testimonial
-                    </Button>
-                    <div 
-                      className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
-                      data-testid="button-request-testimonial"
-                    >
-                      <LinkIcon className="w-5 h-5 text-foreground" />
-                      <span className="text-base font-medium text-foreground">
-                        Request testimonial
-                      </span>
+              <div className="space-y-4">
+                {testimonials.map((testimonial) => (
+                  <div
+                    key={testimonial.id}
+                    className="bg-white border border-border/30 rounded-2xl p-6 hover-elevate"
+                    data-testid={`card-testimonial-${testimonial.id}`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <Avatar className="w-12 h-12 shrink-0">
+                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                        <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
+                          {testimonial.name.split(' ').map(n => n[0]).join('')}
+                        </AvatarFallback>
+                      </Avatar>
+                      
+                      <div className="flex-1 min-w-0">
+                        <div className="mb-3">
+                          <h3 className="font-semibold text-base" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                            {testimonial.name}
+                          </h3>
+                          <p className="text-sm text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                            {testimonial.role} at {testimonial.company}
+                          </p>
+                        </div>
+                        <p className="text-base text-foreground/70 leading-relaxed" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                          "{testimonial.text}"
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
             </Card>
           </motion.div>
