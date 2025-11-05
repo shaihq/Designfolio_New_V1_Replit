@@ -189,8 +189,22 @@ export default function Onboarding() {
                 Help us tailor your experience to match your professional journey
               </p>
 
-              <div className="grid grid-cols-2 gap-3 mb-8">
-                {roles.map((role) => {
+              <motion.div 
+                className="grid grid-cols-2 gap-3 mb-8"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.05,
+                      delayChildren: 0.1
+                    }
+                  }
+                }}
+              >
+                {roles.map((role, index) => {
                   const isSelected = selectedRole === role.label;
                   const isOthers = role.label === "Others";
                   return (
@@ -203,6 +217,19 @@ export default function Onboarding() {
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
+                      variants={{
+                        hidden: { opacity: 0, y: 20, scale: 0.95 },
+                        visible: { 
+                          opacity: 1, 
+                          y: 0, 
+                          scale: 1,
+                          transition: {
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 24
+                          }
+                        }
+                      }}
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.98 }}
                       data-testid={`button-role-${role.label.toLowerCase().replace(/[\s\/]/g, '-')}`}
@@ -236,7 +263,7 @@ export default function Onboarding() {
                     </motion.button>
                   );
                 })}
-              </div>
+              </motion.div>
 
               <AnimatePresence>
                 {selectedRole === "Others" && (
@@ -292,7 +319,21 @@ export default function Onboarding() {
                 Choose the one that matters most to you
               </p>
 
-              <div className="flex flex-col gap-3 mb-8">
+              <motion.div 
+                className="flex flex-col gap-3 mb-8"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.1,
+                      delayChildren: 0.1
+                    }
+                  }
+                }}
+              >
                 {goals.map((goal) => {
                   const isSelected = selectedGoal === goal.label;
                   return (
@@ -305,6 +346,19 @@ export default function Onboarding() {
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
+                      variants={{
+                        hidden: { opacity: 0, x: -30, scale: 0.95 },
+                        visible: { 
+                          opacity: 1, 
+                          x: 0, 
+                          scale: 1,
+                          transition: {
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 24
+                          }
+                        }
+                      }}
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.98 }}
                       data-testid={`button-goal-${goal.label.toLowerCase().replace(/\s+/g, '-')}`}
@@ -338,7 +392,7 @@ export default function Onboarding() {
                     </motion.button>
                   );
                 })}
-              </div>
+              </motion.div>
 
               <div className="flex gap-3">
                 <Button
@@ -377,7 +431,21 @@ export default function Onboarding() {
                 This helps us recommend the right features for you
               </p>
 
-              <div className="flex flex-col gap-3 mb-8">
+              <motion.div 
+                className="flex flex-col gap-3 mb-8"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.1,
+                      delayChildren: 0.1
+                    }
+                  }
+                }}
+              >
                 {experienceLevels.map((level) => {
                   const isSelected = selectedExperience === level.label;
                   return (
@@ -390,6 +458,19 @@ export default function Onboarding() {
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
+                      variants={{
+                        hidden: { opacity: 0, x: -30, scale: 0.95 },
+                        visible: { 
+                          opacity: 1, 
+                          x: 0, 
+                          scale: 1,
+                          transition: {
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 24
+                          }
+                        }
+                      }}
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.98 }}
                       data-testid={`button-experience-${level.label.toLowerCase().replace(/\s+/g, '-')}`}
@@ -423,7 +504,7 @@ export default function Onboarding() {
                     </motion.button>
                   );
                 })}
-              </div>
+              </motion.div>
 
               <div className="flex gap-3">
                 <Button
@@ -462,11 +543,25 @@ export default function Onboarding() {
                 Pick a few skills to get started.
               </p>
 
-              <div className="flex flex-wrap gap-2 mb-8">
+              <motion.div 
+                className="flex flex-wrap gap-2 mb-8"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.04,
+                      delayChildren: 0.1
+                    }
+                  }
+                }}
+              >
                 {interests.map((interest) => {
                   const isSelected = selectedInterests.includes(interest);
                   return (
-                    <button
+                    <motion.button
                       key={interest}
                       onClick={() => handleInterestToggle(interest)}
                       className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate relative flex items-center gap-2"
@@ -475,6 +570,18 @@ export default function Onboarding() {
                           ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
                           : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
                       }
+                      variants={{
+                        hidden: { opacity: 0, scale: 0.8 },
+                        visible: { 
+                          opacity: 1, 
+                          scale: 1,
+                          transition: {
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 25
+                          }
+                        }
+                      }}
                       data-testid={`button-interest-${interest.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       <AnimatePresence>
@@ -490,10 +597,10 @@ export default function Onboarding() {
                         )}
                       </AnimatePresence>
                       <span>{interest}</span>
-                    </button>
+                    </motion.button>
                   );
                 })}
-              </div>
+              </motion.div>
 
               <div className="flex gap-3">
                 <Button
