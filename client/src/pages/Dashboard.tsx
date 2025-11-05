@@ -158,7 +158,7 @@ export default function Dashboard() {
               className="border border-border/30 rounded-2xl p-10 shadow-none"
               style={{
                 backgroundColor: '#F6F2EF',
-                boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.08), inset 0 -3px 8px 0 rgb(0 0 0 / 0.05)'
+                boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
               }}
             >
               <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
