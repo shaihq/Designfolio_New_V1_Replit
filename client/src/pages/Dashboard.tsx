@@ -44,9 +44,9 @@ export default function Dashboard() {
     <div className="min-h-screen" style={{ backgroundColor: '#F6F2EF' }}>
       <div className="max-w-4xl mx-auto px-6">
         {/* Floating Navbar */}
-        <div className="sticky top-0 pt-6 pb-6 z-50 transition-all duration-300" style={{ backgroundColor: '#F6F2EF' }}>
+        <div className="sticky top-0 pt-6 z-50 transition-all duration-300">
           <Card 
-            className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl px-8 py-4 transition-shadow duration-300" 
+            className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl px-8 py-4 mb-6 transition-shadow duration-300" 
             style={{ 
               boxShadow: isScrolled 
                 ? '0 0 0 1px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.08)' 
