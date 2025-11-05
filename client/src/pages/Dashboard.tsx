@@ -56,7 +56,7 @@ export default function Dashboard() {
               {/* Nav Actions */}
               <div className="flex items-center gap-3">
                 <Button 
-                  variant="ghost" 
+                  variant="outline" 
                   size="icon"
                   className="rounded-full"
                   data-testid="button-insights"
@@ -64,7 +64,7 @@ export default function Dashboard() {
                   <Sparkles className="w-5 h-5" />
                 </Button>
                 <Button 
-                  variant="ghost" 
+                  variant="outline" 
                   size="icon"
                   className="rounded-full"
                   data-testid="button-notifications"
@@ -72,7 +72,7 @@ export default function Dashboard() {
                   <Bell className="w-5 h-5" />
                 </Button>
                 <Button 
-                  variant="ghost" 
+                  variant="outline" 
                   size="icon"
                   className="rounded-full"
                   data-testid="button-share"
@@ -103,7 +103,7 @@ export default function Dashboard() {
             {/* Edit Button - Top Right */}
             <div className="absolute top-4 right-4">
               <Button 
-                variant="ghost" 
+                variant="outline" 
                 size="icon"
                 className="rounded-full"
                 data-testid="button-edit-profile"
