@@ -130,7 +130,15 @@ export default function Dashboard() {
             </div>
             
             {/* Skills Banner Strip */}
-            <div className="relative overflow-hidden border-t border-border/20 bg-background/30 py-4" data-testid="container-categories">
+            <div 
+              className="relative overflow-hidden border-t py-4" 
+              data-testid="container-categories"
+              style={{
+                background: 'linear-gradient(to bottom, #FAF7F4, #F6F2EF 40%, #F0EBE7 60%, #F6F2EF)',
+                borderTopColor: 'rgba(246, 242, 239, 0.4)',
+                boxShadow: 'inset 0 1px 2px rgba(255, 255, 255, 0.6), inset 0 -1px 2px rgba(0, 0, 0, 0.05)'
+              }}
+            >
               <div className="flex gap-3 animate-scroll px-8">
                 {[...user.categories, ...user.categories].map((category, index) => (
                   <div key={index} className="flex items-center gap-3 shrink-0">
