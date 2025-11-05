@@ -189,7 +189,7 @@ export default function Dashboard() {
           <motion.div
             initial={{ y: 20 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl overflow-hidden mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
             {/* Edit Button - Top Right */}
@@ -268,7 +268,7 @@ export default function Dashboard() {
           <motion.div
             initial={{ y: 20 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.15 }}
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
               <h2 className="text-2xl font-semibold mb-6" data-testid="text-section-title">
