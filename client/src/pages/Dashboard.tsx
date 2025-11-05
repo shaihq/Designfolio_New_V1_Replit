@@ -98,9 +98,9 @@ export default function Dashboard() {
         {/* Main Content */}
         <main className="pb-6">
           {/* Profile Card */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl overflow-hidden mb-6 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.01), 0 0 40px rgba(0,0,0,0.015)' }}>
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mb-6 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.01), 0 0 40px rgba(0,0,0,0.015)' }}>
             {/* Edit Button - Top Right */}
-            <div className="absolute top-4 right-4 z-10">
+            <div className="absolute top-4 right-4">
               <Button 
                 variant="outline" 
                 size="icon"
@@ -112,34 +112,31 @@ export default function Dashboard() {
             </div>
 
             {/* Profile Info */}
-            <div className="p-8 pb-6">
-              <div className="flex items-start gap-6">
-                <div className="w-32 h-32 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFB088' }} data-testid="avatar-profile">
-                  <img src="/advanced.png" alt={user.name} className="w-24 h-24 object-contain" />
-                </div>
-                
-                <div className="flex-1 pt-2">
-                  <h1 className="text-4xl font-semibold mb-2 font-heading" data-testid="text-user-name">
-                    {user.name}
-                  </h1>
-                  <p className="text-base text-foreground/50" data-testid="text-user-role">
-                    {user.role}
-                  </p>
-                </div>
+            <div className="flex items-start gap-6 mb-6">
+              <div className="w-32 h-32 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: '#FFB088' }} data-testid="avatar-profile">
+                <img src="/advanced.png" alt={user.name} className="w-24 h-24 object-contain" />
               </div>
-            </div>
-            
-            {/* Skills Banner Strip */}
-            <div className="relative overflow-hidden border-t border-border/20 bg-background/30 py-4" data-testid="container-categories">
-              <div className="flex gap-3 animate-scroll px-8">
-                {[...user.categories, ...user.categories].map((category, index) => (
-                  <div key={index} className="flex items-center gap-3 shrink-0">
-                    <span className="text-sm text-foreground/50 whitespace-nowrap">
+              
+              <div className="flex-1 pt-2 min-w-0">
+                <h1 className="text-4xl font-semibold mb-2 font-heading" data-testid="text-user-name">
+                  {user.name}
+                </h1>
+                <p className="text-base text-foreground/50 mb-4" data-testid="text-user-role">
+                  {user.role}
+                </p>
+                
+                {/* Skills as Pills */}
+                <div className="flex flex-wrap gap-2" data-testid="container-categories">
+                  {user.categories.map((category, index) => (
+                    <div 
+                      key={index} 
+                      className="px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap"
+                      style={{ backgroundColor: 'rgba(0,0,0,0.04)', color: 'rgba(0,0,0,0.6)' }}
+                    >
                       {category}
-                    </span>
-                    <Sparkle className="w-3 h-3 text-foreground/30 fill-foreground/30" />
-                  </div>
-                ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </Card>
