@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { 
-  FileText, 
   Sparkles, 
   Share2, 
   Bell, 
@@ -162,8 +161,8 @@ export default function Dashboard() {
               }}
             >
               <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
-                <div className="w-20 h-20 rounded-2xl bg-background flex items-center justify-center mb-6">
-                  <FileText className="w-10 h-10 text-muted-foreground" />
+                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                  <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
                 </div>
                 
                 <h3 className="text-2xl font-semibold mb-2" data-testid="text-empty-state-title">
