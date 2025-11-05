@@ -99,45 +99,47 @@ export default function Dashboard() {
         <main>
           {/* Profile Card */}
           <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mb-6" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.02), 0 0 24px rgba(0,0,0,0.03)' }}>
-            <div className="flex items-start gap-8">
-              <Avatar className="w-32 h-32 rounded-2xl" data-testid="avatar-profile">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="bg-gradient-to-br from-orange-400 to-pink-400 text-white text-4xl font-semibold rounded-2xl">
-                  {user.name.charAt(0).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              
-              <div className="flex-1">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h1 className="text-4xl font-semibold mb-2 font-heading" data-testid="text-user-name">
-                      {user.name}
-                    </h1>
-                    <p className="text-base text-foreground/60" data-testid="text-user-role">
-                      {user.role}
-                    </p>
-                  </div>
-                  <Button 
-                    variant="ghost" 
-                    size="icon"
-                    className="rounded-full"
-                    data-testid="button-copy-link"
-                  >
-                    <LinkIcon className="w-5 h-5" />
-                  </Button>
-                </div>
+            <div className="relative">
+              {/* Edit Button - Top Right */}
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="absolute top-0 right-0 rounded-full"
+                data-testid="button-edit-profile"
+              >
+                <LinkIcon className="w-5 h-5" />
+              </Button>
+
+              {/* Profile Info */}
+              <div className="flex items-start gap-6 mb-8">
+                <Avatar className="w-32 h-32 rounded-2xl" data-testid="avatar-profile">
+                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarFallback className="bg-gradient-to-br from-orange-400 to-pink-400 text-white text-4xl font-semibold rounded-2xl">
+                    {user.name.charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
                 
-                <div className="relative overflow-hidden" data-testid="container-categories">
-                  <div className="flex gap-3 animate-scroll">
-                    {[...user.categories, ...user.categories].map((category, index) => (
-                      <div key={index} className="flex items-center gap-3 shrink-0">
-                        <span className="text-sm text-foreground/70 whitespace-nowrap">
-                          {category}
-                        </span>
-                        <Sparkle className="w-3 h-3 text-foreground/30 fill-foreground/30" />
-                      </div>
-                    ))}
-                  </div>
+                <div className="flex-1 pt-2">
+                  <h1 className="text-4xl font-semibold mb-2 font-heading" data-testid="text-user-name">
+                    {user.name}
+                  </h1>
+                  <p className="text-base text-foreground/50" data-testid="text-user-role">
+                    {user.role}
+                  </p>
+                </div>
+              </div>
+              
+              {/* Scrolling Categories */}
+              <div className="relative overflow-hidden" data-testid="container-categories">
+                <div className="flex gap-3 animate-scroll">
+                  {[...user.categories, ...user.categories].map((category, index) => (
+                    <div key={index} className="flex items-center gap-3 shrink-0">
+                      <span className="text-sm text-foreground/50 whitespace-nowrap">
+                        {category}
+                      </span>
+                      <Sparkle className="w-3 h-3 text-foreground/30 fill-foreground/30" />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
