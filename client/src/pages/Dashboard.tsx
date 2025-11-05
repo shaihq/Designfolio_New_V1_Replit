@@ -32,7 +32,7 @@ export default function Dashboard() {
       <div className="max-w-4xl mx-auto px-6">
         {/* Floating Navbar */}
         <div className="pt-6">
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl px-8 py-4 mb-6" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 0 40px rgba(0,0,0,0.015)' }}>
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl px-8 py-4 mb-6" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link href="/" className="cursor-pointer" data-testid="link-home">
@@ -98,7 +98,7 @@ export default function Dashboard() {
         {/* Main Content */}
         <main className="pb-6">
           {/* Profile Card */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl overflow-hidden mb-6 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 0 40px rgba(0,0,0,0.015)' }}>
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl overflow-hidden mb-6 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
             {/* Edit Button - Top Right */}
             <div className="absolute top-4 right-4 z-10">
               <Button 
@@ -152,7 +152,7 @@ export default function Dashboard() {
           </Card>
 
           {/* My Works Section */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 0 40px rgba(0,0,0,0.015)' }}>
+          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
             <h2 className="text-2xl font-semibold mb-6" data-testid="text-section-title">
               My works
             </h2>
