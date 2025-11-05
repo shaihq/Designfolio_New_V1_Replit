@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { motion } from "framer-motion";
 import { 
   Sparkles, 
   Share2, 
@@ -30,6 +31,7 @@ export default function Dashboard() {
   });
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -184,7 +186,12 @@ export default function Dashboard() {
         {/* Main Content */}
         <main className="pb-6">
           {/* Profile Card */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl overflow-hidden mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl overflow-hidden mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
             {/* Edit Button - Top Right */}
             <div className="absolute top-4 right-4 z-10">
               <Button 
@@ -200,8 +207,27 @@ export default function Dashboard() {
             {/* Profile Info */}
             <div className="p-8 pb-6">
               <div className="flex items-center gap-6">
-                <div className="w-32 h-32 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFB088' }} data-testid="avatar-profile">
-                  <img src="/advanced.png" alt={user.name} className="w-24 h-24 object-contain" />
+                <div 
+                  className="w-32 h-32 rounded-full flex items-center justify-center relative overflow-hidden" 
+                  style={{ backgroundColor: '#FFB088' }} 
+                  data-testid="avatar-profile"
+                >
+                  {!imageLoaded && (
+                    <div 
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
+                        animation: 'shimmer 1.5s infinite'
+                      }}
+                    />
+                  )}
+                  <img 
+                    src="/advanced.png" 
+                    alt={user.name} 
+                    className="w-24 h-24 object-contain"
+                    onLoad={() => setImageLoaded(true)}
+                    style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
+                  />
                 </div>
                 
                 <div className="flex-1">
@@ -236,53 +262,60 @@ export default function Dashboard() {
               </div>
             </div>
           </Card>
+          </motion.div>
 
           {/* My Works Section */}
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-            <h2 className="text-2xl font-semibold mb-6" data-testid="text-section-title">
-              My works
-            </h2>
-            
-            <div 
-              className="border border-border/30 rounded-2xl p-10 shadow-none"
-              style={{
-                backgroundColor: '#F6F2EF',
-                boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
-              }}
-            >
-              <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
-                <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-                  <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
-                </div>
-                
-                <h3 className="text-2xl font-semibold mb-2" data-testid="text-empty-state-title">
-                  Upload your first case study
-                </h3>
-                <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
-                  Show off your best work
-                </p>
-                
-                <div className="flex gap-4">
-                  <Button 
-                    className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
-                    data-testid="button-add-case-study"
-                  >
-                    <Plus className="w-5 h-5" />
-                    Add case study
-                  </Button>
-                  <div 
-                    className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
-                    data-testid="button-write-using-ai"
-                  >
-                    <Sparkles className="w-5 h-5 text-foreground" />
-                    <span className="text-base font-medium text-foreground">
-                      Write using AI
-                    </span>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
+          >
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+              <h2 className="text-2xl font-semibold mb-6" data-testid="text-section-title">
+                My works
+              </h2>
+              
+              <div 
+                className="border border-border/30 rounded-2xl p-10 shadow-none"
+                style={{
+                  backgroundColor: '#F6F2EF',
+                  boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                }}
+              >
+                <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
+                  <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                    <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-semibold mb-2" data-testid="text-empty-state-title">
+                    Upload your first case study
+                  </h3>
+                  <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
+                    Show off your best work
+                  </p>
+                  
+                  <div className="flex gap-4">
+                    <Button 
+                      className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                      data-testid="button-add-case-study"
+                    >
+                      <Plus className="w-5 h-5" />
+                      Add case study
+                    </Button>
+                    <div 
+                      className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                      data-testid="button-write-using-ai"
+                    >
+                      <Sparkles className="w-5 h-5 text-foreground" />
+                      <span className="text-base font-medium text-foreground">
+                        Write using AI
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          </motion.div>
         </main>
       </div>
     </div>
