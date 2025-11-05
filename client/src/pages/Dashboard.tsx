@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -29,12 +29,30 @@ export default function Dashboard() {
     ]
   });
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F6F2EF' }}>
       <div className="max-w-4xl mx-auto px-6">
         {/* Floating Navbar */}
-        <div className="pt-6">
-          <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl px-8 py-4 mb-6" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+        <div className="sticky top-0 pt-6 pb-6 z-50 transition-all duration-300" style={{ backgroundColor: '#F6F2EF' }}>
+          <Card 
+            className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl px-8 py-4 transition-shadow duration-300" 
+            style={{ 
+              boxShadow: isScrolled 
+                ? '0 0 0 1px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.08)' 
+                : '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' 
+            }}
+          >
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link href="/" className="cursor-pointer" data-testid="link-home">
