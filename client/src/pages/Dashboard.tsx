@@ -134,8 +134,8 @@ export default function Dashboard() {
               className="relative overflow-hidden border-t border-border/20 py-4" 
               data-testid="container-categories"
               style={{
-                background: 'linear-gradient(135deg, #F4F1EE 0%, #F8F6F3 25%, #FDFBF9 45%, #FFFFFF 50%, #FDFBF9 55%, #F8F6F3 75%, #F4F1EE 100%)',
-                boxShadow: 'inset 0 2px 3px rgba(255,255,255,0.6), inset 0 -2px 3px rgba(0,0,0,0.04), 0 1px 1px rgba(0,0,0,0.02)'
+                background: 'linear-gradient(135deg, #F0EBE7 0%, #F5F1ED 25%, #FAF8F5 45%, #FFFFFF 50%, #FAF8F5 55%, #F5F1ED 75%, #F0EBE7 100%)',
+                boxShadow: 'inset 0 2px 3px rgba(255,255,255,0.7), inset 0 -2px 3px rgba(0,0,0,0.05), 0 1px 1px rgba(0,0,0,0.03)'
               }}
             >
               <div className="flex gap-3 animate-scroll px-8">
