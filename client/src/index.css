@@ -6,6 +6,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background-color: #F6F2EF;
+}
+
 @layer base {
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
