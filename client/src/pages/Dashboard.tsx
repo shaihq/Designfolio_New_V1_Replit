@@ -38,6 +38,7 @@ export default function Dashboard() {
       role: "VP of Product",
       company: "Stripe",
       text: "Morgan's approach to design thinking transformed how our team tackles complex problems. Their ability to balance user needs with business goals is exceptional.",
+      highlightedText: "design thinking transformed",
       avatar: ""
     },
     {
@@ -46,6 +47,7 @@ export default function Dashboard() {
       role: "Design Director",
       company: "Airbnb",
       text: "Working with Morgan was a game-changer for our design system. Their attention to detail and strategic thinking helped us scale our product across multiple platforms seamlessly.",
+      highlightedText: "game-changer",
       avatar: ""
     },
     {
@@ -54,6 +56,16 @@ export default function Dashboard() {
       role: "Head of UX",
       company: "Shopify",
       text: "Morgan brings a unique blend of creativity and analytical thinking. Their ethnographic research methods uncovered insights that shaped our entire product strategy.",
+      highlightedText: "unique blend of creativity",
+      avatar: ""
+    },
+    {
+      id: 4,
+      name: "Alex Thompson",
+      role: "CEO",
+      company: "Notion",
+      text: "Our conversion rates doubled after Morgan redesigned our landing page. Sometimes simple changes make the biggest impact.",
+      highlightedText: "conversion rates doubled",
       avatar: ""
     }
   ];
@@ -436,37 +448,53 @@ export default function Dashboard() {
                 </Button>
               </div>
               
-              <div className="space-y-4">
-                {testimonials.map((testimonial) => (
-                  <div
-                    key={testimonial.id}
-                    className="bg-white border border-border/30 rounded-2xl p-6 hover-elevate"
-                    data-testid={`card-testimonial-${testimonial.id}`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <Avatar className="w-12 h-12 shrink-0">
-                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                        <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
-                          {testimonial.name.split(' ').map(n => n[0]).join('')}
-                        </AvatarFallback>
-                      </Avatar>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ gridAutoRows: 'auto' }}>
+                {testimonials.map((testimonial) => {
+                  const highlightText = (text: string, highlight: string) => {
+                    if (!highlight) return text;
+                    const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+                    return parts.map((part, index) => 
+                      part.toLowerCase() === highlight.toLowerCase() ? (
+                        <span key={index} style={{ color: '#FF6B4A' }}>{part}</span>
+                      ) : (
+                        part
+                      )
+                    );
+                  };
+
+                  return (
+                    <div
+                      key={testimonial.id}
+                      className="bg-white border border-border/30 rounded-2xl p-6 hover-elevate flex flex-col"
+                      data-testid={`card-testimonial-${testimonial.id}`}
+                      style={{
+                        backgroundColor: '#F5F3F1'
+                      }}
+                    >
+                      <p className="text-base leading-relaxed mb-6 flex-1" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                        {highlightText(testimonial.text, testimonial.highlightedText)}
+                      </p>
                       
-                      <div className="flex-1 min-w-0">
-                        <div className="mb-3">
-                          <h3 className="font-semibold text-base" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                      <div className="flex items-center gap-3">
+                        <Avatar className="w-12 h-12 shrink-0">
+                          <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                          <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
+                            {testimonial.name.split(' ').map(n => n[0]).join('')}
+                          </AvatarFallback>
+                        </Avatar>
+                        
+                        <div>
+                          <h3 className="font-semibold text-base mb-0" data-testid={`text-testimonial-name-${testimonial.id}`}>
                             {testimonial.name}
                           </h3>
                           <p className="text-sm text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
-                            {testimonial.role} at {testimonial.company}
+                            {testimonial.role}, {testimonial.company}
                           </p>
                         </div>
-                        <p className="text-base text-foreground/70 leading-relaxed" data-testid={`text-testimonial-content-${testimonial.id}`}>
-                          "{testimonial.text}"
-                        </p>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </Card>
           </motion.div>
