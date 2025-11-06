@@ -459,4 +459,29 @@ body {
       transform: translateX(100%);
     }
   }
+
+  /* Marker highlight animation */
+  @keyframes markerSweep {
+    0% {
+      background-size: 0% 100%;
+    }
+    100% {
+      background-size: 100% 100%;
+    }
+  }
+
+  .marker-highlight {
+    background: linear-gradient(to right, rgba(255, 107, 74, 0.15) 50%, transparent 50%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    background-position: left center;
+    color: #FF6B4A;
+    padding: 2px 4px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  .marker-highlight.animate {
+    animation: markerSweep 0.6s ease-out forwards;
+  }
 }

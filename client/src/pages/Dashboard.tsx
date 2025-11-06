@@ -119,6 +119,7 @@ export default function Dashboard() {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [visibleTestimonials, setVisibleTestimonials] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -450,6 +451,8 @@ export default function Dashboard() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ gridAutoRows: 'auto' }}>
                 {testimonials.map((testimonial, idx) => {
+                  const isVisible = visibleTestimonials.has(testimonial.id);
+                  
                   const highlightText = (text: string, highlight: string) => {
                     if (!highlight) return text;
                     const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
@@ -457,14 +460,7 @@ export default function Dashboard() {
                       part.toLowerCase() === highlight.toLowerCase() ? (
                         <span 
                           key={index} 
-                          className="highlight-text"
-                          style={{ 
-                            backgroundColor: 'rgba(255, 107, 74, 0.15)',
-                            color: '#FF6B4A',
-                            padding: '2px 4px',
-                            borderRadius: '3px',
-                            display: 'inline-block'
-                          }}
+                          className={`marker-highlight ${isVisible ? 'animate' : ''}`}
                         >
                           {part}
                         </span>
@@ -481,6 +477,11 @@ export default function Dashboard() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-50px" }}
                       transition={{ duration: 0.5, delay: idx * 0.1 }}
+                      onViewportEnter={() => {
+                        setTimeout(() => {
+                          setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
+                        }, 300 + idx * 100);
+                      }}
                       className="bg-white border border-border/30 rounded-2xl p-6 hover-elevate flex flex-col"
                       data-testid={`card-testimonial-${testimonial.id}`}
                       style={{
