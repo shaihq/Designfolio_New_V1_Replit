@@ -64,6 +64,9 @@ export default function Dashboard() {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
     window.scrollTo(0, 0);
   }, []);
 
