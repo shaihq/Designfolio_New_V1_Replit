@@ -471,7 +471,7 @@ body {
   }
 
   .marker-highlight {
-    background: linear-gradient(to right, rgba(255, 107, 74, 0.15) 50%, transparent 50%);
+    background: linear-gradient(to right, rgba(255, 107, 74, 0.15), rgba(255, 107, 74, 0.15));
     background-size: 0% 100%;
     background-repeat: no-repeat;
     background-position: left center;

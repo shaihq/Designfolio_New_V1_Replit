@@ -482,12 +482,20 @@ export default function Dashboard() {
                           setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
                         }, 300 + idx * 100);
                       }}
-                      className="bg-white border border-border/30 rounded-2xl p-6 hover-elevate flex flex-col"
+                      className="bg-white border border-border/30 rounded-2xl p-6 hover-elevate flex flex-col relative"
                       data-testid={`card-testimonial-${testimonial.id}`}
                       style={{
                         backgroundColor: '#F5F3F1'
                       }}
                     >
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="absolute top-4 right-4 h-8 w-8"
+                        data-testid={`button-edit-testimonial-${testimonial.id}`}
+                      >
+                        <Pencil className="w-4 h-4" />
+                      </Button>
                       <p className="text-base leading-relaxed mb-6 flex-1" data-testid={`text-testimonial-content-${testimonial.id}`}>
                         {highlightText(testimonial.text, testimonial.highlightedText)}
                       </p>
