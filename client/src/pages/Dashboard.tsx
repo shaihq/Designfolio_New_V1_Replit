@@ -455,7 +455,12 @@ export default function Dashboard() {
                     const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
                     return parts.map((part, index) => 
                       part.toLowerCase() === highlight.toLowerCase() ? (
-                        <span key={index} style={{ color: '#FF6B4A' }}>{part}</span>
+                        <span key={index} style={{ 
+                          backgroundColor: '#FF6B4A',
+                          color: 'inherit',
+                          padding: '2px 0',
+                          borderRadius: '2px'
+                        }}>{part}</span>
                       ) : (
                         part
                       )
