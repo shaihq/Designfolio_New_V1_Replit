@@ -58,6 +58,51 @@ export default function Dashboard() {
     }
   ];
 
+  const tools = [
+    {
+      id: 1,
+      name: "Figma",
+      category: "Design",
+      description: "Interface design and prototyping",
+      color: "#F24E1E"
+    },
+    {
+      id: 2,
+      name: "Adobe Creative Suite",
+      category: "Design",
+      description: "Photoshop, Illustrator, After Effects",
+      color: "#FF0000"
+    },
+    {
+      id: 3,
+      name: "Notion",
+      category: "Documentation",
+      description: "Research and documentation",
+      color: "#000000"
+    },
+    {
+      id: 4,
+      name: "Miro",
+      category: "Collaboration",
+      description: "Whiteboarding and brainstorming",
+      color: "#FFD02F"
+    },
+    {
+      id: 5,
+      name: "Framer",
+      category: "Prototyping",
+      description: "Interactive prototypes",
+      color: "#0055FF"
+    },
+    {
+      id: 6,
+      name: "Principle",
+      category: "Animation",
+      description: "Micro-interactions and animations",
+      color: "#6E56F5"
+    }
+  ];
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -417,6 +462,67 @@ export default function Dashboard() {
                         </div>
                         <p className="text-base text-foreground/70 leading-relaxed" data-testid={`text-testimonial-content-${testimonial.id}`}>
                           "{testimonial.text}"
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </motion.div>
+
+          {/* Toolbox Section */}
+          <motion.div
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.45 }}
+          >
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-semibold" data-testid="text-toolbox-title">
+                  Toolbox
+                </h2>
+                <Button 
+                  variant="outline"
+                  size="icon"
+                  className="rounded-full h-11 w-11"
+                  data-testid="button-add-tool"
+                >
+                  <Plus className="w-5 h-5" />
+                </Button>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {tools.map((tool) => (
+                  <div
+                    key={tool.id}
+                    className="bg-white border border-border/30 rounded-2xl p-6 hover-elevate"
+                    data-testid={`card-tool-${tool.id}`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div 
+                        className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: tool.color }}
+                        data-testid={`icon-tool-${tool.id}`}
+                      >
+                        <div className="w-6 h-6 bg-white/90 rounded" />
+                      </div>
+                      
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="font-semibold text-base" data-testid={`text-tool-name-${tool.id}`}>
+                            {tool.name}
+                          </h3>
+                          <Badge 
+                            variant="secondary" 
+                            className="text-xs"
+                            data-testid={`badge-tool-category-${tool.id}`}
+                          >
+                            {tool.category}
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-foreground/50" data-testid={`text-tool-description-${tool.id}`}>
+                          {tool.description}
                         </p>
                       </div>
                     </div>
