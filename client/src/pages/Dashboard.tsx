@@ -449,18 +449,25 @@ export default function Dashboard() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ gridAutoRows: 'auto' }}>
-                {testimonials.map((testimonial) => {
+                {testimonials.map((testimonial, idx) => {
                   const highlightText = (text: string, highlight: string) => {
                     if (!highlight) return text;
                     const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
                     return parts.map((part, index) => 
                       part.toLowerCase() === highlight.toLowerCase() ? (
-                        <span key={index} style={{ 
-                          backgroundColor: '#FF6B4A',
-                          color: 'inherit',
-                          padding: '2px 0',
-                          borderRadius: '2px'
-                        }}>{part}</span>
+                        <span 
+                          key={index} 
+                          className="highlight-text"
+                          style={{ 
+                            backgroundColor: 'rgba(255, 107, 74, 0.15)',
+                            color: '#FF6B4A',
+                            padding: '2px 4px',
+                            borderRadius: '3px',
+                            display: 'inline-block'
+                          }}
+                        >
+                          {part}
+                        </span>
                       ) : (
                         part
                       )
@@ -468,8 +475,12 @@ export default function Dashboard() {
                   };
 
                   return (
-                    <div
+                    <motion.div
                       key={testimonial.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: idx * 0.1 }}
                       className="bg-white border border-border/30 rounded-2xl p-6 hover-elevate flex flex-col"
                       data-testid={`card-testimonial-${testimonial.id}`}
                       style={{
@@ -497,7 +508,7 @@ export default function Dashboard() {
                           </p>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
