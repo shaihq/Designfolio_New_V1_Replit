@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Search } from "lucide-react";
 
 type OnboardingStep = 1 | 2 | 3 | 4;
 
@@ -16,6 +16,7 @@ export default function Onboarding() {
   const [selectedGoal, setSelectedGoal] = useState<string>("");
   const [selectedExperience, setSelectedExperience] = useState<string>("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [skillsSearch, setSkillsSearch] = useState<string>("");
 
   const roles = [
     { label: "Product Designers", image: "/onboarding-animated-icons/productdesigner.png" },
@@ -467,9 +468,30 @@ export default function Onboarding() {
               <h1 className="text-2xl font-semibold mb-2 text-foreground" data-testid="text-step4-title">
                 Choose your top skills
               </h1>
-              <p className="text-sm text-foreground/60 mb-8" data-testid="text-step4-description">
+              <p className="text-sm text-foreground/60 mb-6" data-testid="text-step4-description">
                 Pick a few skills to get started.
               </p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                className="mb-6"
+              >
+                <div className="relative bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <Search className="w-4 h-4 text-muted-foreground/60" />
+                  </div>
+                  <Input
+                    type="text"
+                    placeholder="Search skills..."
+                    value={skillsSearch}
+                    onChange={(e) => setSkillsSearch(e.target.value)}
+                    className="border-0 bg-transparent h-11 pl-11 pr-4 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                    data-testid="input-skills-search"
+                  />
+                </div>
+              </motion.div>
 
               <motion.div 
                 className="flex flex-wrap gap-2 mb-8"
@@ -477,36 +499,40 @@ export default function Onboarding() {
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
-                {interests.map((interest) => {
-                  const isSelected = selectedInterests.includes(interest);
-                  return (
-                    <button
-                      key={interest}
-                      onClick={() => handleInterestToggle(interest)}
-                      className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate relative flex items-center gap-2"
-                      style={
-                        isSelected
-                          ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
-                          : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
-                      }
-                      data-testid={`button-interest-${interest.toLowerCase().replace(/\s+/g, '-')}`}
-                    >
-                      <AnimatePresence>
-                        {isSelected && (
-                          <motion.div
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0, opacity: 0 }}
-                            transition={{ duration: 0.2, ease: "easeOut" }}
-                          >
-                            <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                      <span>{interest}</span>
-                    </button>
-                  );
-                })}
+                {interests
+                  .filter(interest => 
+                    interest.toLowerCase().includes(skillsSearch.toLowerCase())
+                  )
+                  .map((interest) => {
+                    const isSelected = selectedInterests.includes(interest);
+                    return (
+                      <button
+                        key={interest}
+                        onClick={() => handleInterestToggle(interest)}
+                        className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate relative flex items-center gap-2"
+                        style={
+                          isSelected
+                            ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
+                            : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
+                        }
+                        data-testid={`button-interest-${interest.toLowerCase().replace(/\s+/g, '-')}`}
+                      >
+                        <AnimatePresence>
+                          {isSelected && (
+                            <motion.div
+                              initial={{ scale: 0, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              exit={{ scale: 0, opacity: 0 }}
+                              transition={{ duration: 0.2, ease: "easeOut" }}
+                            >
+                              <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                        <span>{interest}</span>
+                      </button>
+                    );
+                  })}
               </motion.div>
 
               <div className="flex gap-3">
