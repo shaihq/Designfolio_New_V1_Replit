@@ -42,7 +42,7 @@ export default function Onboarding() {
     { label: "Advanced", image: "/advanced.png" }
   ];
 
-  const interests = [
+  const [interests, setInterests] = useState<string[]>([
     "Web Design",
     "UI/UX",
     "Development",
@@ -51,7 +51,7 @@ export default function Onboarding() {
     "Motion Design",
     "3D Design",
     "Writing"
-  ];
+  ]);
 
   const handleRoleSelect = (role: string) => {
     setSelectedRole(role);
@@ -82,6 +82,15 @@ export default function Onboarding() {
         ? prev.filter(i => i !== interest)
         : [...prev, interest]
     );
+  };
+
+  const handleAddCustomSkill = (skill: string) => {
+    const trimmedSkill = skill.trim();
+    if (trimmedSkill && !interests.includes(trimmedSkill)) {
+      setInterests(prev => [...prev, trimmedSkill]);
+      setSelectedInterests(prev => [...prev, trimmedSkill]);
+      setSkillsSearch("");
+    }
   };
 
   const handleNext = () => {
@@ -499,40 +508,68 @@ export default function Onboarding() {
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
-                {interests
-                  .filter(interest => 
+                {(() => {
+                  const filteredInterests = interests.filter(interest => 
                     interest.toLowerCase().includes(skillsSearch.toLowerCase())
-                  )
-                  .map((interest) => {
-                    const isSelected = selectedInterests.includes(interest);
-                    return (
-                      <button
-                        key={interest}
-                        onClick={() => handleInterestToggle(interest)}
-                        className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate relative flex items-center gap-2"
-                        style={
-                          isSelected
-                            ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
-                            : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
-                        }
-                        data-testid={`button-interest-${interest.toLowerCase().replace(/\s+/g, '-')}`}
-                      >
-                        <AnimatePresence>
-                          {isSelected && (
-                            <motion.div
-                              initial={{ scale: 0, opacity: 0 }}
-                              animate={{ scale: 1, opacity: 1 }}
-                              exit={{ scale: 0, opacity: 0 }}
-                              transition={{ duration: 0.2, ease: "easeOut" }}
-                            >
-                              <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                        <span>{interest}</span>
-                      </button>
-                    );
-                  })}
+                  );
+                  const hasExactMatch = interests.some(interest => 
+                    interest.toLowerCase() === skillsSearch.toLowerCase()
+                  );
+                  const showAddNew = skillsSearch.trim() !== "" && !hasExactMatch;
+
+                  return (
+                    <>
+                      {filteredInterests.map((interest) => {
+                        const isSelected = selectedInterests.includes(interest);
+                        return (
+                          <button
+                            key={interest}
+                            onClick={() => handleInterestToggle(interest)}
+                            className="px-5 py-2.5 rounded-full border-2 text-sm font-medium transition-all hover-elevate relative flex items-center gap-2"
+                            style={
+                              isSelected
+                                ? { backgroundColor: '#FFF5F0', borderColor: '#FF553E', color: '#FF553E' }
+                                : { backgroundColor: 'transparent', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }
+                            }
+                            data-testid={`button-interest-${interest.toLowerCase().replace(/\s+/g, '-')}`}
+                          >
+                            <AnimatePresence>
+                              {isSelected && (
+                                <motion.div
+                                  initial={{ scale: 0, opacity: 0 }}
+                                  animate={{ scale: 1, opacity: 1 }}
+                                  exit={{ scale: 0, opacity: 0 }}
+                                  transition={{ duration: 0.2, ease: "easeOut" }}
+                                >
+                                  <Check className="w-4 h-4" style={{ color: '#FF553E' }} />
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                            <span>{interest}</span>
+                          </button>
+                        );
+                      })}
+                      {showAddNew && (
+                        <motion.button
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.8, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          onClick={() => handleAddCustomSkill(skillsSearch)}
+                          className="px-5 py-2.5 rounded-full border-2 border-dashed text-sm font-medium transition-all hover-elevate relative flex items-center gap-2"
+                          style={{ 
+                            backgroundColor: 'transparent', 
+                            borderColor: '#FF553E', 
+                            color: '#FF553E' 
+                          }}
+                          data-testid="button-add-custom-skill"
+                        >
+                          <span>Add "{skillsSearch}" as new skill</span>
+                        </motion.button>
+                      )}
+                    </>
+                  );
+                })()}
               </motion.div>
 
               <div className="flex gap-3">
