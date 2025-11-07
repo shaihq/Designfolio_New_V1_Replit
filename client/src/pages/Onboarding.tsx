@@ -21,13 +21,13 @@ export default function Onboarding() {
   const roles = [
     { label: "Product Designers", image: "/onboarding-animated-icons/productdesigner.png" },
     { label: "Developer / Engineer", image: "/onboarding-animated-icons/developer.png" },
-    { label: "Product Manager", image: "/onboarding-animated-icons/productmanager.png" },
+    { label: "Product Managers", image: "/onboarding-animated-icons/productmanager.png" },
     { label: "No-Code Makers", image: "/onboarding-animated-icons/nocodemakers.png" },
-    { label: "Growth Marketers", image: "/onboarding-animated-icons/growthmarketer.png" },
-    { label: "Brand / Content Strategists", image: "/onboarding-animated-icons/contentwriting.png" },
+    { label: "UX Researchers", image: "/onboarding-animated-icons/datascientist.png" },
+    { label: "Writers", image: "/onboarding-animated-icons/contentwriting.png" },
     { label: "Graphic Designers", image: "/onboarding-animated-icons/graphicdesigner.png" },
     { label: "Founder", image: "/onboarding-animated-icons/founder.png" },
-    { label: "Educator/Teacher", image: "/onboarding-animated-icons/teacher.png" },
+    { label: "Educator", image: "/onboarding-animated-icons/teacher.png" },
     { label: "Others", image: "/onboarding-animated-icons/others.png" }
   ];
 
