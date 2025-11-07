@@ -21,7 +21,7 @@ export default function Onboarding() {
   const roles = [
     { label: "Product Designers", image: "/onboarding-animated-icons/productdesigner.png" },
     { label: "Developer / Engineer", image: "/onboarding-animated-icons/developer.png" },
-    { label: "Data Scientists", image: "/onboarding-animated-icons/datascientist.png" },
+    { label: "Product Manager", image: "/onboarding-animated-icons/productmanager.png" },
     { label: "No-Code Makers", image: "/onboarding-animated-icons/nocodemakers.png" },
     { label: "Growth Marketers", image: "/onboarding-animated-icons/growthmarketer.png" },
     { label: "Brand / Content Strategists", image: "/onboarding-animated-icons/contentwriting.png" },
