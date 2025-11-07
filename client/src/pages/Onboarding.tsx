@@ -466,10 +466,10 @@ export default function Onboarding() {
               transition={{ duration: 0.3 }}
             >
               <h1 className="text-2xl font-semibold mb-2 text-foreground" data-testid="text-step4-title">
-                Choose your top skills
+                Choose your top 3 skills
               </h1>
               <p className="text-sm text-foreground/60 mb-6" data-testid="text-step4-description">
-                Select at least 3 skills to get started.
+                Pick three that feel most true right now.
               </p>
 
               <motion.div
