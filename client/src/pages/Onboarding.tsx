@@ -101,7 +101,7 @@ export default function Onboarding() {
     }
     if (currentStep === 2) return selectedGoal !== "";
     if (currentStep === 3) return selectedExperience !== "";
-    if (currentStep === 4) return selectedInterests.length > 0;
+    if (currentStep === 4) return selectedInterests.length >= 3;
     return false;
   };
 
@@ -469,7 +469,7 @@ export default function Onboarding() {
                 Choose your top skills
               </h1>
               <p className="text-sm text-foreground/60 mb-6" data-testid="text-step4-description">
-                Pick a few skills to get started.
+                Select at least 3 skills to get started.
               </p>
 
               <motion.div
@@ -550,7 +550,10 @@ export default function Onboarding() {
                   className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
                   data-testid="button-complete"
                 >
-                  Get Started
+                  {selectedInterests.length >= 3 
+                    ? "Get Started" 
+                    : `Get Started (${selectedInterests.length}/3)`
+                  }
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </div>
