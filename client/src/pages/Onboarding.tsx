@@ -22,7 +22,7 @@ export default function Onboarding() {
     { label: "Product Designers", image: "/onboarding-animated-icons/productdesigner.png" },
     { label: "Developer / Engineer", image: "/onboarding-animated-icons/developer.png" },
     { label: "Product Managers", image: "/onboarding-animated-icons/productmanager.png" },
-    { label: "No-Code Makers", image: "/onboarding-animated-icons/nocodemakers.png" },
+    { label: "Vibe / No-Code Builders", image: "/onboarding-animated-icons/nocodemakers.png" },
     { label: "UX Researchers", image: "/onboarding-animated-icons/datascientist.png" },
     { label: "Writers", image: "/onboarding-animated-icons/contentwriting.png" },
     { label: "Graphic Designers", image: "/onboarding-animated-icons/graphicdesigner.png" },
