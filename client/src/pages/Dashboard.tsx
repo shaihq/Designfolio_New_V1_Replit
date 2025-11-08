@@ -496,7 +496,7 @@ export default function Dashboard() {
                       >
                         <Pencil className="w-4 h-4" />
                       </Button>
-                      <p className="text-base leading-relaxed mb-6 flex-1" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                      <p className="text-base leading-relaxed mb-6 flex-1 pr-10" data-testid={`text-testimonial-content-${testimonial.id}`}>
                         {highlightText(testimonial.text, testimonial.highlightedText)}
                       </p>
                       
