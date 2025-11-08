@@ -491,7 +491,7 @@ export default function Dashboard() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="absolute top-4 right-4 h-8 w-8"
+                        className="absolute top-4 right-4 h-8 w-8 z-10"
                         data-testid={`button-edit-testimonial-${testimonial.id}`}
                       >
                         <Pencil className="w-4 h-4" />
