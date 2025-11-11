@@ -719,12 +719,11 @@ export default function Dashboard() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3, delay: 0.1 }}
-                        className="group cursor-pointer"
+                        className="group"
                         data-testid="card-add-case-study"
                       >
-                        <button
-                          onClick={() => setIsTemplateDialogOpen(true)}
-                          className="w-full h-full border border-border/30 rounded-2xl transition-all flex flex-col items-center justify-center p-10 min-h-[400px]"
+                        <div
+                          className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-10 min-h-[400px]"
                           style={{ 
                             backgroundColor: '#F6F2EF',
                             boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
@@ -739,10 +738,30 @@ export default function Dashboard() {
                           <h3 className="font-semibold text-lg mb-2 text-foreground">
                             Add case study
                           </h3>
-                          <p className="text-sm text-foreground/60 text-center max-w-xs">
+                          <p className="text-sm text-foreground/60 text-center max-w-xs mb-6">
                             Choose from templates or start from scratch
                           </p>
-                        </button>
+                          
+                          <div className="flex gap-3">
+                            <Button 
+                              onClick={() => setIsTemplateDialogOpen(true)}
+                              className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                              data-testid="button-add-case-study-grid"
+                            >
+                              <Plus className="w-5 h-5" />
+                              Add case study
+                            </Button>
+                            <div 
+                              className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                              data-testid="button-write-using-ai-grid"
+                            >
+                              <Sparkles className="w-5 h-5 text-foreground" />
+                              <span className="text-base font-medium text-foreground">
+                                Write using AI
+                              </span>
+                            </div>
+                          </div>
+                        </div>
                       </motion.div>
                     </div>
                   </SortableContext>
