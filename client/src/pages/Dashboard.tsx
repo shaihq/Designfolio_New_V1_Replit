@@ -145,7 +145,7 @@ export default function Dashboard() {
       mockProject: {
         title: 'Untitled Project',
         description: 'Start adding your content here',
-        category: 'Case Study'
+        category: 'Project'
       }
     },
     {
