@@ -301,17 +301,28 @@ export default function Dashboard() {
       isDragging,
     } = useSortable({ id: project.id });
 
-    const style = {
+    const style: React.CSSProperties = {
       transform: CSS.Transform.toString(transform),
-      transition,
-      opacity: isDragging ? 0.5 : 1,
+      transition: transition || 'transform 200ms ease',
+      zIndex: isDragging ? 50 : 'auto',
     };
 
     return (
-      <div ref={setNodeRef} style={style} className="group cursor-pointer relative" data-testid={`card-case-study-${project.id}`}>
+      <div 
+        ref={setNodeRef} 
+        style={style} 
+        className="group cursor-pointer relative" 
+        data-testid={`card-case-study-${project.id}`}
+      >
         <div 
-          className="bg-white border-0 rounded-2xl overflow-hidden hover-elevate relative"
-          style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)' }}
+          className="bg-white border-0 rounded-2xl overflow-hidden hover-elevate relative transition-all duration-200"
+          style={{ 
+            boxShadow: isDragging 
+              ? '0 0 0 1px rgba(0,0,0,0.1), 0 20px 40px rgba(0,0,0,0.15)' 
+              : '0 0 0 1px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)',
+            opacity: isDragging ? 0.9 : 1,
+            transform: isDragging ? 'scale(1.02)' : 'scale(1)',
+          }}
         >
           <div className="absolute top-4 right-4 z-10">
             <Button
