@@ -139,7 +139,7 @@ export default function Dashboard() {
     {
       id: 'blank',
       name: 'Blank Canvas',
-      description: 'Start from scratch with complete creative freedom',
+      description: 'Start fresh and make your own layout.',
       icon: FileText,
       color: '#FF553E',
       mockProject: {
@@ -149,51 +149,39 @@ export default function Dashboard() {
       }
     },
     {
-      id: 'product-design',
-      name: 'Product Design',
-      description: 'Perfect for showcasing end-to-end product design projects',
+      id: 'show-work',
+      name: 'Show your Work',
+      description: 'Perfect for showing what you built, designed, or created.',
       icon: Layers,
       color: '#FFB088',
       mockProject: {
-        title: 'Redesigning the Product Experience',
-        description: 'A comprehensive product design case study showcasing user research, wireframes, prototypes, and final designs',
-        category: 'Product Design'
+        title: 'My Latest Project',
+        description: 'Showcasing the work I built, designed, and created',
+        category: 'Portfolio'
       }
     },
     {
-      id: 'ux-research',
-      name: 'UX Research',
-      description: 'Highlight research methods, insights, and user testing',
-      icon: Search,
+      id: 'how-solved',
+      name: 'How I Solved It',
+      description: 'Tell the story behind a challenge you faced and how you solved it.',
+      icon: MessageSquare,
       color: '#D97DD8',
       mockProject: {
-        title: 'User Research & Testing Study',
-        description: 'Deep dive into user behavior, pain points, and insights that shaped the design decisions',
-        category: 'UX Research'
+        title: 'Problem Solving Case Study',
+        description: 'The story of a challenge I faced and the solution I created',
+        category: 'Problem Solving'
       }
     },
     {
-      id: 'mobile-app',
-      name: 'Mobile App Design',
-      description: 'Showcase iOS or Android app design work',
-      icon: Smartphone,
+      id: 'research',
+      name: 'Research & Learnings',
+      description: 'Best for sharing what you discovered or tested.',
+      icon: Search,
       color: '#B47EE8',
       mockProject: {
-        title: 'Mobile Banking App Redesign',
-        description: 'Transforming the mobile banking experience with intuitive design and seamless interactions',
-        category: 'Mobile App'
-      }
-    },
-    {
-      id: 'web-design',
-      name: 'Web Design',
-      description: 'Display website design and development projects',
-      icon: Monitor,
-      color: '#F77BB1',
-      mockProject: {
-        title: 'E-commerce Website Redesign',
-        description: 'Creating a modern, conversion-focused website design that delights users and drives sales',
-        category: 'Web Design'
+        title: 'Research Findings',
+        description: 'Insights and learnings from my research and testing',
+        category: 'Research'
       }
     }
   ];
