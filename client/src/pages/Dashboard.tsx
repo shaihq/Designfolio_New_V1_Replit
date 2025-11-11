@@ -324,17 +324,6 @@ export default function Dashboard() {
             transform: isDragging ? 'scale(1.02)' : 'scale(1)',
           }}
         >
-          <div className="absolute top-4 right-4 z-10">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-9 w-9 bg-white/80 backdrop-blur-sm hover:bg-white"
-              data-testid={`button-edit-case-study-${project.id}`}
-            >
-              <Pencil className="w-4 h-4" />
-            </Button>
-          </div>
-          
           <div 
             className="w-full h-56 flex items-center justify-center relative overflow-hidden rounded-t-2xl"
             style={{
@@ -386,14 +375,15 @@ export default function Dashboard() {
             </button>
             
             <div className="flex items-center gap-2">
-              <button
-                className="flex items-center gap-2 px-3 py-2 rounded-lg hover-elevate text-sm font-medium"
-                style={{ backgroundColor: '#FFE8DF', color: '#FF553E' }}
+              <Button
+                variant="secondary"
+                size="sm"
+                className="flex items-center gap-2"
                 data-testid={`button-edit-case-study-bottom-${project.id}`}
               >
                 <Pencil className="w-4 h-4" />
                 <span>Edit</span>
-              </button>
+              </Button>
               
               <button
                 onClick={() => handleDeleteClick(project.id)}
