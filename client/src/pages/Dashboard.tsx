@@ -532,7 +532,8 @@ export default function Dashboard() {
                       data-testid={`card-case-study-${project.id}`}
                     >
                       <div 
-                        className="bg-white border border-border/30 rounded-2xl overflow-hidden hover-elevate relative"
+                        className="bg-white border-0 rounded-2xl overflow-hidden hover-elevate relative"
+                        style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)' }}
                       >
                         <div className="absolute top-4 right-4 z-10">
                           <Button
