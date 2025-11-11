@@ -315,7 +315,7 @@ export default function Dashboard() {
         data-testid={`card-case-study-${project.id}`}
       >
         <motion.div 
-          className="bg-white border-0 rounded-2xl overflow-hidden hover-elevate relative"
+          className="bg-white border-0 rounded-2xl overflow-hidden relative"
           style={{ 
             boxShadow: isDragging 
               ? '0 0 0 1px rgba(0,0,0,0.1), 0 20px 40px rgba(0,0,0,0.15)' 
