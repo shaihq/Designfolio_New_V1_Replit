@@ -521,50 +521,64 @@ export default function Dashboard() {
                   </div>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {caseStudies.map((project) => (
                     <motion.div
                       key={project.id}
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="group cursor-pointer"
+                      className="group cursor-pointer relative"
                       data-testid={`card-case-study-${project.id}`}
                     >
-                      <div className="bg-white border border-border/30 rounded-2xl overflow-hidden hover-elevate">
+                      <div 
+                        className="rounded-2xl overflow-hidden hover-elevate relative"
+                        style={{ backgroundColor: '#F5F3F1' }}
+                      >
+                        <div className="absolute top-4 right-4 z-10">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-9 w-9 bg-white/80 backdrop-blur-sm hover:bg-white"
+                            data-testid={`button-edit-case-study-${project.id}`}
+                          >
+                            <Pencil className="w-4 h-4" />
+                          </Button>
+                        </div>
+                        
                         <div 
-                          className="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden"
+                          className="w-full h-56 flex items-center justify-center relative overflow-hidden"
+                          style={{
+                            background: 'linear-gradient(135deg, #FCF9F6 0%, #F9F5F1 50%, #F5F1ED 100%)'
+                          }}
                           data-testid={`image-case-study-${project.id}`}
                         >
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/[0.02] to-transparent" />
                           <img 
                             src={project.image} 
                             alt={project.title}
-                            className="w-32 h-32 object-contain opacity-30"
+                            className="w-28 h-28 object-contain opacity-20"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
                         </div>
+                        
                         <div className="p-6">
-                          <div className="flex items-center justify-between mb-3">
+                          <div className="mb-3">
                             <Badge 
-                              variant="secondary" 
-                              className="text-xs"
+                              className="text-xs font-medium"
+                              style={{ 
+                                backgroundColor: '#FFE8DF',
+                                color: '#FF553E',
+                                border: 'none'
+                              }}
                               data-testid={`badge-case-study-category-${project.id}`}
                             >
                               {project.category}
                             </Badge>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-8 w-8"
-                              data-testid={`button-edit-case-study-${project.id}`}
-                            >
-                              <Pencil className="w-4 h-4" />
-                            </Button>
                           </div>
-                          <h3 className="font-semibold text-lg mb-2 line-clamp-2" data-testid={`text-case-study-title-${project.id}`}>
+                          <h3 className="font-semibold text-lg mb-2 line-clamp-2 text-foreground" data-testid={`text-case-study-title-${project.id}`}>
                             {project.title}
                           </h3>
-                          <p className="text-sm text-foreground/60 line-clamp-2" data-testid={`text-case-study-description-${project.id}`}>
+                          <p className="text-sm text-foreground/60 line-clamp-3 leading-relaxed" data-testid={`text-case-study-description-${project.id}`}>
                             {project.description}
                           </p>
                         </div>
@@ -582,13 +596,17 @@ export default function Dashboard() {
                   >
                     <button
                       onClick={() => setIsTemplateDialogOpen(true)}
-                      className="w-full h-full bg-white border-2 border-dashed border-border/50 rounded-2xl overflow-hidden hover-elevate transition-all flex flex-col items-center justify-center p-6 min-h-[400px]"
+                      className="w-full h-full border-2 border-dashed rounded-2xl hover-elevate transition-all flex flex-col items-center justify-center p-6 min-h-[400px]"
+                      style={{ 
+                        backgroundColor: '#F5F3F1',
+                        borderColor: 'rgba(0,0,0,0.08)'
+                      }}
                     >
                       <div 
-                        className="w-20 h-20 rounded-2xl flex items-center justify-center mb-4"
-                        style={{ backgroundColor: '#FFF5F0' }}
+                        className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
+                        style={{ backgroundColor: '#FFE8DF' }}
                       >
-                        <Plus className="w-10 h-10" style={{ color: '#FF553E' }} />
+                        <Plus className="w-8 h-8" style={{ color: '#FF553E' }} />
                       </div>
                       <h3 className="font-semibold text-lg mb-2 text-foreground">
                         Add case study
