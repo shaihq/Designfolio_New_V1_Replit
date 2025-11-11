@@ -127,6 +127,13 @@ export default function Dashboard() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [visibleTestimonials, setVisibleTestimonials] = useState<Set<number>>(new Set());
   const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false);
+  const [caseStudies, setCaseStudies] = useState<Array<{
+    id: number;
+    title: string;
+    description: string;
+    category: string;
+    image: string;
+  }>>([]);
 
   const caseStudyTemplates = [
     {
@@ -134,37 +141,77 @@ export default function Dashboard() {
       name: 'Blank Canvas',
       description: 'Start from scratch with complete creative freedom',
       icon: FileText,
-      color: '#FF553E'
+      color: '#FF553E',
+      mockProject: {
+        title: 'Untitled Project',
+        description: 'Start adding your content here',
+        category: 'Case Study'
+      }
     },
     {
       id: 'product-design',
       name: 'Product Design',
       description: 'Perfect for showcasing end-to-end product design projects',
       icon: Layers,
-      color: '#FFB088'
+      color: '#FFB088',
+      mockProject: {
+        title: 'Redesigning the Product Experience',
+        description: 'A comprehensive product design case study showcasing user research, wireframes, prototypes, and final designs',
+        category: 'Product Design'
+      }
     },
     {
       id: 'ux-research',
       name: 'UX Research',
       description: 'Highlight research methods, insights, and user testing',
       icon: Search,
-      color: '#D97DD8'
+      color: '#D97DD8',
+      mockProject: {
+        title: 'User Research & Testing Study',
+        description: 'Deep dive into user behavior, pain points, and insights that shaped the design decisions',
+        category: 'UX Research'
+      }
     },
     {
       id: 'mobile-app',
       name: 'Mobile App Design',
       description: 'Showcase iOS or Android app design work',
       icon: Smartphone,
-      color: '#B47EE8'
+      color: '#B47EE8',
+      mockProject: {
+        title: 'Mobile Banking App Redesign',
+        description: 'Transforming the mobile banking experience with intuitive design and seamless interactions',
+        category: 'Mobile App'
+      }
     },
     {
       id: 'web-design',
       name: 'Web Design',
       description: 'Display website design and development projects',
       icon: Monitor,
-      color: '#F77BB1'
+      color: '#F77BB1',
+      mockProject: {
+        title: 'E-commerce Website Redesign',
+        description: 'Creating a modern, conversion-focused website design that delights users and drives sales',
+        category: 'Web Design'
+      }
     }
   ];
+
+  const handleTemplateSelect = (templateId: string) => {
+    const template = caseStudyTemplates.find(t => t.id === templateId);
+    if (template) {
+      const newProject = {
+        id: Date.now(),
+        title: template.mockProject.title,
+        description: template.mockProject.description,
+        category: template.mockProject.category,
+        image: '/casestudy.png'
+      };
+      setCaseStudies(prev => [...prev, newProject]);
+    }
+    setIsTemplateDialogOpen(false);
+  };
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -427,50 +474,117 @@ export default function Dashboard() {
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.15 }}
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-              <h2 className="text-2xl font-semibold mb-6" data-testid="text-section-title">
-                My works
-              </h2>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-semibold" data-testid="text-section-title">
+                  My works
+                </h2>
+                {caseStudies.length > 0 && (
+                  <Button 
+                    onClick={() => setIsTemplateDialogOpen(true)}
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full h-11 w-11"
+                    data-testid="button-add-case-study-header"
+                  >
+                    <Plus className="w-5 h-5" />
+                  </Button>
+                )}
+              </div>
               
-              <div 
-                className="border border-border/30 rounded-2xl p-10 shadow-none"
-                style={{
-                  backgroundColor: '#F6F2EF',
-                  boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
-                }}
-              >
-                <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
-                  <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-                    <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-semibold mb-2" data-testid="text-empty-state-title">
-                    Upload your first case study
-                  </h3>
-                  <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
-                    Show off your best work
-                  </p>
-                  
-                  <div className="flex gap-4">
-                    <Button 
-                      onClick={() => setIsTemplateDialogOpen(true)}
-                      className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
-                      data-testid="button-add-case-study"
-                    >
-                      <Plus className="w-5 h-5" />
-                      Add case study
-                    </Button>
-                    <div 
-                      className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
-                      data-testid="button-write-using-ai"
-                    >
-                      <Sparkles className="w-5 h-5 text-foreground" />
-                      <span className="text-base font-medium text-foreground">
-                        Write using AI
-                      </span>
+              {caseStudies.length === 0 ? (
+                <div 
+                  className="border border-border/30 rounded-2xl p-10 shadow-none"
+                  style={{
+                    backgroundColor: '#F6F2EF',
+                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                  }}
+                >
+                  <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
+                    <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                      <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
+                    </div>
+                    
+                    <h3 className="text-2xl font-semibold mb-2" data-testid="text-empty-state-title">
+                      Upload your first case study
+                    </h3>
+                    <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
+                      Show off your best work
+                    </p>
+                    
+                    <div className="flex gap-4">
+                      <Button 
+                        onClick={() => setIsTemplateDialogOpen(true)}
+                        className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                        data-testid="button-add-case-study"
+                      >
+                        <Plus className="w-5 h-5" />
+                        Add case study
+                      </Button>
+                      <div 
+                        className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                        data-testid="button-write-using-ai"
+                      >
+                        <Sparkles className="w-5 h-5 text-foreground" />
+                        <span className="text-base font-medium text-foreground">
+                          Write using AI
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {caseStudies.map((project) => (
+                    <motion.div
+                      key={project.id}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="group cursor-pointer"
+                      data-testid={`card-case-study-${project.id}`}
+                    >
+                      <div className="bg-white border border-border/30 rounded-2xl overflow-hidden hover-elevate">
+                        <div 
+                          className="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden"
+                          data-testid={`image-case-study-${project.id}`}
+                        >
+                          <img 
+                            src={project.image} 
+                            alt={project.title}
+                            className="w-32 h-32 object-contain opacity-30"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent" />
+                        </div>
+                        <div className="p-6">
+                          <div className="flex items-center justify-between mb-3">
+                            <Badge 
+                              variant="secondary" 
+                              className="text-xs"
+                              data-testid={`badge-case-study-category-${project.id}`}
+                            >
+                              {project.category}
+                            </Badge>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8"
+                              data-testid={`button-edit-case-study-${project.id}`}
+                            >
+                              <Pencil className="w-4 h-4" />
+                            </Button>
+                          </div>
+                          <h3 className="font-semibold text-lg mb-2 line-clamp-2" data-testid={`text-case-study-title-${project.id}`}>
+                            {project.title}
+                          </h3>
+                          <p className="text-sm text-foreground/60 line-clamp-2" data-testid={`text-case-study-description-${project.id}`}>
+                            {project.description}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </Card>
           </motion.div>
 
@@ -650,9 +764,7 @@ export default function Dashboard() {
               return (
                 <button
                   key={template.id}
-                  onClick={() => {
-                    setIsTemplateDialogOpen(false);
-                  }}
+                  onClick={() => handleTemplateSelect(template.id)}
                   className="flex items-start gap-4 p-4 rounded-xl border-2 border-border hover-elevate text-left transition-all"
                   data-testid={`button-template-${template.id}`}
                 >
