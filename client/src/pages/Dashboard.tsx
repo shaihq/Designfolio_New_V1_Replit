@@ -731,15 +731,17 @@ export default function Dashboard() {
                         >
                           <Button 
                             onClick={() => setIsTemplateDialogOpen(true)}
-                            className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                            className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
                             data-testid="button-add-case-study-grid"
                           >
+                            <Plus className="w-5 h-5" />
                             Add case study
                           </Button>
                           <div 
-                            className="bg-white border border-border rounded-full px-6 py-3 hover-elevate cursor-pointer"
+                            className="bg-white border border-border rounded-full px-6 py-3 flex items-center gap-2 hover-elevate cursor-pointer"
                             data-testid="button-write-using-ai-grid"
                           >
+                            <Sparkles className="w-5 h-5 text-foreground" />
                             <span className="text-base font-medium text-foreground">
                               Write using AI
                             </span>
