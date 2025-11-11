@@ -375,15 +375,13 @@ export default function Dashboard() {
             </button>
             
             <div className="flex items-center gap-2">
-              <Button
-                variant="secondary"
-                size="sm"
-                className="flex items-center gap-2"
+              <button
+                className="bg-white border border-border rounded-full px-4 py-2 flex items-center gap-2 hover-elevate cursor-pointer text-sm font-medium"
                 data-testid={`button-edit-case-study-bottom-${project.id}`}
               >
-                <Pencil className="w-4 h-4" />
-                <span>Edit</span>
-              </Button>
+                <Pencil className="w-4 h-4 text-foreground" />
+                <span className="text-foreground">Edit</span>
+              </button>
               
               <button
                 onClick={() => handleDeleteClick(project.id)}
