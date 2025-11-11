@@ -596,9 +596,10 @@ export default function Dashboard() {
                   >
                     <button
                       onClick={() => setIsTemplateDialogOpen(true)}
-                      className="w-full h-full bg-white border-2 border-dashed rounded-2xl hover-elevate transition-all flex flex-col items-center justify-center p-6 min-h-[400px]"
+                      className="w-full h-full border border-border/30 rounded-2xl transition-all flex flex-col items-center justify-center p-10 min-h-[400px]"
                       style={{ 
-                        borderColor: 'rgba(0,0,0,0.08)'
+                        backgroundColor: '#F6F2EF',
+                        boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
                       }}
                     >
                       <div 
