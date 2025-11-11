@@ -362,7 +362,7 @@ export default function Dashboard() {
           </div>
 
           <div 
-            className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-white via-white to-transparent"
+            className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between bg-gradient-to-t from-white via-white to-transparent"
           >
             <button
               {...attributes}
