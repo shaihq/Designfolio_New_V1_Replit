@@ -809,7 +809,7 @@ export default function Dashboard() {
                           setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
                         }, 300 + idx * 100);
                       }}
-                      className="bg-white border border-border/30 rounded-2xl p-6 hover-elevate flex flex-col relative"
+                      className="bg-white border border-border/30 rounded-2xl p-5 hover-elevate flex flex-col relative"
                       data-testid={`card-testimonial-${testimonial.id}`}
                       style={{
                         backgroundColor: '#F5F3F1'
@@ -818,17 +818,17 @@ export default function Dashboard() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="absolute top-4 right-4 h-8 w-8"
+                        className="absolute top-3 right-3 h-7 w-7"
                         data-testid={`button-edit-testimonial-${testimonial.id}`}
                       >
-                        <Pencil className="w-4 h-4" />
+                        <Pencil className="w-3.5 h-3.5" />
                       </Button>
-                      <p className="text-base leading-relaxed mb-6 flex-1" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                      <p className="text-sm leading-relaxed mb-4 flex-1 pr-8" data-testid={`text-testimonial-content-${testimonial.id}`}>
                         {highlightText(testimonial.text, testimonial.highlightedText)}
                       </p>
                       
-                      <div className="flex items-center gap-3">
-                        <Avatar className="w-12 h-12 shrink-0">
+                      <div className="flex items-center gap-2.5">
+                        <Avatar className="w-10 h-10 shrink-0">
                           <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                           <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
                             {testimonial.name.split(' ').map(n => n[0]).join('')}
@@ -836,10 +836,10 @@ export default function Dashboard() {
                         </Avatar>
                         
                         <div>
-                          <h3 className="font-semibold text-base mb-0" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                          <h3 className="font-semibold text-sm mb-0" data-testid={`text-testimonial-name-${testimonial.id}`}>
                             {testimonial.name}
                           </h3>
-                          <p className="text-sm text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                          <p className="text-xs text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
                             {testimonial.role}, {testimonial.company}
                           </p>
                         </div>
@@ -876,21 +876,21 @@ export default function Dashboard() {
                 {tools.map((tool) => (
                   <div
                     key={tool.id}
-                    className="bg-white border border-border/30 rounded-2xl p-6 hover-elevate"
+                    className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate"
                     data-testid={`card-tool-${tool.id}`}
                   >
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-center gap-3">
                       <div 
-                        className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                        className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
                         style={{ backgroundColor: tool.color }}
                         data-testid={`icon-tool-${tool.id}`}
                       >
-                        <div className="w-6 h-6 bg-white/90 rounded" />
+                        <div className="w-5 h-5 bg-white/90 rounded" />
                       </div>
                       
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold text-base" data-testid={`text-tool-name-${tool.id}`}>
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <h3 className="font-semibold text-sm" data-testid={`text-tool-name-${tool.id}`}>
                             {tool.name}
                           </h3>
                           <Badge 
@@ -901,7 +901,7 @@ export default function Dashboard() {
                             {tool.category}
                           </Badge>
                         </div>
-                        <p className="text-sm text-foreground/50" data-testid={`text-tool-description-${tool.id}`}>
+                        <p className="text-xs text-foreground/50" data-testid={`text-tool-description-${tool.id}`}>
                           {tool.description}
                         </p>
                       </div>
