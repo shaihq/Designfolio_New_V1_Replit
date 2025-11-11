@@ -314,15 +314,22 @@ export default function Dashboard() {
         className="group cursor-pointer relative" 
         data-testid={`card-case-study-${project.id}`}
       >
-        <div 
-          className="bg-white border-0 rounded-2xl overflow-hidden hover-elevate relative transition-all duration-200"
+        <motion.div 
+          className="bg-white border-0 rounded-2xl overflow-hidden hover-elevate relative"
           style={{ 
             boxShadow: isDragging 
               ? '0 0 0 1px rgba(0,0,0,0.1), 0 20px 40px rgba(0,0,0,0.15)' 
               : '0 0 0 1px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)',
             opacity: isDragging ? 0.9 : 1,
-            transform: isDragging ? 'scale(1.02)' : 'scale(1)',
           }}
+          whileHover={{ 
+            scale: 1.02,
+            rotateX: 2,
+            rotateY: -2,
+            transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+          }}
+          initial={{ scale: 1, rotateX: 0, rotateY: 0 }}
+          animate={isDragging ? { scale: 1.02 } : { scale: 1 }}
         >
           <div 
             className="w-full h-56 flex items-center justify-center relative overflow-hidden rounded-t-2xl"
@@ -332,10 +339,12 @@ export default function Dashboard() {
             data-testid={`image-case-study-${project.id}`}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/[0.02] to-transparent" />
-            <img 
+            <motion.img 
               src={project.image} 
               alt={project.title}
               className="w-28 h-28 object-contain opacity-20"
+              whileHover={{ scale: 1.15 }}
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             />
           </div>
           
@@ -392,7 +401,7 @@ export default function Dashboard() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     );
   }
