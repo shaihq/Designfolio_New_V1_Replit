@@ -583,6 +583,33 @@ export default function Dashboard() {
                       </div>
                     </motion.div>
                   ))}
+                  
+                  {/* Add New Case Study Card */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                    className="group cursor-pointer"
+                    data-testid="card-add-case-study"
+                  >
+                    <button
+                      onClick={() => setIsTemplateDialogOpen(true)}
+                      className="w-full h-full bg-white border-2 border-dashed border-border/50 rounded-2xl overflow-hidden hover-elevate transition-all flex flex-col items-center justify-center p-6 min-h-[400px]"
+                    >
+                      <div 
+                        className="w-20 h-20 rounded-2xl flex items-center justify-center mb-4"
+                        style={{ backgroundColor: '#FFF5F0' }}
+                      >
+                        <Plus className="w-10 h-10" style={{ color: '#FF553E' }} />
+                      </div>
+                      <h3 className="font-semibold text-lg mb-2 text-foreground">
+                        Add case study
+                      </h3>
+                      <p className="text-sm text-foreground/60 text-center max-w-xs">
+                        Choose from templates or start from scratch
+                      </p>
+                    </button>
+                  </motion.div>
                 </div>
               )}
             </Card>
