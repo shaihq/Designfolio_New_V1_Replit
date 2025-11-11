@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { 
   Sparkles, 
@@ -14,7 +15,12 @@ import {
   Sparkle,
   Pencil,
   Menu,
-  MessageSquare
+  MessageSquare,
+  FileText,
+  Smartphone,
+  Monitor,
+  Search,
+  Layers
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -120,6 +126,45 @@ export default function Dashboard() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [visibleTestimonials, setVisibleTestimonials] = useState<Set<number>>(new Set());
+  const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false);
+
+  const caseStudyTemplates = [
+    {
+      id: 'blank',
+      name: 'Blank Canvas',
+      description: 'Start from scratch with complete creative freedom',
+      icon: FileText,
+      color: '#FF553E'
+    },
+    {
+      id: 'product-design',
+      name: 'Product Design',
+      description: 'Perfect for showcasing end-to-end product design projects',
+      icon: Layers,
+      color: '#FFB088'
+    },
+    {
+      id: 'ux-research',
+      name: 'UX Research',
+      description: 'Highlight research methods, insights, and user testing',
+      icon: Search,
+      color: '#D97DD8'
+    },
+    {
+      id: 'mobile-app',
+      name: 'Mobile App Design',
+      description: 'Showcase iOS or Android app design work',
+      icon: Smartphone,
+      color: '#B47EE8'
+    },
+    {
+      id: 'web-design',
+      name: 'Web Design',
+      description: 'Display website design and development projects',
+      icon: Monitor,
+      color: '#F77BB1'
+    }
+  ];
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -407,6 +452,7 @@ export default function Dashboard() {
                   
                   <div className="flex gap-4">
                     <Button 
+                      onClick={() => setIsTemplateDialogOpen(true)}
                       className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
                       data-testid="button-add-case-study"
                     >
@@ -586,6 +632,50 @@ export default function Dashboard() {
           </motion.div>
         </main>
       </div>
+
+      {/* Template Selection Dialog */}
+      <Dialog open={isTemplateDialogOpen} onOpenChange={setIsTemplateDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-semibold" data-testid="text-dialog-title">
+              Choose a template
+            </DialogTitle>
+            <DialogDescription data-testid="text-dialog-description">
+              Select a template to get started with your case study
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-1 gap-3 mt-4">
+            {caseStudyTemplates.map((template) => {
+              const Icon = template.icon;
+              return (
+                <button
+                  key={template.id}
+                  onClick={() => {
+                    setIsTemplateDialogOpen(false);
+                  }}
+                  className="flex items-start gap-4 p-4 rounded-xl border-2 border-border hover-elevate text-left transition-all"
+                  data-testid={`button-template-${template.id}`}
+                >
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                    style={{ backgroundColor: `${template.color}15` }}
+                  >
+                    <Icon className="w-6 h-6" style={{ color: template.color }} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-base mb-1" data-testid={`text-template-name-${template.id}`}>
+                      {template.name}
+                    </h3>
+                    <p className="text-sm text-foreground/60" data-testid={`text-template-description-${template.id}`}>
+                      {template.description}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
