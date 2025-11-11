@@ -532,8 +532,7 @@ export default function Dashboard() {
                       data-testid={`card-case-study-${project.id}`}
                     >
                       <div 
-                        className="rounded-2xl overflow-hidden hover-elevate relative"
-                        style={{ backgroundColor: '#F5F3F1' }}
+                        className="bg-white rounded-2xl overflow-hidden hover-elevate relative"
                       >
                         <div className="absolute top-4 right-4 z-10">
                           <Button
@@ -596,9 +595,8 @@ export default function Dashboard() {
                   >
                     <button
                       onClick={() => setIsTemplateDialogOpen(true)}
-                      className="w-full h-full border-2 border-dashed rounded-2xl hover-elevate transition-all flex flex-col items-center justify-center p-6 min-h-[400px]"
+                      className="w-full h-full bg-white border-2 border-dashed rounded-2xl hover-elevate transition-all flex flex-col items-center justify-center p-6 min-h-[400px]"
                       style={{ 
-                        backgroundColor: '#F5F3F1',
                         borderColor: 'rgba(0,0,0,0.08)'
                       }}
                     >
