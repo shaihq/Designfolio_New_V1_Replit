@@ -310,7 +310,7 @@ export default function Dashboard() {
     return (
       <div ref={setNodeRef} style={style} className="group cursor-pointer relative" data-testid={`card-case-study-${project.id}`}>
         <div 
-          className="bg-white border-0 rounded-2xl overflow-visible hover-elevate relative"
+          className="bg-white border-0 rounded-2xl overflow-hidden hover-elevate relative"
           style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)' }}
         >
           <div className="absolute top-4 right-4 z-10">
@@ -362,7 +362,7 @@ export default function Dashboard() {
           </div>
 
           <div 
-            className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between bg-gradient-to-t from-white via-white to-transparent"
+            className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between bg-gradient-to-t from-white via-white to-transparent rounded-b-2xl"
           >
             <button
               {...attributes}
