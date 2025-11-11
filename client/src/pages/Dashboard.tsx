@@ -532,7 +532,7 @@ export default function Dashboard() {
                       data-testid={`card-case-study-${project.id}`}
                     >
                       <div 
-                        className="bg-white rounded-2xl overflow-hidden hover-elevate relative"
+                        className="bg-white border border-border/30 rounded-2xl overflow-hidden hover-elevate relative"
                       >
                         <div className="absolute top-4 right-4 z-10">
                           <Button
