@@ -818,12 +818,12 @@ export default function Dashboard() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="absolute top-3 right-3 h-7 w-7"
+                        className="absolute top-4 right-4 h-8 w-8"
                         data-testid={`button-edit-testimonial-${testimonial.id}`}
                       >
-                        <Pencil className="w-3.5 h-3.5" />
+                        <Pencil className="w-4 h-4" />
                       </Button>
-                      <p className="text-sm leading-relaxed mb-4 flex-1 pr-8" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                      <p className="text-sm leading-relaxed mb-4 flex-1 pr-6" data-testid={`text-testimonial-content-${testimonial.id}`}>
                         {highlightText(testimonial.text, testimonial.highlightedText)}
                       </p>
                       
