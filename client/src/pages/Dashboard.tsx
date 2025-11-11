@@ -339,7 +339,7 @@ export default function Dashboard() {
             />
           </div>
           
-          <div className="p-6">
+          <div className="p-6 pb-20">
             <div className="mb-3">
               <Badge 
                 className="text-xs font-medium"
