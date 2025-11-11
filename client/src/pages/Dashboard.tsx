@@ -385,14 +385,25 @@ export default function Dashboard() {
               <GripVertical className="w-4 h-4 text-foreground/60" />
             </button>
             
-            <button
-              onClick={() => handleDeleteClick(project.id)}
-              className="flex items-center justify-center w-10 h-10 rounded-lg hover-elevate"
-              style={{ backgroundColor: '#FFE8DF' }}
-              data-testid={`button-delete-case-study-${project.id}`}
-            >
-              <Trash2 className="w-4 h-4" style={{ color: '#FF553E' }} />
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                className="flex items-center gap-2 px-3 py-2 rounded-lg hover-elevate text-sm font-medium"
+                style={{ backgroundColor: '#FFE8DF', color: '#FF553E' }}
+                data-testid={`button-edit-case-study-bottom-${project.id}`}
+              >
+                <Pencil className="w-4 h-4" />
+                <span>Edit</span>
+              </button>
+              
+              <button
+                onClick={() => handleDeleteClick(project.id)}
+                className="flex items-center justify-center w-10 h-10 rounded-lg hover-elevate"
+                style={{ backgroundColor: '#FFE8DF' }}
+                data-testid={`button-delete-case-study-${project.id}`}
+              >
+                <Trash2 className="w-4 h-4" style={{ color: '#FF553E' }} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
