@@ -5,6 +5,16 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { 
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { motion } from "framer-motion";
 import { 
   Sparkles, 
@@ -20,9 +30,28 @@ import {
   Smartphone,
   Monitor,
   Search,
-  Layers
+  Layers,
+  Trash2,
+  GripVertical
 } from "lucide-react";
 import { Link } from "wouter";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 export default function Dashboard() {
   const [user] = useState({
@@ -127,6 +156,8 @@ export default function Dashboard() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [visibleTestimonials, setVisibleTestimonials] = useState<Set<number>>(new Set());
   const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
   const [caseStudies, setCaseStudies] = useState<Array<{
     id: number;
     title: string;
@@ -134,6 +165,13 @@ export default function Dashboard() {
     category: string;
     image: string;
   }>>([]);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   const caseStudyTemplates = [
     {
@@ -201,6 +239,32 @@ export default function Dashboard() {
     setIsTemplateDialogOpen(false);
   };
 
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    
+    if (over && active.id !== over.id) {
+      setCaseStudies((items) => {
+        const oldIndex = items.findIndex(item => item.id === active.id);
+        const newIndex = items.findIndex(item => item.id === over.id);
+        
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
+
+  const handleDeleteClick = (projectId: number) => {
+    setProjectToDelete(projectId);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (projectToDelete !== null) {
+      setCaseStudies(prev => prev.filter(p => p.id !== projectToDelete));
+      setProjectToDelete(null);
+    }
+    setDeleteDialogOpen(false);
+  };
+
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
@@ -226,6 +290,103 @@ export default function Dashboard() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
+
+  function SortableCard({ project }: { project: typeof caseStudies[0] }) {
+    const {
+      attributes,
+      listeners,
+      setNodeRef,
+      transform,
+      transition,
+      isDragging,
+    } = useSortable({ id: project.id });
+
+    const style = {
+      transform: CSS.Transform.toString(transform),
+      transition,
+      opacity: isDragging ? 0.5 : 1,
+    };
+
+    return (
+      <div ref={setNodeRef} style={style} className="group cursor-pointer relative" data-testid={`card-case-study-${project.id}`}>
+        <div 
+          className="bg-white border-0 rounded-2xl overflow-visible hover-elevate relative"
+          style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)' }}
+        >
+          <div className="absolute top-4 right-4 z-10">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-9 w-9 bg-white/80 backdrop-blur-sm hover:bg-white"
+              data-testid={`button-edit-case-study-${project.id}`}
+            >
+              <Pencil className="w-4 h-4" />
+            </Button>
+          </div>
+          
+          <div 
+            className="w-full h-56 flex items-center justify-center relative overflow-hidden rounded-t-2xl"
+            style={{
+              background: 'linear-gradient(135deg, #FCF9F6 0%, #F9F5F1 50%, #F5F1ED 100%)'
+            }}
+            data-testid={`image-case-study-${project.id}`}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/[0.02] to-transparent" />
+            <img 
+              src={project.image} 
+              alt={project.title}
+              className="w-28 h-28 object-contain opacity-20"
+            />
+          </div>
+          
+          <div className="p-6">
+            <div className="mb-3">
+              <Badge 
+                className="text-xs font-medium"
+                style={{ 
+                  backgroundColor: '#FFE8DF',
+                  color: '#FF553E',
+                  border: 'none'
+                }}
+                data-testid={`badge-case-study-category-${project.id}`}
+              >
+                {project.category}
+              </Badge>
+            </div>
+            <h3 className="font-semibold text-lg mb-2 line-clamp-2 text-foreground" data-testid={`text-case-study-title-${project.id}`}>
+              {project.title}
+            </h3>
+            <p className="text-sm text-foreground/60 line-clamp-3 leading-relaxed" data-testid={`text-case-study-description-${project.id}`}>
+              {project.description}
+            </p>
+          </div>
+
+          <div 
+            className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-white via-white to-transparent"
+          >
+            <button
+              {...attributes}
+              {...listeners}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border/40 bg-card text-sm hover-elevate cursor-grab active:cursor-grabbing"
+              aria-roledescription="Reorder"
+              data-testid={`button-drag-case-study-${project.id}`}
+            >
+              <GripVertical className="w-4 h-4 text-foreground/60" />
+            </button>
+            
+            <button
+              onClick={() => handleDeleteClick(project.id)}
+              className="flex items-center justify-center w-10 h-10 rounded-lg hover-elevate"
+              style={{ backgroundColor: '#FFE8DF' }}
+              data-testid={`button-delete-case-study-${project.id}`}
+            >
+              <Trash2 className="w-4 h-4" style={{ color: '#FF553E' }} />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F6F2EF' }}>
@@ -521,102 +682,53 @@ export default function Dashboard() {
                   </div>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {caseStudies.map((project) => (
-                    <motion.div
-                      key={project.id}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="group cursor-pointer relative"
-                      data-testid={`card-case-study-${project.id}`}
-                    >
-                      <div 
-                        className="bg-white border-0 rounded-2xl overflow-hidden hover-elevate relative"
-                        style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)' }}
-                      >
-                        <div className="absolute top-4 right-4 z-10">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-9 w-9 bg-white/80 backdrop-blur-sm hover:bg-white"
-                            data-testid={`button-edit-case-study-${project.id}`}
-                          >
-                            <Pencil className="w-4 h-4" />
-                          </Button>
-                        </div>
-                        
-                        <div 
-                          className="w-full h-56 flex items-center justify-center relative overflow-hidden"
-                          style={{
-                            background: 'linear-gradient(135deg, #FCF9F6 0%, #F9F5F1 50%, #F5F1ED 100%)'
-                          }}
-                          data-testid={`image-case-study-${project.id}`}
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/[0.02] to-transparent" />
-                          <img 
-                            src={project.image} 
-                            alt={project.title}
-                            className="w-28 h-28 object-contain opacity-20"
-                          />
-                        </div>
-                        
-                        <div className="p-6">
-                          <div className="mb-3">
-                            <Badge 
-                              className="text-xs font-medium"
-                              style={{ 
-                                backgroundColor: '#FFE8DF',
-                                color: '#FF553E',
-                                border: 'none'
-                              }}
-                              data-testid={`badge-case-study-category-${project.id}`}
-                            >
-                              {project.category}
-                            </Badge>
-                          </div>
-                          <h3 className="font-semibold text-lg mb-2 line-clamp-2 text-foreground" data-testid={`text-case-study-title-${project.id}`}>
-                            {project.title}
-                          </h3>
-                          <p className="text-sm text-foreground/60 line-clamp-3 leading-relaxed" data-testid={`text-case-study-description-${project.id}`}>
-                            {project.description}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                  
-                  {/* Add New Case Study Card */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: 0.1 }}
-                    className="group cursor-pointer"
-                    data-testid="card-add-case-study"
+                <DndContext
+                  sensors={sensors}
+                  collisionDetection={closestCenter}
+                  onDragEnd={handleDragEnd}
+                >
+                  <SortableContext
+                    items={caseStudies.map(p => p.id)}
+                    strategy={verticalListSortingStrategy}
                   >
-                    <button
-                      onClick={() => setIsTemplateDialogOpen(true)}
-                      className="w-full h-full border border-border/30 rounded-2xl transition-all flex flex-col items-center justify-center p-10 min-h-[400px]"
-                      style={{ 
-                        backgroundColor: '#F6F2EF',
-                        boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
-                      }}
-                    >
-                      <div 
-                        className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
-                        style={{ backgroundColor: '#FFE8DF' }}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {caseStudies.map((project) => (
+                        <SortableCard key={project.id} project={project} />
+                      ))}
+                  
+                      {/* Add New Case Study Card */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                        className="group cursor-pointer"
+                        data-testid="card-add-case-study"
                       >
-                        <Plus className="w-8 h-8" style={{ color: '#FF553E' }} />
-                      </div>
-                      <h3 className="font-semibold text-lg mb-2 text-foreground">
-                        Add case study
-                      </h3>
-                      <p className="text-sm text-foreground/60 text-center max-w-xs">
-                        Choose from templates or start from scratch
-                      </p>
-                    </button>
-                  </motion.div>
-                </div>
+                        <button
+                          onClick={() => setIsTemplateDialogOpen(true)}
+                          className="w-full h-full border border-border/30 rounded-2xl transition-all flex flex-col items-center justify-center p-10 min-h-[400px]"
+                          style={{ 
+                            backgroundColor: '#F6F2EF',
+                            boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                          }}
+                        >
+                          <div 
+                            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
+                            style={{ backgroundColor: '#FFE8DF' }}
+                          >
+                            <Plus className="w-8 h-8" style={{ color: '#FF553E' }} />
+                          </div>
+                          <h3 className="font-semibold text-lg mb-2 text-foreground">
+                            Add case study
+                          </h3>
+                          <p className="text-sm text-foreground/60 text-center max-w-xs">
+                            Choose from templates or start from scratch
+                          </p>
+                        </button>
+                      </motion.div>
+                    </div>
+                  </SortableContext>
+                </DndContext>
               )}
             </Card>
           </motion.div>
@@ -821,6 +933,27 @@ export default function Dashboard() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Project</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will permanently remove this project from your portfolio. This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDeleteConfirm}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
