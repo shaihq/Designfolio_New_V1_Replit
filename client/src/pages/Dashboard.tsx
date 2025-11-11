@@ -367,11 +367,11 @@ export default function Dashboard() {
             <button
               {...attributes}
               {...listeners}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border/40 bg-card text-sm hover-elevate cursor-grab active:cursor-grabbing"
+              className="bg-white border border-border rounded-full px-3 py-2 flex items-center gap-2 hover-elevate cursor-grab active:cursor-grabbing"
               aria-roledescription="Reorder"
               data-testid={`button-drag-case-study-${project.id}`}
             >
-              <GripVertical className="w-4 h-4 text-foreground/60" />
+              <GripVertical className="w-4 h-4 text-foreground" />
             </button>
             
             <div className="flex items-center gap-2">
@@ -385,11 +385,10 @@ export default function Dashboard() {
               
               <button
                 onClick={() => handleDeleteClick(project.id)}
-                className="flex items-center justify-center w-10 h-10 rounded-lg hover-elevate"
-                style={{ backgroundColor: '#FFE8DF' }}
+                className="bg-white border border-border rounded-full w-10 h-10 flex items-center justify-center hover-elevate cursor-pointer"
                 data-testid={`button-delete-case-study-${project.id}`}
               >
-                <Trash2 className="w-4 h-4" style={{ color: '#FF553E' }} />
+                <Trash2 className="w-4 h-4 text-destructive" />
               </button>
             </div>
           </div>
