@@ -95,37 +95,37 @@ export default function Pricing() {
                 Choose the plan that works best for you. Get lifetime access with all features included.
               </p>
 
-              <Card className="mt-8 overflow-hidden">
+              <div className="mt-8 bg-white dark:bg-white rounded-lg border shadow-sm overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full" data-testid="table-pricing-comparison">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="text-left py-5 px-6 font-semibold" data-testid="header-feature">
+                    <thead className="bg-gray-50 dark:bg-gray-50">
+                      <tr className="border-b border-gray-200">
+                        <th className="text-left py-4 px-6 text-sm font-semibold text-gray-900" data-testid="header-feature">
                           Feature
                         </th>
-                        <th className="text-center py-5 px-6 font-semibold" data-testid="header-free">
+                        <th className="text-center py-4 px-6 text-sm font-semibold text-gray-900" data-testid="header-free">
                           Free Plan
                         </th>
-                        <th className="text-center py-5 px-6 font-semibold" data-testid="header-lifetime">
+                        <th className="text-center py-4 px-6 text-sm font-semibold text-gray-900" data-testid="header-lifetime">
                           Lifetime Plan
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y">
+                    <tbody className="divide-y divide-gray-200 bg-white dark:bg-white">
                       {comparisonRows.map((row) => (
                         <tr key={row.testId} data-testid={`row-${row.testId}`}>
-                          <td className="py-5 px-6 font-medium" data-testid={`feature-${row.testId}`}>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900" data-testid={`feature-${row.testId}`}>
                             {row.feature}
                           </td>
-                          <td className="py-5 px-6" data-testid={`free-${row.testId}`}>
+                          <td className="py-4 px-6 text-sm text-gray-600" data-testid={`free-${row.testId}`}>
                             {typeof row.free === 'object' ? (
                               <div className="flex items-center justify-center gap-2">
                                 {row.free.type === 'unavailable' ? (
-                                  <X className="h-4 w-4 text-muted-foreground shrink-0" />
+                                  <X className="h-4 w-4 text-gray-400 shrink-0" />
                                 ) : (
-                                  <Check className="h-4 w-4 text-primary shrink-0" />
+                                  <Check className="h-4 w-4 text-green-600 shrink-0" />
                                 )}
-                                <span className="text-sm text-muted-foreground">
+                                <span>
                                   {row.free.text}
                                 </span>
                               </div>
@@ -135,13 +135,13 @@ export default function Pricing() {
                               </div>
                             )}
                           </td>
-                          <td className="py-5 px-6" data-testid={`lifetime-${row.testId}`}>
+                          <td className="py-4 px-6 text-sm text-gray-900" data-testid={`lifetime-${row.testId}`}>
                             {typeof row.lifetime === 'object' ? (
                               <div className="flex items-center justify-center gap-2">
                                 {row.lifetime.type === 'included' && (
-                                  <Check className="h-4 w-4 text-primary shrink-0" />
+                                  <Check className="h-4 w-4 text-green-600 shrink-0" />
                                 )}
-                                <span className="text-sm">
+                                <span>
                                   {row.lifetime.text}
                                 </span>
                               </div>
@@ -156,7 +156,7 @@ export default function Pricing() {
                     </tbody>
                   </table>
                 </div>
-              </Card>
+              </div>
 
               <div className="flex justify-center mt-10">
                 <Link href="/signup">
