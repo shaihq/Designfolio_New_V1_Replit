@@ -160,7 +160,7 @@ export default function Pricing() {
                   Frequently Asked Questions
                 </h2>
                 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div>
                     <h3 className="font-semibold mb-2" data-testid="text-faq-lifetime">
                       What does lifetime access mean?
@@ -171,29 +171,32 @@ export default function Pricing() {
                   </div>
 
                   <div>
-                    <h3 className="font-semibold mb-2" data-testid="text-faq-upgrade">
-                      Can I upgrade from Free to Lifetime?
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-upgrade-answer">
-                      Absolutely! You can upgrade to the Lifetime plan at any time from your account settings. All your existing projects and data will be preserved.
-                    </p>
-                  </div>
-
-                  <div>
                     <h3 className="font-semibold mb-2" data-testid="text-faq-refund">
                       Do you offer refunds?
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-refund-answer">
-                      We offer a 30-day money-back guarantee on the Lifetime plan. If you're not satisfied, contact us for a full refund. See our{" "}
-                      <a 
-                        href="/refund-policy" 
-                        className="text-primary hover:underline"
-                        data-testid="link-refund-policy"
-                      >
-                        Refund Policy
-                      </a>
-                      {" "}for more details.
-                    </p>
+                    <div className="text-muted-foreground leading-relaxed space-y-3" data-testid="text-faq-refund-answer">
+                      <p>
+                        All purchases are non-refundable as access is delivered instantly.
+                      </p>
+                      <p>
+                        Refunds are only considered in exceptional cases such as:
+                      </p>
+                      <ul className="list-disc pl-6 space-y-1">
+                        <li>Duplicate payments caused by a technical issue</li>
+                        <li>Payment deducted but access not activated within 24 hours</li>
+                      </ul>
+                      <p>
+                        If this happens, email{" "}
+                        <a 
+                          href="mailto:shai@designfolio.me" 
+                          className="text-primary hover:underline"
+                          data-testid="link-refund-email"
+                        >
+                          shai@designfolio.me
+                        </a>
+                        {" "}within 48 hours of your payment along with proof of transaction. Each request is reviewed individually. Refunds, if approved, take 5 working days to process.
+                      </p>
+                    </div>
                   </div>
 
                   <div>
@@ -201,7 +204,25 @@ export default function Pricing() {
                       What payment methods do you accept?
                     </h3>
                     <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-payment-answer">
-                      We accept all major credit cards, debit cards, and PayPal for your convenience.
+                      We accept all major credit cards, debit cards, UPI (India), and international payment methods depending on your region.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold mb-2" data-testid="text-faq-really-lifetime">
+                      Is lifetime access really lifetime?
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-really-lifetime-answer">
+                      Yes! One payment unlocks all current and future features, templates, and updates — forever.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold mb-2" data-testid="text-faq-pricing-change">
+                      Will pricing change in the future?
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-pricing-change-answer">
+                      Yes. Lifetime access is currently priced at ₹4,500 (India) and $99 (Global) and may increase later. Early buyers keep their lifetime access permanently.
                     </p>
                   </div>
                 </div>
