@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import FooterBottom from "@/components/FooterBottom";
 import { useEffect } from "react";
 import { Check, X } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Pricing() {
   useEffect(() => {
@@ -95,70 +96,85 @@ export default function Pricing() {
               </p>
 
               <div className="overflow-x-auto mt-8">
-                <table className="w-full border-collapse" data-testid="table-pricing-comparison">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="text-left py-4 pr-4 font-semibold" data-testid="header-feature">Feature</th>
-                      <th className="text-left py-4 px-4 font-semibold" data-testid="header-free">Free Plan</th>
-                      <th className="text-left py-4 pl-4 font-semibold" data-testid="header-lifetime">Lifetime Plan</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {comparisonRows.map((row) => (
-                      <tr key={row.testId} className="border-b" data-testid={`row-${row.testId}`}>
-                        <td className="py-4 pr-4 font-medium" data-testid={`feature-${row.testId}`}>
+                <div className="min-w-full" data-testid="table-pricing-comparison">
+                  <div className="grid grid-cols-[2fr_1.5fr_1.5fr] gap-px bg-border rounded-lg overflow-hidden">
+                    <div className="bg-muted/50 px-6 py-4 font-semibold" data-testid="header-feature">
+                      Feature
+                    </div>
+                    <div className="bg-muted/50 px-6 py-4 font-semibold text-center" data-testid="header-free">
+                      Free Plan
+                    </div>
+                    <div className="bg-primary/5 px-6 py-4 font-semibold text-center" data-testid="header-lifetime">
+                      Lifetime Plan
+                    </div>
+
+                    {comparisonRows.map((row, index) => (
+                      <>
+                        <div 
+                          key={`${row.testId}-feature`}
+                          className={`bg-card px-6 py-5 font-medium ${index === comparisonRows.length - 1 ? '' : ''}`}
+                          data-testid={`feature-${row.testId}`}
+                        >
                           {row.feature}
-                        </td>
-                        <td className="py-4 px-4" data-testid={`free-${row.testId}`}>
+                        </div>
+                        <div 
+                          key={`${row.testId}-free`}
+                          className={`bg-card px-6 py-5 ${index === comparisonRows.length - 1 ? '' : ''}`}
+                          data-testid={`free-${row.testId}`}
+                        >
                           {typeof row.free === 'object' ? (
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center justify-center gap-2">
                               {row.free.type === 'unavailable' ? (
-                                <X className="h-5 w-5 text-destructive shrink-0" />
+                                <X className="h-4 w-4 text-muted-foreground shrink-0" />
                               ) : (
-                                <Check className="h-5 w-5 text-primary shrink-0" />
+                                <Check className="h-4 w-4 text-primary shrink-0" />
                               )}
-                              <span className={row.free.type === 'unavailable' ? 'text-muted-foreground' : ''}>
+                              <span className="text-sm text-muted-foreground text-center">
                                 {row.free.text}
                               </span>
                             </div>
                           ) : (
-                            <span>{row.free}</span>
+                            <div className="text-center text-sm">
+                              {row.free}
+                            </div>
                           )}
-                        </td>
-                        <td className="py-4 pl-4" data-testid={`lifetime-${row.testId}`}>
+                        </div>
+                        <div 
+                          key={`${row.testId}-lifetime`}
+                          className={`bg-primary/5 px-6 py-5 ${index === comparisonRows.length - 1 ? '' : ''}`}
+                          data-testid={`lifetime-${row.testId}`}
+                        >
                           {typeof row.lifetime === 'object' ? (
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center justify-center gap-2">
                               {row.lifetime.type === 'included' && (
-                                <Check className="h-5 w-5 text-primary shrink-0" />
+                                <Check className="h-4 w-4 text-primary shrink-0" />
                               )}
-                              <span>{row.lifetime.text}</span>
+                              <span className="text-sm text-center">
+                                {row.lifetime.text}
+                              </span>
                             </div>
                           ) : (
-                            <span>{row.lifetime}</span>
+                            <div className="text-center text-sm">
+                              {row.lifetime}
+                            </div>
                           )}
-                        </td>
-                      </tr>
+                        </div>
+                      </>
                     ))}
-                  </tbody>
-                </table>
+                  </div>
+                </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6 mt-8">
-                <Button 
-                  variant="outline"
-                  size="lg"
-                  className="w-full"
-                  data-testid="button-get-started-free"
-                >
-                  Get Started Free
-                </Button>
-                <Button 
-                  size="lg"
-                  className="w-full"
-                  data-testid="button-get-lifetime"
-                >
-                  Get Lifetime Access
-                </Button>
+              <div className="flex justify-center mt-10">
+                <Link href="/signup">
+                  <Button 
+                    size="lg"
+                    className="px-12"
+                    data-testid="button-get-started-free"
+                  >
+                    Get Started for Free
+                  </Button>
+                </Link>
               </div>
 
               <section className="mt-12">
