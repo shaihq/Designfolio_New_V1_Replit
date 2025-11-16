@@ -95,75 +95,68 @@ export default function Pricing() {
                 Choose the plan that works best for you. Get lifetime access with all features included.
               </p>
 
-              <div className="overflow-x-auto mt-8">
-                <div className="min-w-full" data-testid="table-pricing-comparison">
-                  <div className="grid grid-cols-[2fr_1.5fr_1.5fr] gap-px bg-border rounded-lg overflow-hidden">
-                    <div className="bg-muted/50 px-6 py-4 font-semibold" data-testid="header-feature">
-                      Feature
-                    </div>
-                    <div className="bg-muted/50 px-6 py-4 font-semibold text-center" data-testid="header-free">
-                      Free Plan
-                    </div>
-                    <div className="bg-primary/5 px-6 py-4 font-semibold text-center" data-testid="header-lifetime">
-                      Lifetime Plan
-                    </div>
-
-                    {comparisonRows.map((row, index) => (
-                      <>
-                        <div 
-                          key={`${row.testId}-feature`}
-                          className={`bg-card px-6 py-5 font-medium ${index === comparisonRows.length - 1 ? '' : ''}`}
-                          data-testid={`feature-${row.testId}`}
-                        >
-                          {row.feature}
-                        </div>
-                        <div 
-                          key={`${row.testId}-free`}
-                          className={`bg-card px-6 py-5 ${index === comparisonRows.length - 1 ? '' : ''}`}
-                          data-testid={`free-${row.testId}`}
-                        >
-                          {typeof row.free === 'object' ? (
-                            <div className="flex items-center justify-center gap-2">
-                              {row.free.type === 'unavailable' ? (
-                                <X className="h-4 w-4 text-muted-foreground shrink-0" />
-                              ) : (
-                                <Check className="h-4 w-4 text-primary shrink-0" />
-                              )}
-                              <span className="text-sm text-muted-foreground text-center">
-                                {row.free.text}
-                              </span>
-                            </div>
-                          ) : (
-                            <div className="text-center text-sm">
-                              {row.free}
-                            </div>
-                          )}
-                        </div>
-                        <div 
-                          key={`${row.testId}-lifetime`}
-                          className={`bg-primary/5 px-6 py-5 ${index === comparisonRows.length - 1 ? '' : ''}`}
-                          data-testid={`lifetime-${row.testId}`}
-                        >
-                          {typeof row.lifetime === 'object' ? (
-                            <div className="flex items-center justify-center gap-2">
-                              {row.lifetime.type === 'included' && (
-                                <Check className="h-4 w-4 text-primary shrink-0" />
-                              )}
-                              <span className="text-sm text-center">
-                                {row.lifetime.text}
-                              </span>
-                            </div>
-                          ) : (
-                            <div className="text-center text-sm">
-                              {row.lifetime}
-                            </div>
-                          )}
-                        </div>
-                      </>
-                    ))}
-                  </div>
+              <Card className="mt-8 overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full" data-testid="table-pricing-comparison">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left py-5 px-6 font-semibold" data-testid="header-feature">
+                          Feature
+                        </th>
+                        <th className="text-center py-5 px-6 font-semibold" data-testid="header-free">
+                          Free Plan
+                        </th>
+                        <th className="text-center py-5 px-6 font-semibold" data-testid="header-lifetime">
+                          Lifetime Plan
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                      {comparisonRows.map((row) => (
+                        <tr key={row.testId} data-testid={`row-${row.testId}`}>
+                          <td className="py-5 px-6 font-medium" data-testid={`feature-${row.testId}`}>
+                            {row.feature}
+                          </td>
+                          <td className="py-5 px-6" data-testid={`free-${row.testId}`}>
+                            {typeof row.free === 'object' ? (
+                              <div className="flex items-center justify-center gap-2">
+                                {row.free.type === 'unavailable' ? (
+                                  <X className="h-4 w-4 text-muted-foreground shrink-0" />
+                                ) : (
+                                  <Check className="h-4 w-4 text-primary shrink-0" />
+                                )}
+                                <span className="text-sm text-muted-foreground">
+                                  {row.free.text}
+                                </span>
+                              </div>
+                            ) : (
+                              <div className="text-center">
+                                {row.free}
+                              </div>
+                            )}
+                          </td>
+                          <td className="py-5 px-6" data-testid={`lifetime-${row.testId}`}>
+                            {typeof row.lifetime === 'object' ? (
+                              <div className="flex items-center justify-center gap-2">
+                                {row.lifetime.type === 'included' && (
+                                  <Check className="h-4 w-4 text-primary shrink-0" />
+                                )}
+                                <span className="text-sm">
+                                  {row.lifetime.text}
+                                </span>
+                              </div>
+                            ) : (
+                              <div className="text-center">
+                                {row.lifetime}
+                              </div>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-              </div>
+              </Card>
 
               <div className="flex justify-center mt-10">
                 <Link href="/signup">
