@@ -161,8 +161,7 @@ export default function Pricing() {
               <div className="flex justify-center mt-10">
                 <Link href="/signup">
                   <Button 
-                    size="lg"
-                    className="px-12"
+                    className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-12 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
                     data-testid="button-get-started-free"
                   >
                     Get Started for Free
