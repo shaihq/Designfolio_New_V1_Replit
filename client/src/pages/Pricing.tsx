@@ -1,5 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import Navbar from "@/components/Navbar";
 import FooterBottom from "@/components/FooterBottom";
 import { useEffect } from "react";
@@ -156,76 +162,86 @@ export default function Pricing() {
               </div>
 
               <section className="mt-12">
-                <h2 className="text-2xl font-semibold mb-3" data-testid="text-section-faq">
+                <h2 className="text-2xl font-semibold mb-6" data-testid="text-section-faq">
                   Frequently Asked Questions
                 </h2>
                 
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="font-semibold mb-2" data-testid="text-faq-lifetime">
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="item-1" data-testid="accordion-faq-lifetime">
+                    <AccordionTrigger data-testid="text-faq-lifetime">
                       What does lifetime access mean?
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-lifetime-answer">
-                      Lifetime access means you pay once and get access to all current and future features forever. No recurring fees, no hidden costs.
-                    </p>
-                  </div>
+                    </AccordionTrigger>
+                    <AccordionContent data-testid="text-faq-lifetime-answer">
+                      <p className="text-muted-foreground leading-relaxed">
+                        Lifetime access means you pay once and get access to all current and future features forever. No recurring fees, no hidden costs.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
 
-                  <div>
-                    <h3 className="font-semibold mb-2" data-testid="text-faq-refund">
+                  <AccordionItem value="item-2" data-testid="accordion-faq-refund">
+                    <AccordionTrigger data-testid="text-faq-refund">
                       Do you offer refunds?
-                    </h3>
-                    <div className="text-muted-foreground leading-relaxed space-y-3" data-testid="text-faq-refund-answer">
-                      <p>
-                        All purchases are non-refundable as access is delivered instantly.
-                      </p>
-                      <p>
-                        Refunds are only considered in exceptional cases such as:
-                      </p>
-                      <ul className="list-disc pl-6 space-y-1">
-                        <li>Duplicate payments caused by a technical issue</li>
-                        <li>Payment deducted but access not activated within 24 hours</li>
-                      </ul>
-                      <p>
-                        If this happens, email{" "}
-                        <a 
-                          href="mailto:shai@designfolio.me" 
-                          className="text-primary hover:underline"
-                          data-testid="link-refund-email"
-                        >
-                          shai@designfolio.me
-                        </a>
-                        {" "}within 48 hours of your payment along with proof of transaction. Each request is reviewed individually. Refunds, if approved, take 5 working days to process.
-                      </p>
-                    </div>
-                  </div>
+                    </AccordionTrigger>
+                    <AccordionContent data-testid="text-faq-refund-answer">
+                      <div className="text-muted-foreground leading-relaxed space-y-3">
+                        <p>
+                          All purchases are non-refundable as access is delivered instantly.
+                        </p>
+                        <p>
+                          Refunds are only considered in exceptional cases such as:
+                        </p>
+                        <ul className="list-disc pl-6 space-y-1">
+                          <li>Duplicate payments caused by a technical issue</li>
+                          <li>Payment deducted but access not activated within 24 hours</li>
+                        </ul>
+                        <p>
+                          If this happens, email{" "}
+                          <a 
+                            href="mailto:shai@designfolio.me" 
+                            className="text-primary hover:underline"
+                            data-testid="link-refund-email"
+                          >
+                            shai@designfolio.me
+                          </a>
+                          {" "}within 48 hours of your payment along with proof of transaction. Each request is reviewed individually. Refunds, if approved, take 5 working days to process.
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
 
-                  <div>
-                    <h3 className="font-semibold mb-2" data-testid="text-faq-payment">
+                  <AccordionItem value="item-3" data-testid="accordion-faq-payment">
+                    <AccordionTrigger data-testid="text-faq-payment">
                       What payment methods do you accept?
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-payment-answer">
-                      We accept all major credit cards, debit cards, UPI (India), and international payment methods depending on your region.
-                    </p>
-                  </div>
+                    </AccordionTrigger>
+                    <AccordionContent data-testid="text-faq-payment-answer">
+                      <p className="text-muted-foreground leading-relaxed">
+                        We accept all major credit cards, debit cards, UPI (India), and international payment methods depending on your region.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
 
-                  <div>
-                    <h3 className="font-semibold mb-2" data-testid="text-faq-really-lifetime">
+                  <AccordionItem value="item-4" data-testid="accordion-faq-really-lifetime">
+                    <AccordionTrigger data-testid="text-faq-really-lifetime">
                       Is lifetime access really lifetime?
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-really-lifetime-answer">
-                      Yes! One payment unlocks all current and future features, templates, and updates — forever.
-                    </p>
-                  </div>
+                    </AccordionTrigger>
+                    <AccordionContent data-testid="text-faq-really-lifetime-answer">
+                      <p className="text-muted-foreground leading-relaxed">
+                        Yes! One payment unlocks all current and future features, templates, and updates — forever.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
 
-                  <div>
-                    <h3 className="font-semibold mb-2" data-testid="text-faq-pricing-change">
+                  <AccordionItem value="item-5" data-testid="accordion-faq-pricing-change">
+                    <AccordionTrigger data-testid="text-faq-pricing-change">
                       Will pricing change in the future?
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-pricing-change-answer">
-                      Yes. Lifetime access is currently priced at ₹4,500 (India) and $99 (Global) and may increase later. Early buyers keep their lifetime access permanently.
-                    </p>
-                  </div>
-                </div>
+                    </AccordionTrigger>
+                    <AccordionContent data-testid="text-faq-pricing-change-answer">
+                      <p className="text-muted-foreground leading-relaxed">
+                        Yes. Lifetime access is currently priced at ₹4,500 (India) and $99 (Global) and may increase later. Early buyers keep their lifetime access permanently.
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </section>
 
               <section className="mt-12 pt-6 border-t">
