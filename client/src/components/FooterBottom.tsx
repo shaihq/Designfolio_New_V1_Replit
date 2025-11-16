@@ -32,6 +32,13 @@ export default function FooterBottom() {
               Refund Policy
             </Link>
             <Link 
+              href="/pricing" 
+              className="text-sm text-muted-foreground hover-elevate px-2 py-1 rounded-md transition-colors" 
+              data-testid="link-pricing"
+            >
+              Pricing
+            </Link>
+            <Link 
               href="/contact" 
               className="text-sm text-muted-foreground hover-elevate px-2 py-1 rounded-md transition-colors" 
               data-testid="link-contact"
