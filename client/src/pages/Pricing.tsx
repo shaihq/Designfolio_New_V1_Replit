@@ -3,12 +3,75 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import FooterBottom from "@/components/FooterBottom";
 import { useEffect } from "react";
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 
 export default function Pricing() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const comparisonRows = [
+    {
+      feature: "Pricing",
+      free: "₹0",
+      lifetime: "₹4,500 (India) / $99 (Global)",
+      testId: "pricing"
+    },
+    {
+      feature: "Custom Domain",
+      free: { type: "unavailable", text: "Not available" },
+      lifetime: { type: "included", text: "Included" },
+      testId: "custom-domain"
+    },
+    {
+      feature: "Number of Case Studies",
+      free: "2 only",
+      lifetime: "Unlimited",
+      testId: "case-studies"
+    },
+    {
+      feature: "Number of Projects",
+      free: "1 project",
+      lifetime: "Unlimited",
+      testId: "projects"
+    },
+    {
+      feature: "Templates",
+      free: "Limited starter templates",
+      lifetime: "All templates (now & forever)",
+      testId: "templates"
+    },
+    {
+      feature: "Themes",
+      free: "Limited",
+      lifetime: "All current + future themes",
+      testId: "themes"
+    },
+    {
+      feature: "Branding Removal",
+      free: { type: "unavailable", text: "Designfolio branding visible" },
+      lifetime: { type: "included", text: "Remove branding" },
+      testId: "branding"
+    },
+    {
+      feature: "Analytics (Views Tracking)",
+      free: { type: "unavailable", text: "Not available" },
+      lifetime: { type: "included", text: "Included" },
+      testId: "analytics"
+    },
+    {
+      feature: "Future Updates & Features",
+      free: { type: "unavailable", text: "Not included" },
+      lifetime: { type: "included", text: "Lifetime access" },
+      testId: "updates"
+    },
+    {
+      feature: "Support",
+      free: "Standard",
+      lifetime: "Priority",
+      testId: "support"
+    }
+  ];
 
   return (
     <div className="min-h-screen w-full bg-background">
@@ -22,103 +85,74 @@ export default function Pricing() {
             
             <div className="space-y-6 text-foreground">
               <p className="text-lg leading-relaxed" data-testid="text-intro">
-                Choose the plan that works best for you. All plans include our core features to help you create a stunning portfolio.
+                Choose the plan that works best for you. Get lifetime access with all features included.
               </p>
 
+              <div className="overflow-x-auto mt-8">
+                <table className="w-full border-collapse" data-testid="table-pricing-comparison">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-4 pr-4 font-semibold" data-testid="header-feature">Feature</th>
+                      <th className="text-left py-4 px-4 font-semibold" data-testid="header-free">Free Plan</th>
+                      <th className="text-left py-4 pl-4 font-semibold" data-testid="header-lifetime">Lifetime Plan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonRows.map((row) => (
+                      <tr key={row.testId} className="border-b" data-testid={`row-${row.testId}`}>
+                        <td className="py-4 pr-4 font-medium" data-testid={`feature-${row.testId}`}>
+                          {row.feature}
+                        </td>
+                        <td className="py-4 px-4" data-testid={`free-${row.testId}`}>
+                          {typeof row.free === 'object' ? (
+                            <div className="flex items-center gap-2">
+                              {row.free.type === 'unavailable' ? (
+                                <X className="h-5 w-5 text-destructive shrink-0" />
+                              ) : (
+                                <Check className="h-5 w-5 text-primary shrink-0" />
+                              )}
+                              <span className={row.free.type === 'unavailable' ? 'text-muted-foreground' : ''}>
+                                {row.free.text}
+                              </span>
+                            </div>
+                          ) : (
+                            <span>{row.free}</span>
+                          )}
+                        </td>
+                        <td className="py-4 pl-4" data-testid={`lifetime-${row.testId}`}>
+                          {typeof row.lifetime === 'object' ? (
+                            <div className="flex items-center gap-2">
+                              {row.lifetime.type === 'included' && (
+                                <Check className="h-5 w-5 text-primary shrink-0" />
+                              )}
+                              <span>{row.lifetime.text}</span>
+                            </div>
+                          ) : (
+                            <span>{row.lifetime}</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6 mt-8">
-                <Card className="p-6" data-testid="card-plan-free">
-                  <div className="space-y-4">
-                    <div>
-                      <h2 className="text-2xl font-semibold mb-2" data-testid="text-plan-free-title">
-                        Free
-                      </h2>
-                      <div className="mb-4">
-                        <span className="text-4xl font-bold" data-testid="text-plan-free-price">$0</span>
-                        <span className="text-muted-foreground">/month</span>
-                      </div>
-                    </div>
-                    
-                    <ul className="space-y-3" data-testid="list-free-features">
-                      <li className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <span>Up to 3 portfolio projects</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <span>Basic templates</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <span>Public portfolio page</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <span>Community support</span>
-                      </li>
-                    </ul>
-
-                    <Button 
-                      className="w-full" 
-                      variant="outline"
-                      data-testid="button-get-started-free"
-                    >
-                      Get Started
-                    </Button>
-                  </div>
-                </Card>
-
-                <Card className="p-6 border-primary" data-testid="card-plan-pro">
-                  <div className="space-y-4">
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <h2 className="text-2xl font-semibold" data-testid="text-plan-pro-title">
-                          Pro
-                        </h2>
-                        <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded-md">
-                          Popular
-                        </span>
-                      </div>
-                      <div className="mb-4">
-                        <span className="text-4xl font-bold" data-testid="text-plan-pro-price">$9</span>
-                        <span className="text-muted-foreground">/month</span>
-                      </div>
-                    </div>
-                    
-                    <ul className="space-y-3" data-testid="list-pro-features">
-                      <li className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <span>Unlimited portfolio projects</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <span>Premium templates</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <span>Custom domain support</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <span>Advanced analytics</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <span>Priority support</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <span>Remove Designfolio branding</span>
-                      </li>
-                    </ul>
-
-                    <Button 
-                      className="w-full"
-                      data-testid="button-get-started-pro"
-                    >
-                      Get Started
-                    </Button>
-                  </div>
-                </Card>
+                <Button 
+                  variant="outline"
+                  size="lg"
+                  className="w-full"
+                  data-testid="button-get-started-free"
+                >
+                  Get Started Free
+                </Button>
+                <Button 
+                  size="lg"
+                  className="w-full"
+                  data-testid="button-get-lifetime"
+                >
+                  Get Lifetime Access
+                </Button>
               </div>
 
               <section className="mt-12">
@@ -128,20 +162,20 @@ export default function Pricing() {
                 
                 <div className="space-y-4">
                   <div>
-                    <h3 className="font-semibold mb-2" data-testid="text-faq-cancel">
-                      Can I cancel anytime?
+                    <h3 className="font-semibold mb-2" data-testid="text-faq-lifetime">
+                      What does lifetime access mean?
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-cancel-answer">
-                      Yes, you can cancel your subscription at any time. Your access will continue until the end of your billing period.
+                    <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-lifetime-answer">
+                      Lifetime access means you pay once and get access to all current and future features forever. No recurring fees, no hidden costs.
                     </p>
                   </div>
 
                   <div>
                     <h3 className="font-semibold mb-2" data-testid="text-faq-upgrade">
-                      Can I upgrade or downgrade my plan?
+                      Can I upgrade from Free to Lifetime?
                     </h3>
                     <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-upgrade-answer">
-                      Absolutely! You can upgrade or downgrade your plan at any time from your account settings.
+                      Absolutely! You can upgrade to the Lifetime plan at any time from your account settings. All your existing projects and data will be preserved.
                     </p>
                   </div>
 
@@ -150,7 +184,7 @@ export default function Pricing() {
                       Do you offer refunds?
                     </h3>
                     <p className="text-muted-foreground leading-relaxed" data-testid="text-faq-refund-answer">
-                      We offer a 30-day money-back guarantee. If you're not satisfied, contact us for a full refund. See our{" "}
+                      We offer a 30-day money-back guarantee on the Lifetime plan. If you're not satisfied, contact us for a full refund. See our{" "}
                       <a 
                         href="/refund-policy" 
                         className="text-primary hover:underline"
