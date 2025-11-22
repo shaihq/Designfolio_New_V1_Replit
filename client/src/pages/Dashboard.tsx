@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
 import { 
   AlertDialog,
   AlertDialogAction,
@@ -63,6 +64,10 @@ export default function Dashboard() {
     const saved = localStorage.getItem('dashboard-wallpaper');
     return saved || null;
   });
+  const [isDarkWallpapers, setIsDarkWallpapers] = useState(() => {
+    const saved = localStorage.getItem('dashboard-wallpaper-mode');
+    return saved === 'dark';
+  });
   const [user] = useState({
     name: "Morgan",
     role: "Product Designer @Apple",
@@ -94,7 +99,11 @@ export default function Dashboard() {
     }
   }, [selectedWallpaper]);
 
-  const wallpapers = [
+  useEffect(() => {
+    localStorage.setItem('dashboard-wallpaper-mode', isDarkWallpapers ? 'dark' : 'light');
+  }, [isDarkWallpapers]);
+
+  const lightWallpapers = [
     {
       id: 'wall1',
       name: 'Wallpaper 1',
@@ -131,6 +140,46 @@ export default function Dashboard() {
       path: '/wallpaper/wall7.png'
     }
   ];
+
+  const darkWallpapers = [
+    {
+      id: 'darkwall1',
+      name: 'Dark Wallpaper 1',
+      path: '/wallpaper/darkui/darkwall1.png'
+    },
+    {
+      id: 'darkwall2',
+      name: 'Dark Wallpaper 2',
+      path: '/wallpaper/darkui/darkwall2.png'
+    },
+    {
+      id: 'darkwall3',
+      name: 'Dark Wallpaper 3',
+      path: '/wallpaper/darkui/darkwall3.png'
+    },
+    {
+      id: 'darkwall4',
+      name: 'Dark Wallpaper 4',
+      path: '/wallpaper/darkui/darkwall4.png'
+    },
+    {
+      id: 'darkwall5',
+      name: 'Dark Wallpaper 5',
+      path: '/wallpaper/darkui/darkwall5.png'
+    },
+    {
+      id: 'darkwall6',
+      name: 'Dark Wallpaper 6',
+      path: '/wallpaper/darkui/darkwall6.png'
+    },
+    {
+      id: 'darkwall7',
+      name: 'Dark Wallpaper 7',
+      path: '/wallpaper/darkui/darkwall7.png'
+    }
+  ];
+
+  const wallpapers = isDarkWallpapers ? darkWallpapers : lightWallpapers;
 
   const testimonials = [
     {
@@ -1120,6 +1169,20 @@ export default function Dashboard() {
                       Choose a wallpaper for your dashboard background.
                     </p>
                     
+                    <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">Light Mode</span>
+                      </div>
+                      <Switch
+                        checked={isDarkWallpapers}
+                        onCheckedChange={setIsDarkWallpapers}
+                        data-testid="switch-wallpaper-mode"
+                      />
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">Dark Mode</span>
+                      </div>
+                    </div>
+                    
                     <div className="grid grid-cols-2 gap-4">
                       <button
                         onClick={() => setSelectedWallpaper(null)}
@@ -1226,6 +1289,20 @@ export default function Dashboard() {
                     <p className="text-sm text-foreground/60 mb-4">
                       Choose a wallpaper for your dashboard background.
                     </p>
+                    
+                    <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">Light Mode</span>
+                      </div>
+                      <Switch
+                        checked={isDarkWallpapers}
+                        onCheckedChange={setIsDarkWallpapers}
+                        data-testid="switch-wallpaper-mode-mobile"
+                      />
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">Dark Mode</span>
+                      </div>
+                    </div>
                     
                     <div className="grid grid-cols-2 gap-4">
                       <button
