@@ -32,7 +32,9 @@ import {
   Search,
   Layers,
   Trash2,
-  GripVertical
+  GripVertical,
+  Paintbrush,
+  X
 } from "lucide-react";
 import { Link } from "wouter";
 import {
@@ -54,6 +56,7 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 
 export default function Dashboard() {
+  const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
   const [user] = useState({
     name: "Morgan",
     role: "Product Designer @Apple",
@@ -407,16 +410,18 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F6F2EF' }}>
-      <div className="max-w-4xl mx-auto px-6">
-        {/* Floating Navbar */}
-        <div 
-          className="sticky top-0 pt-6 z-50 transition-all duration-300"
-          style={{
-            transform: isNavVisible ? 'translateY(0)' : 'translateY(-100%)',
-            transition: 'transform 0.3s ease-in-out'
-          }}
-        >
+    <div className="min-h-screen flex" style={{ backgroundColor: '#F6F2EF' }}>
+      {/* Main Content */}
+      <div className="flex-1 transition-all duration-300" style={{ marginRight: isThemePanelOpen ? '320px' : '0' }}>
+        <div className="max-w-4xl mx-auto px-6">
+          {/* Floating Navbar */}
+          <div 
+            className="sticky top-0 pt-6 z-50 transition-all duration-300"
+            style={{
+              transform: isNavVisible ? 'translateY(0)' : 'translateY(-100%)',
+              transition: 'transform 0.3s ease-in-out'
+            }}
+          >
           <Card 
             className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl px-8 py-4 mb-6 transition-shadow duration-300" 
             style={{ 
@@ -466,9 +471,10 @@ export default function Dashboard() {
                   variant="outline" 
                   size="icon"
                   className="rounded-full h-11 w-11"
-                  data-testid="button-share"
+                  onClick={() => setIsThemePanelOpen(!isThemePanelOpen)}
+                  data-testid="button-theme"
                 >
-                  <Share2 className="w-5 h-5" />
+                  <Paintbrush className="w-5 h-5" />
                 </Button>
                 <Button 
                   className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
@@ -539,10 +545,11 @@ export default function Dashboard() {
                         <Button 
                           variant="outline" 
                           className="rounded-full h-11 w-full justify-start gap-3"
-                          data-testid="button-share-mobile"
+                          onClick={() => setIsThemePanelOpen(!isThemePanelOpen)}
+                          data-testid="button-theme-mobile"
                         >
-                          <Share2 className="w-5 h-5" />
-                          <span>Share</span>
+                          <Paintbrush className="w-5 h-5" />
+                          <span>Theme</span>
                         </Button>
                       </div>
                     </div>
@@ -976,6 +983,47 @@ export default function Dashboard() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      </div>
+
+      {/* Theme Panel - Desktop (pushes content) */}
+      <div 
+        className={`hidden md:block fixed right-0 top-0 h-full bg-white border-l border-border transition-transform duration-300 z-40 ${
+          isThemePanelOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        style={{ width: '320px' }}
+      >
+        <div className="flex flex-col h-full">
+          <div className="flex items-center justify-between p-6 border-b border-border">
+            <h2 className="text-lg font-semibold" data-testid="text-theme-panel-title">Theme Settings</h2>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsThemePanelOpen(false)}
+              className="h-8 w-8"
+              data-testid="button-close-theme-panel"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          </div>
+          <div className="flex-1 overflow-auto p-6">
+            <p className="text-sm text-foreground/60" data-testid="text-theme-panel-description">
+              Customize your portfolio's appearance and style settings.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Theme Panel - Mobile (popup) */}
+      <Sheet open={isThemePanelOpen} onOpenChange={setIsThemePanelOpen}>
+        <SheetContent className="md:hidden w-80">
+          <div className="mt-8">
+            <h2 className="text-lg font-semibold mb-4" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
+            <p className="text-sm text-foreground/60" data-testid="text-theme-panel-description-mobile">
+              Customize your portfolio's appearance and style settings.
+            </p>
+          </div>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
