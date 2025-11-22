@@ -57,6 +57,7 @@ import { CSS } from '@dnd-kit/utilities';
 
 export default function Dashboard() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
   const [user] = useState({
     name: "Morgan",
     role: "Product Designer @Apple",
@@ -68,6 +69,17 @@ export default function Dashboard() {
       "Design Thinking"
     ]
   });
+
+  useEffect(() => {
+    const checkIfMobileOrTablet = () => {
+      setIsMobileOrTablet(window.innerWidth < 1024);
+    };
+    
+    checkIfMobileOrTablet();
+    window.addEventListener('resize', checkIfMobileOrTablet);
+    
+    return () => window.removeEventListener('resize', checkIfMobileOrTablet);
+  }, []);
 
   const testimonials = [
     {
@@ -412,7 +424,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: '#F6F2EF' }}>
       {/* Main Content */}
-      <div className="flex-1 transition-all duration-300" style={{ marginRight: isThemePanelOpen ? '320px' : '0' }}>
+      <div className="flex-1 transition-all duration-300" style={{ marginRight: !isMobileOrTablet && isThemePanelOpen ? '320px' : '0' }}>
         <div className="max-w-4xl mx-auto px-6">
           {/* Floating Navbar */}
           <div 
@@ -985,36 +997,38 @@ export default function Dashboard() {
       </AlertDialog>
       </div>
 
-      {/* Theme Panel - Desktop (pushes content) */}
-      <div 
-        className={`hidden md:block fixed right-0 top-0 h-full bg-white border-l border-border transition-transform duration-300 z-40 ${
-          isThemePanelOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        style={{ width: '320px' }}
-      >
-        <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between p-6 border-b border-border">
-            <h2 className="text-lg font-semibold" data-testid="text-theme-panel-title">Theme Settings</h2>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsThemePanelOpen(false)}
-              className="h-8 w-8"
-              data-testid="button-close-theme-panel"
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-          <div className="flex-1 overflow-auto p-6">
-            <p className="text-sm text-foreground/60" data-testid="text-theme-panel-description">
-              Customize your portfolio's appearance and style settings.
-            </p>
+      {/* Theme Panel - Desktop (pushes content) - Only on large screens */}
+      {!isMobileOrTablet && (
+        <div 
+          className={`fixed right-0 top-0 h-full bg-white border-l border-border transition-transform duration-300 z-40 ${
+            isThemePanelOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          style={{ width: '320px' }}
+        >
+          <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between p-6 border-b border-border">
+              <h2 className="text-lg font-semibold" data-testid="text-theme-panel-title">Theme Settings</h2>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsThemePanelOpen(false)}
+                className="h-8 w-8"
+                data-testid="button-close-theme-panel"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="flex-1 overflow-auto p-6">
+              <p className="text-sm text-foreground/60" data-testid="text-theme-panel-description">
+                Customize your portfolio's appearance and style settings.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Theme Panel - Mobile (popup) */}
-      <div className="md:hidden">
+      {/* Theme Panel - Mobile/Tablet (popup with overlay) */}
+      {isMobileOrTablet && (
         <Sheet open={isThemePanelOpen} onOpenChange={setIsThemePanelOpen}>
           <SheetContent className="w-80">
             <div className="mt-8">
@@ -1025,7 +1039,7 @@ export default function Dashboard() {
             </div>
           </SheetContent>
         </Sheet>
-      </div>
+      )}
     </div>
   );
 }
