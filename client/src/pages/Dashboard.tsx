@@ -422,9 +422,9 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: '#F6F2EF' }}>
+    <div className="min-h-screen flex overflow-x-hidden" style={{ backgroundColor: '#F6F2EF' }}>
       {/* Main Content */}
-      <div className="flex-1 transition-all duration-300" style={{ marginRight: !isMobileOrTablet && isThemePanelOpen ? '320px' : '0' }}>
+      <div className="flex-1 w-full min-w-0 transition-all duration-300" style={{ marginRight: !isMobileOrTablet && isThemePanelOpen ? '320px' : '0' }}>
         <div className="max-w-4xl mx-auto px-6">
           {/* Floating Navbar */}
           <div 
