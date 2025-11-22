@@ -104,6 +104,11 @@ export default function Dashboard() {
       id: 'wall2',
       name: 'Wallpaper 2',
       path: '/wallpaper/wall2.png'
+    },
+    {
+      id: 'wall3',
+      name: 'Wallpaper 3',
+      path: '/wallpaper/wall3.png'
     }
   ];
 
