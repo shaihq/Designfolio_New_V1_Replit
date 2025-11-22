@@ -59,6 +59,10 @@ import { CSS } from '@dnd-kit/utilities';
 export default function Dashboard() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+  const [selectedWallpaper, setSelectedWallpaper] = useState<string | null>(() => {
+    const saved = localStorage.getItem('dashboard-wallpaper');
+    return saved || null;
+  });
   const [user] = useState({
     name: "Morgan",
     role: "Product Designer @Apple",
@@ -81,6 +85,27 @@ export default function Dashboard() {
     
     return () => window.removeEventListener('resize', checkIfMobileOrTablet);
   }, []);
+
+  useEffect(() => {
+    if (selectedWallpaper) {
+      localStorage.setItem('dashboard-wallpaper', selectedWallpaper);
+    } else {
+      localStorage.removeItem('dashboard-wallpaper');
+    }
+  }, [selectedWallpaper]);
+
+  const wallpapers = [
+    {
+      id: 'wall1',
+      name: 'Wallpaper 1',
+      path: '/wallpaper/wall1.png'
+    },
+    {
+      id: 'wall2',
+      name: 'Wallpaper 2',
+      path: '/wallpaper/wall2.png'
+    }
+  ];
 
   const testimonials = [
     {
@@ -423,7 +448,16 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen flex overflow-x-hidden" style={{ backgroundColor: '#F6F2EF' }}>
+    <div 
+      className="min-h-screen flex overflow-x-hidden" 
+      style={{ 
+        backgroundColor: '#F6F2EF',
+        backgroundImage: selectedWallpaper ? `url(${selectedWallpaper})` : 'none',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
       {/* Main Content */}
       <div className="flex-1 w-full min-w-0 transition-all duration-300" style={{ marginRight: !isMobileOrTablet && isThemePanelOpen ? '320px' : '0' }}>
         <div className="max-w-4xl mx-auto px-6">
@@ -1057,9 +1091,54 @@ export default function Dashboard() {
                 <TabsContent value="background" className="flex-1 p-6 m-0" data-testid="content-background">
                   <div className="space-y-4">
                     <h3 className="text-sm font-semibold">Background Options</h3>
-                    <p className="text-sm text-foreground/60">
-                      Customize your background appearance.
+                    <p className="text-sm text-foreground/60 mb-4">
+                      Choose a wallpaper for your dashboard background.
                     </p>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <button
+                        onClick={() => setSelectedWallpaper(null)}
+                        className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                          !selectedWallpaper ? 'border-primary' : 'border-border'
+                        }`}
+                        data-testid="button-wallpaper-none"
+                      >
+                        <div className="aspect-video bg-gradient-to-br from-background to-muted flex items-center justify-center">
+                          <span className="text-sm font-medium text-foreground/60">Default</span>
+                        </div>
+                        {!selectedWallpaper && (
+                          <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                        )}
+                      </button>
+                      
+                      {wallpapers.map((wallpaper) => (
+                        <button
+                          key={wallpaper.id}
+                          onClick={() => setSelectedWallpaper(wallpaper.path)}
+                          className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                            selectedWallpaper === wallpaper.path ? 'border-primary' : 'border-border'
+                          }`}
+                          data-testid={`button-wallpaper-${wallpaper.id}`}
+                        >
+                          <img 
+                            src={wallpaper.path} 
+                            alt={wallpaper.name}
+                            className="aspect-video object-cover w-full"
+                          />
+                          {selectedWallpaper === wallpaper.path && (
+                            <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </TabsContent>
                 <TabsContent value="cursors" className="flex-1 p-6 m-0" data-testid="content-cursors">
@@ -1119,9 +1198,54 @@ export default function Dashboard() {
                 <TabsContent value="background" className="m-0" data-testid="content-background-mobile">
                   <div className="space-y-4">
                     <h3 className="text-sm font-semibold">Background Options</h3>
-                    <p className="text-sm text-foreground/60">
-                      Customize your background appearance.
+                    <p className="text-sm text-foreground/60 mb-4">
+                      Choose a wallpaper for your dashboard background.
                     </p>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <button
+                        onClick={() => setSelectedWallpaper(null)}
+                        className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                          !selectedWallpaper ? 'border-primary' : 'border-border'
+                        }`}
+                        data-testid="button-wallpaper-none-mobile"
+                      >
+                        <div className="aspect-video bg-gradient-to-br from-background to-muted flex items-center justify-center">
+                          <span className="text-sm font-medium text-foreground/60">Default</span>
+                        </div>
+                        {!selectedWallpaper && (
+                          <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                        )}
+                      </button>
+                      
+                      {wallpapers.map((wallpaper) => (
+                        <button
+                          key={wallpaper.id}
+                          onClick={() => setSelectedWallpaper(wallpaper.path)}
+                          className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                            selectedWallpaper === wallpaper.path ? 'border-primary' : 'border-border'
+                          }`}
+                          data-testid={`button-wallpaper-${wallpaper.id}-mobile`}
+                        >
+                          <img 
+                            src={wallpaper.path} 
+                            alt={wallpaper.name}
+                            className="aspect-video object-cover w-full"
+                          />
+                          {selectedWallpaper === wallpaper.path && (
+                            <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </TabsContent>
                 <TabsContent value="cursors" className="m-0" data-testid="content-cursors-mobile">
