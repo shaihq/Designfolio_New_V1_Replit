@@ -1014,16 +1014,18 @@ export default function Dashboard() {
       </div>
 
       {/* Theme Panel - Mobile (popup) */}
-      <Sheet open={isThemePanelOpen} onOpenChange={setIsThemePanelOpen}>
-        <SheetContent className="md:hidden w-80">
-          <div className="mt-8">
-            <h2 className="text-lg font-semibold mb-4" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
-            <p className="text-sm text-foreground/60" data-testid="text-theme-panel-description-mobile">
-              Customize your portfolio's appearance and style settings.
-            </p>
-          </div>
-        </SheetContent>
-      </Sheet>
+      <div className="md:hidden">
+        <Sheet open={isThemePanelOpen} onOpenChange={setIsThemePanelOpen}>
+          <SheetContent className="w-80">
+            <div className="mt-8">
+              <h2 className="text-lg font-semibold mb-4" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
+              <p className="text-sm text-foreground/60" data-testid="text-theme-panel-description-mobile">
+                Customize your portfolio's appearance and style settings.
+              </p>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
     </div>
   );
 }
