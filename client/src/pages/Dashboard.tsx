@@ -1140,7 +1140,7 @@ export default function Dashboard() {
           style={{ width: '320px' }}
         >
           <div className="flex flex-col h-full">
-            <div className="flex items-center justify-between p-6 border-b border-border pt-[8px] pb-[8px]">
+            <div className="flex items-center justify-between p-6 border-b border-border pt-[16px] pb-[16px]">
               <h2 className="text-lg font-semibold" data-testid="text-theme-panel-title">Theme Settings</h2>
               <Button
                 variant="ghost"
