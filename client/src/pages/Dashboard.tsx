@@ -1191,7 +1191,7 @@ export default function Dashboard() {
                   <div className="space-y-4">
                     <h3 className="text-sm font-semibold">Background Options</h3>
                     <p className="text-sm text-foreground/60 mb-4">
-                      Choose a wallpaper for your dashboard background.
+                      Choose a wallpaper for your portfolio
                     </p>
                     
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
@@ -1312,7 +1312,7 @@ export default function Dashboard() {
                   <div className="space-y-4">
                     <h3 className="text-sm font-semibold">Background Options</h3>
                     <p className="text-sm text-foreground/60 mb-4">
-                      Choose a wallpaper for your dashboard background.
+                      Choose a wallpaper for your portfolio
                     </p>
                     
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
