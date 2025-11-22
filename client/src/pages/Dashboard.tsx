@@ -1020,19 +1020,33 @@ export default function Dashboard() {
               </Button>
             </div>
             <div className="flex-1 overflow-auto">
-              <Tabs defaultValue="layouts" className="w-full">
-                <TabsList className="w-full grid grid-cols-3 rounded-none border-b">
-                  <TabsTrigger value="layouts" className="rounded-none" data-testid="tab-layouts">
-                    Layouts
-                  </TabsTrigger>
-                  <TabsTrigger value="background" className="rounded-none" data-testid="tab-background">
-                    Background
-                  </TabsTrigger>
-                  <TabsTrigger value="cursors" className="rounded-none" data-testid="tab-cursors">
-                    Cursors
-                  </TabsTrigger>
-                </TabsList>
-                <TabsContent value="layouts" className="p-6" data-testid="content-layouts">
+              <Tabs defaultValue="layouts" className="w-full h-full flex flex-col">
+                <div className="px-6 pt-4 pb-2 border-b border-border/30">
+                  <TabsList className="w-full bg-transparent p-0 h-auto gap-6 justify-start">
+                    <TabsTrigger 
+                      value="layouts" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-layouts"
+                    >
+                      Layouts
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="background" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-background"
+                    >
+                      Background
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="cursors" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-cursors"
+                    >
+                      Cursors
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+                <TabsContent value="layouts" className="flex-1 p-6 m-0" data-testid="content-layouts">
                   <div className="space-y-4">
                     <h3 className="text-sm font-semibold">Layout Options</h3>
                     <p className="text-sm text-foreground/60">
@@ -1040,7 +1054,7 @@ export default function Dashboard() {
                     </p>
                   </div>
                 </TabsContent>
-                <TabsContent value="background" className="p-6" data-testid="content-background">
+                <TabsContent value="background" className="flex-1 p-6 m-0" data-testid="content-background">
                   <div className="space-y-4">
                     <h3 className="text-sm font-semibold">Background Options</h3>
                     <p className="text-sm text-foreground/60">
@@ -1048,7 +1062,7 @@ export default function Dashboard() {
                     </p>
                   </div>
                 </TabsContent>
-                <TabsContent value="cursors" className="p-6" data-testid="content-cursors">
+                <TabsContent value="cursors" className="flex-1 p-6 m-0" data-testid="content-cursors">
                   <div className="space-y-4">
                     <h3 className="text-sm font-semibold">Cursor Options</h3>
                     <p className="text-sm text-foreground/60">
@@ -1067,20 +1081,34 @@ export default function Dashboard() {
         <Sheet open={isThemePanelOpen} onOpenChange={setIsThemePanelOpen}>
           <SheetContent className="w-80">
             <div className="mt-8">
-              <h2 className="text-lg font-semibold mb-4" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
+              <h2 className="text-lg font-semibold mb-6" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
               <Tabs defaultValue="layouts" className="w-full">
-                <TabsList className="w-full grid grid-cols-3">
-                  <TabsTrigger value="layouts" data-testid="tab-layouts-mobile">
-                    Layouts
-                  </TabsTrigger>
-                  <TabsTrigger value="background" data-testid="tab-background-mobile">
-                    Background
-                  </TabsTrigger>
-                  <TabsTrigger value="cursors" data-testid="tab-cursors-mobile">
-                    Cursors
-                  </TabsTrigger>
-                </TabsList>
-                <TabsContent value="layouts" className="mt-4" data-testid="content-layouts-mobile">
+                <div className="pb-2 border-b border-border/30 mb-4">
+                  <TabsList className="w-full bg-transparent p-0 h-auto gap-6 justify-start">
+                    <TabsTrigger 
+                      value="layouts" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-layouts-mobile"
+                    >
+                      Layouts
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="background" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-background-mobile"
+                    >
+                      Background
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="cursors" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-cursors-mobile"
+                    >
+                      Cursors
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+                <TabsContent value="layouts" className="m-0" data-testid="content-layouts-mobile">
                   <div className="space-y-4">
                     <h3 className="text-sm font-semibold">Layout Options</h3>
                     <p className="text-sm text-foreground/60">
@@ -1088,7 +1116,7 @@ export default function Dashboard() {
                     </p>
                   </div>
                 </TabsContent>
-                <TabsContent value="background" className="mt-4" data-testid="content-background-mobile">
+                <TabsContent value="background" className="m-0" data-testid="content-background-mobile">
                   <div className="space-y-4">
                     <h3 className="text-sm font-semibold">Background Options</h3>
                     <p className="text-sm text-foreground/60">
@@ -1096,7 +1124,7 @@ export default function Dashboard() {
                     </p>
                   </div>
                 </TabsContent>
-                <TabsContent value="cursors" className="mt-4" data-testid="content-cursors-mobile">
+                <TabsContent value="cursors" className="m-0" data-testid="content-cursors-mobile">
                   <div className="space-y-4">
                     <h3 className="text-sm font-semibold">Cursor Options</h3>
                     <p className="text-sm text-foreground/60">
