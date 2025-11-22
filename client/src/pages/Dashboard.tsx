@@ -64,6 +64,7 @@ export default function Dashboard() {
     const saved = localStorage.getItem('dashboard-wallpaper');
     return saved || null;
   });
+  const [previousWallpaper, setPreviousWallpaper] = useState<string | null>(null);
   const [isDarkWallpapers, setIsDarkWallpapers] = useState(() => {
     const saved = localStorage.getItem('dashboard-wallpaper-mode');
     return saved === 'dark';
@@ -97,6 +98,13 @@ export default function Dashboard() {
     } else {
       localStorage.removeItem('dashboard-wallpaper');
     }
+    
+    // Update previous wallpaper after a delay to allow crossfade
+    const timer = setTimeout(() => {
+      setPreviousWallpaper(selectedWallpaper);
+    }, 500);
+    
+    return () => clearTimeout(timer);
   }, [selectedWallpaper]);
 
   useEffect(() => {
@@ -523,17 +531,32 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen flex overflow-x-hidden relative" style={{ backgroundColor: '#F6F2EF' }}>
-      {/* Background layer with smooth transitions */}
-      <div 
-        key={selectedWallpaper || 'default'}
-        className="fixed inset-0 wallpaper-transition"
-        style={{ 
-          backgroundImage: selectedWallpaper ? `url(${selectedWallpaper})` : 'none',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          zIndex: 0
-        }}
-      />
+      {/* Previous wallpaper layer (stays visible during transition) */}
+      {previousWallpaper && (
+        <div 
+          className="fixed inset-0"
+          style={{ 
+            backgroundImage: `url(${previousWallpaper})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            zIndex: 0
+          }}
+        />
+      )}
+      
+      {/* Current wallpaper layer with smooth fade-in */}
+      {selectedWallpaper && (
+        <div 
+          key={selectedWallpaper}
+          className="fixed inset-0 wallpaper-transition"
+          style={{ 
+            backgroundImage: `url(${selectedWallpaper})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            zIndex: 1
+          }}
+        />
+      )}
       {/* Main Content */}
       <div className="flex-1 w-full min-w-0 transition-all duration-300 relative z-10" style={{ marginRight: !isMobileOrTablet && isThemePanelOpen ? '320px' : '0' }}>
         <div className="max-w-4xl mx-auto px-6">
