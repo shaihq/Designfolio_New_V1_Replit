@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   AlertDialog,
   AlertDialogAction,
@@ -1018,10 +1019,44 @@ export default function Dashboard() {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            <div className="flex-1 overflow-auto p-6">
-              <p className="text-sm text-foreground/60" data-testid="text-theme-panel-description">
-                Customize your portfolio's appearance and style settings.
-              </p>
+            <div className="flex-1 overflow-auto">
+              <Tabs defaultValue="layouts" className="w-full">
+                <TabsList className="w-full grid grid-cols-3 rounded-none border-b">
+                  <TabsTrigger value="layouts" className="rounded-none" data-testid="tab-layouts">
+                    Layouts
+                  </TabsTrigger>
+                  <TabsTrigger value="background" className="rounded-none" data-testid="tab-background">
+                    Background
+                  </TabsTrigger>
+                  <TabsTrigger value="cursors" className="rounded-none" data-testid="tab-cursors">
+                    Cursors
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="layouts" className="p-6" data-testid="content-layouts">
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-semibold">Layout Options</h3>
+                    <p className="text-sm text-foreground/60">
+                      Choose your preferred layout style.
+                    </p>
+                  </div>
+                </TabsContent>
+                <TabsContent value="background" className="p-6" data-testid="content-background">
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-semibold">Background Options</h3>
+                    <p className="text-sm text-foreground/60">
+                      Customize your background appearance.
+                    </p>
+                  </div>
+                </TabsContent>
+                <TabsContent value="cursors" className="p-6" data-testid="content-cursors">
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-semibold">Cursor Options</h3>
+                    <p className="text-sm text-foreground/60">
+                      Select your cursor style.
+                    </p>
+                  </div>
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
         </div>
@@ -1033,9 +1068,43 @@ export default function Dashboard() {
           <SheetContent className="w-80">
             <div className="mt-8">
               <h2 className="text-lg font-semibold mb-4" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
-              <p className="text-sm text-foreground/60" data-testid="text-theme-panel-description-mobile">
-                Customize your portfolio's appearance and style settings.
-              </p>
+              <Tabs defaultValue="layouts" className="w-full">
+                <TabsList className="w-full grid grid-cols-3">
+                  <TabsTrigger value="layouts" data-testid="tab-layouts-mobile">
+                    Layouts
+                  </TabsTrigger>
+                  <TabsTrigger value="background" data-testid="tab-background-mobile">
+                    Background
+                  </TabsTrigger>
+                  <TabsTrigger value="cursors" data-testid="tab-cursors-mobile">
+                    Cursors
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="layouts" className="mt-4" data-testid="content-layouts-mobile">
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-semibold">Layout Options</h3>
+                    <p className="text-sm text-foreground/60">
+                      Choose your preferred layout style.
+                    </p>
+                  </div>
+                </TabsContent>
+                <TabsContent value="background" className="mt-4" data-testid="content-background-mobile">
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-semibold">Background Options</h3>
+                    <p className="text-sm text-foreground/60">
+                      Customize your background appearance.
+                    </p>
+                  </div>
+                </TabsContent>
+                <TabsContent value="cursors" className="mt-4" data-testid="content-cursors-mobile">
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-semibold">Cursor Options</h3>
+                    <p className="text-sm text-foreground/60">
+                      Select your cursor style.
+                    </p>
+                  </div>
+                </TabsContent>
+              </Tabs>
             </div>
           </SheetContent>
         </Sheet>
