@@ -72,7 +72,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const checkIfMobileOrTablet = () => {
-      setIsMobileOrTablet(window.innerWidth < 1024);
+      setIsMobileOrTablet(window.innerWidth < 1190);
     };
     
     checkIfMobileOrTablet();
