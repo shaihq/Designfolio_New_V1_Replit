@@ -1360,7 +1360,7 @@ export default function Dashboard() {
             </div>
             <div className="flex-1 overflow-auto">
               <Tabs defaultValue="layouts" className="w-full h-full flex flex-col">
-                <div className="sticky top-0 z-50 bg-background px-6 pt-4 pb-2 border-b border-border/30">
+                <div className="sticky top-0 z-50 bg-background px-6 pb-2 border-b border-border/30">
                   <TabsList className="w-full bg-transparent p-0 h-auto gap-6 justify-start">
                     <TabsTrigger 
                       value="layouts" 
