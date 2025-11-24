@@ -1218,18 +1218,10 @@ export default function Dashboard() {
                 </div>
                 <TabsContent value="layouts" className="flex-1 p-6 m-0" data-testid="content-layouts">
                   <div className="space-y-4">
-                    <h3 className="text-sm font-semibold">Layout Options</h3>
-                    <p className="text-sm text-foreground/60">
-                      Choose your preferred layout style.
-                    </p>
                   </div>
                 </TabsContent>
                 <TabsContent value="background" className="flex-1 p-6 m-0" data-testid="content-background">
                   <div className="space-y-4">
-                    <p className="text-sm text-foreground/60 mb-4">
-                      Choose a wallpaper for your portfolio
-                    </p>
-                    
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium">Light Mode</span>
@@ -1351,10 +1343,6 @@ export default function Dashboard() {
                 </TabsContent>
                 <TabsContent value="cursors" className="flex-1 p-6 m-0" data-testid="content-cursors">
                   <div className="space-y-4">
-                    <h3 className="text-sm font-semibold">Cursor Options</h3>
-                    <p className="text-sm text-foreground/60">
-                      Select your cursor style.
-                    </p>
                   </div>
                 </TabsContent>
               </Tabs>
@@ -1397,18 +1385,10 @@ export default function Dashboard() {
                 </div>
                 <TabsContent value="layouts" className="m-0" data-testid="content-layouts-mobile">
                   <div className="space-y-4">
-                    <h3 className="text-sm font-semibold">Layout Options</h3>
-                    <p className="text-sm text-foreground/60">
-                      Choose your preferred layout style.
-                    </p>
                   </div>
                 </TabsContent>
                 <TabsContent value="background" className="m-0" data-testid="content-background-mobile">
                   <div className="space-y-4">
-                    <p className="text-sm text-foreground/60 mb-4">
-                      Choose a wallpaper for your portfolio
-                    </p>
-                    
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium">Light Mode</span>
@@ -1530,10 +1510,6 @@ export default function Dashboard() {
                 </TabsContent>
                 <TabsContent value="cursors" className="m-0" data-testid="content-cursors-mobile">
                   <div className="space-y-4">
-                    <h3 className="text-sm font-semibold">Cursor Options</h3>
-                    <p className="text-sm text-foreground/60">
-                      Select your cursor style.
-                    </p>
                   </div>
                 </TabsContent>
               </Tabs>
