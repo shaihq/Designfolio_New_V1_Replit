@@ -1354,11 +1354,11 @@ export default function Dashboard() {
       {/* Theme Panel - Mobile/Tablet (popup with overlay) */}
       {isMobileOrTablet && (
         <Sheet open={isThemePanelOpen} onOpenChange={setIsThemePanelOpen}>
-          <SheetContent className="w-80">
+          <SheetContent className="w-80 overflow-y-auto">
             <div className="mt-8">
               <h2 className="text-lg font-semibold mb-6" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
               <Tabs defaultValue="layouts" className="w-full">
-                <div className="sticky top-0 z-50 bg-white pb-2 border-b border-border/30 mb-4">
+                <div className="sticky top-0 z-50 bg-background pb-2 border-b border-border/30 mb-4">
                   <TabsList className="w-full bg-transparent p-0 h-auto gap-6 justify-start">
                     <TabsTrigger 
                       value="layouts" 
