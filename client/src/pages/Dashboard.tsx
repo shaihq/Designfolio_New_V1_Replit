@@ -36,7 +36,8 @@ import {
   Trash2,
   GripVertical,
   Paintbrush,
-  X
+  X,
+  Upload
 } from "lucide-react";
 import { Link } from "wouter";
 import {
@@ -68,6 +69,10 @@ export default function Dashboard() {
   const [isDarkWallpapers, setIsDarkWallpapers] = useState(() => {
     const saved = localStorage.getItem('dashboard-wallpaper-mode');
     return saved === 'dark';
+  });
+  const [customWallpaper, setCustomWallpaper] = useState<string | null>(() => {
+    const saved = localStorage.getItem('dashboard-custom-wallpaper');
+    return saved || null;
   });
   const [user] = useState({
     name: "Morgan",
@@ -110,6 +115,38 @@ export default function Dashboard() {
   useEffect(() => {
     localStorage.setItem('dashboard-wallpaper-mode', isDarkWallpapers ? 'dark' : 'light');
   }, [isDarkWallpapers]);
+
+  useEffect(() => {
+    if (customWallpaper) {
+      localStorage.setItem('dashboard-custom-wallpaper', customWallpaper);
+    } else {
+      localStorage.removeItem('dashboard-custom-wallpaper');
+    }
+  }, [customWallpaper]);
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const maxSize = 5 * 1024 * 1024;
+    if (file.size > maxSize) {
+      alert('File size exceeds 5MB. Please upload a smaller image.');
+      return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+      alert('Please upload a valid image file.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result as string;
+      setCustomWallpaper(result);
+      setSelectedWallpaper(result);
+    };
+    reader.readAsDataURL(file);
+  };
 
   const lightWallpapers = [
     {
@@ -1207,6 +1244,39 @@ export default function Dashboard() {
                         <span className="text-sm font-medium">Dark Mode</span>
                       </div>
                     </div>
+
+                    <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
+                      <div className="flex items-start gap-3 mb-3">
+                        <Upload className="w-5 h-5 text-primary mt-0.5" />
+                        <div className="flex-1">
+                          <h4 className="text-sm font-semibold mb-1">Upload Custom Background</h4>
+                          <p className="text-xs text-foreground/60 mb-2">
+                            Upload your own image as background. Recommended ratio: 1920x1080. Maximum file size: 5MB.
+                          </p>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileUpload}
+                            className="hidden"
+                            id="custom-wallpaper-upload"
+                            data-testid="input-custom-wallpaper"
+                          />
+                          <label htmlFor="custom-wallpaper-upload">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              className="cursor-pointer"
+                              onClick={() => document.getElementById('custom-wallpaper-upload')?.click()}
+                              data-testid="button-upload-wallpaper"
+                            >
+                              <Upload className="w-4 h-4 mr-2" />
+                              Choose File
+                            </Button>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                     
                     <div className="grid grid-cols-2 gap-4">
                       <button
@@ -1227,6 +1297,32 @@ export default function Dashboard() {
                           </div>
                         )}
                       </button>
+
+                      {customWallpaper && (
+                        <button
+                          onClick={() => setSelectedWallpaper(customWallpaper)}
+                          className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                            selectedWallpaper === customWallpaper ? 'border-primary' : 'border-border'
+                          }`}
+                          data-testid="button-wallpaper-custom"
+                        >
+                          <img 
+                            src={customWallpaper} 
+                            alt="Custom wallpaper"
+                            className="aspect-video object-cover w-full"
+                          />
+                          {selectedWallpaper === customWallpaper && (
+                            <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                          <div className="absolute bottom-2 left-2">
+                            <Badge variant="secondary" className="text-xs">Custom</Badge>
+                          </div>
+                        </button>
+                      )}
                       
                       {wallpapers.map((wallpaper) => (
                         <button
@@ -1328,6 +1424,39 @@ export default function Dashboard() {
                         <span className="text-sm font-medium">Dark Mode</span>
                       </div>
                     </div>
+
+                    <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
+                      <div className="flex items-start gap-3 mb-3">
+                        <Upload className="w-5 h-5 text-primary mt-0.5" />
+                        <div className="flex-1">
+                          <h4 className="text-sm font-semibold mb-1">Upload Custom Background</h4>
+                          <p className="text-xs text-foreground/60 mb-2">
+                            Upload your own image as background. Recommended ratio: 1920x1080. Maximum file size: 5MB.
+                          </p>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileUpload}
+                            className="hidden"
+                            id="custom-wallpaper-upload-mobile"
+                            data-testid="input-custom-wallpaper-mobile"
+                          />
+                          <label htmlFor="custom-wallpaper-upload-mobile">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              className="cursor-pointer"
+                              onClick={() => document.getElementById('custom-wallpaper-upload-mobile')?.click()}
+                              data-testid="button-upload-wallpaper-mobile"
+                            >
+                              <Upload className="w-4 h-4 mr-2" />
+                              Choose File
+                            </Button>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                     
                     <div className="grid grid-cols-2 gap-4">
                       <button
@@ -1348,6 +1477,32 @@ export default function Dashboard() {
                           </div>
                         )}
                       </button>
+
+                      {customWallpaper && (
+                        <button
+                          onClick={() => setSelectedWallpaper(customWallpaper)}
+                          className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                            selectedWallpaper === customWallpaper ? 'border-primary' : 'border-border'
+                          }`}
+                          data-testid="button-wallpaper-custom-mobile"
+                        >
+                          <img 
+                            src={customWallpaper} 
+                            alt="Custom wallpaper"
+                            className="aspect-video object-cover w-full"
+                          />
+                          {selectedWallpaper === customWallpaper && (
+                            <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                          <div className="absolute bottom-2 left-2">
+                            <Badge variant="secondary" className="text-xs">Custom</Badge>
+                          </div>
+                        </button>
+                      )}
                       
                       {wallpapers.map((wallpaper) => (
                         <button
