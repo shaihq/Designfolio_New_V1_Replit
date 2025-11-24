@@ -1226,7 +1226,6 @@ export default function Dashboard() {
                 </TabsContent>
                 <TabsContent value="background" className="flex-1 p-6 m-0" data-testid="content-background">
                   <div className="space-y-4">
-                    <h3 className="text-sm font-semibold">Background Options</h3>
                     <p className="text-sm text-foreground/60 mb-4">
                       Choose a wallpaper for your portfolio
                     </p>
@@ -1406,7 +1405,6 @@ export default function Dashboard() {
                 </TabsContent>
                 <TabsContent value="background" className="m-0" data-testid="content-background-mobile">
                   <div className="space-y-4">
-                    <h3 className="text-sm font-semibold">Background Options</h3>
                     <p className="text-sm text-foreground/60 mb-4">
                       Choose a wallpaper for your portfolio
                     </p>
