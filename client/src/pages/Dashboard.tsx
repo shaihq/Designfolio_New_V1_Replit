@@ -1191,7 +1191,7 @@ export default function Dashboard() {
             </div>
             <div className="flex-1 overflow-auto">
               <Tabs defaultValue="layouts" className="w-full h-full flex flex-col">
-                <div className="px-6 pt-4 pb-2 border-b border-border/30">
+                <div className="sticky top-0 z-50 bg-white px-6 pt-4 pb-2 border-b border-border/30">
                   <TabsList className="w-full bg-transparent p-0 h-auto gap-6 justify-start">
                     <TabsTrigger 
                       value="layouts" 
@@ -1358,7 +1358,7 @@ export default function Dashboard() {
             <div className="mt-8">
               <h2 className="text-lg font-semibold mb-6" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
               <Tabs defaultValue="layouts" className="w-full">
-                <div className="pb-2 border-b border-border/30 mb-4">
+                <div className="sticky top-0 z-50 bg-white pb-2 border-b border-border/30 mb-4">
                   <TabsList className="w-full bg-transparent p-0 h-auto gap-6 justify-start">
                     <TabsTrigger 
                       value="layouts" 
