@@ -1354,11 +1354,13 @@ export default function Dashboard() {
       {/* Theme Panel - Mobile/Tablet (popup with overlay) */}
       {isMobileOrTablet && (
         <Sheet open={isThemePanelOpen} onOpenChange={setIsThemePanelOpen}>
-          <SheetContent className="w-80 overflow-y-auto">
-            <div className="mt-8">
-              <h2 className="text-lg font-semibold mb-6" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
-              <Tabs defaultValue="layouts" className="w-full">
-                <div className="sticky top-0 z-50 bg-background pb-2 border-b border-border/30 mb-4">
+          <SheetContent className="w-80 p-0 flex flex-col">
+            <div className="flex items-center justify-between p-6 border-b border-border pt-[16px] pb-[16px]">
+              <h2 className="text-lg font-semibold" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
+            </div>
+            <div className="flex-1 overflow-auto">
+              <Tabs defaultValue="layouts" className="w-full h-full flex flex-col">
+                <div className="sticky top-0 z-50 bg-background px-6 pt-4 pb-2 border-b border-border/30">
                   <TabsList className="w-full bg-transparent p-0 h-auto gap-6 justify-start">
                     <TabsTrigger 
                       value="layouts" 
@@ -1383,11 +1385,11 @@ export default function Dashboard() {
                     </TabsTrigger>
                   </TabsList>
                 </div>
-                <TabsContent value="layouts" className="m-0" data-testid="content-layouts-mobile">
+                <TabsContent value="layouts" className="flex-1 p-6 m-0" data-testid="content-layouts-mobile">
                   <div className="space-y-4">
                   </div>
                 </TabsContent>
-                <TabsContent value="background" className="m-0" data-testid="content-background-mobile">
+                <TabsContent value="background" className="flex-1 p-6 m-0" data-testid="content-background-mobile">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
                       <div className="flex items-center gap-2">
@@ -1508,7 +1510,7 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </TabsContent>
-                <TabsContent value="cursors" className="m-0" data-testid="content-cursors-mobile">
+                <TabsContent value="cursors" className="flex-1 p-6 m-0" data-testid="content-cursors-mobile">
                   <div className="space-y-4">
                   </div>
                 </TabsContent>
