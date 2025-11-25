@@ -944,7 +944,6 @@ export default function Dashboard() {
                               <StardustButton 
                                 data-testid="button-upgrade-to-pro"
                               >
-                                <Crown className="w-5 h-5" />
                                 Upgrade to Pro
                               </StardustButton>
                               

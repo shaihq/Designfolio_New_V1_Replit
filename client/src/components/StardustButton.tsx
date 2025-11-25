@@ -12,8 +12,8 @@ export const StardustButton = ({
   [key: string]: any;
 }) => {
   const buttonStyle = {
-    '--white': '#e6f3ff',
-    '--bg': '#0a1929',
+    '--white': '#fff5ed',
+    '--bg': '#2b1810',
     '--radius': '100px',
     outline: 'none',
     cursor: 'pointer',
@@ -23,9 +23,9 @@ export const StardustButton = ({
     backgroundColor: 'var(--bg)',
     transition: 'all 0.2s ease',
     boxShadow: `
-      inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.3),
+      inset 0 0.3rem 0.9rem rgba(255, 200, 150, 0.3),
       inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
-      inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.5),
+      inset 0 -0.4rem 0.9rem rgba(255, 180, 120, 0.5),
       0 3rem 3rem rgba(0, 0, 0, 0.3),
       0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8)
     `,
@@ -34,7 +34,7 @@ export const StardustButton = ({
   const wrapStyle = {
     fontSize: '16px',
     fontWeight: 600,
-    color: 'rgba(129, 216, 255, 0.9)',
+    color: 'rgba(255, 188, 136, 0.95)',
     padding: '11px 24px',
     borderRadius: 'inherit',
     position: 'relative' as const,
@@ -48,7 +48,7 @@ export const StardustButton = ({
     margin: 0,
     transition: 'all 0.2s ease',
     transform: 'translateY(2%)',
-    maskImage: 'linear-gradient(to bottom, rgba(129, 216, 255, 1) 40%, transparent)',
+    maskImage: 'linear-gradient(to bottom, rgba(255, 188, 136, 1) 40%, transparent)',
   };
 
   const beforeAfterStyles = `
@@ -65,7 +65,7 @@ export const StardustButton = ({
       bottom: 25%;
       top: -100%;
       border-radius: 50%;
-      background-color: rgba(64, 180, 255, 0.15);
+      background-color: rgba(255, 160, 100, 0.15);
     }
     
     .pearl-button .wrap::after {
@@ -74,10 +74,10 @@ export const StardustButton = ({
       top: 12%;
       bottom: 40%;
       border-radius: 22px 22px 0 0;
-      box-shadow: inset 0 10px 8px -10px rgba(129, 216, 255, 0.6);
+      box-shadow: inset 0 10px 8px -10px rgba(255, 176, 118, 0.6);
       background: linear-gradient(
         180deg,
-        rgba(64, 180, 255, 0.25) 0%,
+        rgba(255, 160, 100, 0.25) 0%,
         rgba(0, 0, 0, 0) 50%,
         rgba(0, 0, 0, 0) 100%
       );
@@ -97,9 +97,9 @@ export const StardustButton = ({
     
     .pearl-button:hover {
       box-shadow:
-        inset 0 0.3rem 0.5rem rgba(129, 216, 255, 0.4),
+        inset 0 0.3rem 0.5rem rgba(255, 188, 136, 0.4),
         inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
-        inset 0 -0.4rem 0.9rem rgba(64, 180, 255, 0.6),
+        inset 0 -0.4rem 0.9rem rgba(255, 160, 100, 0.6),
         0 3rem 3rem rgba(0, 0, 0, 0.3),
         0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
     }
@@ -120,9 +120,9 @@ export const StardustButton = ({
     .pearl-button:active {
       transform: translateY(4px);
       box-shadow:
-        inset 0 0.3rem 0.5rem rgba(129, 216, 255, 0.5),
+        inset 0 0.3rem 0.5rem rgba(255, 188, 136, 0.5),
         inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.8),
-        inset 0 -0.4rem 0.9rem rgba(64, 180, 255, 0.4),
+        inset 0 -0.4rem 0.9rem rgba(255, 160, 100, 0.4),
         0 3rem 3rem rgba(0, 0, 0, 0.3),
         0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
     }
