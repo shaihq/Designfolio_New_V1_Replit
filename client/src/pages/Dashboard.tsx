@@ -59,6 +59,7 @@ import {
   rectSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { StardustButton } from '@/components/StardustButton';
 
 export default function Dashboard() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
@@ -940,15 +941,14 @@ export default function Dashboard() {
                                 You've used your free case study. Upgrade to Pro to add unlimited case studies and unlock premium features.
                               </p>
                               
-                              <Button 
-                                className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                              <StardustButton 
                                 data-testid="button-upgrade-to-pro"
                               >
                                 <Crown className="w-5 h-5" />
                                 Upgrade to Pro
-                              </Button>
+                              </StardustButton>
                               
-                              <div className="mt-4 flex items-center gap-2 text-xs text-foreground/50">
+                              <div className="mt-6 flex items-center gap-2 text-xs text-foreground/50">
                                 <Lock className="w-3 h-3" />
                                 <span>Free plan: 1 case study only</span>
                               </div>
