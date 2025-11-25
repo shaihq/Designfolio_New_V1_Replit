@@ -37,7 +37,9 @@ import {
   GripVertical,
   Paintbrush,
   X,
-  Upload
+  Upload,
+  Lock,
+  Crown
 } from "lucide-react";
 import { Link } from "wouter";
 import {
@@ -912,31 +914,67 @@ export default function Dashboard() {
                         className="group"
                         data-testid="card-add-case-study"
                       >
-                        <div
-                          className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-10 min-h-[400px] gap-3"
-                          style={{ 
-                            backgroundColor: '#F6F2EF',
-                            boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
-                          }}
-                        >
-                          <Button 
-                            onClick={() => setIsTemplateDialogOpen(true)}
-                            className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
-                            data-testid="button-add-case-study-grid"
+                        {caseStudies.length >= 1 ? (
+                          <div
+                            className="w-full h-full border-2 border-dashed border-border/40 rounded-2xl flex flex-col items-center justify-center p-10 min-h-[400px] gap-4 relative overflow-hidden"
+                            style={{ 
+                              backgroundColor: 'rgba(246, 242, 239, 0.5)',
+                            }}
                           >
-                            <Plus className="w-5 h-5" />
-                            Add case study
-                          </Button>
-                          <div 
-                            className="bg-white border border-border rounded-full px-6 py-3 flex items-center gap-2 hover-elevate cursor-pointer"
-                            data-testid="button-write-using-ai-grid"
-                          >
-                            <Sparkles className="w-5 h-5 text-foreground" />
-                            <span className="text-base font-medium text-foreground">
-                              Write using AI
-                            </span>
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
+                            <div className="relative z-10 flex flex-col items-center text-center max-w-xs">
+                              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                                <Crown className="w-8 h-8 text-primary" />
+                              </div>
+                              
+                              <h3 className="text-xl font-semibold mb-2" data-testid="text-upgrade-title">
+                                Upgrade to Pro
+                              </h3>
+                              <p className="text-sm text-foreground/60 mb-4" data-testid="text-upgrade-description">
+                                You've used your free case study. Upgrade to Pro to add unlimited case studies and unlock premium features.
+                              </p>
+                              
+                              <Button 
+                                className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                                data-testid="button-upgrade-to-pro"
+                              >
+                                <Crown className="w-5 h-5" />
+                                Upgrade to Pro
+                              </Button>
+                              
+                              <div className="mt-4 flex items-center gap-2 text-xs text-foreground/50">
+                                <Lock className="w-3 h-3" />
+                                <span>Free plan: 1 case study only</span>
+                              </div>
+                            </div>
                           </div>
-                        </div>
+                        ) : (
+                          <div
+                            className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-10 min-h-[400px] gap-3"
+                            style={{ 
+                              backgroundColor: '#F6F2EF',
+                              boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                            }}
+                          >
+                            <Button 
+                              onClick={() => setIsTemplateDialogOpen(true)}
+                              className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                              data-testid="button-add-case-study-grid"
+                            >
+                              <Plus className="w-5 h-5" />
+                              Add case study
+                            </Button>
+                            <div 
+                              className="bg-white border border-border rounded-full px-6 py-3 flex items-center gap-2 hover-elevate cursor-pointer"
+                              data-testid="button-write-using-ai-grid"
+                            >
+                              <Sparkles className="w-5 h-5 text-foreground" />
+                              <span className="text-base font-medium text-foreground">
+                                Write using AI
+                              </span>
+                            </div>
+                          </div>
+                        )}
                       </motion.div>
                     </div>
                   </SortableContext>
