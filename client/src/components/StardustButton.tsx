@@ -35,7 +35,7 @@ export const StardustButton = ({
     fontSize: '16px',
     fontWeight: 700,
     color: '#4a2c0a',
-    padding: '14px 24px',
+    padding: '16px 24px',
     borderRadius: 'inherit',
     position: 'relative' as const,
     overflow: 'hidden',
