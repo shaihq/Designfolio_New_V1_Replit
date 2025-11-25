@@ -944,7 +944,7 @@ export default function Dashboard() {
                               <StardustButton 
                                 data-testid="button-upgrade-to-pro"
                               >
-                                Get Lifetime Access
+                                {isMobileOrTablet ? 'Upgrade Now' : 'Get Lifetime Access'}
                               </StardustButton>
                               
                               <div className="mt-6 flex items-center gap-2 text-xs text-foreground/50">
