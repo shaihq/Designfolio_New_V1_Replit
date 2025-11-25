@@ -12,33 +12,34 @@ export const StardustButton = ({
   [key: string]: any;
 }) => {
   const buttonStyle = {
-    '--white': '#fffdf7',
-    '--bg': '#d4a574',
+    '--white': '#ffffff',
+    '--bg': 'linear-gradient(135deg, #f9d423 0%, #e8b923 50%, #d4a017 100%)',
     '--radius': '100px',
     outline: 'none',
     cursor: 'pointer',
     border: 0,
     position: 'relative' as const,
     borderRadius: 'var(--radius)',
-    backgroundColor: 'var(--bg)',
+    background: 'linear-gradient(135deg, #f9d423 0%, #e8b923 50%, #d4a017 100%)',
     transition: 'all 0.2s ease',
     boxShadow: `
-      inset 0 0.3rem 0.9rem rgba(255, 240, 200, 0.8),
-      inset 0 -0.1rem 0.3rem rgba(139, 90, 43, 0.4),
-      inset 0 -0.4rem 0.9rem rgba(255, 235, 180, 0.9),
-      0 1.5rem 2rem rgba(212, 165, 116, 0.25),
-      0 0.5rem 1rem -0.4rem rgba(139, 90, 43, 0.3)
+      inset 0 0.4rem 1rem rgba(255, 255, 255, 0.6),
+      inset 0 -0.2rem 0.4rem rgba(100, 60, 10, 0.5),
+      inset 0 -0.5rem 1rem rgba(255, 255, 200, 0.4),
+      0 0.8rem 1.5rem rgba(212, 160, 23, 0.4),
+      0 0.3rem 0.8rem rgba(100, 60, 10, 0.3)
     `,
   };
 
   const wrapStyle = {
     fontSize: '16px',
-    fontWeight: 600,
-    color: '#8b5a2b',
+    fontWeight: 700,
+    color: '#4a2c0a',
     padding: '11px 24px',
     borderRadius: 'inherit',
     position: 'relative' as const,
     overflow: 'hidden',
+    textShadow: '0 1px 2px rgba(255, 255, 255, 0.3)',
   };
 
   const pStyle = {
@@ -48,7 +49,7 @@ export const StardustButton = ({
     margin: 0,
     transition: 'all 0.2s ease',
     transform: 'translateY(2%)',
-    maskImage: 'linear-gradient(to bottom, #8b5a2b 40%, transparent)',
+    maskImage: 'linear-gradient(to bottom, #4a2c0a 50%, transparent)',
   };
 
   const beforeAfterStyles = `
@@ -65,7 +66,7 @@ export const StardustButton = ({
       bottom: 25%;
       top: -100%;
       border-radius: 50%;
-      background-color: rgba(255, 245, 210, 0.25);
+      background-color: rgba(255, 255, 220, 0.4);
     }
     
     .pearl-button .wrap::after {
@@ -74,11 +75,11 @@ export const StardustButton = ({
       top: 12%;
       bottom: 40%;
       border-radius: 22px 22px 0 0;
-      box-shadow: inset 0 10px 8px -10px rgba(255, 240, 200, 0.9);
+      box-shadow: inset 0 10px 8px -10px rgba(255, 255, 255, 0.8);
       background: linear-gradient(
         180deg,
-        rgba(255, 245, 210, 0.5) 0%,
-        rgba(255, 235, 180, 0.1) 50%,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 200, 0.3) 50%,
         rgba(0, 0, 0, 0) 100%
       );
     }
@@ -96,12 +97,13 @@ export const StardustButton = ({
     }
     
     .pearl-button:hover {
+      background: linear-gradient(135deg, #ffd93d 0%, #f0c829 50%, #e0b020 100%);
       box-shadow:
-        inset 0 0.3rem 0.5rem rgba(255, 250, 220, 0.9),
-        inset 0 -0.1rem 0.3rem rgba(139, 90, 43, 0.5),
-        inset 0 -0.4rem 0.9rem rgba(255, 240, 200, 1),
-        0 1.5rem 2rem rgba(212, 165, 116, 0.3),
-        0 0.5rem 1rem -0.4rem rgba(139, 90, 43, 0.4);
+        inset 0 0.4rem 0.6rem rgba(255, 255, 255, 0.8),
+        inset 0 -0.2rem 0.4rem rgba(100, 60, 10, 0.6),
+        inset 0 -0.5rem 1rem rgba(255, 255, 220, 0.6),
+        0 0.8rem 2rem rgba(249, 212, 35, 0.5),
+        0 0.3rem 1rem rgba(100, 60, 10, 0.4);
     }
     
     .pearl-button:hover .wrap::before {
@@ -119,12 +121,13 @@ export const StardustButton = ({
     
     .pearl-button:active {
       transform: translateY(4px);
+      background: linear-gradient(135deg, #e8c51d 0%, #d4a017 50%, #c09010 100%);
       box-shadow:
-        inset 0 0.3rem 0.5rem rgba(255, 245, 210, 0.7),
-        inset 0 -0.1rem 0.3rem rgba(139, 90, 43, 0.6),
-        inset 0 -0.4rem 0.9rem rgba(255, 235, 180, 0.8),
-        0 1.5rem 2rem rgba(212, 165, 116, 0.25),
-        0 0.5rem 1rem -0.4rem rgba(139, 90, 43, 0.3);
+        inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.5),
+        inset 0 -0.1rem 0.3rem rgba(100, 60, 10, 0.7),
+        inset 0 -0.4rem 0.9rem rgba(255, 255, 200, 0.3),
+        0 0.5rem 1rem rgba(212, 160, 23, 0.3),
+        0 0.2rem 0.5rem rgba(100, 60, 10, 0.4);
     }
   `;
 
