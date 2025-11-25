@@ -935,7 +935,7 @@ export default function Dashboard() {
                               </div>
                               
                               <h3 className="text-xl font-semibold mb-2" data-testid="text-upgrade-title">
-                                Get Lifetime Access
+                                Upgrade to PRO
                               </h3>
                               <p className="text-sm text-foreground/60 mb-4" data-testid="text-upgrade-description">
                                 You've used your free case study. Get lifetime access to add unlimited case studies and unlock all premium features.
