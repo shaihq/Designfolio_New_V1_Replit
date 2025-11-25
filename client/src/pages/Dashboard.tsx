@@ -935,16 +935,16 @@ export default function Dashboard() {
                               </div>
                               
                               <h3 className="text-xl font-semibold mb-2" data-testid="text-upgrade-title">
-                                Upgrade to Pro
+                                Get Lifetime Access
                               </h3>
                               <p className="text-sm text-foreground/60 mb-4" data-testid="text-upgrade-description">
-                                You've used your free case study. Upgrade to Pro to add unlimited case studies and unlock premium features.
+                                You've used your free case study. Get lifetime access to add unlimited case studies and unlock all premium features.
                               </p>
                               
                               <StardustButton 
                                 data-testid="button-upgrade-to-pro"
                               >
-                                Upgrade to Pro
+                                Get Lifetime Access
                               </StardustButton>
                               
                               <div className="mt-6 flex items-center gap-2 text-xs text-foreground/50">
