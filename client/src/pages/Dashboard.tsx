@@ -926,11 +926,11 @@ export default function Dashboard() {
                               <div 
                                 className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
                                 style={{
-                                  backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                                  boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.04)'
+                                  backgroundColor: 'rgba(255, 176, 136, 0.15)',
+                                  boxShadow: 'inset 0 2px 4px rgba(255, 176, 136, 0.2)'
                                 }}
                               >
-                                <Crown className="w-8 h-8 text-foreground/70" />
+                                <Crown className="w-8 h-8" style={{ color: '#FFB088' }} />
                               </div>
                               
                               <h3 className="text-xl font-semibold mb-2" data-testid="text-upgrade-title">
