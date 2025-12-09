@@ -39,7 +39,9 @@ import {
   X,
   Upload,
   Lock,
-  Crown
+  Crown,
+  Eye,
+  EyeOff
 } from "lucide-react";
 import { Link } from "wouter";
 import {
@@ -327,6 +329,7 @@ export default function Dashboard() {
     description: string;
     category: string;
     image: string;
+    isHidden: boolean;
   }>>([]);
 
   const sensors = useSensors(
@@ -395,11 +398,18 @@ export default function Dashboard() {
         title: template.mockProject.title,
         description: template.mockProject.description,
         category: template.mockProject.category,
-        image: '/casestudy.png'
+        image: '/casestudy.png',
+        isHidden: false
       };
       setCaseStudies(prev => [...prev, newProject]);
     }
     setIsTemplateDialogOpen(false);
+  };
+
+  const handleToggleVisibility = (projectId: number) => {
+    setCaseStudies(prev => prev.map(p => 
+      p.id === projectId ? { ...p, isHidden: !p.isHidden } : p
+    ));
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -505,10 +515,16 @@ export default function Dashboard() {
             <motion.img 
               src={project.image} 
               alt={project.title}
-              className="w-28 h-28 object-contain opacity-20"
+              className={`w-28 h-28 object-contain ${project.isHidden ? 'opacity-10' : 'opacity-20'}`}
               whileHover={{ scale: 1.15 }}
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             />
+            {project.isHidden && (
+              <div className="absolute top-3 right-3 bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5">
+                <EyeOff className="w-3 h-3" />
+                Hidden from live site
+              </div>
+            )}
           </div>
           
           <div className="p-6 pb-20">
@@ -547,6 +563,28 @@ export default function Dashboard() {
             </button>
             
             <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleToggleVisibility(project.id)}
+                className={`border rounded-full px-4 py-2 flex items-center gap-2 hover-elevate cursor-pointer text-sm font-medium ${
+                  project.isHidden 
+                    ? 'bg-amber-50 border-amber-200 text-amber-700' 
+                    : 'bg-white border-border text-foreground'
+                }`}
+                data-testid={`button-toggle-visibility-${project.id}`}
+              >
+                {project.isHidden ? (
+                  <>
+                    <EyeOff className="w-4 h-4" />
+                    <span>Hidden</span>
+                  </>
+                ) : (
+                  <>
+                    <Eye className="w-4 h-4" />
+                    <span>Visible</span>
+                  </>
+                )}
+              </button>
+              
               <button
                 className="bg-white border border-border rounded-full px-4 py-2 flex items-center gap-2 hover-elevate cursor-pointer text-sm font-medium"
                 data-testid={`button-edit-case-study-bottom-${project.id}`}
