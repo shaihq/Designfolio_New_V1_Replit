@@ -17,7 +17,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Sparkles, 
   Share2, 
@@ -519,12 +519,25 @@ export default function Dashboard() {
               whileHover={{ scale: 1.15 }}
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             />
-            {project.isHidden && (
-              <div className="absolute top-3 right-3 bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5 z-10">
-                <EyeOff className="w-3 h-3 animate-pulse" />
-                Hidden from live site
-              </div>
-            )}
+            <AnimatePresence initial={false}>
+              {project.isHidden && (
+                <motion.div 
+                  className="absolute top-3 right-3 bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5 z-10"
+                  initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <motion.span
+                    animate={{ opacity: [1, 0.5, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <EyeOff className="w-3 h-3" />
+                  </motion.span>
+                  Hidden from live site
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
           
           <div className="p-6 pb-20">
@@ -563,22 +576,35 @@ export default function Dashboard() {
             </button>
             
             <div className="flex items-center gap-2">
-              <button
+              <motion.button
                 onClick={() => handleToggleVisibility(project.id)}
-                className={`border rounded-full px-4 py-2 flex items-center gap-2 cursor-pointer text-sm font-medium transition-all duration-200 hover:scale-105 active:scale-95 ${
+                className={`border rounded-full px-4 py-2 flex items-center gap-2 cursor-pointer text-sm font-medium transition-colors duration-200 ${
                   project.isHidden 
                     ? 'bg-amber-50 border-amber-200 text-amber-700' 
-                    : 'bg-white border-border text-foreground hover-elevate'
+                    : 'bg-white border-border text-foreground'
                 }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 data-testid={`button-toggle-visibility-${project.id}`}
               >
-                {project.isHidden ? (
-                  <EyeOff className="w-4 h-4" />
-                ) : (
-                  <Eye className="w-4 h-4" />
-                )}
-                <span>{project.isHidden ? 'Hidden' : 'Visible'}</span>
-              </button>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={project.isHidden ? 'hidden' : 'visible'}
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex items-center gap-2"
+                  >
+                    {project.isHidden ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
+                    <span>{project.isHidden ? 'Hidden' : 'Visible'}</span>
+                  </motion.div>
+                </AnimatePresence>
+              </motion.button>
               
               <button
                 className="bg-white border border-border rounded-full px-4 py-2 flex items-center gap-2 hover-elevate cursor-pointer text-sm font-medium"
