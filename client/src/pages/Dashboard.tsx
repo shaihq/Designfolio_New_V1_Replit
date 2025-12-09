@@ -915,7 +915,7 @@ export default function Dashboard() {
                         className="group"
                         data-testid="card-add-case-study"
                       >
-                        {caseStudies.length >= 1 ? (
+                        {caseStudies.length >= 2 ? (
                           <div
                             className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-10 min-h-[400px] gap-4 relative"
                             style={{ 
@@ -938,7 +938,7 @@ export default function Dashboard() {
                                 Upgrade to PRO
                               </h3>
                               <p className="text-sm text-foreground/60 mb-4" data-testid="text-upgrade-description">
-                                You've used your free case study. Get lifetime access to add unlimited case studies and unlock all premium features.
+                                You've used your free case studies. Get lifetime access to add unlimited case studies and unlock all premium features.
                               </p>
                               
                               <StardustButton 
@@ -949,7 +949,7 @@ export default function Dashboard() {
                               
                               <div className="mt-6 flex items-center gap-2 text-xs text-foreground/50">
                                 <Lock className="w-3 h-3" />
-                                <span>Free plan: 1 case study only</span>
+                                <span>Free plan: 2 case studies only</span>
                               </div>
                             </div>
                           </div>
