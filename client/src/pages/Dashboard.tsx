@@ -84,9 +84,9 @@ export default function Dashboard() {
     const saved = localStorage.getItem('dashboard-background-blur');
     return saved ? parseInt(saved, 10) : 0;
   });
-  const [backgroundMotion, setBackgroundMotion] = useState<'off' | 'subtle' | 'scroll' | 'drift'>(() => {
+  const [backgroundMotion, setBackgroundMotion] = useState<boolean>(() => {
     const saved = localStorage.getItem('dashboard-background-motion');
-    return (saved as 'off' | 'subtle' | 'scroll' | 'drift') || 'off';
+    return saved === 'on';
   });
   const [scrollOffset, setScrollOffset] = useState(0);
   const rafRef = useRef<number | null>(null);
@@ -145,11 +145,11 @@ export default function Dashboard() {
   }, [backgroundBlur]);
 
   useEffect(() => {
-    localStorage.setItem('dashboard-background-motion', backgroundMotion);
+    localStorage.setItem('dashboard-background-motion', backgroundMotion ? 'on' : 'off');
   }, [backgroundMotion]);
 
   useEffect(() => {
-    if (backgroundMotion !== 'scroll' && backgroundMotion !== 'drift') {
+    if (!backgroundMotion) {
       setScrollOffset(0);
       return;
     }
@@ -159,8 +159,7 @@ export default function Dashboard() {
         cancelAnimationFrame(rafRef.current);
       }
       rafRef.current = requestAnimationFrame(() => {
-        const factor = backgroundMotion === 'drift' ? 0.15 : 0.3;
-        setScrollOffset(window.scrollY * factor);
+        setScrollOffset(window.scrollY);
       });
     };
 
@@ -658,14 +657,15 @@ export default function Dashboard() {
       {/* Previous wallpaper layer (stays visible during transition) */}
       {previousWallpaper && (
         <div 
-          className={`fixed inset-0 ${backgroundMotion === 'subtle' ? 'animate-subtle-drift' : ''}`}
+          className="fixed inset-0"
           style={{ 
             backgroundImage: `url(${previousWallpaper})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             zIndex: 0,
             filter: backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
-            transform: `scale(${backgroundBlur > 0 || backgroundMotion !== 'off' ? 1.05 : 1}) translateY(${(backgroundMotion === 'scroll' || backgroundMotion === 'drift') ? -scrollOffset : 0}px)`
+            transform: `scale(${1.05 + (backgroundMotion ? scrollOffset * 0.0002 : 0)})`,
+            transition: 'transform 0.1s ease-out'
           }}
         />
       )}
@@ -674,14 +674,15 @@ export default function Dashboard() {
       {selectedWallpaper && (
         <div 
           key={selectedWallpaper}
-          className={`fixed inset-0 wallpaper-transition ${backgroundMotion === 'subtle' ? 'animate-subtle-drift' : ''}`}
+          className="fixed inset-0 wallpaper-transition"
           style={{ 
             backgroundImage: `url(${selectedWallpaper})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             zIndex: 1,
             filter: backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
-            transform: `scale(${backgroundBlur > 0 || backgroundMotion !== 'off' ? 1.05 : 1}) translateY(${(backgroundMotion === 'scroll' || backgroundMotion === 'drift') ? -scrollOffset : 0}px)`
+            transform: `scale(${1.05 + (backgroundMotion ? scrollOffset * 0.0002 : 0)})`,
+            transition: 'transform 0.1s ease-out'
           }}
         />
       )}
@@ -1385,62 +1386,16 @@ export default function Dashboard() {
                       </p>
                     </div>
 
-                    <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
-                      <div className="mb-3">
+                    <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
+                      <div>
                         <span className="text-sm font-medium">Motion</span>
-                        <p className="text-xs text-foreground/60 mt-1">
-                          Add movement effects to your background
-                        </p>
+                        <p className="text-xs text-foreground/60 mt-0.5">Subtle zoom on scroll</p>
                       </div>
-                      <div className="space-y-2">
-                        <button
-                          onClick={() => setBackgroundMotion('off')}
-                          className={`w-full p-3 rounded-md text-left text-sm transition-all ${
-                            backgroundMotion === 'off' 
-                              ? 'bg-primary/10 border-2 border-primary' 
-                              : 'bg-muted/50 border-2 border-transparent hover-elevate'
-                          }`}
-                          data-testid="button-motion-off"
-                        >
-                          <span className="font-medium">Off</span>
-                          <span className="text-foreground/60 ml-2">(default)</span>
-                        </button>
-                        <button
-                          onClick={() => setBackgroundMotion('subtle')}
-                          className={`w-full p-3 rounded-md text-left text-sm transition-all ${
-                            backgroundMotion === 'subtle' 
-                              ? 'bg-primary/10 border-2 border-primary' 
-                              : 'bg-muted/50 border-2 border-transparent hover-elevate'
-                          }`}
-                          data-testid="button-motion-subtle"
-                        >
-                          <span className="font-medium">On</span>
-                          <span className="text-foreground/60 ml-2">(Subtle)</span>
-                        </button>
-                        <button
-                          onClick={() => setBackgroundMotion('scroll')}
-                          className={`w-full p-3 rounded-md text-left text-sm transition-all ${
-                            backgroundMotion === 'scroll' 
-                              ? 'bg-primary/10 border-2 border-primary' 
-                              : 'bg-muted/50 border-2 border-transparent hover-elevate'
-                          }`}
-                          data-testid="button-motion-scroll"
-                        >
-                          <span className="font-medium">Scroll-based movement</span>
-                        </button>
-                        <button
-                          onClick={() => setBackgroundMotion('drift')}
-                          className={`w-full p-3 rounded-md text-left text-sm transition-all ${
-                            backgroundMotion === 'drift' 
-                              ? 'bg-primary/10 border-2 border-primary' 
-                              : 'bg-muted/50 border-2 border-transparent hover-elevate'
-                          }`}
-                          data-testid="button-motion-drift"
-                        >
-                          <span className="font-medium">Vertical drift</span>
-                          <p className="text-xs text-foreground/60 mt-0.5">Background moves slower than content</p>
-                        </button>
-                      </div>
+                      <Switch
+                        checked={backgroundMotion}
+                        onCheckedChange={setBackgroundMotion}
+                        data-testid="switch-background-motion"
+                      />
                     </div>
 
                     <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
@@ -1630,62 +1585,16 @@ export default function Dashboard() {
                       </p>
                     </div>
 
-                    <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
-                      <div className="mb-3">
+                    <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
+                      <div>
                         <span className="text-sm font-medium">Motion</span>
-                        <p className="text-xs text-foreground/60 mt-1">
-                          Add movement effects to your background
-                        </p>
+                        <p className="text-xs text-foreground/60 mt-0.5">Subtle zoom on scroll</p>
                       </div>
-                      <div className="space-y-2">
-                        <button
-                          onClick={() => setBackgroundMotion('off')}
-                          className={`w-full p-3 rounded-md text-left text-sm transition-all ${
-                            backgroundMotion === 'off' 
-                              ? 'bg-primary/10 border-2 border-primary' 
-                              : 'bg-muted/50 border-2 border-transparent hover-elevate'
-                          }`}
-                          data-testid="button-motion-off-mobile"
-                        >
-                          <span className="font-medium">Off</span>
-                          <span className="text-foreground/60 ml-2">(default)</span>
-                        </button>
-                        <button
-                          onClick={() => setBackgroundMotion('subtle')}
-                          className={`w-full p-3 rounded-md text-left text-sm transition-all ${
-                            backgroundMotion === 'subtle' 
-                              ? 'bg-primary/10 border-2 border-primary' 
-                              : 'bg-muted/50 border-2 border-transparent hover-elevate'
-                          }`}
-                          data-testid="button-motion-subtle-mobile"
-                        >
-                          <span className="font-medium">On</span>
-                          <span className="text-foreground/60 ml-2">(Subtle)</span>
-                        </button>
-                        <button
-                          onClick={() => setBackgroundMotion('scroll')}
-                          className={`w-full p-3 rounded-md text-left text-sm transition-all ${
-                            backgroundMotion === 'scroll' 
-                              ? 'bg-primary/10 border-2 border-primary' 
-                              : 'bg-muted/50 border-2 border-transparent hover-elevate'
-                          }`}
-                          data-testid="button-motion-scroll-mobile"
-                        >
-                          <span className="font-medium">Scroll-based movement</span>
-                        </button>
-                        <button
-                          onClick={() => setBackgroundMotion('drift')}
-                          className={`w-full p-3 rounded-md text-left text-sm transition-all ${
-                            backgroundMotion === 'drift' 
-                              ? 'bg-primary/10 border-2 border-primary' 
-                              : 'bg-muted/50 border-2 border-transparent hover-elevate'
-                          }`}
-                          data-testid="button-motion-drift-mobile"
-                        >
-                          <span className="font-medium">Vertical drift</span>
-                          <p className="text-xs text-foreground/60 mt-0.5">Background moves slower than content</p>
-                        </button>
-                      </div>
+                      <Switch
+                        checked={backgroundMotion}
+                        onCheckedChange={setBackgroundMotion}
+                        data-testid="switch-background-motion-mobile"
+                      />
                     </div>
 
                     <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
