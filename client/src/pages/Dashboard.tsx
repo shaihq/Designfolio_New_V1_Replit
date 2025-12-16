@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
+import { Slider } from "@/components/ui/slider";
 import { 
   AlertDialog,
   AlertDialogAction,
@@ -79,6 +80,10 @@ export default function Dashboard() {
     const saved = localStorage.getItem('dashboard-custom-wallpaper');
     return saved || null;
   });
+  const [backgroundBlur, setBackgroundBlur] = useState<number>(() => {
+    const saved = localStorage.getItem('dashboard-background-blur');
+    return saved ? parseInt(saved, 10) : 0;
+  });
   const [user] = useState({
     name: "Morgan",
     role: "Product Designer @Apple",
@@ -128,6 +133,10 @@ export default function Dashboard() {
       localStorage.removeItem('dashboard-custom-wallpaper');
     }
   }, [customWallpaper]);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-background-blur', backgroundBlur.toString());
+  }, [backgroundBlur]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -617,7 +626,9 @@ export default function Dashboard() {
             backgroundImage: `url(${previousWallpaper})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            zIndex: 0
+            zIndex: 0,
+            filter: backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
+            transform: backgroundBlur > 0 ? 'scale(1.02)' : 'none'
           }}
         />
       )}
@@ -631,7 +642,9 @@ export default function Dashboard() {
             backgroundImage: `url(${selectedWallpaper})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            zIndex: 1
+            zIndex: 1,
+            filter: backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
+            transform: backgroundBlur > 0 ? 'scale(1.02)' : 'none'
           }}
         />
       )}
@@ -1318,6 +1331,24 @@ export default function Dashboard() {
                     </div>
 
                     <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium">Background Blur</span>
+                        <span className="text-xs text-foreground/60">{backgroundBlur}px</span>
+                      </div>
+                      <Slider
+                        value={[backgroundBlur]}
+                        onValueChange={(value) => setBackgroundBlur(value[0])}
+                        max={20}
+                        step={1}
+                        className="w-full"
+                        data-testid="slider-background-blur"
+                      />
+                      <p className="text-xs text-foreground/60 mt-2">
+                        Add a gaussian blur effect to your background image
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
                       <div className="flex items-start gap-3 mb-3">
                         <Upload className="w-5 h-5 text-primary mt-0.5" />
                         <div className="flex-1">
@@ -1484,6 +1515,24 @@ export default function Dashboard() {
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium">Dark Mode</span>
                       </div>
+                    </div>
+
+                    <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium">Background Blur</span>
+                        <span className="text-xs text-foreground/60">{backgroundBlur}px</span>
+                      </div>
+                      <Slider
+                        value={[backgroundBlur]}
+                        onValueChange={(value) => setBackgroundBlur(value[0])}
+                        max={20}
+                        step={1}
+                        className="w-full"
+                        data-testid="slider-background-blur-mobile"
+                      />
+                      <p className="text-xs text-foreground/60 mt-2">
+                        Add a gaussian blur effect to your background image
+                      </p>
                     </div>
 
                     <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
