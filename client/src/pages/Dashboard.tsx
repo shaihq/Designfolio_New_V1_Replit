@@ -154,8 +154,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     localStorage.setItem('dashboard-font', selectedFont);
-    const fontFamily = selectedFont === 'space-mono' 
-      ? '"Space Mono", monospace' 
+    const fontFamily = selectedFont === 'roboto-mono' 
+      ? '"Roboto Mono", monospace' 
       : 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
     document.documentElement.style.setProperty('--font-sans', fontFamily);
     document.body.style.fontFamily = fontFamily;
@@ -1553,18 +1553,18 @@ export default function Dashboard() {
                         </div>
                       </button>
                       <button
-                        onClick={() => setSelectedFont('space-mono')}
+                        onClick={() => setSelectedFont('roboto-mono')}
                         className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
-                          selectedFont === 'space-mono' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
+                          selectedFont === 'roboto-mono' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
                         }`}
-                        data-testid="button-font-space-mono"
+                        data-testid="button-font-roboto-mono"
                       >
                         <div className="flex items-center justify-between">
                           <div>
-                            <h4 className="font-medium" style={{ fontFamily: '"Space Mono", monospace' }}>Space Mono</h4>
-                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: '"Space Mono", monospace' }}>Technical monospace style</p>
+                            <h4 className="font-medium" style={{ fontFamily: '"Roboto Mono", monospace' }}>Roboto Mono</h4>
+                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: '"Roboto Mono", monospace' }}>Technical monospace style</p>
                           </div>
-                          {selectedFont === 'space-mono' && (
+                          {selectedFont === 'roboto-mono' && (
                             <div className="bg-primary text-primary-foreground rounded-full p-1">
                               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -1808,18 +1808,18 @@ export default function Dashboard() {
                         </div>
                       </button>
                       <button
-                        onClick={() => setSelectedFont('space-mono')}
+                        onClick={() => setSelectedFont('roboto-mono')}
                         className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
-                          selectedFont === 'space-mono' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
+                          selectedFont === 'roboto-mono' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
                         }`}
-                        data-testid="button-font-space-mono-mobile"
+                        data-testid="button-font-roboto-mono-mobile"
                       >
                         <div className="flex items-center justify-between">
                           <div>
-                            <h4 className="font-medium" style={{ fontFamily: '"Space Mono", monospace' }}>Space Mono</h4>
-                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: '"Space Mono", monospace' }}>Technical monospace style</p>
+                            <h4 className="font-medium" style={{ fontFamily: '"Roboto Mono", monospace' }}>Roboto Mono</h4>
+                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: '"Roboto Mono", monospace' }}>Technical monospace style</p>
                           </div>
-                          {selectedFont === 'space-mono' && (
+                          {selectedFont === 'roboto-mono' && (
                             <div className="bg-primary text-primary-foreground rounded-full p-1">
                               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
