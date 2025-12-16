@@ -152,13 +152,23 @@ export default function Dashboard() {
     localStorage.setItem('dashboard-background-motion', backgroundMotion ? 'on' : 'off');
   }, [backgroundMotion]);
 
+  const fontOptions: Record<string, { name: string; family: string; description: string }> = {
+    'inter': { name: 'Inter', family: 'Inter, sans-serif', description: 'Clean and modern sans-serif' },
+    'satoshi': { name: 'Satoshi', family: 'Satoshi, sans-serif', description: 'Geometric contemporary sans' },
+    'manrope': { name: 'Manrope', family: 'Manrope, sans-serif', description: 'Modern geometric sans-serif' },
+    'dm-sans': { name: 'DM Sans', family: '"DM Sans", sans-serif', description: 'Low-contrast geometric sans' },
+    'source-serif-4': { name: 'Source Serif 4', family: '"Source Serif 4", serif', description: 'Elegant transitional serif' },
+    'merriweather': { name: 'Merriweather', family: 'Merriweather, serif', description: 'Classic readable serif' },
+    'ibm-plex-sans': { name: 'IBM Plex Sans', family: '"IBM Plex Sans", sans-serif', description: 'Neutral corporate sans' },
+    'work-sans': { name: 'Work Sans', family: '"Work Sans", sans-serif', description: 'Optimized for screen display' },
+    'roboto-mono': { name: 'Roboto Mono', family: '"Roboto Mono", monospace', description: 'Technical monospace style' },
+  };
+
   useEffect(() => {
     localStorage.setItem('dashboard-font', selectedFont);
-    const fontFamily = selectedFont === 'roboto-mono' 
-      ? '"Roboto Mono", monospace' 
-      : 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-    document.documentElement.style.setProperty('--font-sans', fontFamily);
-    document.body.style.fontFamily = fontFamily;
+    const font = fontOptions[selectedFont] || fontOptions['inter'];
+    document.documentElement.style.setProperty('--font-sans', font.family);
+    document.body.style.fontFamily = font.family;
   }, [selectedFont]);
 
   useEffect(() => {
@@ -1531,48 +1541,30 @@ export default function Dashboard() {
                   <div className="space-y-4">
                     <p className="text-sm text-foreground/60 mb-4">Choose a global font for your portfolio</p>
                     <div className="grid grid-cols-1 gap-3">
-                      <button
-                        onClick={() => setSelectedFont('inter')}
-                        className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
-                          selectedFont === 'inter' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
-                        }`}
-                        data-testid="button-font-inter"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>Inter</h4>
-                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: 'Inter, sans-serif' }}>Clean and modern sans-serif</p>
-                          </div>
-                          {selectedFont === 'inter' && (
-                            <div className="bg-primary text-primary-foreground rounded-full p-1">
-                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
+                      {Object.entries(fontOptions).map(([key, font]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedFont(key)}
+                          className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
+                            selectedFont === key ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
+                          }`}
+                          data-testid={`button-font-${key}`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-medium" style={{ fontFamily: font.family }}>{font.name}</h4>
+                              <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: font.family }}>{font.description}</p>
                             </div>
-                          )}
-                        </div>
-                      </button>
-                      <button
-                        onClick={() => setSelectedFont('roboto-mono')}
-                        className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
-                          selectedFont === 'roboto-mono' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
-                        }`}
-                        data-testid="button-font-roboto-mono"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="font-medium" style={{ fontFamily: '"Roboto Mono", monospace' }}>Roboto Mono</h4>
-                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: '"Roboto Mono", monospace' }}>Technical monospace style</p>
+                            {selectedFont === key && (
+                              <div className="bg-primary text-primary-foreground rounded-full p-1">
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                            )}
                           </div>
-                          {selectedFont === 'roboto-mono' && (
-                            <div className="bg-primary text-primary-foreground rounded-full p-1">
-                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            </div>
-                          )}
-                        </div>
-                      </button>
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </TabsContent>
@@ -1786,48 +1778,30 @@ export default function Dashboard() {
                   <div className="space-y-4">
                     <p className="text-sm text-foreground/60 mb-4">Choose a global font for your portfolio</p>
                     <div className="grid grid-cols-1 gap-3">
-                      <button
-                        onClick={() => setSelectedFont('inter')}
-                        className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
-                          selectedFont === 'inter' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
-                        }`}
-                        data-testid="button-font-inter-mobile"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>Inter</h4>
-                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: 'Inter, sans-serif' }}>Clean and modern sans-serif</p>
-                          </div>
-                          {selectedFont === 'inter' && (
-                            <div className="bg-primary text-primary-foreground rounded-full p-1">
-                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
+                      {Object.entries(fontOptions).map(([key, font]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedFont(key)}
+                          className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
+                            selectedFont === key ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
+                          }`}
+                          data-testid={`button-font-${key}-mobile`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-medium" style={{ fontFamily: font.family }}>{font.name}</h4>
+                              <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: font.family }}>{font.description}</p>
                             </div>
-                          )}
-                        </div>
-                      </button>
-                      <button
-                        onClick={() => setSelectedFont('roboto-mono')}
-                        className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
-                          selectedFont === 'roboto-mono' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
-                        }`}
-                        data-testid="button-font-roboto-mono-mobile"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="font-medium" style={{ fontFamily: '"Roboto Mono", monospace' }}>Roboto Mono</h4>
-                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: '"Roboto Mono", monospace' }}>Technical monospace style</p>
+                            {selectedFont === key && (
+                              <div className="bg-primary text-primary-foreground rounded-full p-1">
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                            )}
                           </div>
-                          {selectedFont === 'roboto-mono' && (
-                            <div className="bg-primary text-primary-foreground rounded-full p-1">
-                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            </div>
-                          )}
-                        </div>
-                      </button>
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </TabsContent>
