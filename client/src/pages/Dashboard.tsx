@@ -664,7 +664,7 @@ export default function Dashboard() {
             backgroundPosition: 'center',
             zIndex: 0,
             filter: backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
-            transform: `scale(${1.05 + (backgroundMotion ? scrollOffset * 0.0002 : 0)})`,
+            transform: `scale(${1.05 + (backgroundMotion ? scrollOffset * 0.00008 : 0)})`,
             transition: 'transform 0.1s ease-out'
           }}
         />
@@ -681,7 +681,7 @@ export default function Dashboard() {
             backgroundPosition: 'center',
             zIndex: 1,
             filter: backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
-            transform: `scale(${1.05 + (backgroundMotion ? scrollOffset * 0.0002 : 0)})`,
+            transform: `scale(${1.05 + (backgroundMotion ? scrollOffset * 0.00008 : 0)})`,
             transition: 'transform 0.1s ease-out'
           }}
         />
