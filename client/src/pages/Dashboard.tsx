@@ -168,6 +168,8 @@ export default function Dashboard() {
     localStorage.setItem('dashboard-font', selectedFont);
     const font = fontOptions[selectedFont] || fontOptions['inter'];
     document.documentElement.style.setProperty('--font-sans', font.family);
+    document.documentElement.style.setProperty('--font-heading', font.family);
+    document.documentElement.style.setProperty('--font-serif', font.family);
     document.body.style.fontFamily = font.family;
   }, [selectedFont]);
 
