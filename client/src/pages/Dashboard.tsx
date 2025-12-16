@@ -88,6 +88,10 @@ export default function Dashboard() {
     const saved = localStorage.getItem('dashboard-background-motion');
     return saved === 'on';
   });
+  const [selectedFont, setSelectedFont] = useState<string>(() => {
+    const saved = localStorage.getItem('dashboard-font');
+    return saved || 'inter';
+  });
   const [scrollOffset, setScrollOffset] = useState(0);
   const rafRef = useRef<number | null>(null);
   const [user] = useState({
@@ -147,6 +151,15 @@ export default function Dashboard() {
   useEffect(() => {
     localStorage.setItem('dashboard-background-motion', backgroundMotion ? 'on' : 'off');
   }, [backgroundMotion]);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-font', selectedFont);
+    const fontFamily = selectedFont === 'space-mono' 
+      ? '"Space Mono", monospace' 
+      : 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    document.documentElement.style.setProperty('--font-sans', fontFamily);
+    document.body.style.fontFamily = fontFamily;
+  }, [selectedFont]);
 
   useEffect(() => {
     if (!backgroundMotion) {
@@ -1346,6 +1359,13 @@ export default function Dashboard() {
                     >
                       Cursors
                     </TabsTrigger>
+                    <TabsTrigger 
+                      value="fonts" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-fonts"
+                    >
+                      Fonts
+                    </TabsTrigger>
                   </TabsList>
                 </div>
                 <TabsContent value="layouts" className="flex-1 p-6 m-0" data-testid="content-layouts">
@@ -1507,6 +1527,55 @@ export default function Dashboard() {
                   <div className="space-y-4">
                   </div>
                 </TabsContent>
+                <TabsContent value="fonts" className="flex-1 p-6 m-0" data-testid="content-fonts">
+                  <div className="space-y-4">
+                    <p className="text-sm text-foreground/60 mb-4">Choose a global font for your portfolio</p>
+                    <div className="grid grid-cols-1 gap-3">
+                      <button
+                        onClick={() => setSelectedFont('inter')}
+                        className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
+                          selectedFont === 'inter' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
+                        }`}
+                        data-testid="button-font-inter"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>Inter</h4>
+                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: 'Inter, sans-serif' }}>Clean and modern sans-serif</p>
+                          </div>
+                          {selectedFont === 'inter' && (
+                            <div className="bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                      <button
+                        onClick={() => setSelectedFont('space-mono')}
+                        className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
+                          selectedFont === 'space-mono' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
+                        }`}
+                        data-testid="button-font-space-mono"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="font-medium" style={{ fontFamily: '"Space Mono", monospace' }}>Space Mono</h4>
+                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: '"Space Mono", monospace' }}>Technical monospace style</p>
+                          </div>
+                          {selectedFont === 'space-mono' && (
+                            <div className="bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </TabsContent>
               </Tabs>
             </div>
           </div>
@@ -1544,6 +1613,13 @@ export default function Dashboard() {
                       data-testid="tab-cursors-mobile"
                     >
                       Cursors
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="fonts" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-fonts-mobile"
+                    >
+                      Fonts
                     </TabsTrigger>
                   </TabsList>
                 </div>
@@ -1704,6 +1780,55 @@ export default function Dashboard() {
                 </TabsContent>
                 <TabsContent value="cursors" className="flex-1 p-6 m-0" data-testid="content-cursors-mobile">
                   <div className="space-y-4">
+                  </div>
+                </TabsContent>
+                <TabsContent value="fonts" className="flex-1 p-6 m-0" data-testid="content-fonts-mobile">
+                  <div className="space-y-4">
+                    <p className="text-sm text-foreground/60 mb-4">Choose a global font for your portfolio</p>
+                    <div className="grid grid-cols-1 gap-3">
+                      <button
+                        onClick={() => setSelectedFont('inter')}
+                        className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
+                          selectedFont === 'inter' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
+                        }`}
+                        data-testid="button-font-inter-mobile"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>Inter</h4>
+                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: 'Inter, sans-serif' }}>Clean and modern sans-serif</p>
+                          </div>
+                          {selectedFont === 'inter' && (
+                            <div className="bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                      <button
+                        onClick={() => setSelectedFont('space-mono')}
+                        className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
+                          selectedFont === 'space-mono' ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
+                        }`}
+                        data-testid="button-font-space-mono-mobile"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="font-medium" style={{ fontFamily: '"Space Mono", monospace' }}>Space Mono</h4>
+                            <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: '"Space Mono", monospace' }}>Technical monospace style</p>
+                          </div>
+                          {selectedFont === 'space-mono' && (
+                            <div className="bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </TabsContent>
               </Tabs>
