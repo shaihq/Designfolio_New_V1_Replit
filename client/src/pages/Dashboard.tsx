@@ -730,35 +730,15 @@ export default function Dashboard() {
       
       {/* Paper grain/noise overlay */}
       {selectedWallpaper && backgroundEffectType === 'grain' && grainIntensity > 0 && (
-        <>
-          <div 
-            className="fixed inset-0 pointer-events-none"
-            style={{ 
-              zIndex: 2,
-              opacity: (grainIntensity / 100) * 0.4,
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E")`,
-              backgroundRepeat: 'repeat',
-              mixBlendMode: 'soft-light'
-            }}
-          />
-          <div 
-            className="fixed inset-0 pointer-events-none"
-            style={{ 
-              zIndex: 2,
-              opacity: (grainIntensity / 100) * 0.25,
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='finegrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='1.5' intercept='-0.25'/%3E%3CfeFuncG type='linear' slope='1.5' intercept='-0.25'/%3E%3CfeFuncB type='linear' slope='1.5' intercept='-0.25'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23finegrain)'/%3E%3C/svg%3E")`,
-              backgroundRepeat: 'repeat',
-              mixBlendMode: 'overlay'
-            }}
-          />
-          <div 
-            className="fixed inset-0 pointer-events-none"
-            style={{ 
-              zIndex: 2,
-              background: `radial-gradient(ellipse at center, transparent 0%, rgba(139, 119, 101, ${(grainIntensity / 100) * 0.08}) 100%)`,
-            }}
-          />
-        </>
+        <div 
+          className="fixed inset-0 pointer-events-none"
+          style={{ 
+            zIndex: 2,
+            opacity: grainIntensity / 100,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            mixBlendMode: 'overlay'
+          }}
+        />
       )}
       {/* Main Content */}
       <div className="flex-1 w-full min-w-0 transition-all duration-300 relative z-10" style={{ marginRight: !isMobileOrTablet && isThemePanelOpen ? '320px' : '0' }}>
