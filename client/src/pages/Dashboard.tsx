@@ -84,6 +84,14 @@ export default function Dashboard() {
     const saved = localStorage.getItem('dashboard-background-blur');
     return saved ? parseInt(saved, 10) : 0;
   });
+  const [backgroundEffectType, setBackgroundEffectType] = useState<'blur' | 'grain'>(() => {
+    const saved = localStorage.getItem('dashboard-background-effect-type');
+    return (saved === 'blur' || saved === 'grain') ? saved : 'blur';
+  });
+  const [grainIntensity, setGrainIntensity] = useState<number>(() => {
+    const saved = localStorage.getItem('dashboard-grain-intensity');
+    return saved ? parseInt(saved, 10) : 30;
+  });
   const [backgroundMotion, setBackgroundMotion] = useState<boolean>(() => {
     const saved = localStorage.getItem('dashboard-background-motion');
     return saved === 'on';
@@ -147,6 +155,14 @@ export default function Dashboard() {
   useEffect(() => {
     localStorage.setItem('dashboard-background-blur', backgroundBlur.toString());
   }, [backgroundBlur]);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-background-effect-type', backgroundEffectType);
+  }, [backgroundEffectType]);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-grain-intensity', grainIntensity.toString());
+  }, [grainIntensity]);
 
   useEffect(() => {
     localStorage.setItem('dashboard-background-motion', backgroundMotion ? 'on' : 'off');
@@ -688,7 +704,7 @@ export default function Dashboard() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             zIndex: 0,
-            filter: backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
+            filter: backgroundEffectType === 'blur' && backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
             transform: `scale(${1.05 + (backgroundMotion ? scrollOffset * 0.00008 : 0)})`,
             transition: 'transform 0.1s ease-out'
           }}
@@ -705,9 +721,22 @@ export default function Dashboard() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             zIndex: 1,
-            filter: backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
+            filter: backgroundEffectType === 'blur' && backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
             transform: `scale(${1.05 + (backgroundMotion ? scrollOffset * 0.00008 : 0)})`,
             transition: 'transform 0.1s ease-out'
+          }}
+        />
+      )}
+      
+      {/* Paper grain/noise overlay */}
+      {selectedWallpaper && backgroundEffectType === 'grain' && grainIntensity > 0 && (
+        <div 
+          className="fixed inset-0 pointer-events-none"
+          style={{ 
+            zIndex: 2,
+            opacity: grainIntensity / 100,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            mixBlendMode: 'overlay'
           }}
         />
       )}
@@ -1401,21 +1430,73 @@ export default function Dashboard() {
                     </div>
 
                     <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium">Background Blur</span>
-                        <span className="text-xs text-foreground/60">{backgroundBlur}px</span>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-sm font-medium">Background Effect</span>
                       </div>
-                      <Slider
-                        value={[backgroundBlur]}
-                        onValueChange={(value) => setBackgroundBlur(value[0])}
-                        max={20}
-                        step={1}
-                        className="w-full"
-                        data-testid="slider-background-blur"
-                      />
-                      <p className="text-xs text-foreground/60 mt-2">
-                        Add a gaussian blur effect to your background image
-                      </p>
+                      <div className="flex gap-2 mb-4">
+                        <button
+                          onClick={() => setBackgroundEffectType('blur')}
+                          className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                            backgroundEffectType === 'blur'
+                              ? 'bg-primary text-primary-foreground'
+                              : 'bg-muted text-foreground/70 hover-elevate'
+                          }`}
+                          data-testid="button-effect-blur"
+                        >
+                          Blur
+                        </button>
+                        <button
+                          onClick={() => setBackgroundEffectType('grain')}
+                          className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                            backgroundEffectType === 'grain'
+                              ? 'bg-primary text-primary-foreground'
+                              : 'bg-muted text-foreground/70 hover-elevate'
+                          }`}
+                          data-testid="button-effect-grain"
+                        >
+                          Paper Grain
+                        </button>
+                      </div>
+                      
+                      {backgroundEffectType === 'blur' && (
+                        <>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-foreground/80">Blur Intensity</span>
+                            <span className="text-xs text-foreground/60">{backgroundBlur}px</span>
+                          </div>
+                          <Slider
+                            value={[backgroundBlur]}
+                            onValueChange={(value) => setBackgroundBlur(value[0])}
+                            max={20}
+                            step={1}
+                            className="w-full"
+                            data-testid="slider-background-blur"
+                          />
+                          <p className="text-xs text-foreground/60 mt-2">
+                            Add a gaussian blur effect to your background image
+                          </p>
+                        </>
+                      )}
+                      
+                      {backgroundEffectType === 'grain' && (
+                        <>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-foreground/80">Grain Intensity</span>
+                            <span className="text-xs text-foreground/60">{grainIntensity}%</span>
+                          </div>
+                          <Slider
+                            value={[grainIntensity]}
+                            onValueChange={(value) => setGrainIntensity(value[0])}
+                            max={100}
+                            step={5}
+                            className="w-full"
+                            data-testid="slider-grain-intensity"
+                          />
+                          <p className="text-xs text-foreground/60 mt-2">
+                            Add a paper-like grain noise texture overlay
+                          </p>
+                        </>
+                      )}
                     </div>
 
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
@@ -1638,21 +1719,73 @@ export default function Dashboard() {
                     </div>
 
                     <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium">Background Blur</span>
-                        <span className="text-xs text-foreground/60">{backgroundBlur}px</span>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-sm font-medium">Background Effect</span>
                       </div>
-                      <Slider
-                        value={[backgroundBlur]}
-                        onValueChange={(value) => setBackgroundBlur(value[0])}
-                        max={20}
-                        step={1}
-                        className="w-full"
-                        data-testid="slider-background-blur-mobile"
-                      />
-                      <p className="text-xs text-foreground/60 mt-2">
-                        Add a gaussian blur effect to your background image
-                      </p>
+                      <div className="flex gap-2 mb-4">
+                        <button
+                          onClick={() => setBackgroundEffectType('blur')}
+                          className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                            backgroundEffectType === 'blur'
+                              ? 'bg-primary text-primary-foreground'
+                              : 'bg-muted text-foreground/70 hover-elevate'
+                          }`}
+                          data-testid="button-effect-blur-mobile"
+                        >
+                          Blur
+                        </button>
+                        <button
+                          onClick={() => setBackgroundEffectType('grain')}
+                          className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-all ${
+                            backgroundEffectType === 'grain'
+                              ? 'bg-primary text-primary-foreground'
+                              : 'bg-muted text-foreground/70 hover-elevate'
+                          }`}
+                          data-testid="button-effect-grain-mobile"
+                        >
+                          Paper Grain
+                        </button>
+                      </div>
+                      
+                      {backgroundEffectType === 'blur' && (
+                        <>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-foreground/80">Blur Intensity</span>
+                            <span className="text-xs text-foreground/60">{backgroundBlur}px</span>
+                          </div>
+                          <Slider
+                            value={[backgroundBlur]}
+                            onValueChange={(value) => setBackgroundBlur(value[0])}
+                            max={20}
+                            step={1}
+                            className="w-full"
+                            data-testid="slider-background-blur-mobile"
+                          />
+                          <p className="text-xs text-foreground/60 mt-2">
+                            Add a gaussian blur effect to your background image
+                          </p>
+                        </>
+                      )}
+                      
+                      {backgroundEffectType === 'grain' && (
+                        <>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs text-foreground/80">Grain Intensity</span>
+                            <span className="text-xs text-foreground/60">{grainIntensity}%</span>
+                          </div>
+                          <Slider
+                            value={[grainIntensity]}
+                            onValueChange={(value) => setGrainIntensity(value[0])}
+                            max={100}
+                            step={5}
+                            className="w-full"
+                            data-testid="slider-grain-intensity-mobile"
+                          />
+                          <p className="text-xs text-foreground/60 mt-2">
+                            Add a paper-like grain noise texture overlay
+                          </p>
+                        </>
+                      )}
                     </div>
 
                     <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
