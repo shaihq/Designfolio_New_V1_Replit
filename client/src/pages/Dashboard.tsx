@@ -743,7 +743,7 @@ export default function Dashboard() {
         />
       )}
       {/* Main Content */}
-      <div className="flex-1 w-full min-w-0 transition-all duration-300 relative z-10" style={{ marginRight: !isMobileOrTablet && isThemePanelOpen ? '320px' : '0' }}>
+      <div className="flex-1 w-full min-w-0 transition-all duration-300 relative z-10" style={{ marginRight: !isMobileOrTablet && (isThemePanelOpen || isEditTestimonialOpen) ? '320px' : '0' }}>
         <div className="max-w-4xl mx-auto px-6">
           {/* Floating Navbar */}
           <div 
@@ -1952,95 +1952,200 @@ export default function Dashboard() {
         </Sheet>
       )}
 
-      {/* Testimonial Edit Side Panel */}
-      <Sheet open={isEditTestimonialOpen} onOpenChange={setIsEditTestimonialOpen}>
-        <SheetContent className="w-80 p-0 flex flex-col">
-          <div className="p-6 border-b">
-            <h2 className="text-lg font-semibold" data-testid="text-edit-testimonial-title">
-              Edit Testimonial
-            </h2>
+      {/* Testimonial Edit Panel - Desktop (pushes content) - Only on large screens */}
+      {!isMobileOrTablet && (
+        <div 
+          className={`fixed right-0 top-0 h-full bg-white border-l border-border transition-transform duration-300 z-40 ${
+            isEditTestimonialOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          style={{ width: '320px' }}
+        >
+          <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between p-6 border-b border-border pt-[16px] pb-[16px]">
+              <h2 className="text-lg font-semibold" data-testid="text-edit-testimonial-title">Edit Testimonial</h2>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsEditTestimonialOpen(false)}
+                className="h-8 w-8"
+                data-testid="button-close-edit-testimonial"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="flex-1 overflow-auto p-6 space-y-4">
+              {editingTestimonial && (
+                <>
+                  <div>
+                    <label className="text-xs font-medium text-foreground/60 mb-2 block">Name</label>
+                    <input
+                      type="text"
+                      value={editingTestimonial.name}
+                      onChange={(e) => setEditingTestimonial({ ...editingTestimonial, name: e.target.value })}
+                      className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      data-testid="input-testimonial-name"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="text-xs font-medium text-foreground/60 mb-2 block">Role</label>
+                    <input
+                      type="text"
+                      value={editingTestimonial.role}
+                      onChange={(e) => setEditingTestimonial({ ...editingTestimonial, role: e.target.value })}
+                      className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      data-testid="input-testimonial-role"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="text-xs font-medium text-foreground/60 mb-2 block">Company</label>
+                    <input
+                      type="text"
+                      value={editingTestimonial.company}
+                      onChange={(e) => setEditingTestimonial({ ...editingTestimonial, company: e.target.value })}
+                      className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      data-testid="input-testimonial-company"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="text-xs font-medium text-foreground/60 mb-2 block">Testimonial Text</label>
+                    <textarea
+                      value={editingTestimonial.text}
+                      onChange={(e) => setEditingTestimonial({ ...editingTestimonial, text: e.target.value })}
+                      className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none h-24"
+                      data-testid="textarea-testimonial-text"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="text-xs font-medium text-foreground/60 mb-2 block">Highlighted Text</label>
+                    <input
+                      type="text"
+                      value={editingTestimonial.highlightedText}
+                      onChange={(e) => setEditingTestimonial({ ...editingTestimonial, highlightedText: e.target.value })}
+                      className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      placeholder="Text to highlight in the testimonial"
+                      data-testid="input-testimonial-highlighted"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+            
+            <div className="p-6 border-t space-y-2">
+              <Button 
+                className="w-full"
+                onClick={() => setIsEditTestimonialOpen(false)}
+                data-testid="button-save-testimonial"
+              >
+                Save Changes
+              </Button>
+              <Button 
+                variant="outline"
+                className="w-full"
+                onClick={() => setIsEditTestimonialOpen(false)}
+                data-testid="button-cancel-edit-testimonial"
+              >
+                Cancel
+              </Button>
+            </div>
           </div>
-          
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            {editingTestimonial && (
-              <>
-                <div>
-                  <label className="text-xs font-medium text-foreground/60 mb-2 block">Name</label>
-                  <input
-                    type="text"
-                    value={editingTestimonial.name}
-                    onChange={(e) => setEditingTestimonial({ ...editingTestimonial, name: e.target.value })}
-                    className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                    data-testid="input-testimonial-name"
-                  />
-                </div>
-                
-                <div>
-                  <label className="text-xs font-medium text-foreground/60 mb-2 block">Role</label>
-                  <input
-                    type="text"
-                    value={editingTestimonial.role}
-                    onChange={(e) => setEditingTestimonial({ ...editingTestimonial, role: e.target.value })}
-                    className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                    data-testid="input-testimonial-role"
-                  />
-                </div>
-                
-                <div>
-                  <label className="text-xs font-medium text-foreground/60 mb-2 block">Company</label>
-                  <input
-                    type="text"
-                    value={editingTestimonial.company}
-                    onChange={(e) => setEditingTestimonial({ ...editingTestimonial, company: e.target.value })}
-                    className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                    data-testid="input-testimonial-company"
-                  />
-                </div>
-                
-                <div>
-                  <label className="text-xs font-medium text-foreground/60 mb-2 block">Testimonial Text</label>
-                  <textarea
-                    value={editingTestimonial.text}
-                    onChange={(e) => setEditingTestimonial({ ...editingTestimonial, text: e.target.value })}
-                    className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none h-24"
-                    data-testid="textarea-testimonial-text"
-                  />
-                </div>
-                
-                <div>
-                  <label className="text-xs font-medium text-foreground/60 mb-2 block">Highlighted Text</label>
-                  <input
-                    type="text"
-                    value={editingTestimonial.highlightedText}
-                    onChange={(e) => setEditingTestimonial({ ...editingTestimonial, highlightedText: e.target.value })}
-                    className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="Text to highlight in the testimonial"
-                    data-testid="input-testimonial-highlighted"
-                  />
-                </div>
-              </>
-            )}
-          </div>
-          
-          <div className="p-6 border-t space-y-2">
-            <Button 
-              className="w-full"
-              onClick={() => setIsEditTestimonialOpen(false)}
-              data-testid="button-save-testimonial"
-            >
-              Save Changes
-            </Button>
-            <Button 
-              variant="outline"
-              className="w-full"
-              onClick={() => setIsEditTestimonialOpen(false)}
-              data-testid="button-cancel-edit-testimonial"
-            >
-              Cancel
-            </Button>
-          </div>
-        </SheetContent>
-      </Sheet>
+        </div>
+      )}
+
+      {/* Testimonial Edit Panel - Mobile (Sheet overlay) */}
+      {isMobileOrTablet && (
+        <Sheet open={isEditTestimonialOpen} onOpenChange={setIsEditTestimonialOpen}>
+          <SheetContent className="w-80 p-0 flex flex-col">
+            <div className="p-6 border-b">
+              <h2 className="text-lg font-semibold" data-testid="text-edit-testimonial-title-mobile">
+                Edit Testimonial
+              </h2>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+              {editingTestimonial && (
+                <>
+                  <div>
+                    <label className="text-xs font-medium text-foreground/60 mb-2 block">Name</label>
+                    <input
+                      type="text"
+                      value={editingTestimonial.name}
+                      onChange={(e) => setEditingTestimonial({ ...editingTestimonial, name: e.target.value })}
+                      className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      data-testid="input-testimonial-name-mobile"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="text-xs font-medium text-foreground/60 mb-2 block">Role</label>
+                    <input
+                      type="text"
+                      value={editingTestimonial.role}
+                      onChange={(e) => setEditingTestimonial({ ...editingTestimonial, role: e.target.value })}
+                      className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      data-testid="input-testimonial-role-mobile"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="text-xs font-medium text-foreground/60 mb-2 block">Company</label>
+                    <input
+                      type="text"
+                      value={editingTestimonial.company}
+                      onChange={(e) => setEditingTestimonial({ ...editingTestimonial, company: e.target.value })}
+                      className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      data-testid="input-testimonial-company-mobile"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="text-xs font-medium text-foreground/60 mb-2 block">Testimonial Text</label>
+                    <textarea
+                      value={editingTestimonial.text}
+                      onChange={(e) => setEditingTestimonial({ ...editingTestimonial, text: e.target.value })}
+                      className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none h-24"
+                      data-testid="textarea-testimonial-text-mobile"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="text-xs font-medium text-foreground/60 mb-2 block">Highlighted Text</label>
+                    <input
+                      type="text"
+                      value={editingTestimonial.highlightedText}
+                      onChange={(e) => setEditingTestimonial({ ...editingTestimonial, highlightedText: e.target.value })}
+                      className="w-full px-3 py-2 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      placeholder="Text to highlight in the testimonial"
+                      data-testid="input-testimonial-highlighted-mobile"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+            
+            <div className="p-6 border-t space-y-2">
+              <Button 
+                className="w-full"
+                onClick={() => setIsEditTestimonialOpen(false)}
+                data-testid="button-save-testimonial-mobile"
+              >
+                Save Changes
+              </Button>
+              <Button 
+                variant="outline"
+                className="w-full"
+                onClick={() => setIsEditTestimonialOpen(false)}
+                data-testid="button-cancel-edit-testimonial-mobile"
+              >
+                Cancel
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
+      )}
     </div>
   );
 }
