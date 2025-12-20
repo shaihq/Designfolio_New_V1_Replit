@@ -2035,7 +2035,7 @@ export default function Dashboard() {
                         id="testimonial-text"
                         value={editingTestimonial.text}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, text: e.target.value })}
-                        className="flex min-h-[80px] w-full rounded-md border-0 bg-transparent px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm transition-shadow duration-200 resize-none"
+                        className="flex min-h-[80px] w-full rounded-md border-0 bg-transparent px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm transition-shadow duration-200 resize-vertical"
                         placeholder="Enter testimonial text..."
                         data-testid="textarea-testimonial-text"
                       />
@@ -2153,7 +2153,7 @@ export default function Dashboard() {
                         id="testimonial-text-mobile"
                         value={editingTestimonial.text}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, text: e.target.value })}
-                        className="flex min-h-[80px] w-full rounded-md border-0 bg-transparent px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm transition-shadow duration-200 resize-none"
+                        className="flex min-h-[80px] w-full rounded-md border-0 bg-transparent px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm transition-shadow duration-200 resize-vertical"
                         placeholder="Enter testimonial text..."
                         data-testid="textarea-testimonial-text-mobile"
                       />
