@@ -2082,17 +2082,17 @@ export default function Dashboard() {
               )}
             </div>
             
-            <div className="p-6 border-t space-y-2">
+            <div className="p-6 border-t flex gap-2">
               <Button 
-                className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
                 onClick={() => setIsEditTestimonialOpen(false)}
                 data-testid="button-save-testimonial"
               >
-                Save Changes
+                Save
               </Button>
               <Button 
                 variant="outline"
-                className="w-full rounded-full h-11"
+                className="flex-1 rounded-full h-11"
                 onClick={() => setIsEditTestimonialOpen(false)}
                 data-testid="button-cancel-edit-testimonial"
               >
@@ -2223,17 +2223,17 @@ export default function Dashboard() {
               )}
             </div>
             
-            <div className="p-6 border-t space-y-2">
+            <div className="p-6 border-t flex gap-2">
               <Button 
-                className="w-full bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
                 onClick={() => setIsEditTestimonialOpen(false)}
                 data-testid="button-save-testimonial-mobile"
               >
-                Save Changes
+                Save
               </Button>
               <Button 
                 variant="outline"
-                className="w-full rounded-full h-11"
+                className="flex-1 rounded-full h-11"
                 onClick={() => setIsEditTestimonialOpen(false)}
                 data-testid="button-cancel-edit-testimonial-mobile"
               >
