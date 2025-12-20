@@ -410,6 +410,7 @@ export default function Dashboard() {
   const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
   const [editingTestimonial, setEditingTestimonial] = useState<typeof testimonials[0] | null>(null);
   const [isEditTestimonialOpen, setIsEditTestimonialOpen] = useState(false);
+  const [selectedTestimonialId, setSelectedTestimonialId] = useState<number | null>(null);
   const [caseStudies, setCaseStudies] = useState<Array<{
     id: number;
     title: string;
@@ -1186,10 +1187,14 @@ export default function Dashboard() {
                           setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
                         }, 300 + idx * 100);
                       }}
-                      className="bg-white border border-border/30 rounded-2xl p-5 hover-elevate flex flex-col relative"
+                      className={`border-2 rounded-2xl p-5 flex flex-col relative transition-all duration-300 ${
+                        selectedTestimonialId === testimonial.id
+                          ? 'border-foreground/40 bg-foreground/5'
+                          : 'border-border/30 bg-white hover-elevate'
+                      }`}
                       data-testid={`card-testimonial-${testimonial.id}`}
                       style={{
-                        backgroundColor: '#F5F3F1'
+                        backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.03)' : '#F5F3F1'
                       }}
                     >
                       <Button
@@ -1198,6 +1203,7 @@ export default function Dashboard() {
                         className="absolute top-4 right-4 h-8 w-8"
                         onClick={() => {
                           setEditingTestimonial(testimonial);
+                          setSelectedTestimonialId(testimonial.id);
                           setIsEditTestimonialOpen(true);
                         }}
                         data-testid={`button-edit-testimonial-${testimonial.id}`}
@@ -1965,7 +1971,10 @@ export default function Dashboard() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setIsEditTestimonialOpen(false)}
+                onClick={() => {
+                  setIsEditTestimonialOpen(false);
+                  setSelectedTestimonialId(null);
+                }}
                 className="h-8 w-8"
                 data-testid="button-close-edit-testimonial"
               >
@@ -2085,7 +2094,10 @@ export default function Dashboard() {
             <div className="p-6 border-t flex gap-2">
               <Button 
                 className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
-                onClick={() => setIsEditTestimonialOpen(false)}
+                onClick={() => {
+                  setIsEditTestimonialOpen(false);
+                  setSelectedTestimonialId(null);
+                }}
                 data-testid="button-save-testimonial"
               >
                 Save
@@ -2093,7 +2105,10 @@ export default function Dashboard() {
               <Button 
                 variant="outline"
                 className="flex-1 rounded-full h-11"
-                onClick={() => setIsEditTestimonialOpen(false)}
+                onClick={() => {
+                  setIsEditTestimonialOpen(false);
+                  setSelectedTestimonialId(null);
+                }}
                 data-testid="button-cancel-edit-testimonial"
               >
                 Cancel
@@ -2105,7 +2120,12 @@ export default function Dashboard() {
 
       {/* Testimonial Edit Panel - Mobile (Sheet overlay) */}
       {isMobileOrTablet && (
-        <Sheet open={isEditTestimonialOpen} onOpenChange={setIsEditTestimonialOpen}>
+        <Sheet open={isEditTestimonialOpen} onOpenChange={(open) => {
+          setIsEditTestimonialOpen(open);
+          if (!open) {
+            setSelectedTestimonialId(null);
+          }
+        }}>
           <SheetContent className="w-80 p-0 flex flex-col">
             <div className="p-6 border-b">
               <h2 className="text-lg font-semibold" data-testid="text-edit-testimonial-title-mobile">
@@ -2226,7 +2246,10 @@ export default function Dashboard() {
             <div className="p-6 border-t flex gap-2">
               <Button 
                 className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
-                onClick={() => setIsEditTestimonialOpen(false)}
+                onClick={() => {
+                  setIsEditTestimonialOpen(false);
+                  setSelectedTestimonialId(null);
+                }}
                 data-testid="button-save-testimonial-mobile"
               >
                 Save
@@ -2234,7 +2257,10 @@ export default function Dashboard() {
               <Button 
                 variant="outline"
                 className="flex-1 rounded-full h-11"
-                onClick={() => setIsEditTestimonialOpen(false)}
+                onClick={() => {
+                  setIsEditTestimonialOpen(false);
+                  setSelectedTestimonialId(null);
+                }}
                 data-testid="button-cancel-edit-testimonial-mobile"
               >
                 Cancel
