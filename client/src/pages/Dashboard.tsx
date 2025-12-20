@@ -412,7 +412,8 @@ export default function Dashboard() {
   const [isEditTestimonialOpen, setIsEditTestimonialOpen] = useState(false);
   const [selectedTestimonialId, setSelectedTestimonialId] = useState<number | null>(null);
   const [showUnsavedWarning, setShowUnsavedWarning] = useState(false);
-  const [pendingAction, setPendingAction] = useState<'close' | 'cancel' | null>(null);
+  const [pendingAction, setPendingAction] = useState<'close' | 'cancel' | 'switch' | null>(null);
+  const [pendingTestimonialId, setPendingTestimonialId] = useState<number | null>(null);
   const [caseStudies, setCaseStudies] = useState<Array<{
     id: number;
     title: string;
@@ -559,9 +560,34 @@ export default function Dashboard() {
 
   const handleConfirmDiscard = () => {
     setShowUnsavedWarning(false);
+    setEditingTestimonial(null);
     setIsEditTestimonialOpen(false);
     setSelectedTestimonialId(null);
+    
+    // If switching to another testimonial, open it after discarding
+    if (pendingAction === 'switch' && pendingTestimonialId) {
+      const testimonialToOpen = testimonials.find(t => t.id === pendingTestimonialId);
+      if (testimonialToOpen) {
+        setEditingTestimonial({ ...testimonialToOpen });
+        setSelectedTestimonialId(testimonialToOpen.id);
+        setIsEditTestimonialOpen(true);
+      }
+    }
     setPendingAction(null);
+  };
+
+  const handleEditTestimonialClick = (testimonial: typeof testimonials[0]) => {
+    // If already editing a different testimonial with unsaved changes
+    if (isEditTestimonialOpen && selectedTestimonialId !== testimonial.id && hasUnsavedChanges()) {
+      setPendingTestimonialId(testimonial.id);
+      setShowUnsavedWarning(true);
+      setPendingAction('switch');
+    } else {
+      // No unsaved changes or editing the same one, open directly
+      setEditingTestimonial(testimonial);
+      setSelectedTestimonialId(testimonial.id);
+      setIsEditTestimonialOpen(true);
+    }
   };
 
   useEffect(() => {
@@ -1239,11 +1265,7 @@ export default function Dashboard() {
                         variant="ghost"
                         size="icon"
                         className="absolute top-4 right-4 h-8 w-8"
-                        onClick={() => {
-                          setEditingTestimonial(testimonial);
-                          setSelectedTestimonialId(testimonial.id);
-                          setIsEditTestimonialOpen(true);
-                        }}
+                        onClick={() => handleEditTestimonialClick(testimonial)}
                         data-testid={`button-edit-testimonial-${testimonial.id}`}
                       >
                         <Pencil className="w-4 h-4" />
@@ -1394,6 +1416,7 @@ export default function Dashboard() {
             <AlertDialogCancel onClick={() => {
               setShowUnsavedWarning(false);
               setPendingAction(null);
+              setPendingTestimonialId(null);
             }}>Keep Editing</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleConfirmDiscard}
