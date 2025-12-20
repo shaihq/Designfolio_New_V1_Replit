@@ -411,6 +411,8 @@ export default function Dashboard() {
   const [editingTestimonial, setEditingTestimonial] = useState<typeof testimonials[0] | null>(null);
   const [isEditTestimonialOpen, setIsEditTestimonialOpen] = useState(false);
   const [selectedTestimonialId, setSelectedTestimonialId] = useState<number | null>(null);
+  const [showUnsavedWarning, setShowUnsavedWarning] = useState(false);
+  const [pendingAction, setPendingAction] = useState<'close' | 'cancel' | null>(null);
   const [caseStudies, setCaseStudies] = useState<Array<{
     id: number;
     title: string;
@@ -524,6 +526,42 @@ export default function Dashboard() {
       setProjectToDelete(null);
     }
     setDeleteDialogOpen(false);
+  };
+
+  const hasUnsavedChanges = () => {
+    if (!editingTestimonial || selectedTestimonialId === null) return false;
+    const originalTestimonial = testimonials.find(t => t.id === selectedTestimonialId);
+    if (!originalTestimonial) return false;
+    
+    return (
+      editingTestimonial.name !== originalTestimonial.name ||
+      editingTestimonial.company !== originalTestimonial.company ||
+      editingTestimonial.linkedinLink !== originalTestimonial.linkedinLink ||
+      editingTestimonial.text !== originalTestimonial.text ||
+      editingTestimonial.avatar !== originalTestimonial.avatar
+    );
+  };
+
+  const handleAttemptClose = (action: 'close' | 'cancel') => {
+    if (hasUnsavedChanges()) {
+      setShowUnsavedWarning(true);
+      setPendingAction(action);
+    } else {
+      if (action === 'close') {
+        setIsEditTestimonialOpen(false);
+        setSelectedTestimonialId(null);
+      } else {
+        setIsEditTestimonialOpen(false);
+        setSelectedTestimonialId(null);
+      }
+    }
+  };
+
+  const handleConfirmDiscard = () => {
+    setShowUnsavedWarning(false);
+    setIsEditTestimonialOpen(false);
+    setSelectedTestimonialId(null);
+    setPendingAction(null);
   };
 
   useEffect(() => {
@@ -1343,6 +1381,30 @@ export default function Dashboard() {
         </DialogContent>
       </Dialog>
 
+      {/* Unsaved Changes Warning Dialog */}
+      <AlertDialog open={showUnsavedWarning} onOpenChange={setShowUnsavedWarning}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
+            <AlertDialogDescription>
+              You have made changes to this testimonial. Are you sure you want to discard them?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => {
+              setShowUnsavedWarning(false);
+              setPendingAction(null);
+            }}>Keep Editing</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleConfirmDiscard}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Discard Changes
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>
@@ -1971,10 +2033,7 @@ export default function Dashboard() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => {
-                  setIsEditTestimonialOpen(false);
-                  setSelectedTestimonialId(null);
-                }}
+                onClick={() => handleAttemptClose('close')}
                 className="h-8 w-8"
                 data-testid="button-close-edit-testimonial"
               >
@@ -2105,10 +2164,7 @@ export default function Dashboard() {
               <Button 
                 variant="outline"
                 className="flex-1 rounded-full h-11"
-                onClick={() => {
-                  setIsEditTestimonialOpen(false);
-                  setSelectedTestimonialId(null);
-                }}
+                onClick={() => handleAttemptClose('cancel')}
                 data-testid="button-cancel-edit-testimonial"
               >
                 Cancel
@@ -2121,9 +2177,10 @@ export default function Dashboard() {
       {/* Testimonial Edit Panel - Mobile (Sheet overlay) */}
       {isMobileOrTablet && (
         <Sheet open={isEditTestimonialOpen} onOpenChange={(open) => {
-          setIsEditTestimonialOpen(open);
           if (!open) {
-            setSelectedTestimonialId(null);
+            handleAttemptClose('close');
+          } else {
+            setIsEditTestimonialOpen(open);
           }
         }}>
           <SheetContent className="w-80 p-0 flex flex-col">
@@ -2257,10 +2314,7 @@ export default function Dashboard() {
               <Button 
                 variant="outline"
                 className="flex-1 rounded-full h-11"
-                onClick={() => {
-                  setIsEditTestimonialOpen(false);
-                  setSelectedTestimonialId(null);
-                }}
+                onClick={() => handleAttemptClose('cancel')}
                 data-testid="button-cancel-edit-testimonial-mobile"
               >
                 Cancel
