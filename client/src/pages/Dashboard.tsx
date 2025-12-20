@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -1982,12 +1983,12 @@ export default function Dashboard() {
                       Name
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <input
+                      <Input
                         id="testimonial-name"
                         type="text"
                         value={editingTestimonial.name}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, name: e.target.value })}
-                        className="border-0 bg-transparent h-11 px-4 w-full focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
                         data-testid="input-testimonial-name"
                       />
                     </div>
@@ -1998,12 +1999,12 @@ export default function Dashboard() {
                       Role
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <input
+                      <Input
                         id="testimonial-role"
                         type="text"
                         value={editingTestimonial.role}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, role: e.target.value })}
-                        className="border-0 bg-transparent h-11 px-4 w-full focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
                         data-testid="input-testimonial-role"
                       />
                     </div>
@@ -2014,12 +2015,12 @@ export default function Dashboard() {
                       Company
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <input
+                      <Input
                         id="testimonial-company"
                         type="text"
                         value={editingTestimonial.company}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, company: e.target.value })}
-                        className="border-0 bg-transparent h-11 px-4 w-full focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
                         data-testid="input-testimonial-company"
                       />
                     </div>
@@ -2034,7 +2035,7 @@ export default function Dashboard() {
                         id="testimonial-text"
                         value={editingTestimonial.text}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, text: e.target.value })}
-                        className="border-0 bg-transparent px-4 py-3 w-full focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60 resize-none"
+                        className="flex min-h-[80px] w-full rounded-md border-0 bg-transparent px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm transition-shadow duration-200 resize-none"
                         placeholder="Enter testimonial text..."
                         data-testid="textarea-testimonial-text"
                       />
@@ -2046,12 +2047,12 @@ export default function Dashboard() {
                       Highlighted Text
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <input
+                      <Input
                         id="testimonial-highlighted"
                         type="text"
                         value={editingTestimonial.highlightedText}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, highlightedText: e.target.value })}
-                        className="border-0 bg-transparent h-11 px-4 w-full focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
                         placeholder="Text to highlight in the testimonial"
                         data-testid="input-testimonial-highlighted"
                       />
@@ -2100,12 +2101,12 @@ export default function Dashboard() {
                       Name
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <input
+                      <Input
                         id="testimonial-name-mobile"
                         type="text"
                         value={editingTestimonial.name}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, name: e.target.value })}
-                        className="border-0 bg-transparent h-11 px-4 w-full focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
                         data-testid="input-testimonial-name-mobile"
                       />
                     </div>
@@ -2116,12 +2117,12 @@ export default function Dashboard() {
                       Role
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <input
+                      <Input
                         id="testimonial-role-mobile"
                         type="text"
                         value={editingTestimonial.role}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, role: e.target.value })}
-                        className="border-0 bg-transparent h-11 px-4 w-full focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
                         data-testid="input-testimonial-role-mobile"
                       />
                     </div>
@@ -2132,12 +2133,12 @@ export default function Dashboard() {
                       Company
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <input
+                      <Input
                         id="testimonial-company-mobile"
                         type="text"
                         value={editingTestimonial.company}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, company: e.target.value })}
-                        className="border-0 bg-transparent h-11 px-4 w-full focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
                         data-testid="input-testimonial-company-mobile"
                       />
                     </div>
@@ -2152,7 +2153,7 @@ export default function Dashboard() {
                         id="testimonial-text-mobile"
                         value={editingTestimonial.text}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, text: e.target.value })}
-                        className="border-0 bg-transparent px-4 py-3 w-full focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60 resize-none"
+                        className="flex min-h-[80px] w-full rounded-md border-0 bg-transparent px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm transition-shadow duration-200 resize-none"
                         placeholder="Enter testimonial text..."
                         data-testid="textarea-testimonial-text-mobile"
                       />
@@ -2164,12 +2165,12 @@ export default function Dashboard() {
                       Highlighted Text
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <input
+                      <Input
                         id="testimonial-highlighted-mobile"
                         type="text"
                         value={editingTestimonial.highlightedText}
                         onChange={(e) => setEditingTestimonial({ ...editingTestimonial, highlightedText: e.target.value })}
-                        className="border-0 bg-transparent h-11 px-4 w-full focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-base placeholder:text-muted-foreground/60"
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
                         placeholder="Text to highlight in the testimonial"
                         data-testid="input-testimonial-highlighted-mobile"
                       />
