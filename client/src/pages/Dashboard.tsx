@@ -65,6 +65,7 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { StardustButton } from '@/components/StardustButton';
+import { TiptapEditor } from '@/components/TiptapEditor';
 
 export default function Dashboard() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
@@ -2024,19 +2025,13 @@ export default function Dashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="testimonial-text" className="text-sm font-medium text-foreground">
+                    <Label className="text-sm font-medium text-foreground">
                       Testimonial Text
                     </Label>
-                    <div className="border-2 border-border rounded-2xl hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <textarea
-                        id="testimonial-text"
-                        value={editingTestimonial.text}
-                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, text: e.target.value })}
-                        className="flex min-h-[80px] w-full rounded-md border-0 bg-transparent px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm transition-shadow duration-200 resize-vertical"
-                        placeholder="Enter testimonial text..."
-                        data-testid="textarea-testimonial-text"
-                      />
-                    </div>
+                    <TiptapEditor
+                      content={editingTestimonial.text}
+                      onChange={(content) => setEditingTestimonial({ ...editingTestimonial, text: content })}
+                    />
                   </div>
                   
                   <div className="space-y-2">
@@ -2171,19 +2166,13 @@ export default function Dashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="testimonial-text-mobile" className="text-sm font-medium text-foreground">
+                    <Label className="text-sm font-medium text-foreground">
                       Testimonial Text
                     </Label>
-                    <div className="border-2 border-border rounded-2xl hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <textarea
-                        id="testimonial-text-mobile"
-                        value={editingTestimonial.text}
-                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, text: e.target.value })}
-                        className="flex min-h-[80px] w-full rounded-md border-0 bg-transparent px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm transition-shadow duration-200 resize-vertical"
-                        placeholder="Enter testimonial text..."
-                        data-testid="textarea-testimonial-text-mobile"
-                      />
-                    </div>
+                    <TiptapEditor
+                      content={editingTestimonial.text}
+                      onChange={(content) => setEditingTestimonial({ ...editingTestimonial, text: content })}
+                    />
                   </div>
                   
                   <div className="space-y-2">
