@@ -2043,7 +2043,7 @@ export default function Dashboard() {
                     <Label className="text-sm font-medium text-foreground">
                       Photo of the Person
                     </Label>
-                    <div className="flex justify-center">
+                    <div className="flex justify-start">
                       <label
                         htmlFor="testimonial-avatar"
                         className="relative w-24 h-24 rounded-full border-2 border-border bg-muted hover:border-foreground/30 cursor-pointer flex items-center justify-center transition-all duration-300 ease-out hover:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] overflow-hidden group"
@@ -2190,7 +2190,7 @@ export default function Dashboard() {
                     <Label className="text-sm font-medium text-foreground">
                       Photo of the Person
                     </Label>
-                    <div className="flex justify-center">
+                    <div className="flex justify-start">
                       <label
                         htmlFor="testimonial-avatar-mobile"
                         className="relative w-24 h-24 rounded-full border-2 border-border bg-muted hover:border-foreground/30 cursor-pointer flex items-center justify-center transition-all duration-300 ease-out hover:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] overflow-hidden group"
