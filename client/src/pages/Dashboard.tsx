@@ -1425,7 +1425,7 @@ export default function Dashboard() {
             </AlertDialogCancel>
             <AlertDialogAction
               onClick={handleConfirmDiscard}
-              className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
             >
               Discard Changes
             </AlertDialogAction>
