@@ -323,37 +323,33 @@ export default function Dashboard() {
     {
       id: 1,
       name: "Sarah Chen",
-      role: "VP of Product",
       company: "Stripe",
+      linkedinLink: "",
       text: "Morgan's approach to design thinking transformed how our team tackles complex problems. Their ability to balance user needs with business goals is exceptional.",
-      highlightedText: "design thinking transformed",
       avatar: ""
     },
     {
       id: 2,
       name: "James Rodriguez",
-      role: "Design Director",
       company: "Airbnb",
+      linkedinLink: "",
       text: "Working with Morgan was a game-changer for our design system. Their attention to detail and strategic thinking helped us scale our product across multiple platforms seamlessly.",
-      highlightedText: "game-changer",
       avatar: ""
     },
     {
       id: 3,
       name: "Emily Watson",
-      role: "Head of UX",
       company: "Shopify",
+      linkedinLink: "",
       text: "Morgan brings a unique blend of creativity and analytical thinking. Their ethnographic research methods uncovered insights that shaped our entire product strategy.",
-      highlightedText: "unique blend of creativity",
       avatar: ""
     },
     {
       id: 4,
       name: "Alex Thompson",
-      role: "CEO",
       company: "Notion",
+      linkedinLink: "",
       text: "Our conversion rates doubled after Morgan redesigned our landing page. Sometimes simple changes make the biggest impact.",
-      highlightedText: "conversion rates doubled",
       avatar: ""
     }
   ];
@@ -1208,7 +1204,7 @@ export default function Dashboard() {
                         <Pencil className="w-4 h-4" />
                       </Button>
                       <p className="text-sm leading-relaxed mb-4 flex-1 pr-6" data-testid={`text-testimonial-content-${testimonial.id}`}>
-                        {highlightText(testimonial.text, testimonial.highlightedText)}
+                        {testimonial.text}
                       </p>
                       
                       <div className="flex items-center gap-2.5">
@@ -1224,7 +1220,7 @@ export default function Dashboard() {
                             {testimonial.name}
                           </h3>
                           <p className="text-xs text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
-                            {testimonial.role}, {testimonial.company}
+                            {testimonial.company}
                           </p>
                         </div>
                       </div>
@@ -1980,7 +1976,7 @@ export default function Dashboard() {
                 <>
                   <div className="space-y-2">
                     <Label htmlFor="testimonial-name" className="text-sm font-medium text-foreground">
-                      Name
+                      Name of the Person<span className="text-red-500">*</span>
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
                       <Input
@@ -1995,24 +1991,25 @@ export default function Dashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="testimonial-role" className="text-sm font-medium text-foreground">
-                      Role
+                    <Label htmlFor="testimonial-linkedin" className="text-sm font-medium text-foreground">
+                      LinkedIn Link
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
                       <Input
-                        id="testimonial-role"
-                        type="text"
-                        value={editingTestimonial.role}
-                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, role: e.target.value })}
+                        id="testimonial-linkedin"
+                        type="url"
+                        value={editingTestimonial.linkedinLink || ""}
+                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, linkedinLink: e.target.value })}
                         className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
-                        data-testid="input-testimonial-role"
+                        placeholder="https://linkedin.com/in/..."
+                        data-testid="input-testimonial-linkedin"
                       />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="testimonial-company" className="text-sm font-medium text-foreground">
-                      Company
+                      Company Name<span className="text-red-500">*</span>
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
                       <Input
@@ -2043,20 +2040,26 @@ export default function Dashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="testimonial-highlighted" className="text-sm font-medium text-foreground">
-                      Highlighted Text
+                    <Label htmlFor="testimonial-avatar" className="text-sm font-medium text-foreground">
+                      Photo of the Person
                     </Label>
-                    <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <Input
-                        id="testimonial-highlighted"
-                        type="text"
-                        value={editingTestimonial.highlightedText}
-                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, highlightedText: e.target.value })}
-                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
-                        placeholder="Text to highlight in the testimonial"
-                        data-testid="input-testimonial-highlighted"
-                      />
-                    </div>
+                    <input
+                      id="testimonial-avatar"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onload = (event) => {
+                            setEditingTestimonial({ ...editingTestimonial, avatar: event.target?.result as string });
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                      className="block w-full text-sm text-foreground/60 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 cursor-pointer"
+                      data-testid="input-testimonial-avatar"
+                    />
                   </div>
                 </>
               )}
@@ -2098,7 +2101,7 @@ export default function Dashboard() {
                 <>
                   <div className="space-y-2">
                     <Label htmlFor="testimonial-name-mobile" className="text-sm font-medium text-foreground">
-                      Name
+                      Name of the Person<span className="text-red-500">*</span>
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
                       <Input
@@ -2113,24 +2116,25 @@ export default function Dashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="testimonial-role-mobile" className="text-sm font-medium text-foreground">
-                      Role
+                    <Label htmlFor="testimonial-linkedin-mobile" className="text-sm font-medium text-foreground">
+                      LinkedIn Link
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
                       <Input
-                        id="testimonial-role-mobile"
-                        type="text"
-                        value={editingTestimonial.role}
-                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, role: e.target.value })}
+                        id="testimonial-linkedin-mobile"
+                        type="url"
+                        value={editingTestimonial.linkedinLink || ""}
+                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, linkedinLink: e.target.value })}
                         className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
-                        data-testid="input-testimonial-role-mobile"
+                        placeholder="https://linkedin.com/in/..."
+                        data-testid="input-testimonial-linkedin-mobile"
                       />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="testimonial-company-mobile" className="text-sm font-medium text-foreground">
-                      Company
+                      Company Name<span className="text-red-500">*</span>
                     </Label>
                     <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
                       <Input
@@ -2161,20 +2165,26 @@ export default function Dashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="testimonial-highlighted-mobile" className="text-sm font-medium text-foreground">
-                      Highlighted Text
+                    <Label htmlFor="testimonial-avatar-mobile" className="text-sm font-medium text-foreground">
+                      Photo of the Person
                     </Label>
-                    <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
-                      <Input
-                        id="testimonial-highlighted-mobile"
-                        type="text"
-                        value={editingTestimonial.highlightedText}
-                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, highlightedText: e.target.value })}
-                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
-                        placeholder="Text to highlight in the testimonial"
-                        data-testid="input-testimonial-highlighted-mobile"
-                      />
-                    </div>
+                    <input
+                      id="testimonial-avatar-mobile"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onload = (event) => {
+                            setEditingTestimonial({ ...editingTestimonial, avatar: event.target?.result as string });
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                      className="block w-full text-sm text-foreground/60 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 cursor-pointer"
+                      data-testid="input-testimonial-avatar-mobile"
+                    />
                   </div>
                 </>
               )}
