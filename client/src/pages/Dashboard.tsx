@@ -2040,9 +2040,31 @@ export default function Dashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="testimonial-avatar" className="text-sm font-medium text-foreground">
+                    <Label className="text-sm font-medium text-foreground">
                       Photo of the Person
                     </Label>
+                    <div className="flex justify-center">
+                      <label
+                        htmlFor="testimonial-avatar"
+                        className="relative w-24 h-24 rounded-full border-2 border-border bg-muted hover:border-foreground/30 cursor-pointer flex items-center justify-center transition-all duration-300 ease-out hover:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] overflow-hidden group"
+                        data-testid="label-testimonial-avatar"
+                      >
+                        {editingTestimonial.avatar ? (
+                          <>
+                            <img
+                              src={editingTestimonial.avatar}
+                              alt={editingTestimonial.name}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                              <Upload className="w-5 h-5 text-white" />
+                            </div>
+                          </>
+                        ) : (
+                          <Upload className="w-6 h-6 text-foreground/40 group-hover:text-foreground/60 transition-colors" />
+                        )}
+                      </label>
+                    </div>
                     <input
                       id="testimonial-avatar"
                       type="file"
@@ -2057,7 +2079,7 @@ export default function Dashboard() {
                           reader.readAsDataURL(file);
                         }
                       }}
-                      className="block w-full text-sm text-foreground/60 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 cursor-pointer"
+                      className="hidden"
                       data-testid="input-testimonial-avatar"
                     />
                   </div>
@@ -2165,9 +2187,31 @@ export default function Dashboard() {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="testimonial-avatar-mobile" className="text-sm font-medium text-foreground">
+                    <Label className="text-sm font-medium text-foreground">
                       Photo of the Person
                     </Label>
+                    <div className="flex justify-center">
+                      <label
+                        htmlFor="testimonial-avatar-mobile"
+                        className="relative w-24 h-24 rounded-full border-2 border-border bg-muted hover:border-foreground/30 cursor-pointer flex items-center justify-center transition-all duration-300 ease-out hover:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] overflow-hidden group"
+                        data-testid="label-testimonial-avatar-mobile"
+                      >
+                        {editingTestimonial.avatar ? (
+                          <>
+                            <img
+                              src={editingTestimonial.avatar}
+                              alt={editingTestimonial.name}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                              <Upload className="w-5 h-5 text-white" />
+                            </div>
+                          </>
+                        ) : (
+                          <Upload className="w-6 h-6 text-foreground/40 group-hover:text-foreground/60 transition-colors" />
+                        )}
+                      </label>
+                    </div>
                     <input
                       id="testimonial-avatar-mobile"
                       type="file"
@@ -2182,7 +2226,7 @@ export default function Dashboard() {
                           reader.readAsDataURL(file);
                         }
                       }}
-                      className="block w-full text-sm text-foreground/60 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 cursor-pointer"
+                      className="hidden"
                       data-testid="input-testimonial-avatar-mobile"
                     />
                   </div>
