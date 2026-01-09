@@ -2,16 +2,19 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronUp, GraduationCap, Calendar, X } from "lucide-react";
 import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
+import { useSidebar } from "@/components/ui/sidebar";
 
 export function CourseCard() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const { state } = useSidebar();
+  const isSidebarOpen = state === "expanded";
 
   return (
     <>
-      <div className={`fixed bottom-0 right-4 md:right-6 z-50 w-[calc(100%-2rem)] md:w-[300px] bg-white border border-border rounded-t-2xl shadow-[0_-8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] transform ${
+      <div className={`fixed bottom-0 right-4 md:right-6 z-50 w-[calc(100%-2rem)] md:w-[300px] bg-white border border-border rounded-t-2xl shadow-[0_-8px_30px_rgb(0,0,0,0.04)] transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] transform ${
         isExpanded ? 'translate-y-0' : 'translate-y-[calc(100%-60px)]'
-      }`}>
+      } ${isSidebarOpen ? 'translate-x-[-18rem] md:translate-x-0' : 'translate-x-0'}`}>
         {/* Minimized Header / Toggle Area */}
         <button 
           onClick={() => setIsExpanded(!isExpanded)}
