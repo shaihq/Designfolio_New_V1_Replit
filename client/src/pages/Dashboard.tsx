@@ -67,6 +67,8 @@ import { CSS } from '@dnd-kit/utilities';
 import { StardustButton } from '@/components/StardustButton';
 import { TiptapEditor } from '@/components/TiptapEditor';
 
+import { CourseCard } from "@/components/CourseCard";
+
 export default function Dashboard() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
@@ -2351,6 +2353,7 @@ export default function Dashboard() {
           </SheetContent>
         </Sheet>
       )}
+      <CourseCard />
     </div>
   );
 }
