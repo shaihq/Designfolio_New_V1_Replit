@@ -20,7 +20,7 @@ export function CourseCard() {
           </div>
           <div className="flex flex-col items-start leading-none">
             <span className="text-[10px] uppercase tracking-[0.1em] font-bold text-foreground/30 mb-1">Upcoming</span>
-            <span className="text-sm font-bold tracking-tight">Design Course</span>
+            <span className="text-sm font-bold tracking-tight">Vibe coding for Designers</span>
           </div>
         </div>
         <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isExpanded ? 'bg-foreground/5 rotate-180' : 'bg-transparent'}`}>
@@ -50,34 +50,10 @@ export function CourseCard() {
           <p className="text-[11px] font-medium text-foreground/50">13 of 30 seats remaining</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 pt-1">
-          <div className="space-y-1.5">
-            <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-foreground/30">Cost</p>
-            <div className="space-y-0.5">
-              <p className="text-sm font-semibold text-foreground/80">₹4,200 (India)</p>
-              <p className="text-sm font-semibold text-foreground/80">$50 (Global)</p>
-            </div>
-          </div>
-          <div className="space-y-1.5">
-            <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-foreground/30">What You'll Get</p>
-            <p className="text-sm font-semibold text-foreground/80 leading-snug">Live workshop & recordings</p>
-          </div>
-        </div>
-
-        <div className="space-y-1.5">
-          <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-foreground/30">Duration • Time</p>
-          <p className="text-sm font-semibold text-foreground/80">3 days • 8:00 PM IST</p>
-        </div>
-
         <div className="space-y-5 pt-3">
           <Button className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-11 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 no-default-hover-elevate transition-all">
-            Apply Now
+            Know More
           </Button>
-          
-          <div className="text-center space-y-3.5">
-            <p className="text-[10px] font-bold tracking-[0.15em] text-foreground/40 uppercase">Next Cohort Pricing: ₹5,999</p>
-            <p className="text-[10px] text-foreground/25 leading-relaxed italic">Limited cohort size for personalized feedback.</p>
-          </div>
         </div>
       </div>
     </div>
