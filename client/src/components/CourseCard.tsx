@@ -37,8 +37,8 @@ export function CourseCard() {
           </div>
         </div>
 
-        <div className="space-y-4 pt-2">
-          <div className="flex items-center justify-between items-baseline">
+        <div className="space-y-2 pt-2">
+          <div className="flex items-center justify-between">
             <p className="text-[11px] uppercase tracking-wider font-bold text-[#8c8c8c]">Seats Available</p>
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[#f97316] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
@@ -46,12 +46,12 @@ export function CourseCard() {
             </div>
           </div>
           
-          <div className="relative pt-1">
-            <div className="h-2 w-full bg-[#efeee9] rounded-full overflow-hidden">
+          <div className="relative">
+            <div className="h-1.5 w-full bg-[#efeee9] rounded-full overflow-hidden">
               <div className="h-full w-[45%] bg-[#f97316] rounded-full transition-all duration-1000 ease-out"></div>
             </div>
           </div>
-          <p className="text-sm font-bold text-[#1a1c20] tracking-tight">13 of 30 seats remaining</p>
+          <p className="text-[12px] font-bold text-[#1a1c20] tracking-tight">13 of 30 seats remaining</p>
         </div>
 
         <div className="pt-2">
