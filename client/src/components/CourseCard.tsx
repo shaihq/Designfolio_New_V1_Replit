@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sparkles, ChevronUp, ChevronDown, GraduationCap } from "lucide-react";
+import { ChevronUp, ChevronDown, GraduationCap, Calendar } from "lucide-react";
 
 export function CourseCard() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -29,11 +29,11 @@ export function CourseCard() {
 
       {/* Content Area */}
       <div className={`p-6 space-y-8 overflow-y-auto max-h-[80vh] transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="space-y-2">
+        <div className="space-y-3">
           <h2 className="text-2xl font-bold tracking-tight text-foreground leading-tight">Vibe coding for Designers</h2>
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] uppercase tracking-wider font-bold text-foreground/40">Upcoming Batch</span>
-            <span className="text-sm font-semibold text-foreground/80">January 18th, 2026</span>
+          <div className="flex items-center gap-2 text-foreground/60">
+            <Calendar className="w-4 h-4" />
+            <span className="text-sm font-semibold">January 18th, 2026</span>
           </div>
         </div>
 
