@@ -35,19 +35,19 @@ export function CourseCard() {
           <h3 className="text-xl font-bold tracking-tight text-foreground">January 18th, 2026</h3>
         </div>
 
-        <div className="space-y-3.5">
+        <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-foreground/30">Seats Available</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#8c8c8c]">Seats Available</p>
             <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></div>
-              <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-orange-500">Filling Fast</p>
+              <div className="w-1.5 h-1.5 rounded-full bg-[#f97316] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
+              <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#f97316]">Filling Fast</p>
             </div>
           </div>
           
-          <div className="h-1.5 w-full bg-foreground/5 rounded-full overflow-hidden">
-            <div className="h-full w-[45%] bg-foreground/80 rounded-full"></div>
+          <div className="h-[10px] w-full bg-[#efeee9] rounded-full overflow-hidden">
+            <div className="h-full w-[45%] bg-gradient-to-r from-[#f97316] to-[#f97316] rounded-full"></div>
           </div>
-          <p className="text-[11px] font-medium text-foreground/50">13 of 30 seats remaining</p>
+          <p className="text-sm font-bold text-[#1a1c20]">13 of 30 seats remaining</p>
         </div>
 
         <div className="space-y-5 pt-3">
