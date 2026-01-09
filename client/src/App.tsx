@@ -35,12 +35,16 @@ function Router() {
   );
 }
 
+import { SidebarProvider } from "@/components/ui/sidebar";
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router />
+        <SidebarProvider defaultOpen={false}>
+          <Toaster />
+          <Router />
+        </SidebarProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

@@ -8,25 +8,22 @@ import Footer from "@/components/Footer";
 import FooterBottom from "@/components/FooterBottom";
 import ScrollingBanner from "@/components/ScrollingBanner";
 import { CourseCard } from "@/components/CourseCard";
-import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function Home() {
   return (
-    <SidebarProvider defaultOpen={false}>
-      <div className="min-h-screen bg-background overflow-x-hidden w-full">
-        <Navbar />
-        <div className="pt-16 sm:pt-20">
-          <HeroSection />
-          <EmailMockup />
-          <TrustedBySection />
-          <FeaturesSection />
-          <FeaturesShowcase />
-          <Footer />
-          <FooterBottom />
-          <ScrollingBanner />
-          <CourseCard />
-        </div>
+    <div className="min-h-screen bg-background overflow-x-hidden w-full">
+      <Navbar />
+      <div className="pt-16 sm:pt-20">
+        <HeroSection />
+        <EmailMockup />
+        <TrustedBySection />
+        <FeaturesSection />
+        <FeaturesShowcase />
+        <Footer />
+        <FooterBottom />
+        <ScrollingBanner />
+        <CourseCard />
       </div>
-    </SidebarProvider>
+    </div>
   );
 }
