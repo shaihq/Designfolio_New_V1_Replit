@@ -28,32 +28,34 @@ export function CourseCard() {
       </button>
 
       {/* Content Area */}
-      <div className={`p-6 space-y-6 overflow-y-auto max-h-[80vh] transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="space-y-1.5">
-          <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-foreground/30 text-[#8c8c8c]">Vibe coding for Designers</p>
-          <div className="space-y-1">
-            <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-foreground/30">Upcoming Batch</p>
-            <h3 className="text-xl font-bold tracking-tight text-foreground">January 18th, 2026</h3>
+      <div className={`p-6 space-y-8 overflow-y-auto max-h-[80vh] transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground leading-tight">Vibe coding for Designers</h2>
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] uppercase tracking-wider font-bold text-foreground/40">Upcoming Batch</span>
+            <span className="text-sm font-semibold text-foreground/80">January 18th, 2026</span>
           </div>
         </div>
 
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#8c8c8c]">Seats Available</p>
+        <div className="space-y-4 pt-2">
+          <div className="flex items-center justify-between items-baseline">
+            <p className="text-[11px] uppercase tracking-wider font-bold text-[#8c8c8c]">Seats Available</p>
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[#f97316] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
-              <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#f97316]">Filling Fast</p>
+              <p className="text-[11px] uppercase tracking-wider font-bold text-[#f97316]">Filling Fast</p>
             </div>
           </div>
           
-          <div className="h-[10px] w-full bg-[#efeee9] rounded-full overflow-hidden">
-            <div className="h-full w-[45%] bg-gradient-to-r from-[#f97316] to-[#f97316] rounded-full"></div>
+          <div className="relative pt-1">
+            <div className="h-2 w-full bg-[#efeee9] rounded-full overflow-hidden">
+              <div className="h-full w-[45%] bg-[#f97316] rounded-full transition-all duration-1000 ease-out"></div>
+            </div>
           </div>
-          <p className="text-sm font-bold text-[#1a1c20]">13 of 30 seats remaining</p>
+          <p className="text-sm font-bold text-[#1a1c20] tracking-tight">13 of 30 seats remaining</p>
         </div>
 
-        <div className="space-y-5 pt-3">
-          <Button className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-11 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 no-default-hover-elevate transition-all">
+        <div className="pt-2">
+          <Button className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 text-sm font-bold uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-[0.98] no-default-hover-elevate">
             Know More
           </Button>
         </div>
