@@ -7,6 +7,7 @@ import FeaturesShowcase from "@/components/FeaturesShowcase";
 import Footer from "@/components/Footer";
 import FooterBottom from "@/components/FooterBottom";
 import ScrollingBanner from "@/components/ScrollingBanner";
+import { CourseCard } from "@/components/CourseCard";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <Footer />
         <FooterBottom />
         <ScrollingBanner />
+        <CourseCard />
       </div>
     </div>
   );
