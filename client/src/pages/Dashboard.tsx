@@ -1532,82 +1532,86 @@ export default function Dashboard() {
                       </div>
                     </div>
 
-                    <div className="p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Background Texture</span>
-                      </div>
-                      <div className="flex p-1 bg-muted/50 rounded-lg gap-1 mb-4">
-                        <button
-                          onClick={() => setBackgroundEffectType('blur')}
-                          className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
-                            backgroundEffectType === 'blur'
-                              ? 'bg-background text-foreground shadow-sm'
-                              : 'text-foreground/40 hover:text-foreground/70'
-                          }`}
-                          data-testid="button-effect-blur"
-                        >
-                          Soft Blur
-                        </button>
-                        <button
-                          onClick={() => setBackgroundEffectType('grain')}
-                          className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
-                            backgroundEffectType === 'grain'
-                              ? 'bg-background text-foreground shadow-sm'
-                              : 'text-foreground/40 hover:text-foreground/70'
-                          }`}
-                          data-testid="button-effect-grain"
-                        >
-                          Fine Grain
-                        </button>
-                      </div>
-                      
-                      <div className="space-y-4">
-                        {backgroundEffectType === 'blur' ? (
-                          <div className="animate-in fade-in slide-in-from-top-1 duration-300">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-[11px] font-medium text-foreground/60">Depth</span>
-                              <span className="text-[11px] tabular-nums text-foreground/40">{backgroundBlur}px</span>
-                            </div>
-                            <Slider
-                              value={[backgroundBlur]}
-                              onValueChange={(value) => setBackgroundBlur(value[0])}
-                              max={20}
-                              step={1}
-                              className="w-full"
-                              data-testid="slider-background-blur"
-                            />
+                    {selectedWallpaper && (
+                      <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                        <div className="p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
+                          <div className="flex items-center justify-between mb-4">
+                            <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Background Texture</span>
                           </div>
-                        ) : (
-                          <div className="animate-in fade-in slide-in-from-top-1 duration-300">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-[11px] font-medium text-foreground/60">Opacity</span>
-                              <span className="text-[11px] tabular-nums text-foreground/40">{grainIntensity}%</span>
-                            </div>
-                            <Slider
-                              value={[grainIntensity]}
-                              onValueChange={(value) => setGrainIntensity(value[0])}
-                              max={100}
-                              step={5}
-                              className="w-full"
-                              data-testid="slider-grain-intensity"
-                            />
+                          <div className="flex p-1 bg-muted/50 rounded-lg gap-1 mb-4">
+                            <button
+                              onClick={() => setBackgroundEffectType('blur')}
+                              className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
+                                backgroundEffectType === 'blur'
+                                  ? 'bg-background text-foreground shadow-sm'
+                                  : 'text-foreground/40 hover:text-foreground/70'
+                              }`}
+                              data-testid="button-effect-blur"
+                            >
+                              Soft Blur
+                            </button>
+                            <button
+                              onClick={() => setBackgroundEffectType('grain')}
+                              className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
+                                backgroundEffectType === 'grain'
+                                  ? 'bg-background text-foreground shadow-sm'
+                                  : 'text-foreground/40 hover:text-foreground/70'
+                              }`}
+                              data-testid="button-effect-grain"
+                            >
+                              Fine Grain
+                            </button>
                           </div>
-                        )}
-                      </div>
-                    </div>
+                          
+                          <div className="space-y-4">
+                            {backgroundEffectType === 'blur' ? (
+                              <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="text-[11px] font-medium text-foreground/60">Depth</span>
+                                  <span className="text-[11px] tabular-nums text-foreground/40">{backgroundBlur}px</span>
+                                </div>
+                                <Slider
+                                  value={[backgroundBlur]}
+                                  onValueChange={(value) => setBackgroundBlur(value[0])}
+                                  max={20}
+                                  step={1}
+                                  className="w-full"
+                                  data-testid="slider-background-blur"
+                                />
+                              </div>
+                            ) : (
+                              <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="text-[11px] font-medium text-foreground/60">Opacity</span>
+                                  <span className="text-[11px] tabular-nums text-foreground/40">{grainIntensity}%</span>
+                                </div>
+                                <Slider
+                                  value={[grainIntensity]}
+                                  onValueChange={(value) => setGrainIntensity(value[0])}
+                                  max={100}
+                                  step={5}
+                                  className="w-full"
+                                  data-testid="slider-grain-intensity"
+                                />
+                              </div>
+                            )}
+                          </div>
+                        </div>
 
-                    <div className="flex items-center justify-between p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
-                      <div>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Dynamic Motion</span>
-                        <p className="text-[11px] text-foreground/40 mt-0.5 font-medium">Parallax zoom interaction</p>
+                        <div className="flex items-center justify-between p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
+                          <div>
+                            <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Dynamic Motion</span>
+                            <p className="text-[11px] text-foreground/40 mt-0.5 font-medium">Parallax zoom interaction</p>
+                          </div>
+                          <Switch
+                            checked={backgroundMotion}
+                            onCheckedChange={setBackgroundMotion}
+                            data-testid="switch-background-motion"
+                            className="scale-90"
+                          />
+                        </div>
                       </div>
-                      <Switch
-                        checked={backgroundMotion}
-                        onCheckedChange={setBackgroundMotion}
-                        data-testid="switch-background-motion"
-                        className="scale-90"
-                      />
-                    </div>
+                    )}
 
                     <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
                       <div className="flex items-start gap-3 mb-3">
@@ -1816,82 +1820,86 @@ export default function Dashboard() {
                       </div>
                     </div>
 
-                    <div className="p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Background Texture</span>
-                      </div>
-                      <div className="flex p-1 bg-muted/50 rounded-lg gap-1 mb-4">
-                        <button
-                          onClick={() => setBackgroundEffectType('blur')}
-                          className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
-                            backgroundEffectType === 'blur'
-                              ? 'bg-background text-foreground shadow-sm'
-                              : 'text-foreground/40 hover:text-foreground/70'
-                          }`}
-                          data-testid="button-effect-blur-mobile"
-                        >
-                          Soft Blur
-                        </button>
-                        <button
-                          onClick={() => setBackgroundEffectType('grain')}
-                          className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
-                            backgroundEffectType === 'grain'
-                              ? 'bg-background text-foreground shadow-sm'
-                              : 'text-foreground/40 hover:text-foreground/70'
-                          }`}
-                          data-testid="button-effect-grain-mobile"
-                        >
-                          Fine Grain
-                        </button>
-                      </div>
-                      
-                      <div className="space-y-4">
-                        {backgroundEffectType === 'blur' ? (
-                          <div className="animate-in fade-in slide-in-from-top-1 duration-300">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-[11px] font-medium text-foreground/60">Depth</span>
-                              <span className="text-[11px] tabular-nums text-foreground/40">{backgroundBlur}px</span>
-                            </div>
-                            <Slider
-                              value={[backgroundBlur]}
-                              onValueChange={(value) => setBackgroundBlur(value[0])}
-                              max={20}
-                              step={1}
-                              className="w-full"
-                              data-testid="slider-background-blur-mobile"
-                            />
+                    {selectedWallpaper && (
+                      <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                        <div className="p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
+                          <div className="flex items-center justify-between mb-4">
+                            <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Background Texture</span>
                           </div>
-                        ) : (
-                          <div className="animate-in fade-in slide-in-from-top-1 duration-300">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-[11px] font-medium text-foreground/60">Opacity</span>
-                              <span className="text-[11px] tabular-nums text-foreground/40">{grainIntensity}%</span>
-                            </div>
-                            <Slider
-                              value={[grainIntensity]}
-                              onValueChange={(value) => setGrainIntensity(value[0])}
-                              max={100}
-                              step={5}
-                              className="w-full"
-                              data-testid="slider-grain-intensity-mobile"
-                            />
+                          <div className="flex p-1 bg-muted/50 rounded-lg gap-1 mb-4">
+                            <button
+                              onClick={() => setBackgroundEffectType('blur')}
+                              className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
+                                backgroundEffectType === 'blur'
+                                  ? 'bg-background text-foreground shadow-sm'
+                                  : 'text-foreground/40 hover:text-foreground/70'
+                              }`}
+                              data-testid="button-effect-blur-mobile"
+                            >
+                              Soft Blur
+                            </button>
+                            <button
+                              onClick={() => setBackgroundEffectType('grain')}
+                              className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
+                                backgroundEffectType === 'grain'
+                                  ? 'bg-background text-foreground shadow-sm'
+                                  : 'text-foreground/40 hover:text-foreground/70'
+                              }`}
+                              data-testid="button-effect-grain-mobile"
+                            >
+                              Fine Grain
+                            </button>
                           </div>
-                        )}
-                      </div>
-                    </div>
+                          
+                          <div className="space-y-4">
+                            {backgroundEffectType === 'blur' ? (
+                              <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="text-[11px] font-medium text-foreground/60">Depth</span>
+                                  <span className="text-[11px] tabular-nums text-foreground/40">{backgroundBlur}px</span>
+                                </div>
+                                <Slider
+                                  value={[backgroundBlur]}
+                                  onValueChange={(value) => setBackgroundBlur(value[0])}
+                                  max={20}
+                                  step={1}
+                                  className="w-full"
+                                  data-testid="slider-background-blur-mobile"
+                                />
+                              </div>
+                            ) : (
+                              <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="text-[11px] font-medium text-foreground/60">Opacity</span>
+                                  <span className="text-[11px] tabular-nums text-foreground/40">{grainIntensity}%</span>
+                                </div>
+                                <Slider
+                                  value={[grainIntensity]}
+                                  onValueChange={(value) => setGrainIntensity(value[0])}
+                                  max={100}
+                                  step={5}
+                                  className="w-full"
+                                  data-testid="slider-grain-intensity-mobile"
+                                />
+                              </div>
+                            )}
+                          </div>
+                        </div>
 
-                    <div className="flex items-center justify-between p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
-                      <div>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Dynamic Motion</span>
-                        <p className="text-[11px] text-foreground/40 mt-0.5 font-medium">Parallax zoom interaction</p>
+                        <div className="flex items-center justify-between p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
+                          <div>
+                            <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Dynamic Motion</span>
+                            <p className="text-[11px] text-foreground/40 mt-0.5 font-medium">Parallax zoom interaction</p>
+                          </div>
+                          <Switch
+                            checked={backgroundMotion}
+                            onCheckedChange={setBackgroundMotion}
+                            data-testid="switch-background-motion-mobile"
+                            className="scale-90"
+                          />
+                        </div>
                       </div>
-                      <Switch
-                        checked={backgroundMotion}
-                        onCheckedChange={setBackgroundMotion}
-                        data-testid="switch-background-motion-mobile"
-                        className="scale-90"
-                      />
-                    </div>
+                    )}
 
                     <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
                       <div className="flex items-start gap-3 mb-3">
