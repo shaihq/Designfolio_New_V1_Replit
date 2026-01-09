@@ -15,8 +15,8 @@ export function CourseCard() {
         className="w-full h-12 flex items-center justify-between px-6 bg-white border-b border-border/50 text-foreground rounded-t-2xl hover:bg-muted/50 transition-colors group"
       >
         <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 rounded-full bg-foreground/5 flex items-center justify-center group-hover:bg-foreground/10 transition-colors">
-            <GraduationCap className="w-3.5 h-3.5 text-foreground/60" />
+          <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center transition-colors">
+            <GraduationCap className="w-4 h-4" />
           </div>
           <span className="text-sm font-semibold tracking-tight">Upcoming Course</span>
         </div>
