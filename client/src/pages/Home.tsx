@@ -11,7 +11,7 @@ import { CourseCard } from "@/components/CourseCard";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden w-full">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
       <div className="pt-16 sm:pt-20">
         <HeroSection />
