@@ -6,7 +6,7 @@ export function CourseCard() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className={`fixed bottom-0 right-6 z-50 w-[300px] bg-white border border-border rounded-t-2xl shadow-[0_-8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] transform ${
+    <div className={`fixed bottom-0 right-6 z-50 w-[300px] md:w-[300px] w-[calc(100%-3rem)] bg-white border border-border rounded-t-2xl shadow-[0_-8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] transform ${
       isExpanded ? 'translate-y-0' : 'translate-y-[calc(100%-60px)]'
     }`}>
       {/* Minimized Header / Toggle Area */}
