@@ -1,88 +1,61 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronUp, ChevronDown, GraduationCap, Calendar, MessageSquare, Link2, Folder, Plus } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ChevronUp, ChevronDown, GraduationCap, Calendar } from "lucide-react";
 
 export function CourseCard() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className={`fixed bottom-0 right-6 z-50 w-[340px] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] transform ${
+    <div className={`fixed bottom-0 right-6 z-50 w-[300px] bg-white border border-border rounded-t-2xl shadow-[0_-8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] transform ${
       isExpanded ? 'translate-y-0' : 'translate-y-[calc(100%-60px)]'
     }`}>
-      {/* Container with shadow and gradient top */}
-      <div className="bg-[#f8faff] border border-blue-100 rounded-t-[2.5rem] shadow-2xl overflow-hidden flex flex-col">
-        {/* Top Header Label */}
-        <div className="bg-gradient-to-r from-[#7bb7ff] to-[#4c97ff] h-10 flex items-center justify-center">
-          <span className="text-white text-[11px] font-bold uppercase tracking-[0.2em]">Upcoming Course</span>
+      {/* Minimized Header / Toggle Area */}
+      <button 
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="w-full h-[60px] flex items-center justify-between px-5 bg-white text-foreground rounded-t-2xl hover:bg-muted/30 transition-colors group"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-[#FAF8F5] border border-border/50 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+            <GraduationCap className="w-4.5 h-4.5 text-foreground/80" />
+          </div>
+          <div className="flex flex-col items-start leading-none">
+            <span className="text-sm font-bold tracking-tight">Upcoming Course</span>
+          </div>
+        </div>
+        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isExpanded ? 'bg-foreground/5 rotate-180' : 'bg-transparent'}`}>
+          <ChevronUp className="w-4 h-4 text-foreground/40" />
+        </div>
+      </button>
+
+      {/* Content Area */}
+      <div className={`p-6 space-y-8 overflow-y-auto max-h-[80vh] transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="space-y-3">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground leading-tight">Vibe coding for Designers</h2>
+          <div className="flex items-center gap-2 text-foreground/60">
+            <Calendar className="w-4 h-4" />
+            <span className="text-sm font-semibold">January 18th, 2026</span>
+          </div>
         </div>
 
-        {/* Header Toggle Section */}
-        <button 
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full flex flex-col px-7 py-5 bg-white text-foreground hover:bg-slate-50 transition-colors group relative"
-        >
-          {/* Main Card Content */}
-          <div className="w-full flex justify-between items-start mb-2">
-            <h2 className="text-xl font-bold tracking-tight text-slate-900 pr-4 text-left">Vibe coding for Designers</h2>
-            <span className="text-[12px] font-medium text-slate-400 whitespace-nowrap pt-1">Jan 18, 2026</span>
+        <div className="space-y-4 pt-2">
+          <div className="flex items-center justify-between items-baseline">
+            <p className="text-[11px] uppercase tracking-wider font-bold text-[#8c8c8c]">Seats Available</p>
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#f97316] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
+              <p className="text-[11px] uppercase tracking-wider font-bold text-[#f97316]">Filling Fast</p>
+            </div>
           </div>
           
-          <p className="text-[13px] text-slate-400 leading-relaxed text-left mb-6 line-clamp-2">
-            Designing the basic structure of the modern workflow. Focus on organizing creative dat...
-          </p>
-
-          <div className="flex items-center justify-between w-full">
-            {/* Avatars */}
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-100 overflow-hidden shadow-sm">
-                  <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + 10}`} alt="avatar" className="w-full h-full object-cover" />
-                </div>
-              ))}
+          <div className="relative pt-1">
+            <div className="h-2 w-full bg-[#efeee9] rounded-full overflow-hidden">
+              <div className="h-full w-[45%] bg-[#f97316] rounded-full transition-all duration-1000 ease-out"></div>
             </div>
-            
-            {/* Status Badge */}
-            <Badge variant="secondary" className="bg-[#e2f5e9] text-[#4a9c6d] hover:bg-[#e2f5e9] border-0 px-4 py-1.5 rounded-lg font-medium text-[13px]">
-              Filling Fast
-            </Badge>
           </div>
+          <p className="text-sm font-bold text-[#1a1c20] tracking-tight">13 of 30 seats remaining</p>
+        </div>
 
-          {/* Dotted Border overlay for the inner section */}
-          <div className="absolute inset-x-4 inset-y-4 border border-dashed border-slate-200 rounded-2xl pointer-events-none opacity-60"></div>
-        </button>
-
-        {/* Content Area (Stats & Actions) */}
-        <div className={`px-4 pb-4 space-y-4 bg-white transition-all duration-300 ${isExpanded ? 'opacity-100 max-h-[500px]' : 'opacity-0 max-h-0 pointer-events-none overflow-hidden'}`}>
-          {/* Bottom Stats Row */}
-          <div className="flex items-center gap-2 pt-2">
-            <div className="flex-1 bg-white border border-slate-100 rounded-xl p-2.5 flex items-center gap-2 shadow-sm">
-              <MessageSquare className="w-4 h-4 text-slate-400" />
-              <span className="text-[13px] font-bold text-slate-900">13</span>
-              <span className="text-[12px] text-slate-400">Seats</span>
-            </div>
-            <div className="flex-1 bg-white border border-slate-100 rounded-xl p-2.5 flex items-center gap-2 shadow-sm">
-              <Link2 className="w-4 h-4 text-slate-400" />
-              <span className="text-[13px] font-bold text-slate-900">4</span>
-              <span className="text-[12px] text-slate-400">Days</span>
-            </div>
-            <div className="flex-1 bg-white border border-slate-100 rounded-xl p-2.5 flex items-center gap-2 shadow-sm">
-              <Folder className="w-4 h-4 text-slate-400" />
-              <span className="text-[13px] font-bold text-slate-900">12</span>
-              <span className="text-[12px] text-slate-400">Modules</span>
-            </div>
-            <button className="w-10 h-10 bg-white border border-slate-100 rounded-xl flex items-center justify-center shadow-sm hover:bg-slate-50 transition-colors">
-              <Plus className="w-4 h-4 text-slate-900" />
-            </button>
-          </div>
-
-          <Button 
-            className="w-full bg-[#2541b2] hover:bg-[#1e3491] text-white rounded-2xl h-12 text-sm font-bold uppercase tracking-widest shadow-lg shadow-blue-900/10 active:scale-95 transition-all"
-            onClick={(e) => {
-              e.stopPropagation();
-              // Action logic
-            }}
-          >
+        <div className="pt-2">
+          <Button className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 text-sm font-bold uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-[0.98] no-default-hover-elevate">
             Know More
           </Button>
         </div>
@@ -90,4 +63,3 @@ export function CourseCard() {
     </div>
   );
 }
-
