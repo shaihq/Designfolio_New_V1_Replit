@@ -69,7 +69,9 @@ export function CourseCard() {
       </div>
 
       <Dialog open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-        <DialogContent className="max-w-[90vw] w-[90vw] h-[90vh] p-0 overflow-hidden border-none bg-background shadow-2xl">
+        <DialogContent 
+          className="max-w-[90vw] w-[90vw] h-[90vh] p-0 overflow-hidden border-none bg-background shadow-2xl [&>button]:hidden"
+        >
           <div className="relative w-full h-full flex flex-col">
             <div className="absolute top-4 right-4 z-50">
               <DialogClose asChild>
