@@ -19,8 +19,7 @@ export function CourseCard() {
             <GraduationCap className="w-4.5 h-4.5 text-foreground/80" />
           </div>
           <div className="flex flex-col items-start leading-none">
-            <span className="text-[10px] uppercase tracking-[0.1em] font-bold text-foreground/30 mb-1">Upcoming</span>
-            <span className="text-sm font-bold tracking-tight">Vibe coding for Designers</span>
+            <span className="text-sm font-bold tracking-tight">Upcoming Course</span>
           </div>
         </div>
         <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isExpanded ? 'bg-foreground/5 rotate-180' : 'bg-transparent'}`}>
@@ -31,8 +30,11 @@ export function CourseCard() {
       {/* Content Area */}
       <div className={`p-6 space-y-6 overflow-y-auto max-h-[80vh] transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
         <div className="space-y-1.5">
-          <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-foreground/30">Upcoming Batch</p>
-          <h3 className="text-xl font-bold tracking-tight text-foreground">January 18th, 2026</h3>
+          <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-foreground/30 text-[#8c8c8c]">Vibe coding for Designers</p>
+          <div className="space-y-1">
+            <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-foreground/30">Upcoming Batch</p>
+            <h3 className="text-xl font-bold tracking-tight text-foreground">January 18th, 2026</h3>
+          </div>
         </div>
 
         <div className="space-y-4">
