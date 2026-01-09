@@ -60,7 +60,7 @@ export function CourseCard() {
           <div className="pt-2">
             <Button 
               onClick={() => setIsPopoverOpen(true)}
-              className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 text-sm font-bold uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-[0.98] no-default-hover-elevate focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 text-sm font-bold uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-[0.98] no-default-hover-elevate outline-none focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
             >
               Know More
             </Button>
