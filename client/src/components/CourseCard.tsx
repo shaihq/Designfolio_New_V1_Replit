@@ -1,13 +1,32 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ChevronUp, ChevronDown, GraduationCap } from "lucide-react";
 
 export function CourseCard() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-[340px] bg-[#f4f3ef] border border-border/50 rounded-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {/* Decorative corner cut (top right) */}
-      <div className="absolute top-0 right-0 w-8 h-8 bg-white" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 0)' }}></div>
+    <div className={`fixed bottom-0 right-6 z-50 w-[340px] bg-[#f4f3ef] border border-border/50 rounded-t-xl shadow-2xl transition-all duration-500 ease-in-out transform ${
+      isExpanded ? 'translate-y-0' : 'translate-y-[calc(100%-48px)]'
+    }`}>
+      {/* Minimized Header / Toggle Area */}
+      <button 
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="w-full h-12 flex items-center justify-between px-4 bg-[#2541b2] text-white rounded-t-xl hover:bg-[#1e3491] transition-colors"
+      >
+        <div className="flex items-center gap-2">
+          <GraduationCap className="w-5 h-5" />
+          <span className="text-sm font-bold uppercase tracking-wider">Course: Upcoming Batch</span>
+        </div>
+        {isExpanded ? <ChevronDown className="w-5 h-5" /> : <ChevronUp className="w-5 h-5" />}
+      </button>
+
+      {/* Decorative corner cut (top right) - only visible when expanded or slightly adjusted */}
+      {isExpanded && (
+        <div className="absolute top-12 right-0 w-8 h-8 bg-white" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 0)' }}></div>
+      )}
       
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-6 overflow-y-auto max-h-[80vh]">
         <div className="space-y-1">
           <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-foreground/40">Upcoming Batch</p>
           <h3 className="text-2xl font-bold tracking-tight text-[#1a1c20]">January 18th, 2026</h3>
