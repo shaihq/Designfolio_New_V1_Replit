@@ -1063,38 +1063,39 @@ export default function Dashboard() {
               
               {caseStudies.length === 0 ? (
                 <div 
-                  className="border border-border/10 rounded-2xl p-6 shadow-none"
+                  className="border border-border/30 rounded-2xl p-10 shadow-none"
                   style={{
-                    backgroundColor: '#FAF8F5',
+                    backgroundColor: '#F6F2EF',
+                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
                   }}
                 >
                   <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 opacity-60">
-                      <img src="/casestudy.png" alt="Case Study" className="w-12 h-12" />
+                    <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                      <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
                     </div>
                     
-                    <h3 className="text-base font-semibold mb-1" data-testid="text-empty-state-title">
+                    <h3 className="text-xl font-semibold mb-2" data-testid="text-empty-state-title">
                       Upload your first case study
                     </h3>
-                    <p className="text-[12px] text-foreground/40 mb-5" data-testid="text-empty-state-description">
+                    <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
                       Show off your best work
                     </p>
                     
-                    <div className="flex gap-2">
+                    <div className="flex gap-4">
                       <Button 
                         onClick={() => setIsTemplateDialogOpen(true)}
-                        className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-9 px-4 text-xs font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                        className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
                         data-testid="button-add-case-study"
                       >
-                        <Plus className="w-3.5 h-3.5" />
+                        <Plus className="w-5 h-5" />
                         Add case study
                       </Button>
                       <div 
-                        className="bg-white border border-border/20 rounded-full px-4 py-1.5 flex items-center justify-center gap-2 hover-elevate cursor-pointer h-9"
+                        className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
                         data-testid="button-write-using-ai"
                       >
-                        <Sparkles className="w-3.5 h-3.5 text-foreground/60" />
-                        <span className="text-xs font-medium text-foreground/60">
+                        <Sparkles className="w-5 h-5 text-foreground" />
+                        <span className="text-base font-medium text-foreground">
                           Write using AI
                         </span>
                       </div>
@@ -1126,26 +1127,28 @@ export default function Dashboard() {
                       >
                         {caseStudies.length >= 2 ? (
                           <div
-                            className="w-full h-full border border-border/10 rounded-2xl flex flex-col items-center justify-center p-8 min-h-[350px] gap-4 relative"
+                            className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-10 min-h-[400px] gap-4 relative"
                             style={{ 
-                              backgroundColor: '#FAF8F5',
+                              backgroundColor: '#F6F2EF',
+                              boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
                             }}
                           >
                             <div className="flex flex-col items-center text-center max-w-xs">
                               <div 
-                                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
+                                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
                                 style={{
-                                  backgroundColor: 'rgba(0, 0, 0, 0.03)',
+                                  backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                                  boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.04)'
                                 }}
                               >
-                                <Crown className="w-7 h-7 text-foreground/50" />
+                                <Crown className="w-8 h-8 text-foreground/70" />
                               </div>
                               
-                              <h3 className="text-lg font-semibold mb-1" data-testid="text-upgrade-title">
+                              <h3 className="text-xl font-semibold mb-2" data-testid="text-upgrade-title">
                                 Upgrade to PRO
                               </h3>
-                              <p className="text-xs text-foreground/40 mb-4" data-testid="text-upgrade-description">
-                                You've used your free case studies. Get lifetime access to add unlimited case studies.
+                              <p className="text-sm text-foreground/60 mb-4" data-testid="text-upgrade-description">
+                                You've used your free case studies. Get lifetime access to add unlimited case studies and unlock all premium features.
                               </p>
                               
                               <StardustButton 
@@ -1154,7 +1157,7 @@ export default function Dashboard() {
                                 {isMobileOrTablet ? 'Upgrade Now' : 'Get Lifetime Access'}
                               </StardustButton>
                               
-                              <div className="mt-5 flex items-center gap-2 text-[10px] text-foreground/30 font-medium uppercase tracking-wider">
+                              <div className="mt-6 flex items-center gap-2 text-xs text-foreground/50">
                                 <Lock className="w-3 h-3" />
                                 <span>Free plan: 2 case studies only</span>
                               </div>
@@ -1162,25 +1165,26 @@ export default function Dashboard() {
                           </div>
                         ) : (
                           <div
-                            className="w-full h-full border border-border/10 rounded-2xl flex flex-col items-center justify-center p-8 min-h-[350px] gap-3"
+                            className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-10 min-h-[400px] gap-3"
                             style={{ 
-                              backgroundColor: '#FAF8F5',
+                              backgroundColor: '#F6F2EF',
+                              boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
                             }}
                           >
                             <Button 
                               onClick={() => setIsTemplateDialogOpen(true)}
-                              className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-9 px-4 text-xs font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                              className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
                               data-testid="button-add-case-study-grid"
                             >
-                              <Plus className="w-4 h-4" />
+                              <Plus className="w-5 h-5" />
                               Add case study
                             </Button>
                             <div 
-                              className="bg-white border border-border/20 rounded-full px-4 py-2 flex items-center gap-2 hover-elevate cursor-pointer h-9"
+                              className="bg-white border border-border rounded-full px-6 py-3 flex items-center gap-2 hover-elevate cursor-pointer"
                               data-testid="button-write-using-ai-grid"
                             >
-                              <Sparkles className="w-4 h-4 text-foreground/60" />
-                              <span className="text-xs font-medium text-foreground/60">
+                              <Sparkles className="w-5 h-5 text-foreground" />
+                              <span className="text-base font-medium text-foreground">
                                 Write using AI
                               </span>
                             </div>
