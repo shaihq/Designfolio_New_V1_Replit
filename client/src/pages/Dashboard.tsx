@@ -1041,8 +1041,8 @@ export default function Dashboard() {
             animate={{ y: 0 }}
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.15 }}
           >
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-              <div className="flex items-center justify-between mb-6">
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+              <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
                   My works
                 </h2>
@@ -1067,7 +1067,7 @@ export default function Dashboard() {
                     boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
                   }}
                 >
-                  <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
+                  <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto py-4">
                     <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
                       <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
                     </div>
@@ -1125,7 +1125,7 @@ export default function Dashboard() {
                       >
                         {caseStudies.length >= 2 ? (
                           <div
-                            className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-10 min-h-[400px] gap-4 relative"
+                            className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-8 min-h-[360px] gap-4 relative"
                             style={{ 
                               backgroundColor: '#F6F2EF',
                               boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
@@ -1163,7 +1163,7 @@ export default function Dashboard() {
                           </div>
                         ) : (
                           <div
-                            className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-10 min-h-[400px] gap-3"
+                            className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-8 min-h-[360px] gap-3"
                             style={{ 
                               backgroundColor: '#F6F2EF',
                               boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
@@ -1202,8 +1202,8 @@ export default function Dashboard() {
             animate={{ y: 0 }}
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
           >
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-              <div className="flex items-center justify-between mb-6">
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+              <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-testimonials-title">
                   Testimonials
                 </h2>
@@ -1303,8 +1303,8 @@ export default function Dashboard() {
             animate={{ y: 0 }}
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.45 }}
           >
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-              <div className="flex items-center justify-between mb-6">
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+              <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-toolbox-title">
                   Toolbox
                 </h2>
