@@ -984,13 +984,13 @@ export default function Dashboard() {
             <div className="p-8 pb-6">
               <div className="flex items-center gap-6">
                 <div 
-                  className="w-32 h-32 rounded-full flex items-center justify-center relative overflow-hidden" 
+                  className="w-24 h-24 rounded-2xl flex items-center justify-center relative overflow-hidden" 
                   style={{ backgroundColor: '#FFB088' }} 
                   data-testid="avatar-profile"
                 >
                   {!imageLoaded && (
                     <div 
-                      className="absolute inset-0 rounded-full"
+                      className="absolute inset-0 rounded-2xl"
                       style={{
                         background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
                         animation: 'shimmer 1.5s infinite'
@@ -1000,7 +1000,7 @@ export default function Dashboard() {
                   <img 
                     src="/advanced.png" 
                     alt={user.name} 
-                    className="w-24 h-24 object-contain"
+                    className="w-20 h-20 object-contain"
                     onLoad={() => setImageLoaded(true)}
                     style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
                   />
@@ -1048,7 +1048,7 @@ export default function Dashboard() {
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-semibold" data-testid="text-section-title">
+                <h2 className="text-xl font-semibold" data-testid="text-section-title">
                   My works
                 </h2>
                 {caseStudies.length > 0 && (
@@ -1077,7 +1077,7 @@ export default function Dashboard() {
                       <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
                     </div>
                     
-                    <h3 className="text-2xl font-semibold mb-2" data-testid="text-empty-state-title">
+                    <h3 className="text-xl font-semibold mb-2" data-testid="text-empty-state-title">
                       Upload your first case study
                     </h3>
                     <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
@@ -1209,7 +1209,7 @@ export default function Dashboard() {
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-semibold" data-testid="text-testimonials-title">
+                <h2 className="text-xl font-semibold" data-testid="text-testimonials-title">
                   Testimonials
                 </h2>
                 <Button 
@@ -1310,7 +1310,7 @@ export default function Dashboard() {
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-semibold" data-testid="text-toolbox-title">
+                <h2 className="text-xl font-semibold" data-testid="text-toolbox-title">
                   Toolbox
                 </h2>
                 <Button 
