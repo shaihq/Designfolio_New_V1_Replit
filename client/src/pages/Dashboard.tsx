@@ -109,7 +109,7 @@ export default function Dashboard() {
   const rafRef = useRef<number | null>(null);
   const [user] = useState({
     name: "Shai!",
-    role: "Product Designer @Apple",
+    role: "A 0→1 Product Designer with 6 years of experience. I design and develop digital products, create prototypes, and design interfaces.",
     avatar: "",
     categories: [
       "Design Systems and Style Guides",
