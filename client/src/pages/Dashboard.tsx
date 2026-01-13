@@ -1020,7 +1020,7 @@ export default function Dashboard() {
             
             {/* Skills Banner Strip */}
             <div 
-              className="relative overflow-hidden border-t border-border/10 py-3 bg-[#FAF8F5]" 
+              className="relative overflow-hidden border-t border-border/10 py-3 bg-[#F5F3F1]" 
               data-testid="container-categories"
             >
               <div className="flex gap-4 animate-scroll px-8 opacity-40">
