@@ -780,7 +780,6 @@ export default function Dashboard() {
           }}
         />
       )}
-      
       {/* Current wallpaper layer with smooth fade-in */}
       {selectedWallpaper && (
         <div 
@@ -797,7 +796,6 @@ export default function Dashboard() {
           }}
         />
       )}
-      
       {/* Paper grain/noise overlay */}
       {selectedWallpaper && backgroundEffectType === 'grain' && grainIntensity > 0 && (
         <div 
@@ -984,7 +982,7 @@ export default function Dashboard() {
             <div className="p-8 pb-6">
               <div className="flex items-center gap-6">
                 <div 
-                  className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0" 
+                  className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef]" 
                   style={{ backgroundColor: '#F5F3F1' }} 
                   data-testid="avatar-profile"
                 >
@@ -1455,7 +1453,6 @@ export default function Dashboard() {
         </AlertDialogContent>
       </AlertDialog>
       </div>
-
       {/* Theme Panel - Desktop (pushes content) - Only on large screens */}
       {!isMobileOrTablet && (
         <div 
@@ -1766,7 +1763,6 @@ export default function Dashboard() {
           </div>
         </div>
       )}
-
       {/* Theme Panel - Mobile/Tablet (popup with overlay) */}
       {isMobileOrTablet && (
         <Sheet open={isThemePanelOpen} onOpenChange={setIsThemePanelOpen}>
@@ -2063,7 +2059,6 @@ export default function Dashboard() {
           </SheetContent>
         </Sheet>
       )}
-
       {/* Testimonial Edit Panel - Desktop (pushes content) - Only on large screens */}
       {!isMobileOrTablet && (
         <div 
@@ -2218,7 +2213,6 @@ export default function Dashboard() {
           </div>
         </div>
       )}
-
       {/* Testimonial Edit Panel - Mobile (Sheet overlay) */}
       {isMobileOrTablet && (
         <Sheet open={isEditTestimonialOpen} onOpenChange={(open) => {
