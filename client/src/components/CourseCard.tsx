@@ -33,35 +33,35 @@ export function CourseCard() {
 
         {/* Content Area */}
         <div className={`p-6 space-y-6 overflow-y-auto max-h-[80vh] transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="space-y-2">
-            <h2 className="text-xl font-bold tracking-tight text-foreground leading-tight">Vibe coding for Designers</h2>
-            <div className="flex items-center gap-2 text-muted-foreground">
+          <div className="space-y-1.5">
+            <h2 className="text-lg font-semibold tracking-tight text-foreground leading-tight">Vibe coding for Designers</h2>
+            <div className="flex items-center gap-1.5 text-muted-foreground">
               <Calendar className="w-3.5 h-3.5" />
-              <span className="text-xs font-medium tracking-wide">January 18th, 2026</span>
+              <span className="text-[13px] font-medium">January 18th, 2026</span>
             </div>
           </div>
 
-          <div className="space-y-3 pt-1">
+          <div className="space-y-2 pt-1">
             <div className="flex items-center justify-between">
-              <p className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground">Seats Available</p>
+              <p className="text-[11px] font-semibold text-muted-foreground">Seats Available</p>
               <div className="flex items-center gap-1.5">
-                <div className="w-1 h-1 rounded-full bg-[#f97316] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
-                <p className="text-[10px] uppercase tracking-widest font-bold text-[#f97316]">Filling Fast</p>
+                <div className="w-1 h-1 rounded-full bg-[#f97316]"></div>
+                <p className="text-[11px] font-semibold text-[#f97316]">Filling Fast</p>
               </div>
             </div>
             
             <div className="relative">
-              <div className="h-1.5 w-full bg-[#efeee9] rounded-full overflow-hidden">
+              <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
                 <div className="h-full w-[45%] bg-[#f97316] rounded-full transition-all duration-1000 ease-out"></div>
               </div>
             </div>
-            <p className="text-xs font-semibold text-foreground tracking-tight">13 of 30 seats remaining</p>
+            <p className="text-[12px] font-medium text-foreground">13 of 30 seats remaining</p>
           </div>
 
           <div className="pt-2">
             <Button 
               onClick={() => setIsPopoverOpen(true)}
-              className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-11 text-[11px] font-bold uppercase tracking-[0.15em] transition-all hover:scale-[1.02] active:scale-[0.98] no-default-hover-elevate"
+              className="w-full h-10 text-sm font-semibold transition-all hover:scale-[1.01] active:scale-[0.99]"
             >
               Know More
             </Button>
