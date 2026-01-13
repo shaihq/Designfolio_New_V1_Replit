@@ -984,7 +984,7 @@ export default function Dashboard() {
             <div className="p-8 pb-6">
               <div className="flex items-center gap-6">
                 <div 
-                  className="w-24 h-24 rounded-2xl flex items-center justify-center relative overflow-hidden" 
+                  className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0" 
                   style={{ backgroundColor: '#FFB088' }} 
                   data-testid="avatar-profile"
                 >
@@ -1000,7 +1000,7 @@ export default function Dashboard() {
                   <img 
                     src="/advanced.png" 
                     alt={user.name} 
-                    className="w-20 h-20 object-contain"
+                    className="w-28 h-28 object-contain"
                     onLoad={() => setImageLoaded(true)}
                     style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
                   />
@@ -1008,10 +1008,11 @@ export default function Dashboard() {
                 
                 <div className="flex-1">
                   <h1 className="text-3xl font-semibold mb-2 font-heading" data-testid="text-user-name">
-                    Hey, I'm {user.name}
+                    Hey, I'm Shai!
                   </h1>
-                  <p className="text-base text-foreground/50" data-testid="text-user-role">
-                    {user.role}
+                  <p className="text-base text-foreground/50 leading-relaxed" data-testid="text-user-role">
+                    A 0→1 Product Designer with 6 years of experience. I design and 
+                    develop digital products, create prototypes, and design interfaces.
                   </p>
                 </div>
               </div>
