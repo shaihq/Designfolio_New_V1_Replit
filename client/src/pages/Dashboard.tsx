@@ -1063,39 +1063,38 @@ export default function Dashboard() {
               
               {caseStudies.length === 0 ? (
                 <div 
-                  className="border border-border/30 rounded-2xl p-10 shadow-none"
+                  className="border border-border/20 rounded-2xl p-8 shadow-none"
                   style={{
-                    backgroundColor: '#F6F2EF',
-                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                    backgroundColor: '#F8F7F5',
                   }}
                 >
                   <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto">
-                    <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-                      <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
+                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 opacity-80">
+                      <img src="/casestudy.png" alt="Case Study" className="w-14 h-14" />
                     </div>
                     
-                    <h3 className="text-xl font-semibold mb-2" data-testid="text-empty-state-title">
+                    <h3 className="text-lg font-semibold mb-1" data-testid="text-empty-state-title">
                       Upload your first case study
                     </h3>
-                    <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
+                    <p className="text-sm text-foreground/50 mb-6" data-testid="text-empty-state-description">
                       Show off your best work
                     </p>
                     
-                    <div className="flex gap-4">
+                    <div className="flex gap-3">
                       <Button 
                         onClick={() => setIsTemplateDialogOpen(true)}
-                        className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                        className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-10 px-5 text-sm font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
                         data-testid="button-add-case-study"
                       >
-                        <Plus className="w-5 h-5" />
+                        <Plus className="w-4 h-4" />
                         Add case study
                       </Button>
                       <div 
-                        className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                        className="bg-white border border-border/40 rounded-full px-5 py-2 flex items-center justify-center gap-2 hover-elevate cursor-pointer h-10"
                         data-testid="button-write-using-ai"
                       >
-                        <Sparkles className="w-5 h-5 text-foreground" />
-                        <span className="text-base font-medium text-foreground">
+                        <Sparkles className="w-4 h-4 text-foreground/70" />
+                        <span className="text-sm font-medium text-foreground/70">
                           Write using AI
                         </span>
                       </div>
