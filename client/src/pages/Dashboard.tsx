@@ -108,7 +108,7 @@ export default function Dashboard() {
   const [scrollOffset, setScrollOffset] = useState(0);
   const rafRef = useRef<number | null>(null);
   const [user] = useState({
-    name: "Morgan",
+    name: "Shai!",
     role: "Product Designer @Apple",
     avatar: "",
     categories: [
