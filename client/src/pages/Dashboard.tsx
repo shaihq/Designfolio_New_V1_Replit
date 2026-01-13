@@ -692,7 +692,7 @@ export default function Dashboard() {
             </div>
             
             <h3 
-              className="text-base font-semibold tracking-tight text-foreground mb-1.5 leading-snug"
+              className="text-sm font-semibold tracking-tight text-foreground mb-1 leading-snug"
               data-testid={`text-case-study-title-${project.id}`}
             >
               {project.title}
@@ -1007,7 +1007,7 @@ export default function Dashboard() {
                 </div>
                 
                 <div className="flex-1">
-                  <h1 className="text-4xl font-semibold mb-2 font-heading" data-testid="text-user-name">
+                  <h1 className="text-2xl font-semibold mb-2 font-heading" data-testid="text-user-name">
                     Hey, I'm {user.name}
                   </h1>
                   <p className="text-base text-foreground/50" data-testid="text-user-role">

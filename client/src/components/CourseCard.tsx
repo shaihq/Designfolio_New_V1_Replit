@@ -33,11 +33,11 @@ export function CourseCard() {
 
         {/* Content Area */}
         <div className={`p-6 space-y-6 overflow-y-auto max-h-[80vh] transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="space-y-1.5">
-            <h2 className="text-lg font-semibold tracking-tight text-foreground leading-tight">Vibe coding for Designers</h2>
+          <div className="space-y-1">
+            <h2 className="text-base font-semibold tracking-tight text-foreground leading-tight">Vibe coding for Designers</h2>
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <Calendar className="w-3.5 h-3.5" />
-              <span className="text-[13px] font-medium">January 18th, 2026</span>
+              <span className="text-[12px] font-medium">January 18th, 2026</span>
             </div>
           </div>
 
