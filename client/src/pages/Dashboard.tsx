@@ -1022,6 +1022,9 @@ export default function Dashboard() {
             <div 
               className="relative overflow-hidden border-t border-border/10 py-3" 
               data-testid="container-categories"
+              style={{
+                background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.015) 50%, transparent)',
+              }}
             >
               <div className="flex gap-3 animate-scroll px-8 opacity-40">
                 {[...user.categories, ...user.categories].map((category, index) => (
