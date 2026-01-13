@@ -1043,7 +1043,7 @@ export default function Dashboard() {
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold" data-testid="text-section-title">
+                <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
                   My works
                 </h2>
                 {caseStudies.length > 0 && (
@@ -1204,7 +1204,7 @@ export default function Dashboard() {
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold" data-testid="text-testimonials-title">
+                <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-testimonials-title">
                   Testimonials
                 </h2>
                 <Button 
@@ -1305,7 +1305,7 @@ export default function Dashboard() {
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-8 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold" data-testid="text-toolbox-title">
+                <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-toolbox-title">
                   Toolbox
                 </h2>
                 <Button 
