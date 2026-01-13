@@ -1007,10 +1007,10 @@ export default function Dashboard() {
                 </div>
                 
                 <div className="flex-1">
-                  <h1 className="text-xl font-semibold mb-1 font-heading" data-testid="text-user-name">
+                  <h1 className="text-3xl font-semibold mb-2 font-heading" data-testid="text-user-name">
                     Hey, I'm {user.name}
                   </h1>
-                  <p className="text-sm text-foreground/50" data-testid="text-user-role">
+                  <p className="text-base text-foreground/50" data-testid="text-user-role">
                     {user.role}
                   </p>
                 </div>
