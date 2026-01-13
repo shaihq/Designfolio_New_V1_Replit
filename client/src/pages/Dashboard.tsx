@@ -1020,19 +1020,16 @@ export default function Dashboard() {
             
             {/* Skills Banner Strip */}
             <div 
-              className="relative overflow-hidden border-t border-border/10 py-3" 
+              className="relative overflow-hidden border-t border-border/10 py-3 bg-[#F5F3F1]" 
               data-testid="container-categories"
-              style={{
-                background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.015) 50%, transparent)',
-              }}
             >
-              <div className="flex gap-3 animate-scroll px-8 opacity-40">
+              <div className="flex gap-3 animate-scroll px-8 opacity-60">
                 {[...user.categories, ...user.categories].map((category, index) => (
                   <div key={index} className="flex items-center gap-3 shrink-0">
-                    <span className="text-xs font-medium tracking-tight whitespace-nowrap uppercase">
+                    <span className="text-xs font-semibold tracking-tight whitespace-nowrap uppercase text-foreground">
                       {category}
                     </span>
-                    <Sparkle className="w-2.5 h-2.5 fill-current" />
+                    <Sparkle className="w-2.5 h-2.5 fill-current text-foreground/40" />
                   </div>
                 ))}
               </div>
