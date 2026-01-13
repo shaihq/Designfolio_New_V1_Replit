@@ -682,9 +682,9 @@ export default function Dashboard() {
           </div>
           
           <div className="p-6 pb-20">
-            <div className="mb-3">
+            <div className="mb-4">
               <Badge 
-                className="text-xs font-medium"
+                className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5"
                 style={{ 
                   backgroundColor: '#FFE8DF',
                   color: '#FF553E',
@@ -695,10 +695,17 @@ export default function Dashboard() {
                 {project.category}
               </Badge>
             </div>
-            <h3 className="font-semibold text-lg mb-2 line-clamp-2 text-foreground" data-testid={`text-case-study-title-${project.id}`}>
+            
+            <h3 
+              className="text-lg font-bold tracking-tight text-foreground mb-2 leading-snug"
+              data-testid={`text-case-study-title-${project.id}`}
+            >
               {project.title}
             </h3>
-            <p className="text-sm text-foreground/60 line-clamp-3 leading-relaxed" data-testid={`text-case-study-description-${project.id}`}>
+            <p 
+              className="text-sm text-muted-foreground leading-relaxed line-clamp-2"
+              data-testid={`text-case-study-description-${project.id}`}
+            >
               {project.description}
             </p>
           </div>

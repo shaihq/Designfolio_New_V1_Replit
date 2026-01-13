@@ -32,21 +32,21 @@ export function CourseCard() {
         </button>
 
         {/* Content Area */}
-        <div className={`p-6 space-y-8 overflow-y-auto max-h-[80vh] transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="space-y-3">
-            <h2 className="text-2xl font-bold tracking-tight text-foreground leading-tight">Vibe coding for Designers</h2>
-            <div className="flex items-center gap-2 text-foreground/60">
-              <Calendar className="w-4 h-4" />
-              <span className="text-sm font-semibold">January 18th, 2026</span>
+        <div className={`p-6 space-y-6 overflow-y-auto max-h-[80vh] transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="space-y-2">
+            <h2 className="text-xl font-bold tracking-tight text-foreground leading-tight">Vibe coding for Designers</h2>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Calendar className="w-3.5 h-3.5" />
+              <span className="text-xs font-medium tracking-wide">January 18th, 2026</span>
             </div>
           </div>
 
-          <div className="space-y-2 pt-2">
+          <div className="space-y-3 pt-1">
             <div className="flex items-center justify-between">
-              <p className="text-[11px] uppercase tracking-wider font-bold text-[#8c8c8c]">Seats Available</p>
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#f97316] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
-                <p className="text-[11px] uppercase tracking-wider font-bold text-[#f97316]">Filling Fast</p>
+              <p className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground">Seats Available</p>
+              <div className="flex items-center gap-1.5">
+                <div className="w-1 h-1 rounded-full bg-[#f97316] animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div>
+                <p className="text-[10px] uppercase tracking-widest font-bold text-[#f97316]">Filling Fast</p>
               </div>
             </div>
             
@@ -55,13 +55,13 @@ export function CourseCard() {
                 <div className="h-full w-[45%] bg-[#f97316] rounded-full transition-all duration-1000 ease-out"></div>
               </div>
             </div>
-            <p className="text-[12px] font-bold text-[#1a1c20] tracking-tight">13 of 30 seats remaining</p>
+            <p className="text-xs font-semibold text-foreground tracking-tight">13 of 30 seats remaining</p>
           </div>
 
           <div className="pt-2">
             <Button 
               onClick={() => setIsPopoverOpen(true)}
-              className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-12 text-sm font-bold uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-[0.98] no-default-hover-elevate"
+              className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full h-11 text-[11px] font-bold uppercase tracking-[0.15em] transition-all hover:scale-[1.02] active:scale-[0.98] no-default-hover-elevate"
             >
               Know More
             </Button>
