@@ -985,7 +985,7 @@ export default function Dashboard() {
               <div className="flex items-center gap-6">
                 <div 
                   className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0" 
-                  style={{ backgroundColor: '#FFB088' }} 
+                  style={{ backgroundColor: '#F5F3F1' }} 
                   data-testid="avatar-profile"
                 >
                   {!imageLoaded && (
@@ -1000,7 +1000,7 @@ export default function Dashboard() {
                   <img 
                     src="/advanced.png" 
                     alt={user.name} 
-                    className="w-28 h-28 object-contain"
+                    className="w-24 h-24 object-contain"
                     onLoad={() => setImageLoaded(true)}
                     style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
                   />
