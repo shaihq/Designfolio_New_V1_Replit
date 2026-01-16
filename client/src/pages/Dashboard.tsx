@@ -1088,6 +1088,7 @@ export default function Dashboard() {
               return (
                 <motion.div
                   key="works"
+                  id="section-works"
                   initial={{ y: 20 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay }}
@@ -1253,6 +1254,7 @@ export default function Dashboard() {
               return (
                 <motion.div
                   key="testimonials"
+                  id="section-testimonials"
                   initial={{ y: 20 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay }}
@@ -1341,6 +1343,7 @@ export default function Dashboard() {
               return (
                 <motion.div
                   key="toolbox"
+                  id="section-toolbox"
                   initial={{ y: 20 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay }}
@@ -1825,6 +1828,14 @@ export default function Dashboard() {
                             const newIndex = items.indexOf(over.id as string);
                             return arrayMove(items, oldIndex, newIndex);
                           });
+
+                          // Find the section element and scroll to it
+                          setTimeout(() => {
+                            const sectionElement = document.getElementById(`section-${active.id}`);
+                            if (sectionElement) {
+                              sectionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                          }, 100);
                         }
                       }}
                     >
@@ -2155,6 +2166,14 @@ export default function Dashboard() {
                             const newIndex = items.indexOf(over.id as string);
                             return arrayMove(items, oldIndex, newIndex);
                           });
+
+                          // Find the section element and scroll to it
+                          setTimeout(() => {
+                            const sectionElement = document.getElementById(`section-${active.id}`);
+                            if (sectionElement) {
+                              sectionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                          }, 100);
                         }
                       }}
                     >
