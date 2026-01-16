@@ -663,7 +663,7 @@ export default function Dashboard() {
           <GripVertical className="w-4 h-4" />
         </div>
         <span className="text-sm font-medium">{labels[id]}</span>
-      </div>
+      </motion.div>
     );
   }
 
