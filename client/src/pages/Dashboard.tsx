@@ -101,6 +101,10 @@ export default function Dashboard() {
     const saved = localStorage.getItem('dashboard-background-motion');
     return saved === 'on';
   });
+  const [sectionOrder, setSectionOrder] = useState<string[]>(() => {
+    const saved = localStorage.getItem('dashboard-section-order');
+    return saved ? JSON.parse(saved) : ['works', 'testimonials', 'toolbox'];
+  });
   const [selectedFont, setSelectedFont] = useState<string>(() => {
     const saved = localStorage.getItem('dashboard-font');
     return saved || 'inter';
@@ -172,6 +176,10 @@ export default function Dashboard() {
   useEffect(() => {
     localStorage.setItem('dashboard-background-motion', backgroundMotion ? 'on' : 'off');
   }, [backgroundMotion]);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-section-order', JSON.stringify(sectionOrder));
+  }, [sectionOrder]);
 
   const fontOptions: Record<string, { name: string; family: string; description: string }> = {
     'inter': { name: 'Inter', family: 'Inter, sans-serif', description: 'Clean and modern sans-serif' },
@@ -618,6 +626,45 @@ export default function Dashboard() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  function SortableSectionItem({ id }: { id: string }) {
+    const {
+      attributes,
+      listeners,
+      setNodeRef,
+      transform,
+      transition,
+      isDragging,
+    } = useSortable({ id });
+
+    const style: React.CSSProperties = {
+      transform: CSS.Transform.toString(transform),
+      transition,
+      zIndex: isDragging ? 50 : 'auto',
+    };
+
+    const labels: Record<string, string> = {
+      works: 'My works',
+      testimonials: 'Testimonials',
+      toolbox: 'Toolbox',
+    };
+
+    return (
+      <div
+        ref={setNodeRef}
+        style={style}
+        className={`flex items-center gap-3 p-3 rounded-xl border border-border bg-card/50 transition-all ${
+          isDragging ? 'opacity-50 shadow-lg scale-[1.02]' : 'hover:bg-accent/50'
+        }`}
+        data-testid={`item-block-${id}`}
+      >
+        <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing p-1 rounded-md hover:bg-accent text-foreground/40">
+          <GripVertical className="w-4 h-4" />
+        </div>
+        <span className="text-sm font-medium">{labels[id]}</span>
+      </div>
+    );
+  }
+
   function SortableCard({ project }: { project: typeof caseStudies[0] }) {
     const {
       attributes,
@@ -957,7 +1004,6 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        {/* Main Content */}
         <main className="pb-6">
           {/* Profile Card */}
           <motion.div
@@ -1035,151 +1081,67 @@ export default function Dashboard() {
           </Card>
           </motion.div>
 
-          {/* My Works Section */}
-          <motion.div
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.15 }}
-          >
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
-                  My works
-                </h2>
-                {caseStudies.length > 0 && (
-                  <Button 
-                    onClick={() => setIsTemplateDialogOpen(true)}
-                    variant="outline"
-                    size="icon"
-                    className="rounded-full h-11 w-11"
-                    data-testid="button-add-case-study-header"
-                  >
-                    <Plus className="w-5 h-5" />
-                  </Button>
-                )}
-              </div>
-              
-              {caseStudies.length === 0 ? (
-                <div 
-                  className="border border-border/30 rounded-2xl p-10 shadow-none"
-                  style={{
-                    backgroundColor: '#F6F2EF',
-                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
-                  }}
+          {sectionOrder.map((sectionId, index) => {
+            const delay = 0.15 + index * 0.15;
+            
+            if (sectionId === 'works') {
+              return (
+                <motion.div
+                  key="works"
+                  initial={{ y: 20 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay }}
                 >
-                  <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto py-4">
-                    <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-                      <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
+                        My works
+                      </h2>
+                      {caseStudies.length > 0 && (
+                        <Button 
+                          onClick={() => setIsTemplateDialogOpen(true)}
+                          variant="outline"
+                          size="icon"
+                          className="rounded-full h-11 w-11"
+                          data-testid="button-add-case-study-header"
+                        >
+                          <Plus className="w-5 h-5" />
+                        </Button>
+                      )}
                     </div>
                     
-                    <h3 className="text-xl font-semibold mb-2" data-testid="text-empty-state-title">
-                      Upload your first case study
-                    </h3>
-                    <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
-                      Show off your best work
-                    </p>
-                    
-                    <div className="flex gap-4">
-                      <Button 
-                        onClick={() => setIsTemplateDialogOpen(true)}
-                        className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
-                        data-testid="button-add-case-study"
-                      >
-                        <Plus className="w-5 h-5" />
-                        Add case study
-                      </Button>
+                    {caseStudies.length === 0 ? (
                       <div 
-                        className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
-                        data-testid="button-write-using-ai"
+                        className="border border-border/30 rounded-2xl p-10 shadow-none"
+                        style={{
+                          backgroundColor: '#F6F2EF',
+                          boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                        }}
                       >
-                        <Sparkles className="w-5 h-5 text-foreground" />
-                        <span className="text-base font-medium text-foreground">
-                          Write using AI
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <DndContext
-                  sensors={sensors}
-                  collisionDetection={closestCenter}
-                  onDragEnd={handleDragEnd}
-                >
-                  <SortableContext
-                    items={caseStudies.map(p => p.id)}
-                    strategy={rectSortingStrategy}
-                  >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {caseStudies.map((project) => (
-                        <SortableCard key={project.id} project={project} />
-                      ))}
-                  
-                      {/* Add New Case Study Card */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: 0.1 }}
-                        className="group"
-                        data-testid="card-add-case-study"
-                      >
-                        {caseStudies.length >= 2 ? (
-                          <div
-                            className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-8 min-h-[360px] gap-4 relative"
-                            style={{ 
-                              backgroundColor: '#F6F2EF',
-                              boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
-                            }}
-                          >
-                            <div className="flex flex-col items-center text-center max-w-xs">
-                              <div 
-                                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
-                                style={{
-                                  backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                                  boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.04)'
-                                }}
-                              >
-                                <Crown className="w-8 h-8 text-foreground/70" />
-                              </div>
-                              
-                              <h3 className="text-xl font-semibold mb-2" data-testid="text-upgrade-title">
-                                Upgrade to PRO
-                              </h3>
-                              <p className="text-sm text-foreground/60 mb-4" data-testid="text-upgrade-description">
-                                You've used your free case studies. Get lifetime access to add unlimited case studies and unlock all premium features.
-                              </p>
-                              
-                              <StardustButton 
-                                data-testid="button-upgrade-to-pro"
-                              >
-                                {isMobileOrTablet ? 'Upgrade Now' : 'Get Lifetime Access'}
-                              </StardustButton>
-                              
-                              <div className="mt-6 flex items-center gap-2 text-xs text-foreground/50">
-                                <Lock className="w-3 h-3" />
-                                <span>Free plan: 2 case studies only</span>
-                              </div>
-                            </div>
+                        <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto py-4">
+                          <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                            <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
                           </div>
-                        ) : (
-                          <div
-                            className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-8 min-h-[360px] gap-3"
-                            style={{ 
-                              backgroundColor: '#F6F2EF',
-                              boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
-                            }}
-                          >
+                          
+                          <h3 className="text-xl font-semibold mb-2" data-testid="text-empty-state-title">
+                            Upload your first case study
+                          </h3>
+                          <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
+                            Show off your best work
+                          </p>
+                          
+                          <div className="flex gap-4">
                             <Button 
                               onClick={() => setIsTemplateDialogOpen(true)}
                               className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
-                              data-testid="button-add-case-study-grid"
+                              data-testid="button-add-case-study"
                             >
                               <Plus className="w-5 h-5" />
                               Add case study
                             </Button>
                             <div 
-                              className="bg-white border border-border rounded-full px-6 py-3 flex items-center gap-2 hover-elevate cursor-pointer"
-                              data-testid="button-write-using-ai-grid"
+                              className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                              data-testid="button-write-using-ai"
                             >
                               <Sparkles className="w-5 h-5 text-foreground" />
                               <span className="text-base font-medium text-foreground">
@@ -1187,176 +1149,260 @@ export default function Dashboard() {
                               </span>
                             </div>
                           </div>
-                        )}
-                      </motion.div>
-                    </div>
-                  </SortableContext>
-                </DndContext>
-              )}
-            </Card>
-          </motion.div>
-
-          {/* Testimonials Section */}
-          <motion.div
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
-          >
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-testimonials-title">
-                  Testimonials
-                </h2>
-                <Button 
-                  variant="outline"
-                  size="icon"
-                  className="rounded-full h-11 w-11"
-                  data-testid="button-add-testimonial"
-                >
-                  <Plus className="w-5 h-5" />
-                </Button>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ gridAutoRows: 'auto' }}>
-                {testimonials.map((testimonial, idx) => {
-                  const isVisible = visibleTestimonials.has(testimonial.id);
-                  
-                  const highlightText = (text: string, highlight: string) => {
-                    if (!highlight) return text;
-                    const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
-                    return parts.map((part, index) => 
-                      part.toLowerCase() === highlight.toLowerCase() ? (
-                        <span 
-                          key={index} 
-                          className={`marker-highlight ${isVisible ? 'animate' : ''}`}
+                        </div>
+                      </div>
+                    ) : (
+                      <DndContext
+                        sensors={sensors}
+                        collisionDetection={closestCenter}
+                        onDragEnd={handleDragEnd}
+                      >
+                        <SortableContext
+                          items={caseStudies.map(p => p.id)}
+                          strategy={rectSortingStrategy}
                         >
-                          {part}
-                        </span>
-                      ) : (
-                        part
-                      )
-                    );
-                  };
-
-                  return (
-                    <motion.div
-                      key={testimonial.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.5, delay: idx * 0.1 }}
-                      onViewportEnter={() => {
-                        setTimeout(() => {
-                          setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
-                        }, 300 + idx * 100);
-                      }}
-                      className={`border-2 rounded-2xl p-5 flex flex-col relative transition-all duration-300 ${
-                        selectedTestimonialId === testimonial.id
-                          ? 'border-foreground/40 bg-foreground/5'
-                          : 'border-border/30 bg-white hover-elevate'
-                      }`}
-                      data-testid={`card-testimonial-${testimonial.id}`}
-                      style={{
-                        backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.03)' : '#F5F3F1'
-                      }}
-                    >
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="absolute top-4 right-4 h-8 w-8"
-                        onClick={() => handleEditTestimonialClick(testimonial)}
-                        data-testid={`button-edit-testimonial-${testimonial.id}`}
-                      >
-                        <Pencil className="w-4 h-4" />
-                      </Button>
-                      <p className="text-sm leading-relaxed mb-4 flex-1 pr-6" data-testid={`text-testimonial-content-${testimonial.id}`}>
-                        {testimonial.text}
-                      </p>
-                      
-                      <div className="flex items-center gap-2.5">
-                        <Avatar className="w-10 h-10 shrink-0">
-                          <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                          <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
-                            {testimonial.name.split(' ').map(n => n[0]).join('')}
-                          </AvatarFallback>
-                        </Avatar>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {caseStudies.map((project) => (
+                              <SortableCard key={project.id} project={project} />
+                            ))}
                         
-                        <div>
-                          <h3 className="font-semibold text-sm mb-0" data-testid={`text-testimonial-name-${testimonial.id}`}>
-                            {testimonial.name}
-                          </h3>
-                          <p className="text-xs text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </Card>
-          </motion.div>
+                            {/* Add New Case Study Card */}
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.95 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.3, delay: 0.1 }}
+                              className="group"
+                              data-testid="card-add-case-study"
+                            >
+                              {caseStudies.length >= 2 ? (
+                                <div
+                                  className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-8 min-h-[360px] gap-4 relative"
+                                  style={{ 
+                                    backgroundColor: '#F6F2EF',
+                                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                                  }}
+                                >
+                                  <div className="flex flex-col items-center text-center max-w-xs">
+                                    <div 
+                                      className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
+                                      style={{
+                                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                                        boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.04)'
+                                      }}
+                                    >
+                                      <Crown className="w-8 h-8 text-foreground/70" />
+                                    </div>
+                                    
+                                    <h3 className="text-xl font-semibold mb-2" data-testid="text-upgrade-title">
+                                      Upgrade to PRO
+                                    </h3>
+                                    <p className="text-sm text-foreground/60 mb-4" data-testid="text-upgrade-description">
+                                      You've used your free case studies. Get lifetime access to add unlimited case studies and unlock all premium features.
+                                    </p>
+                                    
+                                    <StardustButton 
+                                      data-testid="button-upgrade-to-pro"
+                                    >
+                                      {isMobileOrTablet ? 'Upgrade Now' : 'Get Lifetime Access'}
+                                    </StardustButton>
+                                    
+                                    <div className="mt-6 flex items-center gap-2 text-xs text-foreground/50">
+                                      <Lock className="w-3 h-3" />
+                                      <span>Free plan: 2 case studies only</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div
+                                  className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-8 min-h-[360px] gap-3"
+                                  style={{ 
+                                    backgroundColor: '#F6F2EF',
+                                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                                  }}
+                                >
+                                  <Button 
+                                    onClick={() => setIsTemplateDialogOpen(true)}
+                                    className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                                    data-testid="button-add-case-study-grid"
+                                  >
+                                    <Plus className="w-5 h-5" />
+                                    Add case study
+                                  </Button>
+                                  <div 
+                                    className="bg-white border border-border rounded-full px-6 py-3 flex items-center gap-2 hover-elevate cursor-pointer"
+                                    data-testid="button-write-using-ai-grid"
+                                  >
+                                    <Sparkles className="w-5 h-5 text-foreground" />
+                                    <span className="text-base font-medium text-foreground">
+                                      Write using AI
+                                    </span>
+                                  </div>
+                                </div>
+                              )}
+                            </motion.div>
+                          </div>
+                        </SortableContext>
+                      </DndContext>
+                    )}
+                  </Card>
+                </motion.div>
+              );
+            }
 
-          {/* Toolbox Section */}
-          <motion.div
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.45 }}
-          >
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-toolbox-title">
-                  Toolbox
-                </h2>
-                <Button 
-                  variant="outline"
-                  size="icon"
-                  className="rounded-full h-11 w-11"
-                  data-testid="button-add-tool"
+            if (sectionId === 'testimonials') {
+              return (
+                <motion.div
+                  key="testimonials"
+                  initial={{ y: 20 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay }}
                 >
-                  <Plus className="w-5 h-5" />
-                </Button>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {tools.map((tool) => (
-                  <div
-                    key={tool.id}
-                    className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate"
-                    data-testid={`card-tool-${tool.id}`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div 
-                        className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-                        style={{ backgroundColor: tool.color }}
-                        data-testid={`icon-tool-${tool.id}`}
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-testimonials-title">
+                        Testimonials
+                      </h2>
+                      <Button 
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full h-11 w-11"
+                        data-testid="button-add-testimonial"
                       >
-                        <div className="w-5 h-5 bg-white/90 rounded" />
-                      </div>
-                      
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-0.5">
-                          <h3 className="font-semibold text-sm" data-testid={`text-tool-name-${tool.id}`}>
-                            {tool.name}
-                          </h3>
-                          <Badge 
-                            variant="secondary" 
-                            className="text-xs"
-                            data-testid={`badge-tool-category-${tool.id}`}
-                          >
-                            {tool.category}
-                          </Badge>
-                        </div>
-                        <p className="text-xs text-foreground/50" data-testid={`text-tool-description-${tool.id}`}>
-                          {tool.description}
-                        </p>
-                      </div>
+                        <Plus className="w-5 h-5" />
+                      </Button>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          </motion.div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ gridAutoRows: 'auto' }}>
+                      {testimonials.map((testimonial, idx) => {
+                        const isVisible = visibleTestimonials.has(testimonial.id);
+                        
+                        return (
+                          <motion.div
+                            key={testimonial.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.5, delay: idx * 0.1 }}
+                            onViewportEnter={() => {
+                              setTimeout(() => {
+                                setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
+                              }, 300 + idx * 100);
+                            }}
+                            className={`border-2 rounded-2xl p-5 flex flex-col relative transition-all duration-300 ${
+                              selectedTestimonialId === testimonial.id
+                                ? 'border-foreground/40 bg-foreground/5'
+                                : 'border-border/30 bg-white hover-elevate'
+                            }`}
+                            data-testid={`card-testimonial-${testimonial.id}`}
+                            style={{
+                              backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.03)' : '#F5F3F1'
+                            }}
+                          >
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="absolute top-4 right-4 h-8 w-8"
+                              onClick={() => handleEditTestimonialClick(testimonial)}
+                              data-testid={`button-edit-testimonial-${testimonial.id}`}
+                            >
+                              <Pencil className="w-4 h-4" />
+                            </Button>
+                            <p className="text-sm leading-relaxed mb-4 flex-1 pr-6" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                              {testimonial.text}
+                            </p>
+                            
+                            <div className="flex items-center gap-2.5">
+                              <Avatar className="w-10 h-10 shrink-0">
+                                <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                                <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
+                                  {testimonial.name.split(' ').map(n => n[0]).join('')}
+                                </AvatarFallback>
+                              </Avatar>
+                              
+                              <div>
+                                <h3 className="font-semibold text-sm mb-0" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                                  {testimonial.name}
+                                </h3>
+                                <p className="text-xs text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                                  {testimonial.company}
+                                </p>
+                              </div>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            }
+
+            if (sectionId === 'toolbox') {
+              return (
+                <motion.div
+                  key="toolbox"
+                  initial={{ y: 20 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay }}
+                >
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-toolbox-title">
+                        Toolbox
+                      </h2>
+                      <Button 
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full h-11 w-11"
+                        data-testid="button-add-tool"
+                      >
+                        <Plus className="w-5 h-5" />
+                      </Button>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {tools.map((tool) => (
+                        <div
+                          key={tool.id}
+                          className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate"
+                          data-testid={`card-tool-${tool.id}`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div 
+                              className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                              style={{ backgroundColor: tool.color }}
+                              data-testid={`icon-tool-${tool.id}`}
+                            >
+                              <div className="w-5 h-5 bg-white/90 rounded" />
+                            </div>
+                            
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-0.5">
+                                <h3 className="font-semibold text-sm" data-testid={`text-tool-name-${tool.id}`}>
+                                  {tool.name}
+                                </h3>
+                                <Badge 
+                                  variant="secondary" 
+                                  className="text-xs"
+                                  data-testid={`badge-tool-category-${tool.id}`}
+                                >
+                                  {tool.category}
+                                </Badge>
+                              </div>
+                              <p className="text-xs text-foreground/50" data-testid={`text-tool-description-${tool.id}`}>
+                                {tool.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            }
+            return null;
+          })}
         </main>
       </div>
 
@@ -1505,6 +1551,13 @@ export default function Dashboard() {
                       data-testid="tab-fonts"
                     >
                       Fonts
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="blocks" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-blocks"
+                    >
+                      Blocks
                     </TabsTrigger>
                   </TabsList>
                 </div>
@@ -1758,6 +1811,33 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </TabsContent>
+                <TabsContent value="blocks" className="flex-1 p-6 m-0" data-testid="content-blocks">
+                  <div className="space-y-4">
+                    <p className="text-sm text-foreground/60 mb-4">Re-arrange your portfolio sections</p>
+                    <DndContext
+                      sensors={sensors}
+                      collisionDetection={closestCenter}
+                      onDragEnd={(event) => {
+                        const { active, over } = event;
+                        if (over && active.id !== over.id) {
+                          setSectionOrder((items) => {
+                            const oldIndex = items.indexOf(active.id as string);
+                            const newIndex = items.indexOf(over.id as string);
+                            return arrayMove(items, oldIndex, newIndex);
+                          });
+                        }
+                      }}
+                    >
+                      <SortableContext items={sectionOrder} strategy={rectSortingStrategy}>
+                        <div className="space-y-2">
+                          {sectionOrder.map((id) => (
+                            <SortableSectionItem key={id} id={id} />
+                          ))}
+                        </div>
+                      </SortableContext>
+                    </DndContext>
+                  </div>
+                </TabsContent>
               </Tabs>
             </div>
           </div>
@@ -1801,6 +1881,13 @@ export default function Dashboard() {
                       data-testid="tab-fonts-mobile"
                     >
                       Fonts
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="blocks" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-blocks-mobile"
+                    >
+                      Blocks
                     </TabsTrigger>
                   </TabsList>
                 </div>
@@ -2052,6 +2139,33 @@ export default function Dashboard() {
                         </button>
                       ))}
                     </div>
+                  </div>
+                </TabsContent>
+                <TabsContent value="blocks" className="flex-1 p-6 m-0" data-testid="content-blocks-mobile">
+                  <div className="space-y-4">
+                    <p className="text-sm text-foreground/60 mb-4">Re-arrange your portfolio sections</p>
+                    <DndContext
+                      sensors={sensors}
+                      collisionDetection={closestCenter}
+                      onDragEnd={(event) => {
+                        const { active, over } = event;
+                        if (over && active.id !== over.id) {
+                          setSectionOrder((items) => {
+                            const oldIndex = items.indexOf(active.id as string);
+                            const newIndex = items.indexOf(over.id as string);
+                            return arrayMove(items, oldIndex, newIndex);
+                          });
+                        }
+                      }}
+                    >
+                      <SortableContext items={sectionOrder} strategy={rectSortingStrategy}>
+                        <div className="space-y-2">
+                          {sectionOrder.map((id) => (
+                            <SortableSectionItem key={id} id={id} />
+                          ))}
+                        </div>
+                      </SortableContext>
+                    </DndContext>
                   </div>
                 </TabsContent>
               </Tabs>
