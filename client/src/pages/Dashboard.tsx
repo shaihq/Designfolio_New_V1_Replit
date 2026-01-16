@@ -1082,18 +1082,25 @@ export default function Dashboard() {
           </Card>
           </motion.div>
 
-          {sectionOrder.map((sectionId, index) => {
-            const delay = 0.15 + index * 0.15;
-            
-            if (sectionId === 'works') {
-              return (
-                <motion.div
-                  key="works"
-                  id="section-works"
-                  initial={{ y: 20 }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay }}
-                >
+          <AnimatePresence mode="popLayout">
+            {sectionOrder.map((sectionId, index) => {
+              const delay = 0.15 + index * 0.15;
+              
+              if (sectionId === 'works') {
+                return (
+                  <motion.div
+                    key="works"
+                    layout
+                    id="section-works"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      ease: [0.4, 0, 0.2, 1],
+                      layout: { duration: 0.6, ease: "easeInOut" }
+                    }}
+                  >
                   <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
@@ -1251,15 +1258,21 @@ export default function Dashboard() {
               );
             }
 
-            if (sectionId === 'testimonials') {
-              return (
-                <motion.div
-                  key="testimonials"
-                  id="section-testimonials"
-                  initial={{ y: 20 }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay }}
-                >
+              if (sectionId === 'testimonials') {
+                return (
+                  <motion.div
+                    key="testimonials"
+                    layout
+                    id="section-testimonials"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      ease: [0.4, 0, 0.2, 1],
+                      layout: { duration: 0.6, ease: "easeInOut" }
+                    }}
+                  >
                   <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-testimonials-title">
@@ -1340,15 +1353,21 @@ export default function Dashboard() {
               );
             }
 
-            if (sectionId === 'toolbox') {
-              return (
-                <motion.div
-                  key="toolbox"
-                  id="section-toolbox"
-                  initial={{ y: 20 }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay }}
-                >
+              if (sectionId === 'toolbox') {
+                return (
+                  <motion.div
+                    key="toolbox"
+                    layout
+                    id="section-toolbox"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      ease: [0.4, 0, 0.2, 1],
+                      layout: { duration: 0.6, ease: "easeInOut" }
+                    }}
+                  >
                   <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-toolbox-title">
@@ -1405,8 +1424,9 @@ export default function Dashboard() {
                 </motion.div>
               );
             }
-            return null;
-          })}
+              return null;
+            })}
+          </AnimatePresence>
         </main>
       </div>
 
