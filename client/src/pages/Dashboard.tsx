@@ -44,7 +44,8 @@ import {
   Lock,
   Crown,
   Eye,
-  EyeOff
+  EyeOff,
+  RotateCcw
 } from "lucide-react";
 import { Link } from "wouter";
 import {
@@ -1816,7 +1817,19 @@ export default function Dashboard() {
                 </TabsContent>
                 <TabsContent value="blocks" className="flex-1 p-6 m-0" data-testid="content-blocks">
                   <div className="space-y-4">
-                    <p className="text-sm text-foreground/60 mb-4">Re-arrange your portfolio sections</p>
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="text-sm text-foreground/60">Re-arrange your portfolio sections</p>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSectionOrder(['works', 'testimonials', 'toolbox'])}
+                        className="h-8 px-2 text-xs gap-1.5 text-foreground/40 hover:text-foreground"
+                        data-testid="button-reset-blocks"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        Reset
+                      </Button>
+                    </div>
                     <DndContext
                       sensors={sensors}
                       collisionDetection={closestCenter}
@@ -2154,7 +2167,19 @@ export default function Dashboard() {
                 </TabsContent>
                 <TabsContent value="blocks" className="flex-1 p-6 m-0" data-testid="content-blocks-mobile">
                   <div className="space-y-4">
-                    <p className="text-sm text-foreground/60 mb-4">Re-arrange your portfolio sections</p>
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="text-sm text-foreground/60">Re-arrange your portfolio sections</p>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSectionOrder(['works', 'testimonials', 'toolbox'])}
+                        className="h-8 px-2 text-xs gap-1.5 text-foreground/40 hover:text-foreground"
+                        data-testid="button-reset-blocks-mobile"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        Reset
+                      </Button>
+                    </div>
                     <DndContext
                       sensors={sensors}
                       collisionDetection={closestCenter}
