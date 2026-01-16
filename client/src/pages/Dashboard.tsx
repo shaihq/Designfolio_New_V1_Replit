@@ -1868,7 +1868,7 @@ export default function Dashboard() {
                             if (sectionElement) {
                               sectionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                             }
-                          }, 100);
+                          }, 200);
                         }
                       }}
                     >
@@ -2218,7 +2218,7 @@ export default function Dashboard() {
                             if (sectionElement) {
                               sectionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                             }
-                          }, 100);
+                          }, 200);
                         }
                       }}
                     >
