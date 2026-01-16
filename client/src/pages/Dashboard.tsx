@@ -1874,7 +1874,7 @@ export default function Dashboard() {
                       }}
                     >
                       <SortableContext items={sectionOrder} strategy={rectSortingStrategy}>
-                        <div className="space-y-2">
+                        <div className="space-y-2 relative min-h-[140px]">
                           <AnimatePresence mode="popLayout">
                             {sectionOrder.map((id) => (
                               <SortableSectionItem key={id} id={id} />
@@ -2226,7 +2226,7 @@ export default function Dashboard() {
                       }}
                     >
                       <SortableContext items={sectionOrder} strategy={rectSortingStrategy}>
-                        <div className="space-y-2">
+                        <div className="space-y-2 relative min-h-[140px]">
                           <AnimatePresence mode="popLayout">
                             {sectionOrder.map((id) => (
                               <SortableSectionItem key={id} id={id} />
