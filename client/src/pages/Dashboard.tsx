@@ -650,8 +650,9 @@ export default function Dashboard() {
     };
 
     return (
-      <div
+      <motion.div
         ref={setNodeRef}
+        layout
         style={style}
         className={`flex items-center gap-3 p-3 rounded-xl border border-border bg-card/50 transition-all ${
           isDragging ? 'opacity-50 shadow-lg scale-[1.02]' : 'hover:bg-accent/50'
@@ -1874,9 +1875,11 @@ export default function Dashboard() {
                     >
                       <SortableContext items={sectionOrder} strategy={rectSortingStrategy}>
                         <div className="space-y-2">
-                          {sectionOrder.map((id) => (
-                            <SortableSectionItem key={id} id={id} />
-                          ))}
+                          <AnimatePresence mode="popLayout">
+                            {sectionOrder.map((id) => (
+                              <SortableSectionItem key={id} id={id} />
+                            ))}
+                          </AnimatePresence>
                         </div>
                       </SortableContext>
                     </DndContext>
@@ -2224,9 +2227,11 @@ export default function Dashboard() {
                     >
                       <SortableContext items={sectionOrder} strategy={rectSortingStrategy}>
                         <div className="space-y-2">
-                          {sectionOrder.map((id) => (
-                            <SortableSectionItem key={id} id={id} />
-                          ))}
+                          <AnimatePresence mode="popLayout">
+                            {sectionOrder.map((id) => (
+                              <SortableSectionItem key={id} id={id} />
+                            ))}
+                          </AnimatePresence>
                         </div>
                       </SortableContext>
                     </DndContext>
