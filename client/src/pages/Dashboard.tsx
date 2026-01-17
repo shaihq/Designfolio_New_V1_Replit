@@ -70,6 +70,13 @@ import { TiptapEditor } from '@/components/TiptapEditor';
 
 import { CourseCard } from "@/components/CourseCard";
 
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 export default function Dashboard() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
@@ -1028,28 +1035,41 @@ export default function Dashboard() {
             {/* Profile Info */}
             <div className="p-8 pb-6">
               <div className="flex items-center gap-6">
-                <div 
-                  className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef]" 
-                  style={{ backgroundColor: '#F5F3F1' }} 
-                  data-testid="avatar-profile"
-                >
-                  {!imageLoaded && (
-                    <div 
-                      className="absolute inset-0 rounded-2xl"
-                      style={{
-                        background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
-                        animation: 'shimmer 1.5s infinite'
-                      }}
-                    />
-                  )}
-                  <img 
-                    src="/advanced.png" 
-                    alt={user.name} 
-                    className="w-24 h-24 object-contain"
-                    onLoad={() => setImageLoaded(true)}
-                    style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
-                  />
-                </div>
+                <TooltipProvider>
+                  <Tooltip delayDuration={300}>
+                    <TooltipTrigger asChild>
+                      <div 
+                        className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef] cursor-help" 
+                        style={{ backgroundColor: '#F5F3F1' }} 
+                        data-testid="avatar-profile"
+                      >
+                        {!imageLoaded && (
+                          <div 
+                            className="absolute inset-0 rounded-2xl"
+                            style={{
+                              background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
+                              animation: 'shimmer 1.5s infinite'
+                            }}
+                          />
+                        )}
+                        <img 
+                          src="/advanced.png" 
+                          alt={user.name} 
+                          className="w-24 h-24 object-contain"
+                          onLoad={() => setImageLoaded(true)}
+                          style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
+                        />
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent 
+                      side="top" 
+                      className="bg-[#1A1A1A] text-white border-0 px-4 py-2 rounded-xl flex items-center gap-2 shadow-xl"
+                    >
+                      <span className="text-sm font-medium">Happy to have you here</span>
+                      <img src="/handshake.png" alt="Handshake" className="w-5 h-5 object-contain" />
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
                 
                 <div className="flex-1">
                   <h1 className="text-3xl font-semibold mb-2 font-heading" data-testid="text-user-name">
