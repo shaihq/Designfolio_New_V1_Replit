@@ -1018,8 +1018,9 @@ export default function Dashboard() {
             initial={{ y: 20 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            className="z-10"
           >
-            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl overflow-hidden mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
             {/* Edit Button - Top Right */}
             <div className="absolute top-4 right-4 z-10">
               <Button 
@@ -1085,7 +1086,7 @@ export default function Dashboard() {
             
             {/* Skills Banner Strip */}
             <div 
-              className="relative overflow-hidden border-t border-border/10 py-3 bg-[#F8F7F5]" 
+              className="relative overflow-hidden border-t border-border/10 py-3 bg-[#F8F7F5] rounded-b-2xl" 
               data-testid="container-categories"
             >
               <div className="flex gap-4 animate-scroll px-8 opacity-40">
