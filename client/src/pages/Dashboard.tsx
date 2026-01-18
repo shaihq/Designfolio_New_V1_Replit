@@ -1700,8 +1700,9 @@ export default function Dashboard() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mt-6 pb-20 pt-8 max-w-4xl mx-auto px-6"
+        className="mt-6 pb-20 pt-8"
       >
+        <div className="max-w-4xl mx-auto px-6">
           <div
             className={selectedWallpaper ? "relative bg-white p-10 shadow-sm overflow-hidden" : ""}
             style={selectedWallpaper ? {
@@ -1821,37 +1822,37 @@ export default function Dashboard() {
               </motion.div>
             </div>
 
-            <div className="pt-6 flex flex-col items-center justify-center gap-4">
-              <svg
-                width="120"
-                height="40"
-                viewBox="0 0 120 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-foreground/20"
-              >
-                <motion.path
-                  d="M10 20C17 13 23 27 30 20C37 13 43 27 50 20C57 13 63 27 70 20C77 13 83 27 90 20C97 13 103 27 110 20"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: 1 }}
-                  viewport={{ once: false, amount: 0.1 }}
-                  transition={{
-                    pathLength: { duration: 2, ease: "easeInOut" },
-                    opacity: { duration: 0.3 }
-                  }}
-                />
-              </svg>
-              <CrypticText text="© SHAI KRISHNA" className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/20" />
-            </div>
+          <div className="pt-6 flex flex-col items-center justify-center gap-4">
+            <svg
+              width="120"
+              height="40"
+              viewBox="0 0 120 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-foreground/20"
+            >
+              <motion.path
+                d="M10 20C17 13 23 27 30 20C37 13 43 27 50 20C57 13 63 27 70 20C77 13 83 27 90 20C97 13 103 27 110 20"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: false, amount: 0.1 }}
+                transition={{
+                  pathLength: { duration: 2, ease: "easeInOut" },
+                  opacity: { duration: 0.3 }
+                }}
+              />
+            </svg>
+            <CrypticText text="© SHAI KRISHNA" className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/20" />
           </div>
         </div>
       </motion.footer>
-      </main>
-      </div>
+    </main>
+  </div>
+</div>
 
       {/* Resume PDF Dialog */}
       <Dialog open={isResumeDialogOpen} onOpenChange={setIsResumeDialogOpen}>
