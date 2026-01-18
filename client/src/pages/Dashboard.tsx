@@ -1680,7 +1680,7 @@ export default function Dashboard() {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <button
-                        className="text-base font-medium hover:text-primary hover:underline underline-offset-4 transition-colors cursor-pointer"
+                        className="text-base font-medium hover:underline underline-offset-4 transition-colors cursor-pointer"
                         onClick={() => {
                           navigator.clipboard.writeText("+12065714546");
                           toast({
