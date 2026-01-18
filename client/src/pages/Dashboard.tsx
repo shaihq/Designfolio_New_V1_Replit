@@ -1973,7 +1973,6 @@ export default function Dashboard() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      </div>
       {/* Theme Panel - Desktop (pushes content) - Only on large screens */}
       {!isMobileOrTablet && (
         <div 
