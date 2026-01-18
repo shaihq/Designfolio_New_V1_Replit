@@ -686,6 +686,8 @@ export default function Dashboard() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [isHovered, setIsHovered] = useState(false);
 
+    const [isHoveringInteractive, setIsHoveringInteractive] = useState(false);
+
     const handleMouseMove = (e: React.MouseEvent) => {
       const rect = e.currentTarget.getBoundingClientRect();
       setMousePos({
@@ -698,7 +700,7 @@ export default function Dashboard() {
       transform: CSS.Transform.toString(transform),
       transition: transition || 'transform 200ms ease',
       zIndex: isDragging ? 50 : 'auto',
-      cursor: 'none'
+      cursor: isHoveringInteractive ? 'auto' : 'none'
     };
 
     return (
@@ -709,10 +711,13 @@ export default function Dashboard() {
         data-testid={`card-case-study-${project.id}`}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          setIsHoveringInteractive(false);
+        }}
       >
         <AnimatePresence>
-          {isHovered && !isDragging && (
+          {isHovered && !isDragging && !isHoveringInteractive && (
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -796,6 +801,8 @@ export default function Dashboard() {
 
           <div 
             className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between bg-gradient-to-t from-white via-white to-transparent rounded-b-2xl"
+            onMouseEnter={() => setIsHoveringInteractive(true)}
+            onMouseLeave={() => setIsHoveringInteractive(false)}
           >
             <button
               {...attributes}
