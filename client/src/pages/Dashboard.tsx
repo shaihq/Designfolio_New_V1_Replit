@@ -1582,18 +1582,18 @@ export default function Dashboard() {
                               <Pencil className="w-4 h-4" />
                             </Button>
 
-                            <div className="mb-6">
-                              <svg width="24" height="20" viewBox="0 0 40 32" fill="none" className="text-foreground/20">
-                                <path d="M0 20.48C0 12.608 3.84 5.824 11.52 0.191999L15.04 4.288C9.92 8.512 7.36 12.928 7.36 17.536C7.36 18.304 7.424 18.944 7.552 19.456C8.704 18.816 10.176 18.496 11.968 18.496C14.656 18.496 16.832 19.328 18.496 20.992C20.16 22.656 20.992 24.832 20.992 27.52C20.992 30.208 20.16 32.384 18.496 34.048C16.832 35.712 14.656 36.544 11.968 36.544C8.512 36.544 5.76 35.36 3.712 32.992C1.664 30.624 0.64 27.072 0.64 22.336L0 20.48ZM24.32 20.48C24.32 12.608 28.16 5.824 35.84 0.191999L39.36 4.288C34.24 8.512 31.68 12.928 31.68 17.536C31.68 18.304 31.744 18.944 31.872 19.456C33.024 18.816 34.496 18.496 36.288 18.496C38.976 18.496 41.152 19.328 42.816 20.992C44.48 22.656 45.312 24.832 45.312 27.52C45.312 30.208 44.48 32.384 42.816 34.048C41.152 35.712 38.976 36.544 36.288 36.544C32.832 36.544 30.08 35.36 28.032 32.992C25.984 30.624 24.96 27.072 24.96 22.336L24.32 20.48Z" fill="currentColor"/>
+                            <div className="mb-8">
+                              <svg width="48" height="36" viewBox="0 0 48 36" fill="none" className="text-blue-600">
+                                <path d="M0 17.5C0 11.5 2.5 6.5 7.5 2.5L10.5 5.5C7 8.5 5 12 5 16C5 16.5 5.1 17 5.2 17.5C6 17 7 16.5 8.5 16.5C10.5 16.5 12 17 13.5 18.5C15 20 15.5 22 15.5 24C15.5 26 15 28 13.5 29.5C12 31 10.5 31.5 8.5 31.5C6 31.5 4 30.5 2.5 28.5C1 26.5 0 23.5 0 19.5V17.5ZM24 17.5C24 11.5 26.5 6.5 31.5 2.5L34.5 5.5C31 8.5 29 12 29 16C29 16.5 29.1 17 29.2 17.5C30 17 31 16.5 32.5 16.5C34.5 16.5 36 17 37.5 18.5C39 20 39.5 22 39.5 24C39.5 26 39 28 37.5 29.5C36 31 34.5 31.5 32.5 31.5C30 31.5 28 30.5 26.5 28.5C25 26.5 24 23.5 24 19.5V17.5Z" fill="currentColor"/>
                               </svg>
                             </div>
 
-                            <p className="text-sm leading-relaxed mb-6 flex-1 text-foreground/70" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                            <p className="text-base leading-[1.7] mb-8 flex-1 text-foreground/70" data-testid={`text-testimonial-content-${testimonial.id}`}>
                               {testimonial.text}
                             </p>
 
                             <div className="flex items-center gap-3 mt-auto">
-                              <Avatar className="w-10 h-10 shrink-0">
+                              <Avatar className="w-12 h-12 shrink-0">
                                 <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                                 <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
                                   {testimonial.name.split(' ').map(n => n[0]).join('')}
@@ -1601,10 +1601,10 @@ export default function Dashboard() {
                               </Avatar>
 
                               <div>
-                                <h3 className="font-semibold text-sm mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                                <h3 className="font-semibold text-base mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
                                   {testimonial.name}
                                 </h3>
-                                <p className="text-xs text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                                <p className="text-sm text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
                                   {testimonial.company}
                                 </p>
                               </div>
