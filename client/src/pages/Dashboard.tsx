@@ -52,7 +52,8 @@ import {
   ArrowUpRight,
   Copy,
   Instagram,
-  Dribbble
+  Dribbble,
+  ThumbsUp
 } from "lucide-react";
 import { SiBehance } from "react-icons/si";
 import { Link } from "wouter";
@@ -87,6 +88,7 @@ import {
 
 export default function Dashboard() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
   const [selectedWallpaper, setSelectedWallpaper] = useState<string | null>(() => {
     const saved = localStorage.getItem('dashboard-wallpaper');
@@ -1680,20 +1682,29 @@ export default function Dashboard() {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <button
-                        className="text-base font-medium hover:underline underline-offset-4 transition-colors cursor-pointer"
+                        className="text-base font-medium hover:underline underline-offset-4 transition-all duration-300 cursor-pointer min-w-[140px] text-right flex items-center justify-end gap-2"
                         onClick={() => {
                           navigator.clipboard.writeText("+12065714546");
-                          toast({
-                            description: "Phone number copied to clipboard",
-                          });
+                          setIsCopied(true);
+                          setTimeout(() => setIsCopied(false), 2000);
                         }}
                         data-testid="button-copy-phone"
                       >
-                        +1 (206)-571-4546
+                        {isCopied ? (
+                          <motion.span 
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="flex items-center gap-2 text-primary"
+                          >
+                            Copied <ThumbsUp className="w-4 h-4" />
+                          </motion.span>
+                        ) : (
+                          <span>+1 (206)-571-4546</span>
+                        )}
                       </button>
                     </TooltipTrigger>
                     <TooltipContent className="bg-foreground text-background border-none px-2 py-1 text-[10px] font-bold uppercase tracking-wider">
-                      <p>Copy</p>
+                      <p>{isCopied ? "Copied!" : "Copy"}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
