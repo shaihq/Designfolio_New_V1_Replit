@@ -1612,10 +1612,10 @@ export default function Dashboard() {
           transition={{ duration: 0.6 }}
           className="mt-12 pb-20 pt-8 max-w-2xl mx-auto"
         >
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-6">
             <div className="flex flex-col">
               <motion.div
-                className="flex items-center justify-between py-5 border-b border-border/10 group"
+                className="flex items-center justify-between py-4 border-b border-border/10 group"
                 data-testid="footer-item-mail"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -1632,7 +1632,7 @@ export default function Dashboard() {
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-5 border-b border-border/10 group"
+                className="flex items-center justify-between py-4 border-b border-border/10 group"
                 data-testid="footer-item-socials"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -1643,12 +1643,28 @@ export default function Dashboard() {
                 <div className="flex items-center gap-2">
                   <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">LinkedIn</a>
                   <span className="text-foreground/20">•</span>
-                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">X (Prev. Twitter)</a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">X</a>
+                  <span className="text-foreground/20">•</span>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Instagram</a>
+                  <span className="text-foreground/20">•</span>
+                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Dribbble</a>
                 </div>
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-5 border-b border-border/10 group"
+                className="flex items-center justify-between py-4 border-b border-border/10 group"
+                data-testid="footer-item-resume"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.8 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+              >
+                <span className="text-base text-foreground/50">Resume</span>
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">View PDF</a>
+              </motion.div>
+
+              <motion.div
+                className="flex items-center justify-between py-4 border-b border-border/10 group"
                 data-testid="footer-item-phone"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -1660,7 +1676,7 @@ export default function Dashboard() {
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-5 border-b border-border/10 group"
+                className="flex items-center justify-between py-4 border-b border-border/10 group"
                 data-testid="footer-item-blogs"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
