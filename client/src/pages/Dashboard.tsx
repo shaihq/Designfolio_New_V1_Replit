@@ -1199,7 +1199,7 @@ export default function Dashboard() {
                       id="section-works"
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "0px 0px -20% 0px", amount: 0.1 }}
+                      viewport={{ once: true, amount: 0.01 }}
                       transition={{
                         duration: 0.7,
                         ease: [0.21, 0.47, 0.32, 0.98],
@@ -1371,7 +1371,7 @@ export default function Dashboard() {
         id="section-work-experience"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "0px 0px -20% 0px", amount: 0.1 }}
+        viewport={{ once: true, amount: 0.01 }}
         transition={{
           duration: 0.7,
           ease: [0.21, 0.47, 0.32, 0.98],
@@ -1441,7 +1441,7 @@ export default function Dashboard() {
                     id="section-testimonials"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "0px 0px -20% 0px", amount: 0.1 }}
+                    viewport={{ once: true, amount: 0.01 }}
                     transition={{
                       duration: 0.7,
                       ease: [0.21, 0.47, 0.32, 0.98],
@@ -1472,7 +1472,7 @@ export default function Dashboard() {
                             key={testimonial.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "0px 0px 0px 0px", amount: 0.3 }}
+                            viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
                             onViewportEnter={() => {
                               setTimeout(() => {
@@ -1536,7 +1536,7 @@ export default function Dashboard() {
                     id="section-toolbox"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "0px 0px -20% 0px", amount: 0.1 }}
+                    viewport={{ once: true, amount: 0.01 }}
                     transition={{
                       duration: 0.7,
                       ease: [0.21, 0.47, 0.32, 0.98],
