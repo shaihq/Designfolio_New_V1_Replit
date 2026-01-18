@@ -1682,11 +1682,13 @@ export default function Dashboard() {
                   <Tooltip delayDuration={0}>
                     <TooltipTrigger asChild>
                       <button
-                        className="text-base font-medium hover:underline underline-offset-4 transition-all duration-300 cursor-pointer min-w-[140px] text-right flex items-center justify-end gap-2"
+                        className={`text-base font-medium transition-all duration-300 min-w-[140px] text-right flex items-center justify-end gap-2 ${!isCopied ? 'hover:underline underline-offset-4 cursor-pointer' : 'cursor-default'}`}
                         onClick={() => {
-                          navigator.clipboard.writeText("+12065714546");
-                          setIsCopied(true);
-                          setTimeout(() => setIsCopied(false), 2000);
+                          if (!isCopied) {
+                            navigator.clipboard.writeText("+12065714546");
+                            setIsCopied(true);
+                            setTimeout(() => setIsCopied(false), 2000);
+                          }
                         }}
                         data-testid="button-copy-phone"
                       >
@@ -1703,9 +1705,11 @@ export default function Dashboard() {
                         )}
                       </button>
                     </TooltipTrigger>
-                    <TooltipContent className="bg-foreground text-background border-none px-2 py-1 text-[10px] font-bold uppercase tracking-wider">
-                      <p>{isCopied ? "Copied!" : "Copy"}</p>
-                    </TooltipContent>
+                    {!isCopied && (
+                      <TooltipContent className="bg-foreground text-background border-none px-2 py-1 text-[10px] font-bold uppercase tracking-wider">
+                        <p>Copy</p>
+                      </TooltipContent>
+                    )}
                   </Tooltip>
                 </TooltipProvider>
               </motion.div>
