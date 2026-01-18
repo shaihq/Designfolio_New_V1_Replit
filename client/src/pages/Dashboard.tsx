@@ -1040,7 +1040,7 @@ export default function Dashboard() {
                   <Tooltip delayDuration={300}>
                     <TooltipTrigger asChild>
                       <div 
-                        className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef] cursor-help" 
+                        className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef]" 
                         style={{ backgroundColor: '#F5F3F1' }} 
                         data-testid="avatar-profile"
                       >
