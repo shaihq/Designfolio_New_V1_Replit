@@ -1273,11 +1273,28 @@ export default function Dashboard() {
                     >
                   <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
-                        My works
-                      </h2>
+                      <div className="flex items-center gap-3">
+                        <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
+                          My works
+                        </h2>
+                        <motion.svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="text-foreground/30"
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "linear"
+                          }}
+                        >
+                          <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+                        </motion.svg>
+                      </div>
                       {caseStudies.length > 0 && (
-                        <Button 
+                        <Button
                           onClick={() => setIsTemplateDialogOpen(true)}
                           variant="outline"
                           size="icon"
