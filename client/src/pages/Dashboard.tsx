@@ -1545,7 +1545,7 @@ export default function Dashboard() {
                       </Button>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{ gridAutoRows: 'auto' }}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ gridAutoRows: 'auto' }}>
                       {testimonials.map((testimonial, idx) => {
                         const isVisible = visibleTestimonials.has(testimonial.id);
 
@@ -1561,39 +1561,31 @@ export default function Dashboard() {
                                 setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
                               }, 300 + idx * 100);
                             }}
-                            className={`group rounded-2xl p-6 flex flex-col relative transition-all duration-300 ${
+                            className={`border-2 rounded-2xl p-5 flex flex-col relative transition-all duration-300 ${
                               selectedTestimonialId === testimonial.id
-                                ? 'bg-foreground/5'
-                                : 'bg-white hover-elevate'
+                                ? 'border-foreground/40 bg-foreground/5'
+                                : 'border-border/30 bg-white hover-elevate'
                             }`}
                             data-testid={`card-testimonial-${testimonial.id}`}
                             style={{
-                              backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.04)' : '#FFFFFF',
-                              boxShadow: '0 0 0 1px rgba(0,0,0,0.04), 0 2px 12px rgba(0,0,0,0.04)'
+                              backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.03)' : '#F5F3F1'
                             }}
                           >
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="absolute top-4 right-4 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
+                              className="absolute top-4 right-4 h-8 w-8"
                               onClick={() => handleEditTestimonialClick(testimonial)}
                               data-testid={`button-edit-testimonial-${testimonial.id}`}
                             >
                               <Pencil className="w-4 h-4" />
                             </Button>
-
-                            <div className="mb-8">
-                              <svg width="48" height="36" viewBox="0 0 48 36" fill="none" className="text-blue-600">
-                                <path d="M0 17.5C0 11.5 2.5 6.5 7.5 2.5L10.5 5.5C7 8.5 5 12 5 16C5 16.5 5.1 17 5.2 17.5C6 17 7 16.5 8.5 16.5C10.5 16.5 12 17 13.5 18.5C15 20 15.5 22 15.5 24C15.5 26 15 28 13.5 29.5C12 31 10.5 31.5 8.5 31.5C6 31.5 4 30.5 2.5 28.5C1 26.5 0 23.5 0 19.5V17.5ZM24 17.5C24 11.5 26.5 6.5 31.5 2.5L34.5 5.5C31 8.5 29 12 29 16C29 16.5 29.1 17 29.2 17.5C30 17 31 16.5 32.5 16.5C34.5 16.5 36 17 37.5 18.5C39 20 39.5 22 39.5 24C39.5 26 39 28 37.5 29.5C36 31 34.5 31.5 32.5 31.5C30 31.5 28 30.5 26.5 28.5C25 26.5 24 23.5 24 19.5V17.5Z" fill="currentColor"/>
-                              </svg>
-                            </div>
-
-                            <p className="text-base leading-[1.7] mb-8 flex-1 text-foreground/70" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                            <p className="text-sm leading-relaxed mb-4 flex-1 pr-6" data-testid={`text-testimonial-content-${testimonial.id}`}>
                               {testimonial.text}
                             </p>
 
-                            <div className="flex items-center gap-3 mt-auto">
-                              <Avatar className="w-12 h-12 shrink-0">
+                            <div className="flex items-center gap-2.5">
+                              <Avatar className="w-10 h-10 shrink-0">
                                 <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                                 <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
                                   {testimonial.name.split(' ').map(n => n[0]).join('')}
@@ -1601,10 +1593,10 @@ export default function Dashboard() {
                               </Avatar>
 
                               <div>
-                                <h3 className="font-semibold text-base mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                                <h3 className="font-semibold text-sm mb-0" data-testid={`text-testimonial-name-${testimonial.id}`}>
                                   {testimonial.name}
                                 </h3>
-                                <p className="text-sm text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                                <p className="text-xs text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
                                   {testimonial.company}
                                 </p>
                               </div>
