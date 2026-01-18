@@ -1653,25 +1653,20 @@ export default function Dashboard() {
                 xmlns="http://www.w3.org/2000/svg"
                 className="text-foreground/20"
               >
-                <path
+                <motion.path
                   d="M10 20C17 13 23 27 30 20C37 13 43 27 50 20C57 13 63 27 70 20C77 13 83 27 90 20C97 13 103 27 110 20"
                   stroke="currentColor"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  style={{
-                    strokeDasharray: '200',
-                    strokeDashoffset: '200',
-                    animation: 'drawScribble 2s ease-out forwards'
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    pathLength: { duration: 2, ease: "easeInOut" },
+                    opacity: { duration: 0.3 }
                   }}
                 />
-                <style>{`
-                  @keyframes drawScribble {
-                    to {
-                      stroke-dashoffset: 0;
-                    }
-                  }
-                `}</style>
               </svg>
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/20">
                 HARSH POTPHODE
