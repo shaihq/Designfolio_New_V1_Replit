@@ -1679,7 +1679,7 @@ export default function Dashboard() {
               >
                 <span className="text-base text-foreground/50">Phone number</span>
                 <TooltipProvider>
-                  <Tooltip>
+                  <Tooltip delayDuration={0}>
                     <TooltipTrigger asChild>
                       <button
                         className="text-base font-medium hover:underline underline-offset-4 transition-all duration-300 cursor-pointer min-w-[140px] text-right flex items-center justify-end gap-2"
@@ -1694,7 +1694,7 @@ export default function Dashboard() {
                           <motion.span 
                             initial={{ opacity: 0, y: 5 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="flex items-center gap-2 text-primary"
+                            className="flex items-center gap-2 text-[#FF553E]"
                           >
                             Copied <ThumbsUp className="w-4 h-4" />
                           </motion.span>
