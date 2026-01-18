@@ -1681,7 +1681,7 @@ export default function Dashboard() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 text-foreground/20 hover:text-foreground transition-colors"
+                    className="h-8 w-8 text-foreground/40 hover:text-foreground transition-colors"
                     onClick={() => {
                       navigator.clipboard.writeText("+12065714546");
                       toast({
