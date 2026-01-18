@@ -1849,9 +1849,11 @@ export default function Dashboard() {
             <CrypticText text="© SHAI KRISHNA" className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/20" />
           </div>
         </div>
-      </motion.footer>
-    </main>
-  </div>
+      </div>
+    </div>
+  </motion.footer>
+</main>
+</div>
 </div>
 
       {/* Resume PDF Dialog */}
