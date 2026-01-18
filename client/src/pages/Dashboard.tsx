@@ -1633,9 +1633,7 @@ export default function Dashboard() {
                 <button 
                   onClick={() => setIsResumeDialogOpen(true)}
                   className="text-base font-medium hover:underline underline-offset-4 cursor-pointer"
-                >
-                  View PDF
-                </button>
+                >View Now</button>
               </motion.div>
 
               <motion.div
