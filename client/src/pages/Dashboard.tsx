@@ -1592,8 +1592,8 @@ export default function Dashboard() {
                               {testimonial.text}
                             </p>
 
-                            <div className="flex items-center gap-4 mt-auto">
-                              <Avatar className="w-14 h-14 shrink-0">
+                            <div className="flex items-center gap-3 mt-auto">
+                              <Avatar className="w-10 h-10 shrink-0">
                                 <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                                 <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
                                   {testimonial.name.split(' ').map(n => n[0]).join('')}
@@ -1601,10 +1601,10 @@ export default function Dashboard() {
                               </Avatar>
 
                               <div>
-                                <h3 className="font-semibold text-base mb-1 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                                <h3 className="font-semibold text-sm mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
                                   {testimonial.name}
                                 </h3>
-                                <p className="text-sm text-foreground/60" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                                <p className="text-xs text-foreground/60" data-testid={`text-testimonial-role-${testimonial.id}`}>
                                   {testimonial.company}
                                 </p>
                               </div>
