@@ -1623,48 +1623,11 @@ export default function Dashboard() {
             <div className="flex flex-col">
               <motion.div
                 className="flex items-center justify-between py-4 border-b border-border/10 group"
-                data-testid="footer-item-mail"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.8 }}
-                transition={{ duration: 0.5, delay: 0 }}
-              >
-                <span className="text-base text-foreground/50">Mail</span>
-                <a
-                  href="mailto:rakshit.design@gmail.com"
-                  className="text-base font-medium hover:underline underline-offset-4"
-                >
-                  rakshit.design@gmail.com
-                </a>
-              </motion.div>
-
-              <motion.div
-                className="flex items-center justify-between py-4 border-b border-border/10 group"
-                data-testid="footer-item-socials"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.8 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                <span className="text-base text-foreground/50">Socials</span>
-                <div className="flex items-center gap-2">
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">LinkedIn</a>
-                  <span className="text-foreground/20">•</span>
-                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">X</a>
-                  <span className="text-foreground/20">•</span>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Instagram</a>
-                  <span className="text-foreground/20">•</span>
-                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Dribbble</a>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="flex items-center justify-between py-4 border-b border-border/10 group"
                 data-testid="footer-item-resume"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.8 }}
-                transition={{ duration: 0.5, delay: 0.15 }}
+                transition={{ duration: 0.5, delay: 0 }}
               >
                 <span className="text-base text-foreground/50">Resume</span>
                 <button 
@@ -1673,6 +1636,23 @@ export default function Dashboard() {
                 >
                   View PDF
                 </button>
+              </motion.div>
+
+              <motion.div
+                className="flex items-center justify-between py-4 border-b border-border/10 group"
+                data-testid="footer-item-mail"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.8 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <span className="text-base text-foreground/50">Mail</span>
+                <a
+                  href="mailto:rakshit.design@gmail.com"
+                  className="text-base font-medium hover:underline underline-offset-4"
+                >
+                  rakshit.design@gmail.com
+                </a>
               </motion.div>
 
               <motion.div
@@ -1730,6 +1710,26 @@ export default function Dashboard() {
               >
                 <span className="text-base text-foreground/50">Blogs</span>
                 <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Medium</a>
+              </motion.div>
+
+              <motion.div
+                className="flex items-center justify-between py-4 border-b border-border/10 group"
+                data-testid="footer-item-socials"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.8 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <span className="text-base text-foreground/50">Socials</span>
+                <div className="flex items-center gap-2">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">LinkedIn</a>
+                  <span className="text-foreground/20">•</span>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">X</a>
+                  <span className="text-foreground/20">•</span>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Instagram</a>
+                  <span className="text-foreground/20">•</span>
+                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Dribbble</a>
+                </div>
               </motion.div>
             </div>
 
