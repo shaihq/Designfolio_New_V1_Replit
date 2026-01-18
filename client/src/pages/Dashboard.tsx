@@ -1091,103 +1091,102 @@ export default function Dashboard() {
           {/* Profile Card */}
           <div className="z-10">
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-            {/* Edit Button - Top Right */}
-            <div 
-              className="absolute top-4 right-4 z-10"
-            >
-              <Button 
-                variant="outline" 
-                size="icon"
-                className="rounded-full h-11 w-11"
-                data-testid="button-edit-profile"
-              >
-                <Pencil className="w-5 h-5" />
-              </Button>
-            </div>
+              {/* Edit Button - Top Right */}
+              <div className="absolute top-4 right-4 z-10">
+                <Button 
+                  variant="outline" 
+                  size="icon"
+                  className="rounded-full h-11 w-11"
+                  data-testid="button-edit-profile"
+                >
+                  <Pencil className="w-5 h-5" />
+                </Button>
+              </div>
 
-            {/* Profile Info */}
-            <div className="p-8 pb-6">
-              <div className="flex items-center gap-6">
-                <TooltipProvider>
-                  <Tooltip delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      <motion.div 
-                        initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
-                        animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-                        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
-                        className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef]" 
-                        style={{ backgroundColor: '#F5F3F1' }} 
-                        data-testid="avatar-profile"
-                      >
-                        {!imageLoaded && (
-                          <div 
-                            className="absolute inset-0 rounded-2xl"
-                            style={{
-                              background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
-                              animation: 'shimmer 1.5s infinite'
-                            }}
+              {/* Profile Info */}
+              <div className="p-8 pb-6">
+                <div className="flex items-center gap-6">
+                  <TooltipProvider>
+                    <Tooltip delayDuration={300}>
+                      <TooltipTrigger asChild>
+                        <motion.div 
+                          initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
+                          animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+                          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
+                          className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef]" 
+                          style={{ backgroundColor: '#F5F3F1' }} 
+                          data-testid="avatar-profile"
+                        >
+                          {!imageLoaded && (
+                            <div 
+                              className="absolute inset-0 rounded-2xl"
+                              style={{
+                                background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
+                                animation: 'shimmer 1.5s infinite'
+                              }}
+                            />
+                          )}
+                          <img 
+                            src="/advanced.png" 
+                            alt={user.name} 
+                            className="w-24 h-24 object-contain"
+                            onLoad={() => setImageLoaded(true)}
+                            style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
                           />
-                        )}
-                        <img 
-                          src="/advanced.png" 
-                          alt={user.name} 
-                          className="w-24 h-24 object-contain"
-                          onLoad={() => setImageLoaded(true)}
-                          style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
-                        />
-                      </motion.div>
-                    </TooltipTrigger>
-                    <TooltipContent 
-                      side="top" 
-                      className="bg-[#1A1A1A] text-white border-0 px-4 py-2 rounded-xl flex items-center gap-2 shadow-xl"
+                        </motion.div>
+                      </TooltipTrigger>
+                      <TooltipContent 
+                        side="top" 
+                        className="bg-[#1A1A1A] text-white border-0 px-4 py-2 rounded-xl flex items-center gap-2 shadow-xl"
+                      >
+                        <span className="text-sm font-medium">Happy to have you here</span>
+                        <img src="/handshake.png" alt="Handshake" className="w-5 h-5 object-contain" />
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  
+                  <div className="flex-1">
+                    <motion.h1 
+                      initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
+                      animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                      transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
+                      className="text-3xl font-semibold mb-2 font-heading" 
+                      data-testid="text-user-name"
                     >
-                      <span className="text-sm font-medium">Happy to have you here</span>
-                      <img src="/handshake.png" alt="Handshake" className="w-5 h-5 object-contain" />
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                
-                <div className="flex-1">
-                  <motion.h1 
-                    initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
-                    animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
-                    className="text-3xl font-semibold mb-2 font-heading" 
-                    data-testid="text-user-name"
-                  >
-                    Hey, I'm Shai!
-                  </motion.h1>
-                  <motion.p 
-                    initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
-                    animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
-                    className="text-base text-foreground/50 leading-relaxed" 
-                    data-testid="text-user-role"
-                  >
-                    A 0→1 Product Designer with 6 years of experience. I design and 
-                    develop digital products, create prototypes, and design interfaces.
-                  </motion.p>
+                      Hey, I'm Shai!
+                    </motion.h1>
+                    <motion.p 
+                      initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
+                      animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                      transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
+                      className="text-base text-foreground/50 leading-relaxed" 
+                      data-testid="text-user-role"
+                    >
+                      A 0→1 Product Designer with 6 years of experience. I design and 
+                      develop digital products, create prototypes, and design interfaces.
+                    </motion.p>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Skills Banner Strip */}
-            <div 
-              className="relative overflow-hidden border-t border-border/10 py-3 bg-[#F8F7F5] rounded-b-2xl" 
-              data-testid="container-categories"
-            >
-              <div className="flex gap-4 animate-scroll px-8 opacity-40">
-                {[...user.categories, ...user.categories].map((category, index) => (
-                  <div key={index} className="flex items-center gap-3 shrink-0">
-                    <span className="text-[12px] font-medium whitespace-nowrap uppercase text-[#0A0A0A] tracking-normal">
-                      {category}
-                    </span>
-                    <Sparkle className="w-2.5 h-2.5 fill-[#0A0A0A] text-[#0A0A0A]" />
-                  </div>
-                ))}
+              
+              {/* Skills Banner Strip */}
+              <div 
+                className="relative overflow-hidden border-t border-border/10 py-3 bg-[#F8F7F5] rounded-b-2xl" 
+                data-testid="container-categories"
+              >
+                <div className="flex gap-4 animate-scroll px-8 opacity-40">
+                  {[...user.categories, ...user.categories].map((category, index) => (
+                    <div key={index} className="flex items-center gap-3 shrink-0">
+                      <span className="text-[12px] font-medium whitespace-nowrap uppercase text-[#0A0A0A] tracking-normal">
+                        {category}
+                      </span>
+                      <Sparkle className="w-2.5 h-2.5 fill-[#0A0A0A] text-[#0A0A0A]" />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          </div>
           
           <div className="mt-6">
             <AnimatePresence mode="popLayout">
