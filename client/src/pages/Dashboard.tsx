@@ -686,35 +686,21 @@ export default function Dashboard() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [isHovered, setIsHovered] = useState(false);
     const [isHoveringInteractive, setIsHoveringInteractive] = useState(false);
-    const [displayText, setDisplayText] = useState("View Case Study");
+    const [displayText, setDisplayText] = useState("");
     const targetText = "View Case Study";
-    const chars = "ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789";
 
     useEffect(() => {
       if (isHovered && !isHoveringInteractive) {
-        let iteration = 0;
+        setDisplayText("");
+        let i = 0;
         const interval = setInterval(() => {
-          setDisplayText(targetText.split("")
-            .map((char, index) => {
-              if (char === " ") return " ";
-              if (index < iteration) return targetText[index];
-              return chars[Math.floor(Math.random() * chars.length)];
-            })
-            .join("")
-          );
-          
-          if (iteration >= targetText.length) {
-            clearInterval(interval);
-          }
-          
-          iteration += 1 / 3;
+          setDisplayText(targetText.slice(0, i + 1));
+          i++;
+          if (i >= targetText.length) clearInterval(interval);
         }, 30);
-        
-        return () => {
-          clearInterval(interval);
-        };
+        return () => clearInterval(interval);
       } else {
-        setDisplayText(targetText);
+        setDisplayText("");
       }
     }, [isHovered, isHoveringInteractive]);
 
