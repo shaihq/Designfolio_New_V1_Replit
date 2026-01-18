@@ -1271,7 +1271,7 @@ export default function Dashboard() {
                         delay: index * 0.1
                       }}
                     >
-                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-0" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-0 mb-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
                         My works
@@ -1460,7 +1460,7 @@ export default function Dashboard() {
           delay: index * 0.1
         }}
       >
-        <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+        <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-0 mb-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-work-experience-title">
               Work Experience
@@ -1530,7 +1530,7 @@ export default function Dashboard() {
                       delay: index * 0.1
                     }}
                   >
-                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-0" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-0 mb-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-testimonials-title">
                         Testimonials
@@ -1633,7 +1633,7 @@ export default function Dashboard() {
                       delay: index * 0.1
                     }}
                   >
-                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-0" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-0 mb-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-toolbox-title">
                         Toolbox
@@ -1695,13 +1695,13 @@ export default function Dashboard() {
       </div>
 
       {/* Footer Section */}
-        <motion.footer
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-12 pb-20 pt-8 max-w-2xl mx-auto"
-        >
+      <motion.footer
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-6 pb-20 pt-8 max-w-2xl mx-auto"
+      >
           <div
             className={selectedWallpaper ? "relative bg-white/95 backdrop-blur-sm p-10 shadow-sm overflow-hidden" : ""}
             style={selectedWallpaper ? {
