@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { toast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -48,7 +49,10 @@ import {
   RotateCcw,
   Mail,
   Linkedin,
-  ArrowUpRight
+  ArrowUpRight,
+  Copy,
+  Instagram,
+  Dribbble
 } from "lucide-react";
 import { SiBehance } from "react-icons/si";
 import { Link } from "wouter";
