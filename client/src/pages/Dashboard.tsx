@@ -89,6 +89,7 @@ import {
 export default function Dashboard() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [isResumeDialogOpen, setIsResumeDialogOpen] = useState(false);
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
   const [selectedWallpaper, setSelectedWallpaper] = useState<string | null>(() => {
     const saved = localStorage.getItem('dashboard-wallpaper');
@@ -1666,7 +1667,12 @@ export default function Dashboard() {
                 transition={{ duration: 0.5, delay: 0.15 }}
               >
                 <span className="text-base text-foreground/50">Resume</span>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">View PDF</a>
+                <button 
+                  onClick={() => setIsResumeDialogOpen(true)}
+                  className="text-base font-medium hover:underline underline-offset-4 cursor-pointer"
+                >
+                  View PDF
+                </button>
               </motion.div>
 
               <motion.div
@@ -1759,6 +1765,31 @@ export default function Dashboard() {
         </motion.footer>
       </main>
       </div>
+
+      {/* Resume PDF Dialog */}
+      <Dialog open={isResumeDialogOpen} onOpenChange={setIsResumeDialogOpen}>
+        <DialogContent className="max-w-[90vw] w-[90vw] h-[90vh] p-0 overflow-hidden border-none bg-background shadow-2xl rounded-2xl">
+          <div className="relative w-full h-full flex flex-col">
+            <div className="absolute top-4 right-4 z-50">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsResumeDialogOpen(false)}
+                className="h-8 w-8 rounded-full bg-black/5 hover:bg-black/10 backdrop-blur-md transition-all"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="flex-1 w-full h-full">
+              <iframe
+                src="/test-resume.pdf#view=FitH"
+                className="w-full h-full border-none"
+                title="Resume Preview"
+              />
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Template Selection Dialog */}
       <Dialog open={isTemplateDialogOpen} onOpenChange={setIsTemplateDialogOpen}>
