@@ -111,8 +111,26 @@ export default function Dashboard() {
   });
   const [sectionOrder, setSectionOrder] = useState<string[]>(() => {
     const saved = localStorage.getItem('dashboard-section-order');
-    return saved ? JSON.parse(saved) : ['works', 'testimonials', 'toolbox'];
+    return saved ? JSON.parse(saved) : ['works', 'work_experience', 'testimonials', 'toolbox'];
   });
+  const [workExperiences, setWorkExperiences] = useState([
+    {
+      id: 1,
+      role: "Senior Product Designer",
+      company: "Stark Industries",
+      period: "2022 - Present",
+      description: "Leading the design system for iron-man suits and industrial interfaces.",
+      logo: "https://api.dicebear.com/7.x/initials/svg?seed=SI"
+    },
+    {
+      id: 2,
+      role: "Product Designer",
+      company: "Wayne Enterprises",
+      period: "2020 - 2022",
+      description: "Designed multi-functional gadgets and vehicle UI for tactical deployment.",
+      logo: "https://api.dicebear.com/7.x/initials/svg?seed=WE"
+    }
+  ]);
   const [selectedFont, setSelectedFont] = useState<string>(() => {
     const saved = localStorage.getItem('dashboard-font');
     return saved || 'inter';
@@ -1324,7 +1342,77 @@ export default function Dashboard() {
               );
             }
 
-              if (sectionId === 'testimonials') {
+              if (sectionId === 'work_experience') {
+    return (
+      <motion.div
+        key="work-experience"
+        layout
+        id="section-work-experience"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -20, opacity: 0 }}
+        transition={{ 
+          duration: 0.5, 
+          ease: [0.4, 0, 0.2, 1],
+          layout: { duration: 0.6, ease: "easeInOut" }
+        }}
+      >
+        <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-work-experience-title">
+              Work Experience
+            </h2>
+            <Button 
+              variant="outline"
+              size="icon"
+              className="rounded-full h-11 w-11"
+              data-testid="button-add-work-experience"
+            >
+              <Plus className="w-5 h-5" />
+            </Button>
+          </div>
+          
+          <div className="space-y-4">
+            {workExperiences.map((exp) => (
+              <div 
+                key={exp.id} 
+                className="group flex gap-5 p-4 rounded-2xl border border-border/30 bg-[#F5F3F1] hover-elevate transition-all duration-300"
+                data-testid={`card-work-experience-${exp.id}`}
+              >
+                <div className="shrink-0">
+                  <Avatar className="w-12 h-12 rounded-xl border border-border/50">
+                    <AvatarImage src={exp.logo} alt={exp.company} />
+                    <AvatarFallback className="bg-muted text-xs">{exp.company.substring(0, 2)}</AvatarFallback>
+                  </Avatar>
+                </div>
+                
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="font-semibold text-base truncate" data-testid={`text-experience-role-${exp.id}`}>
+                      {exp.role}
+                    </h3>
+                    <span className="text-xs font-medium text-foreground/40 shrink-0" data-testid={`text-experience-period-${exp.id}`}>
+                      {exp.period}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-sm font-medium text-foreground/60" data-testid={`text-experience-company-${exp.id}`}>
+                      {exp.company}
+                    </span>
+                  </div>
+                  <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2" data-testid={`text-experience-description-${exp.id}`}>
+                    {exp.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </motion.div>
+    );
+  }
+
+  if (sectionId === 'testimonials') {
                 return (
                   <motion.div
                     key="testimonials"
