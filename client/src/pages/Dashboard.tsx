@@ -111,7 +111,17 @@ export default function Dashboard() {
   });
   const [sectionOrder, setSectionOrder] = useState<string[]>(() => {
     const saved = localStorage.getItem('dashboard-section-order');
-    return saved ? JSON.parse(saved) : ['works', 'work_experience', 'testimonials', 'toolbox'];
+    // Ensure work_experience is in the list and placed before testimonials
+    let order = saved ? JSON.parse(saved) : ['works', 'work_experience', 'testimonials', 'toolbox'];
+    if (!order.includes('work_experience')) {
+      const testimonialIndex = order.indexOf('testimonials');
+      if (testimonialIndex !== -1) {
+        order.splice(testimonialIndex, 0, 'work_experience');
+      } else {
+        order.push('work_experience');
+      }
+    }
+    return order;
   });
   const [workExperiences, setWorkExperiences] = useState([
     {
