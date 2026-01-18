@@ -683,19 +683,53 @@ export default function Dashboard() {
       isDragging,
     } = useSortable({ id: project.id });
 
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    };
+
     const style: React.CSSProperties = {
       transform: CSS.Transform.toString(transform),
       transition: transition || 'transform 200ms ease',
       zIndex: isDragging ? 50 : 'auto',
+      cursor: 'none'
     };
 
     return (
       <div 
         ref={setNodeRef} 
         style={style} 
-        className="group cursor-pointer relative" 
+        className="group relative" 
         data-testid={`card-case-study-${project.id}`}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
+        <AnimatePresence>
+          {isHovered && !isDragging && (
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              className="fixed pointer-events-none z-[100] flex items-center gap-2 bg-[#E15A36] text-white px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap"
+              style={{
+                left: mousePos.x,
+                top: mousePos.y,
+                transform: 'translate(-50%, -50%)',
+                position: 'absolute'
+              }}
+            >
+              <Eye className="w-4 h-4" />
+              <span className="text-[10px] font-bold uppercase tracking-wider">View Case Study</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <motion.div 
           className="bg-white border-0 rounded-2xl overflow-hidden relative"
           style={{ 
