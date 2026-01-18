@@ -79,12 +79,70 @@ import { TiptapEditor } from '@/components/TiptapEditor';
 
 import { CourseCard } from "@/components/CourseCard";
 
-import { 
+import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+
+const CrypticText = ({ text, className }: { text: string; className?: string }) => {
+  const [displayText, setDisplayText] = useState(text.split('').map(() => ''));
+  const [isInView, setIsInView] = useState(false);
+  const containerRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const targetChars = text.split('');
+    let iteration = 0;
+
+    const interval = setInterval(() => {
+      setDisplayText((prev) =>
+        targetChars.map((char, index) => {
+          if (index < iteration) {
+            return targetChars[index];
+          }
+          if (char === ' ') return ' ';
+          return chars[Math.floor(Math.random() * chars.length)];
+        })
+      );
+
+      iteration += 1 / 3;
+
+      if (iteration >= targetChars.length) {
+        clearInterval(interval);
+        setDisplayText(targetChars);
+      }
+    }, 30);
+
+    return () => clearInterval(interval);
+  }, [isInView, text]);
+
+  return (
+    <span ref={containerRef} className={className}>
+      {displayText.join('')}
+    </span>
+  );
+};
 
 export default function Dashboard() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
@@ -1637,36 +1695,36 @@ export default function Dashboard() {
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-4 border-b border-border/10 group"
+                className="flex items-center justify-between py-5 border-b border-border/10 group"
                 data-testid="footer-item-mail"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <span className="text-base text-foreground/50">Mail</span>
+                <span className="text-lg text-foreground/50">Mail</span>
                 <a
                   href="mailto:rakshit.design@gmail.com"
-                  className="text-base font-medium hover:underline underline-offset-4"
+                  className="text-lg font-medium hover:underline underline-offset-4"
                 >
                   rakshit.design@gmail.com
                 </a>
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-4 border-b border-border/10 group"
+                className="flex items-center justify-between py-5 border-b border-border/10 group"
                 data-testid="footer-item-phone"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <span className="text-base text-foreground/50">Phone number</span>
+                <span className="text-lg text-foreground/50">Phone number</span>
                 <TooltipProvider>
                   <Tooltip delayDuration={0}>
                     <TooltipTrigger asChild>
                       <button
-                        className={`text-base font-medium transition-all duration-300 min-w-[140px] text-right flex items-center justify-end gap-2 ${!isCopied ? 'hover:underline underline-offset-4 cursor-pointer' : 'cursor-default'}`}
+                        className={`text-lg font-medium transition-all duration-300 min-w-[180px] text-right flex items-center justify-end gap-2 ${!isCopied ? 'hover:underline underline-offset-4 cursor-pointer' : 'cursor-default'}`}
                         onClick={() => {
                           if (!isCopied) {
                             navigator.clipboard.writeText("+12065714546");
@@ -1677,7 +1735,7 @@ export default function Dashboard() {
                         data-testid="button-copy-phone"
                       >
                         {isCopied ? (
-                          <motion.span 
+                          <motion.span
                             initial={{ opacity: 0, y: 5 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="flex items-center gap-2 text-[#FF553E]"
@@ -1699,34 +1757,34 @@ export default function Dashboard() {
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-4 border-b border-border/10 group"
+                className="flex items-center justify-between py-5 border-b border-border/10 group"
                 data-testid="footer-item-blogs"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <span className="text-base text-foreground/50">Blogs</span>
-                <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Medium</a>
+                <span className="text-lg text-foreground/50">Blogs</span>
+                <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline underline-offset-4">Medium</a>
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-4 border-b border-border/10 group"
+                className="flex items-center justify-between py-5 border-b border-border/10 group"
                 data-testid="footer-item-socials"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <span className="text-base text-foreground/50">Socials</span>
+                <span className="text-lg text-foreground/50">Socials</span>
                 <div className="flex items-center gap-2">
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">LinkedIn</a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline underline-offset-4">LinkedIn</a>
                   <span className="text-foreground/20">•</span>
-                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">X</a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline underline-offset-4">X</a>
                   <span className="text-foreground/20">•</span>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Instagram</a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline underline-offset-4">Instagram</a>
                   <span className="text-foreground/20">•</span>
-                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Dribbble</a>
+                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline underline-offset-4">Dribbble</a>
                 </div>
               </motion.div>
             </div>
@@ -1755,7 +1813,7 @@ export default function Dashboard() {
                   }}
                 />
               </svg>
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/20">SHAI</span>
+              <CrypticText text="MADE WITH LOVE IN SEATTLE" className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/20" />
             </div>
           </div>
         </motion.footer>
