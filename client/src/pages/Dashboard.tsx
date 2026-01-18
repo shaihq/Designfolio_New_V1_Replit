@@ -1545,7 +1545,7 @@ export default function Dashboard() {
                       </Button>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ gridAutoRows: 'auto' }}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{ gridAutoRows: 'auto' }}>
                       {testimonials.map((testimonial, idx) => {
                         const isVisible = visibleTestimonials.has(testimonial.id);
 
@@ -1561,42 +1561,50 @@ export default function Dashboard() {
                                 setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
                               }, 300 + idx * 100);
                             }}
-                            className={`border-2 rounded-2xl p-5 flex flex-col relative transition-all duration-300 ${
+                            className={`group rounded-3xl p-8 flex flex-col relative transition-all duration-300 ${
                               selectedTestimonialId === testimonial.id
-                                ? 'border-foreground/40 bg-foreground/5'
-                                : 'border-border/30 bg-white hover-elevate'
+                                ? 'bg-foreground/5'
+                                : 'bg-white hover-elevate'
                             }`}
                             data-testid={`card-testimonial-${testimonial.id}`}
                             style={{
-                              backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.03)' : '#F5F3F1'
+                              backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.04)' : '#FFFFFF',
+                              boxShadow: '0 0 0 1px rgba(0,0,0,0.04), 0 2px 12px rgba(0,0,0,0.04)'
                             }}
                           >
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="absolute top-4 right-4 h-8 w-8"
+                              className="absolute top-4 right-4 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
                               onClick={() => handleEditTestimonialClick(testimonial)}
                               data-testid={`button-edit-testimonial-${testimonial.id}`}
                             >
                               <Pencil className="w-4 h-4" />
                             </Button>
-                            <p className="text-sm leading-relaxed mb-4 flex-1 pr-6" data-testid={`text-testimonial-content-${testimonial.id}`}>
+
+                            <div className="mb-6">
+                              <svg width="40" height="32" viewBox="0 0 40 32" fill="none" className="text-blue-600">
+                                <path d="M0 20.48C0 12.608 3.84 5.824 11.52 0.191999L15.04 4.288C9.92 8.512 7.36 12.928 7.36 17.536C7.36 18.304 7.424 18.944 7.552 19.456C8.704 18.816 10.176 18.496 11.968 18.496C14.656 18.496 16.832 19.328 18.496 20.992C20.16 22.656 20.992 24.832 20.992 27.52C20.992 30.208 20.16 32.384 18.496 34.048C16.832 35.712 14.656 36.544 11.968 36.544C8.512 36.544 5.76 35.36 3.712 32.992C1.664 30.624 0.64 27.072 0.64 22.336L0 20.48ZM24.32 20.48C24.32 12.608 28.16 5.824 35.84 0.191999L39.36 4.288C34.24 8.512 31.68 12.928 31.68 17.536C31.68 18.304 31.744 18.944 31.872 19.456C33.024 18.816 34.496 18.496 36.288 18.496C38.976 18.496 41.152 19.328 42.816 20.992C44.48 22.656 45.312 24.832 45.312 27.52C45.312 30.208 44.48 32.384 42.816 34.048C41.152 35.712 38.976 36.544 36.288 36.544C32.832 36.544 30.08 35.36 28.032 32.992C25.984 30.624 24.96 27.072 24.96 22.336L24.32 20.48Z" fill="currentColor"/>
+                              </svg>
+                            </div>
+
+                            <p className="text-base leading-[1.7] mb-8 flex-1 text-foreground/70" data-testid={`text-testimonial-content-${testimonial.id}`}>
                               {testimonial.text}
                             </p>
-                            
-                            <div className="flex items-center gap-2.5">
-                              <Avatar className="w-10 h-10 shrink-0">
+
+                            <div className="flex items-center gap-3 mt-auto">
+                              <Avatar className="w-12 h-12 shrink-0">
                                 <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                                 <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
                                   {testimonial.name.split(' ').map(n => n[0]).join('')}
                                 </AvatarFallback>
                               </Avatar>
-                              
+
                               <div>
-                                <h3 className="font-semibold text-sm mb-0" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                                <h3 className="font-semibold text-base mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
                                   {testimonial.name}
                                 </h3>
-                                <p className="text-xs text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                                <p className="text-sm text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
                                   {testimonial.company}
                                 </p>
                               </div>
