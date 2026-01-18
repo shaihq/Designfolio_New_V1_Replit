@@ -1813,7 +1813,7 @@ export default function Dashboard() {
                   }}
                 />
               </svg>
-              <CrypticText text="MADE WITH LOVE IN SEATTLE" className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/20" />
+              <CrypticText text="© SHAI KRISHNA" className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/20" />
             </div>
           </div>
         </motion.footer>
