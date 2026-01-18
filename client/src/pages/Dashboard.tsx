@@ -1645,21 +1645,33 @@ export default function Dashboard() {
             </div>
 
             <div className="pt-12 flex flex-col items-center justify-center gap-6">
-              <svg 
-                width="80" 
-                height="40" 
-                viewBox="0 0 80 40" 
-                fill="none" 
+              <svg
+                width="120"
+                height="40"
+                viewBox="0 0 120 40"
+                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="text-foreground/20"
               >
-                <path 
-                  d="M10 20C15 15 20 25 25 20C30 15 35 25 40 20C45 15 50 25 55 20C60 15 65 25 70 20" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
+                <path
+                  d="M10 20C17 13 23 27 30 20C37 13 43 27 50 20C57 13 63 27 70 20C77 13 83 27 90 20C97 13 103 27 110 20"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    strokeDasharray: '200',
+                    strokeDashoffset: '200',
+                    animation: 'drawScribble 2s ease-out forwards'
+                  }}
                 />
+                <style>{`
+                  @keyframes drawScribble {
+                    to {
+                      stroke-dashoffset: 0;
+                    }
+                  }
+                `}</style>
               </svg>
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/20">
                 HARSH POTPHODE
