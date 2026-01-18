@@ -1694,15 +1694,32 @@ export default function Dashboard() {
         </AnimatePresence>
       </div>
 
+      {/* SVG Mask Definition */}
+      {selectedWallpaper && (
+        <svg width="0" height="0" style={{ position: 'absolute' }}>
+          <defs>
+            <clipPath id="scalloped-edges" clipPathUnits="objectBoundingBox">
+              <path d="M 0,0.02 Q 0.01,0 0.02,0 T 0.04,0 T 0.06,0 T 0.08,0 T 0.1,0 T 0.12,0 T 0.14,0 T 0.16,0 T 0.18,0 T 0.2,0 T 0.22,0 T 0.24,0 T 0.26,0 T 0.28,0 T 0.3,0 T 0.32,0 T 0.34,0 T 0.36,0 T 0.38,0 T 0.4,0 T 0.42,0 T 0.44,0 T 0.46,0 T 0.48,0 T 0.5,0 T 0.52,0 T 0.54,0 T 0.56,0 T 0.58,0 T 0.6,0 T 0.62,0 T 0.64,0 T 0.66,0 T 0.68,0 T 0.7,0 T 0.72,0 T 0.74,0 T 0.76,0 T 0.78,0 T 0.8,0 T 0.82,0 T 0.84,0 T 0.86,0 T 0.88,0 T 0.9,0 T 0.92,0 T 0.94,0 T 0.96,0 T 0.98,0 Q 0.99,0 1,0.02 L 1,0.98 Q 0.99,1 0.98,1 T 0.96,1 T 0.94,1 T 0.92,1 T 0.9,1 T 0.88,1 T 0.86,1 T 0.84,1 T 0.82,1 T 0.8,1 T 0.78,1 T 0.76,1 T 0.74,1 T 0.72,1 T 0.7,1 T 0.68,1 T 0.66,1 T 0.64,1 T 0.62,1 T 0.6,1 T 0.58,1 T 0.56,1 T 0.54,1 T 0.52,1 T 0.5,1 T 0.48,1 T 0.46,1 T 0.44,1 T 0.42,1 T 0.4,1 T 0.38,1 T 0.36,1 T 0.34,1 T 0.32,1 T 0.3,1 T 0.28,1 T 0.26,1 T 0.24,1 T 0.22,1 T 0.2,1 T 0.18,1 T 0.16,1 T 0.14,1 T 0.12,1 T 0.1,1 T 0.08,1 T 0.06,1 T 0.04,1 T 0.02,1 Q 0.01,1 0,0.98 Z" />
+            </clipPath>
+          </defs>
+        </svg>
+      )}
+
       {/* Footer Section */}
-        <motion.footer 
+        <motion.footer
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mt-12 pb-20 pt-8 max-w-2xl mx-auto"
         >
-          <div className={selectedWallpaper ? "shadcn-card border-card-border text-card-foreground shadow-sm bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6" : ""}>
+          <div
+            className={selectedWallpaper ? "relative bg-white/95 backdrop-blur-sm p-6 shadow-sm" : ""}
+            style={selectedWallpaper ? {
+              clipPath: 'url(#scalloped-edges)',
+              WebkitClipPath: 'url(#scalloped-edges)'
+            } : {}}
+          >
             <div className="flex flex-col gap-6">
               <div className="flex flex-col">
               <motion.div
