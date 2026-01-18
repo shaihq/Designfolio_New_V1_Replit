@@ -1602,64 +1602,42 @@ export default function Dashboard() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-12 pb-20 pt-8"
+          className="mt-12 pb-20 pt-8 max-w-2xl mx-auto"
         >
-          <div className="flex flex-col gap-12">
-            <div className="space-y-4">
-              <a 
-                href="mailto:h.potphode0@gmail.com"
-                className="flex items-center justify-between group py-3"
-                data-testid="link-footer-email"
-              >
-                <div className="flex items-center gap-6">
-                  <div className="w-10 h-10 rounded-full bg-[#F5F3F1] flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-foreground/40" />
-                  </div>
-                  <span className="text-lg font-medium">Email</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-lg text-foreground/40">h.potphode0@gmail.com</span>
-                  <ArrowUpRight className="w-5 h-5 text-foreground/20 group-hover:text-foreground/60 transition-colors" />
-                </div>
-              </a>
+          <div className="flex flex-col gap-10">
+            <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider text-center" data-testid="text-footer-title">
+              Let's have coffee?
+            </h2>
+            
+            <div className="flex flex-col">
+              <div className="flex items-center justify-between py-5 border-b border-border/10 group" data-testid="footer-item-mail">
+                <span className="text-base text-foreground/50">Mail</span>
+                <a 
+                  href="mailto:rakshit.design@gmail.com" 
+                  className="text-base font-medium hover:underline underline-offset-4"
+                >
+                  rakshit.design@gmail.com
+                </a>
+              </div>
 
-              <a 
-                href="https://linkedin.com/in/harshpotphode"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between group py-3"
-                data-testid="link-footer-linkedin"
-              >
-                <div className="flex items-center gap-6">
-                  <div className="w-10 h-10 rounded-full bg-[#F5F3F1] flex items-center justify-center">
-                    <Linkedin className="w-5 h-5 text-foreground/40" />
-                  </div>
-                  <span className="text-lg font-medium">LinkedIn</span>
+              <div className="flex items-center justify-between py-5 border-b border-border/10 group" data-testid="footer-item-socials">
+                <span className="text-base text-foreground/50">Socials</span>
+                <div className="flex items-center gap-2">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">LinkedIn</a>
+                  <span className="text-foreground/20">•</span>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">X (Prev. Twitter)</a>
                 </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-lg text-foreground/40">/in/harshpotphode</span>
-                  <ArrowUpRight className="w-5 h-5 text-foreground/20 group-hover:text-foreground/60 transition-colors" />
-                </div>
-              </a>
+              </div>
 
-              <a 
-                href="https://behance.net/HarshPotphode"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between group py-3"
-                data-testid="link-footer-behance"
-              >
-                <div className="flex items-center gap-6">
-                  <div className="w-10 h-10 rounded-full bg-[#F5F3F1] flex items-center justify-center">
-                    <SiBehance className="w-5 h-5 text-foreground/40" />
-                  </div>
-                  <span className="text-lg font-medium">Behance (a few more projects)</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-lg text-foreground/40">@HarshPotphode</span>
-                  <ArrowUpRight className="w-5 h-5 text-foreground/20 group-hover:text-foreground/60 transition-colors" />
-                </div>
-              </a>
+              <div className="flex items-center justify-between py-5 border-b border-border/10 group" data-testid="footer-item-phone">
+                <span className="text-base text-foreground/50">Phone number</span>
+                <span className="text-base font-medium">+1 (206)-571-4546</span>
+              </div>
+
+              <div className="flex items-center justify-between py-5 border-b border-border/10 group" data-testid="footer-item-blogs">
+                <span className="text-base text-foreground/50">Blogs</span>
+                <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Medium</a>
+              </div>
             </div>
 
             <div className="pt-12 flex flex-col items-center justify-center gap-6">
