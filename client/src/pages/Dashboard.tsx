@@ -1090,9 +1090,14 @@ export default function Dashboard() {
         <main className="pb-6">
           {/* Profile Card */}
           <motion.div
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              ease: [0.4, 0, 0.2, 1],
+              opacity: { duration: 0.6 },
+              filter: { duration: 0.6 }
+            }}
             className="z-10"
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
@@ -1116,7 +1121,10 @@ export default function Dashboard() {
                 <TooltipProvider>
                   <Tooltip delayDuration={300}>
                     <TooltipTrigger asChild>
-                      <div 
+                      <motion.div 
+                        initial={{ scale: 0.9, filter: "blur(5px)" }}
+                        animate={{ scale: 1, filter: "blur(0px)" }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
                         className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef]" 
                         style={{ backgroundColor: '#F5F3F1' }} 
                         data-testid="avatar-profile"
@@ -1137,7 +1145,7 @@ export default function Dashboard() {
                           onLoad={() => setImageLoaded(true)}
                           style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
                         />
-                      </div>
+                      </motion.div>
                     </TooltipTrigger>
                     <TooltipContent 
                       side="top" 
@@ -1150,13 +1158,25 @@ export default function Dashboard() {
                 </TooltipProvider>
                 
                 <div className="flex-1">
-                  <h1 className="text-3xl font-semibold mb-2 font-heading" data-testid="text-user-name">
+                  <motion.h1 
+                    initial={{ opacity: 0, filter: "blur(8px)", y: 10 }}
+                    animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="text-3xl font-semibold mb-2 font-heading" 
+                    data-testid="text-user-name"
+                  >
                     Hey, I'm Shai!
-                  </h1>
-                  <p className="text-base text-foreground/50 leading-relaxed" data-testid="text-user-role">
+                  </motion.h1>
+                  <motion.p 
+                    initial={{ opacity: 0, filter: "blur(8px)", y: 10 }}
+                    animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="text-base text-foreground/50 leading-relaxed" 
+                    data-testid="text-user-role"
+                  >
                     A 0→1 Product Designer with 6 years of experience. I design and 
                     develop digital products, create prototypes, and design interfaces.
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             </div>
@@ -1190,11 +1210,12 @@ export default function Dashboard() {
                     key="works"
                     layout
                     id="section-works"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
+                    initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+                    whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    exit={{ opacity: 0, filter: "blur(10px)", y: -20 }}
                     transition={{ 
-                      duration: 0.5, 
+                      duration: 0.6, 
                       ease: [0.4, 0, 0.2, 1],
                       layout: { duration: 0.6, ease: "easeInOut" }
                     }}
@@ -1362,11 +1383,12 @@ export default function Dashboard() {
         key="work-experience"
         layout
         id="section-work-experience"
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -20, opacity: 0 }}
+        initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+        whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        exit={{ opacity: 0, filter: "blur(10px)", y: -20 }}
         transition={{ 
-          duration: 0.5, 
+          duration: 0.6, 
           ease: [0.4, 0, 0.2, 1],
           layout: { duration: 0.6, ease: "easeInOut" }
         }}
@@ -1432,11 +1454,12 @@ export default function Dashboard() {
                     key="testimonials"
                     layout
                     id="section-testimonials"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
+                    initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+                    whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    exit={{ opacity: 0, filter: "blur(10px)", y: -20 }}
                     transition={{ 
-                      duration: 0.5, 
+                      duration: 0.6, 
                       ease: [0.4, 0, 0.2, 1],
                       layout: { duration: 0.6, ease: "easeInOut" }
                     }}
@@ -1527,11 +1550,12 @@ export default function Dashboard() {
                     key="toolbox"
                     layout
                     id="section-toolbox"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
+                    initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+                    whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    exit={{ opacity: 0, filter: "blur(10px)", y: -20 }}
                     transition={{ 
-                      duration: 0.5, 
+                      duration: 0.6, 
                       ease: [0.4, 0, 0.2, 1],
                       layout: { duration: 0.6, ease: "easeInOut" }
                     }}
