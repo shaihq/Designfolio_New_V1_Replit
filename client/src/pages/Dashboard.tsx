@@ -1561,15 +1561,14 @@ export default function Dashboard() {
                                 setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
                               }, 300 + idx * 100);
                             }}
-                            className={`group rounded-2xl p-6 flex flex-col relative transition-all duration-300 ${
+                            className={`group rounded-2xl p-6 flex flex-col relative transition-all duration-300 border border-border/10 ${
                               selectedTestimonialId === testimonial.id
                                 ? 'bg-foreground/5'
                                 : 'bg-white hover-elevate'
                             }`}
                             data-testid={`card-testimonial-${testimonial.id}`}
                             style={{
-                              backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.04)' : '#FFFFFF',
-                              boxShadow: '0 0 0 1px rgba(0,0,0,0.04), 0 2px 12px rgba(0,0,0,0.04)'
+                              backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.04)' : '#FFFFFF'
                             }}
                           >
                             <div className="mb-4 mt-2 flex items-center justify-between">
