@@ -1735,10 +1735,10 @@ export default function Dashboard() {
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <span className="text-lg text-foreground/50">Mail</span>
+                <span className="text-base text-foreground/50">Mail</span>
                 <a
                   href="mailto:rakshit.design@gmail.com"
-                  className="text-lg font-medium hover:underline underline-offset-4"
+                  className="text-base font-medium hover:underline underline-offset-4"
                 >
                   rakshit.design@gmail.com
                 </a>
@@ -1752,12 +1752,12 @@ export default function Dashboard() {
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <span className="text-lg text-foreground/50">Phone number</span>
+                <span className="text-base text-foreground/50">Phone number</span>
                 <TooltipProvider>
                   <Tooltip delayDuration={0}>
                     <TooltipTrigger asChild>
                       <button
-                        className={`text-lg font-medium transition-all duration-300 min-w-[180px] text-right flex items-center justify-end gap-2 ${!isCopied ? 'hover:underline underline-offset-4 cursor-pointer' : 'cursor-default'}`}
+                        className={`text-base font-medium transition-all duration-300 min-w-[180px] text-right flex items-center justify-end gap-2 ${!isCopied ? 'hover:underline underline-offset-4 cursor-pointer' : 'cursor-default'}`}
                         onClick={() => {
                           if (!isCopied) {
                             navigator.clipboard.writeText("+12065714546");
@@ -1797,8 +1797,8 @@ export default function Dashboard() {
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <span className="text-lg text-foreground/50">Blogs</span>
-                <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline underline-offset-4">Medium</a>
+                <span className="text-base text-foreground/50">Blogs</span>
+                <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Medium</a>
               </motion.div>
 
               <motion.div
@@ -1809,15 +1809,15 @@ export default function Dashboard() {
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <span className="text-lg text-foreground/50">Socials</span>
+                <span className="text-base text-foreground/50">Socials</span>
                 <div className="flex items-center gap-2">
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline underline-offset-4">LinkedIn</a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">LinkedIn</a>
                   <span className="text-foreground/20">•</span>
-                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline underline-offset-4">X</a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">X</a>
                   <span className="text-foreground/20">•</span>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline underline-offset-4">Instagram</a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Instagram</a>
                   <span className="text-foreground/20">•</span>
-                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:underline underline-offset-4">Dribbble</a>
+                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Dribbble</a>
                 </div>
               </motion.div>
             </div>
