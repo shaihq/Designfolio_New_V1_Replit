@@ -1154,7 +1154,7 @@ export default function Dashboard() {
 
         <main className="pb-6">
           {/* Profile Card */}
-          <div className="z-10">
+          <div className="z-10 mb-3">
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
               {/* Edit Button - Top Right */}
               <div className="absolute top-4 right-4 z-10">
@@ -1253,7 +1253,7 @@ export default function Dashboard() {
             </Card>
           </div>
           
-          <div className="mt-6">
+          <div className="mt-3">
             <AnimatePresence mode="popLayout">
               {sectionOrder.map((sectionId, index) => {
                 if (sectionId === 'works') {
@@ -1271,7 +1271,7 @@ export default function Dashboard() {
                         delay: index * 0.1
                       }}
                     >
-                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-0" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
                         My works
@@ -1530,7 +1530,7 @@ export default function Dashboard() {
                       delay: index * 0.1
                     }}
                   >
-                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-0" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-testimonials-title">
                         Testimonials
@@ -1633,7 +1633,7 @@ export default function Dashboard() {
                       delay: index * 0.1
                     }}
                   >
-                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-0" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-toolbox-title">
                         Toolbox
