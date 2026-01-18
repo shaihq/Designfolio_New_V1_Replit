@@ -1771,7 +1771,7 @@ export default function Dashboard() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsResumeDialogOpen(false)}
-                className="h-8 w-8 rounded-full bg-black/5 hover:bg-black/10 backdrop-blur-md transition-all"
+                className="h-8 w-8 rounded-full bg-white hover:bg-white/90 text-black shadow-lg border border-border/50 transition-all"
               >
                 <X className="w-4 h-4" />
               </Button>
