@@ -1821,7 +1821,7 @@ export default function Dashboard() {
               </motion.div>
             </div>
 
-            <div className="pt-12 flex flex-col items-center justify-center gap-6">
+            <div className="pt-6 flex flex-col items-center justify-center gap-4">
               <svg
                 width="120"
                 height="40"
