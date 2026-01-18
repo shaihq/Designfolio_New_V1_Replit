@@ -1602,16 +1602,16 @@ export default function Dashboard() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-20 pb-20 border-t border-border/10 pt-16"
+          className="mt-12 pb-20 pt-8"
         >
-          <div className="flex flex-col gap-8">
-            <div className="space-y-6">
+          <div className="flex flex-col gap-12">
+            <div className="space-y-4">
               <a 
                 href="mailto:h.potphode0@gmail.com"
-                className="flex items-center justify-between group py-2"
+                className="flex items-center justify-between group py-3"
                 data-testid="link-footer-email"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-6">
                   <div className="w-10 h-10 rounded-full bg-[#F5F3F1] flex items-center justify-center">
                     <Mail className="w-5 h-5 text-foreground/40" />
                   </div>
@@ -1627,10 +1627,10 @@ export default function Dashboard() {
                 href="https://linkedin.com/in/harshpotphode"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between group py-2"
+                className="flex items-center justify-between group py-3"
                 data-testid="link-footer-linkedin"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-6">
                   <div className="w-10 h-10 rounded-full bg-[#F5F3F1] flex items-center justify-center">
                     <Linkedin className="w-5 h-5 text-foreground/40" />
                   </div>
@@ -1646,10 +1646,10 @@ export default function Dashboard() {
                 href="https://behance.net/HarshPotphode"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between group py-2"
+                className="flex items-center justify-between group py-3"
                 data-testid="link-footer-behance"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-6">
                   <div className="w-10 h-10 rounded-full bg-[#F5F3F1] flex items-center justify-center">
                     <SiBehance className="w-5 h-5 text-foreground/40" />
                   </div>
@@ -1662,7 +1662,7 @@ export default function Dashboard() {
               </a>
             </div>
 
-            <div className="pt-20 flex flex-col items-center justify-center gap-4">
+            <div className="pt-12 flex flex-col items-center justify-center gap-6">
               <svg 
                 width="80" 
                 height="40" 
