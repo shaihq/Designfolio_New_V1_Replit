@@ -1700,7 +1700,7 @@ export default function Dashboard() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mt-6 pb-20 pt-8 max-w-2xl mx-auto"
+        className="mt-6 pb-20 pt-8 max-w-4xl mx-auto px-6"
       >
           <div
             className={selectedWallpaper ? "relative bg-white p-10 shadow-sm overflow-hidden" : ""}
