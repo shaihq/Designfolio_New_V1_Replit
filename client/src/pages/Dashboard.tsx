@@ -1089,17 +1089,7 @@ export default function Dashboard() {
 
         <main className="pb-6">
           {/* Profile Card */}
-          <motion.div
-            initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
-            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-            transition={{ 
-              duration: 0.8, 
-              ease: [0.4, 0, 0.2, 1],
-              opacity: { duration: 0.6 },
-              filter: { duration: 0.6 }
-            }}
-            className="z-10"
-          >
+          <div className="z-10">
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
             {/* Edit Button - Top Right */}
             <div 
@@ -1122,9 +1112,9 @@ export default function Dashboard() {
                   <Tooltip delayDuration={300}>
                     <TooltipTrigger asChild>
                       <motion.div 
-                        initial={{ scale: 0.9, filter: "blur(5px)" }}
-                        animate={{ scale: 1, filter: "blur(0px)" }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
+                        animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+                        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
                         className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef]" 
                         style={{ backgroundColor: '#F5F3F1' }} 
                         data-testid="avatar-profile"
@@ -1159,18 +1149,18 @@ export default function Dashboard() {
                 
                 <div className="flex-1">
                   <motion.h1 
-                    initial={{ opacity: 0, filter: "blur(8px)", y: 10 }}
+                    initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
                     animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
+                    transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
                     className="text-3xl font-semibold mb-2 font-heading" 
                     data-testid="text-user-name"
                   >
                     Hey, I'm Shai!
                   </motion.h1>
                   <motion.p 
-                    initial={{ opacity: 0, filter: "blur(8px)", y: 10 }}
+                    initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
                     animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
+                    transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
                     className="text-base text-foreground/50 leading-relaxed" 
                     data-testid="text-user-role"
                   >
@@ -1198,26 +1188,23 @@ export default function Dashboard() {
               </div>
             </div>
           </Card>
-          </motion.div>
+          </div>
 
           <AnimatePresence mode="popLayout">
             {sectionOrder.map((sectionId, index) => {
-              const delay = 0.15 + index * 0.15;
-              
               if (sectionId === 'works') {
                 return (
                   <motion.div
                     key="works"
                     layout
                     id="section-works"
-                    initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
-                    whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    exit={{ opacity: 0, filter: "blur(10px)", y: -20 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
                     transition={{ 
-                      duration: 0.6, 
-                      ease: [0.4, 0, 0.2, 1],
-                      layout: { duration: 0.6, ease: "easeInOut" }
+                      duration: 0.7, 
+                      ease: [0.21, 0.47, 0.32, 0.98],
+                      delay: index * 0.1
                     }}
                   >
                   <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
@@ -1383,14 +1370,13 @@ export default function Dashboard() {
         key="work-experience"
         layout
         id="section-work-experience"
-        initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
-        whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        exit={{ opacity: 0, filter: "blur(10px)", y: -20 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
         transition={{ 
-          duration: 0.6, 
-          ease: [0.4, 0, 0.2, 1],
-          layout: { duration: 0.6, ease: "easeInOut" }
+          duration: 0.7, 
+          ease: [0.21, 0.47, 0.32, 0.98],
+          delay: index * 0.1
         }}
       >
         <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
@@ -1454,14 +1440,13 @@ export default function Dashboard() {
                     key="testimonials"
                     layout
                     id="section-testimonials"
-                    initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
-                    whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    exit={{ opacity: 0, filter: "blur(10px)", y: -20 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
                     transition={{ 
-                      duration: 0.6, 
-                      ease: [0.4, 0, 0.2, 1],
-                      layout: { duration: 0.6, ease: "easeInOut" }
+                      duration: 0.7, 
+                      ease: [0.21, 0.47, 0.32, 0.98],
+                      delay: index * 0.1
                     }}
                   >
                   <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
@@ -1550,14 +1535,13 @@ export default function Dashboard() {
                     key="toolbox"
                     layout
                     id="section-toolbox"
-                    initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
-                    whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    exit={{ opacity: 0, filter: "blur(10px)", y: -20 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
                     transition={{ 
-                      duration: 0.6, 
-                      ease: [0.4, 0, 0.2, 1],
-                      layout: { duration: 0.6, ease: "easeInOut" }
+                      duration: 0.7, 
+                      ease: [0.21, 0.47, 0.32, 0.98],
+                      delay: index * 0.1
                     }}
                   >
                   <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
