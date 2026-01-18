@@ -1755,9 +1755,7 @@ export default function Dashboard() {
                   }}
                 />
               </svg>
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/20">
-                HARSH POTPHODE
-              </span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/20">SHAI</span>
             </div>
           </div>
         </motion.footer>
