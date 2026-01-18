@@ -1702,8 +1702,9 @@ export default function Dashboard() {
           transition={{ duration: 0.6 }}
           className="mt-12 pb-20 pt-8 max-w-2xl mx-auto"
         >
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col">
+          <div className={selectedWallpaper ? "shadcn-card border-card-border text-card-foreground shadow-sm bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6" : ""}>
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col">
               <motion.div
                 className="flex items-center justify-between py-4 border-b border-border/10 group"
                 data-testid="footer-item-resume"
@@ -1841,7 +1842,8 @@ export default function Dashboard() {
               <CrypticText text="© SHAI KRISHNA" className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/20" />
             </div>
           </div>
-        </motion.footer>
+        </div>
+      </motion.footer>
       </main>
       </div>
 
