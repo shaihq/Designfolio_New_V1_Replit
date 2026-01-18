@@ -717,7 +717,7 @@ export default function Dashboard() {
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
-              className="fixed pointer-events-none z-[100] flex items-center gap-2 bg-[#E15A36] text-white px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap"
+              className="fixed pointer-events-none z-[100] flex items-center gap-2 bg-[#FF553E] text-white px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap"
               style={{
                 left: mousePos.x,
                 top: mousePos.y,
