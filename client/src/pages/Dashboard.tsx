@@ -1199,9 +1199,9 @@ export default function Dashboard() {
                       id="section-works"
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ 
-                        duration: 0.7, 
+                      viewport={{ once: true, margin: "0px 0px -20% 0px", amount: 0.1 }}
+                      transition={{
+                        duration: 0.7,
                         ease: [0.21, 0.47, 0.32, 0.98],
                         delay: index * 0.1
                       }}
@@ -1371,9 +1371,9 @@ export default function Dashboard() {
         id="section-work-experience"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ 
-          duration: 0.7, 
+        viewport={{ once: true, margin: "0px 0px -20% 0px", amount: 0.1 }}
+        transition={{
+          duration: 0.7,
           ease: [0.21, 0.47, 0.32, 0.98],
           delay: index * 0.1
         }}
@@ -1441,9 +1441,9 @@ export default function Dashboard() {
                     id="section-testimonials"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ 
-                      duration: 0.7, 
+                    viewport={{ once: true, margin: "0px 0px -20% 0px", amount: 0.1 }}
+                    transition={{
+                      duration: 0.7,
                       ease: [0.21, 0.47, 0.32, 0.98],
                       delay: index * 0.1
                     }}
@@ -1453,7 +1453,7 @@ export default function Dashboard() {
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-testimonials-title">
                         Testimonials
                       </h2>
-                      <Button 
+                      <Button
                         variant="outline"
                         size="icon"
                         className="rounded-full h-11 w-11"
@@ -1462,17 +1462,17 @@ export default function Dashboard() {
                         <Plus className="w-5 h-5" />
                       </Button>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ gridAutoRows: 'auto' }}>
                       {testimonials.map((testimonial, idx) => {
                         const isVisible = visibleTestimonials.has(testimonial.id);
-                        
+
                         return (
                           <motion.div
                             key={testimonial.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
+                            viewport={{ once: true, margin: "0px 0px 0px 0px", amount: 0.3 }}
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
                             onViewportEnter={() => {
                               setTimeout(() => {
@@ -1536,9 +1536,9 @@ export default function Dashboard() {
                     id="section-toolbox"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ 
-                      duration: 0.7, 
+                    viewport={{ once: true, margin: "0px 0px -20% 0px", amount: 0.1 }}
+                    transition={{
+                      duration: 0.7,
                       ease: [0.21, 0.47, 0.32, 0.98],
                       delay: index * 0.1
                     }}
