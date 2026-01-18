@@ -1689,7 +1689,7 @@ export default function Dashboard() {
                   strokeLinejoin="round"
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 1 }}
-                  viewport={{ once: false, amount: 0.5 }}
+                  viewport={{ once: false, amount: 0.1 }}
                   transition={{
                     pathLength: { duration: 2, ease: "easeInOut" },
                     opacity: { duration: 0.3 }
