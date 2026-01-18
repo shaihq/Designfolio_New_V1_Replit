@@ -1605,10 +1605,6 @@ export default function Dashboard() {
           className="mt-12 pb-20 pt-8 max-w-2xl mx-auto"
         >
           <div className="flex flex-col gap-10">
-            <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider text-center" data-testid="text-footer-title">
-              Let's have coffee?
-            </h2>
-            
             <div className="flex flex-col">
               <div className="flex items-center justify-between py-5 border-b border-border/10 group" data-testid="footer-item-mail">
                 <span className="text-base text-foreground/50">Mail</span>
