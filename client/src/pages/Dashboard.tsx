@@ -45,8 +45,12 @@ import {
   Crown,
   Eye,
   EyeOff,
-  RotateCcw
+  RotateCcw,
+  Mail,
+  Linkedin,
+  ArrowUpRight
 } from "lucide-react";
+import { SiBehance } from "react-icons/si";
 import { Link } from "wouter";
 import {
   DndContext,
