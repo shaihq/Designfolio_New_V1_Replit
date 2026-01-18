@@ -1561,7 +1561,7 @@ export default function Dashboard() {
                                 setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
                               }, 300 + idx * 100);
                             }}
-                            className={`group rounded-2xl p-6 flex flex-col relative transition-all duration-300 border border-border/10 ${
+                            className={`group rounded-2xl p-6 flex flex-col relative transition-all duration-300 border border-border ${
                               selectedTestimonialId === testimonial.id
                                 ? 'bg-foreground/5'
                                 : 'bg-white hover-elevate'
