@@ -685,8 +685,38 @@ export default function Dashboard() {
 
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [isHovered, setIsHovered] = useState(false);
-
     const [isHoveringInteractive, setIsHoveringInteractive] = useState(false);
+    const [displayText, setDisplayText] = useState("View Case Study");
+    const targetText = "View Case Study";
+    const chars = "ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789";
+
+    useEffect(() => {
+      if (isHovered && !isHoveringInteractive) {
+        let iteration = 0;
+        const interval = setInterval(() => {
+          setDisplayText(targetText.split("")
+            .map((char, index) => {
+              if (char === " ") return " ";
+              if (index < iteration) return targetText[index];
+              return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join("")
+          );
+          
+          if (iteration >= targetText.length) {
+            clearInterval(interval);
+          }
+          
+          iteration += 1 / 3;
+        }, 30);
+        
+        return () => {
+          clearInterval(interval);
+        };
+      } else {
+        setDisplayText(targetText);
+      }
+    }, [isHovered, isHoveringInteractive]);
 
     const handleMouseMove = (e: React.MouseEvent) => {
       const rect = e.currentTarget.getBoundingClientRect();
@@ -731,7 +761,7 @@ export default function Dashboard() {
               }}
             >
               <Eye className="w-4 h-4" />
-              <span className="text-[10px] font-bold uppercase tracking-wider">View Case Study</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider">{displayText}</span>
             </motion.div>
           )}
         </AnimatePresence>
