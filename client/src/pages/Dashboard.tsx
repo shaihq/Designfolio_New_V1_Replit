@@ -1680,7 +1680,7 @@ export default function Dashboard() {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <button
-                        className="text-base font-medium hover:text-primary transition-colors cursor-pointer"
+                        className="text-base font-medium hover:text-primary hover:underline underline-offset-4 transition-colors cursor-pointer"
                         onClick={() => {
                           navigator.clipboard.writeText("+12065714546");
                           toast({
@@ -1692,7 +1692,7 @@ export default function Dashboard() {
                         +1 (206)-571-4546
                       </button>
                     </TooltipTrigger>
-                    <TooltipContent>
+                    <TooltipContent className="bg-foreground text-background border-none px-2 py-1 text-[10px] font-bold uppercase tracking-wider">
                       <p>Copy</p>
                     </TooltipContent>
                   </Tooltip>
