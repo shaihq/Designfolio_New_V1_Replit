@@ -1034,7 +1034,7 @@ export default function Dashboard() {
             </div>
 
             {/* Profile Info */}
-            <div className="p-8 pb-6">
+            <div className="p-8 pb-6 hover:cursor-[url('/wavinghand.png'),_pointer]">
               <div className="flex items-center gap-6">
                 <TooltipProvider>
                   <Tooltip delayDuration={300}>
@@ -1122,7 +1122,7 @@ export default function Dashboard() {
                       layout: { duration: 0.6, ease: "easeInOut" }
                     }}
                   >
-                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3 hover:cursor-[url('/wavinghand.png'),_pointer]" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
                         My works
@@ -1294,7 +1294,7 @@ export default function Dashboard() {
                       layout: { duration: 0.6, ease: "easeInOut" }
                     }}
                   >
-                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3 hover:cursor-[url('/wavinghand.png'),_pointer]" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-testimonials-title">
                         Testimonials
@@ -1389,7 +1389,7 @@ export default function Dashboard() {
                       layout: { duration: 0.6, ease: "easeInOut" }
                     }}
                   >
-                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3 hover:cursor-[url('/wavinghand.png'),_pointer]" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-toolbox-title">
                         Toolbox
