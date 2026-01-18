@@ -685,6 +685,7 @@ export default function Dashboard() {
 
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [isHovered, setIsHovered] = useState(false);
+
     const [isHoveringInteractive, setIsHoveringInteractive] = useState(false);
 
     const handleMouseMove = (e: React.MouseEvent) => {
@@ -718,18 +719,10 @@ export default function Dashboard() {
         <AnimatePresence>
           {isHovered && !isDragging && !isHoveringInteractive && (
             <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ 
-                scale: 1, 
-                opacity: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20
-                }
-              }}
-              exit={{ scale: 0.5, opacity: 0 }}
-              className="fixed pointer-events-none z-[100] flex items-center gap-2 bg-[#FF553E] text-white px-4 py-2 rounded-full shadow-xl whitespace-nowrap border border-white/20 backdrop-blur-sm"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              className="fixed pointer-events-none z-[100] flex items-center gap-2 bg-[#FF553E] text-white px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap"
               style={{
                 left: mousePos.x,
                 top: mousePos.y,
@@ -738,7 +731,7 @@ export default function Dashboard() {
               }}
             >
               <Eye className="w-4 h-4" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.1em]">View Case Study</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider">View Case Study</span>
             </motion.div>
           )}
         </AnimatePresence>
