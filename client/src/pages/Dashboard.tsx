@@ -1561,7 +1561,7 @@ export default function Dashboard() {
                                 setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
                               }, 300 + idx * 100);
                             }}
-                            className={`group rounded-3xl p-8 flex flex-col relative transition-all duration-300 ${
+                            className={`group rounded-2xl p-6 flex flex-col relative transition-all duration-300 ${
                               selectedTestimonialId === testimonial.id
                                 ? 'bg-foreground/5'
                                 : 'bg-white hover-elevate'
@@ -1588,12 +1588,12 @@ export default function Dashboard() {
                               </svg>
                             </div>
 
-                            <p className="text-base leading-[1.7] mb-8 flex-1 text-foreground/70" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                            <p className="text-sm leading-relaxed mb-6 flex-1 text-foreground/70" data-testid={`text-testimonial-content-${testimonial.id}`}>
                               {testimonial.text}
                             </p>
 
                             <div className="flex items-center gap-3 mt-auto">
-                              <Avatar className="w-12 h-12 shrink-0">
+                              <Avatar className="w-10 h-10 shrink-0">
                                 <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                                 <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
                                   {testimonial.name.split(' ').map(n => n[0]).join('')}
@@ -1601,10 +1601,10 @@ export default function Dashboard() {
                               </Avatar>
 
                               <div>
-                                <h3 className="font-semibold text-base mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                                <h3 className="font-semibold text-sm mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
                                   {testimonial.name}
                                 </h3>
-                                <p className="text-sm text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                                <p className="text-xs text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
                                   {testimonial.company}
                                 </p>
                               </div>
