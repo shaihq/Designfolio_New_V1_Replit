@@ -847,6 +847,8 @@ export default function Dashboard() {
               
               <button
                 onClick={() => handleDeleteClick(project.id)}
+                onMouseEnter={() => setIsHoveringInteractive(true)}
+                onMouseLeave={() => setIsHoveringInteractive(false)}
                 className="bg-white border border-border rounded-full w-10 h-10 flex items-center justify-center hover-elevate cursor-pointer"
                 data-testid={`button-delete-case-study-${project.id}`}
               >
@@ -1063,7 +1065,9 @@ export default function Dashboard() {
           >
             <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
             {/* Edit Button - Top Right */}
-            <div className="absolute top-4 right-4 z-10">
+            <div 
+              className="absolute top-4 right-4 z-10"
+            >
               <Button 
                 variant="outline" 
                 size="icon"
