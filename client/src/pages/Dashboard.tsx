@@ -1,41 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Plus, 
-  Pencil, 
-  Sparkles, 
-  Bell, 
-  Paintbrush, 
-  Menu, 
-  X, 
-  Upload, 
-  Sparkle, 
-  Crown, 
-  Lock,
-  Mail,
-  Linkedin,
-  ArrowUpRight
-} from "lucide-react";
-import { 
-  SiBehance 
-} from "react-icons/si";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { 
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { 
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
+import { Slider } from "@/components/ui/slider";
 import { 
   AlertDialog,
   AlertDialogAction,
@@ -46,117 +20,62 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { 
-  Tabs, 
-  TabsContent, 
-  TabsList, 
-  TabsTrigger 
-} from "@/components/ui/tabs";
-import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
+  Sparkles, 
+  Share2, 
+  Bell, 
+  Plus,
+  Link as LinkIcon,
+  Sparkle,
+  Pencil,
+  Menu,
+  MessageSquare,
+  FileText,
+  Smartphone,
+  Monitor,
+  Search,
+  Layers,
+  Trash2,
+  GripVertical,
+  Paintbrush,
+  X,
+  Upload,
+  Lock,
+  Crown,
+  Eye,
+  EyeOff,
+  RotateCcw
+} from "lucide-react";
 import { Link } from "wouter";
-import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, rectSortingStrategy, useSortable } from '@dnd-kit/sortable';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  rectSortingStrategy,
+} from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import React from "react";
+import { StardustButton } from '@/components/StardustButton';
+import { TiptapEditor } from '@/components/TiptapEditor';
 
-// Stardust Button Component
-const StardustButton = ({ children, onClick, className = "", ...props }: { children: React.ReactNode, onClick?: () => void, className?: string }) => {
-  return (
-    <button
-      onClick={onClick}
-      className={`relative group overflow-hidden px-6 py-2.5 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95 ${className}`}
-      {...props}
-    >
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 animate-gradient-x group-hover:opacity-90 transition-opacity" />
-      
-      {/* Particle container */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 animate-stardust opacity-30" />
-      </div>
-      
-      {/* Glow effect */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl bg-white/20" />
-      
-      <span className="relative z-10 flex items-center justify-center gap-2">
-        {children}
-      </span>
-    </button>
-  );
-};
+import { CourseCard } from "@/components/CourseCard";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-}
-
-function SortableCard({ project }: { project: Project }) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging
-  } = useSortable({ id: project.id });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    zIndex: isDragging ? 50 : 0,
-    opacity: isDragging ? 0.6 : 1,
-  };
-
-  return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      className="group relative h-full"
-    >
-      <div 
-        {...listeners}
-        className="absolute top-3 right-3 z-20 opacity-0 group-hover:opacity-100 transition-opacity cursor-grab active:cursor-grabbing p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm hover:bg-white"
-      >
-        <Menu className="w-4 h-4 text-foreground/40" />
-      </div>
-      
-      <Card className="overflow-hidden border border-border/30 bg-white rounded-2xl h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-        <div className="aspect-[4/3] overflow-hidden relative">
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-          />
-        </div>
-        <div className="p-5">
-          <div className="flex flex-wrap gap-2 mb-3">
-            {project.tags.map((tag, i) => (
-              <Badge key={i} variant="secondary" className="bg-foreground/[0.03] text-foreground/60 border-0 text-[10px] font-semibold tracking-wider uppercase">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-          <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
-            {project.title}
-          </h3>
-          <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2">
-            {project.description}
-          </p>
-        </div>
-      </Card>
-    </div>
-  );
-}
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function Dashboard() {
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
@@ -192,6 +111,7 @@ export default function Dashboard() {
   });
   const [sectionOrder, setSectionOrder] = useState<string[]>(() => {
     const saved = localStorage.getItem('dashboard-section-order');
+    // Ensure work_experience is in the list and placed before testimonials
     let order = saved ? JSON.parse(saved) : ['works', 'work_experience', 'testimonials', 'toolbox'];
     if (!order.includes('work_experience')) {
       const testimonialIndex = order.indexOf('testimonials');
@@ -239,73 +159,6 @@ export default function Dashboard() {
     ]
   });
 
-  const [caseStudies, setCaseStudies] = useState<Project[]>([
-    {
-      id: 1,
-      title: "Uplift Health App",
-      description: "A mental wellness platform designed to provide accessible resources and support for individuals seeking better emotional health.",
-      image: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&q=80&w=800",
-      tags: ["Mobile App", "Health", "UI/UX"]
-    }
-  ]);
-
-  const [testimonials] = useState([
-    {
-      id: 1,
-      name: "Alex Rivera",
-      role: "Founder",
-      company: "Nexus Design",
-      text: "Shai's ability to transform complex problems into elegant solutions is remarkable. A true visionary.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex"
-    },
-    {
-      id: 2,
-      name: "Sarah Chen",
-      role: "Lead Engineer",
-      company: "TechFlow",
-      text: "Working with Shai was a pleasure. The attention to detail and design thinking is top-notch.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
-    }
-  ]);
-
-  const [tools] = useState([
-    {
-      id: 1,
-      name: "Figma",
-      category: "Design",
-      description: "Primary tool for interface design and prototyping.",
-      color: "#F24E1E"
-    },
-    {
-      id: 2,
-      name: "Adobe CC",
-      category: "Creative",
-      description: "Suite of tools for image editing and branding.",
-      color: "#FF0000"
-    }
-  ]);
-
-  const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false);
-  const [selectedTestimonialId, setSelectedTestimonialId] = useState<number | null>(null);
-  const [isEditTestimonialOpen, setIsEditTestimonialOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isNavVisible, setIsNavVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [visibleTestimonials, setVisibleTestimonials] = useState<Set<number>>(new Set());
-  const [showUnsavedWarning, setShowUnsavedWarning] = useState(false);
-  const [pendingAction, setPendingAction] = useState<string | null>(null);
-  const [pendingTestimonialId, setPendingTestimonialId] = useState<number | null>(null);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
-
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
-
   useEffect(() => {
     const checkIfMobileOrTablet = () => {
       setIsMobileOrTablet(window.innerWidth < 1190);
@@ -316,6 +169,49 @@ export default function Dashboard() {
     
     return () => window.removeEventListener('resize', checkIfMobileOrTablet);
   }, []);
+
+  useEffect(() => {
+    if (selectedWallpaper) {
+      localStorage.setItem('dashboard-wallpaper', selectedWallpaper);
+    } else {
+      localStorage.removeItem('dashboard-wallpaper');
+    }
+    
+    // Update previous wallpaper after a delay to allow crossfade
+    const timer = setTimeout(() => {
+      setPreviousWallpaper(selectedWallpaper);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, [selectedWallpaper]);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-wallpaper-mode', isDarkWallpapers ? 'dark' : 'light');
+  }, [isDarkWallpapers]);
+
+  useEffect(() => {
+    if (customWallpaper) {
+      localStorage.setItem('dashboard-custom-wallpaper', customWallpaper);
+    } else {
+      localStorage.removeItem('dashboard-custom-wallpaper');
+    }
+  }, [customWallpaper]);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-background-blur', backgroundBlur.toString());
+  }, [backgroundBlur]);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-background-effect-type', backgroundEffectType);
+  }, [backgroundEffectType]);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-grain-intensity', grainIntensity.toString());
+  }, [grainIntensity]);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-background-motion', backgroundMotion ? 'on' : 'off');
+  }, [backgroundMotion]);
 
   useEffect(() => {
     localStorage.setItem('dashboard-section-order', JSON.stringify(sectionOrder));
@@ -343,107 +239,703 @@ export default function Dashboard() {
   }, [selectedFont]);
 
   useEffect(() => {
+    if (!backgroundMotion) {
+      setScrollOffset(0);
+      return;
+    }
+
+    const handleScroll = () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+      rafRef.current = requestAnimationFrame(() => {
+        setScrollOffset(window.scrollY);
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [backgroundMotion]);
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const maxSize = 5 * 1024 * 1024;
+    if (file.size > maxSize) {
+      alert('File size exceeds 5MB. Please upload a smaller image.');
+      return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+      alert('Please upload a valid image file.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result as string;
+      setCustomWallpaper(result);
+      setSelectedWallpaper(result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const lightWallpapers = [
+    {
+      id: 'wall1',
+      name: 'Wallpaper 1',
+      path: '/wallpaper/wall1.png'
+    },
+    {
+      id: 'wall2',
+      name: 'Wallpaper 2',
+      path: '/wallpaper/wall2.png'
+    },
+    {
+      id: 'wall3',
+      name: 'Wallpaper 3',
+      path: '/wallpaper/wall3.png'
+    },
+    {
+      id: 'wall4',
+      name: 'Wallpaper 4',
+      path: '/wallpaper/wall4.png'
+    },
+    {
+      id: 'wall5',
+      name: 'Wallpaper 5',
+      path: '/wallpaper/wall5.png'
+    },
+    {
+      id: 'wall6',
+      name: 'Wallpaper 6',
+      path: '/wallpaper/wall6.png'
+    },
+    {
+      id: 'wall7',
+      name: 'Wallpaper 7',
+      path: '/wallpaper/wall7.png'
+    }
+  ];
+
+  const darkWallpapers = [
+    {
+      id: 'darkwall1',
+      name: 'Dark Wallpaper 1',
+      path: '/wallpaper/darkui/darkwall1.png'
+    },
+    {
+      id: 'darkwall2',
+      name: 'Dark Wallpaper 2',
+      path: '/wallpaper/darkui/darkwall2.png'
+    },
+    {
+      id: 'darkwall3',
+      name: 'Dark Wallpaper 3',
+      path: '/wallpaper/darkui/darkwall3.png'
+    },
+    {
+      id: 'darkwall4',
+      name: 'Dark Wallpaper 4',
+      path: '/wallpaper/darkui/darkwall4.png'
+    },
+    {
+      id: 'darkwall5',
+      name: 'Dark Wallpaper 5',
+      path: '/wallpaper/darkui/darkwall5.png'
+    },
+    {
+      id: 'darkwall6',
+      name: 'Dark Wallpaper 6',
+      path: '/wallpaper/darkui/darkwall6.png'
+    },
+    {
+      id: 'darkwall7',
+      name: 'Dark Wallpaper 7',
+      path: '/wallpaper/darkui/darkwall7.png'
+    }
+  ];
+
+  const wallpapers = isDarkWallpapers ? darkWallpapers : lightWallpapers;
+
+  const testimonials = [
+    {
+      id: 1,
+      name: "Sarah Chen",
+      company: "Stripe",
+      linkedinLink: "",
+      text: "Morgan's approach to design thinking transformed how our team tackles complex problems. Their ability to balance user needs with business goals is exceptional.",
+      avatar: ""
+    },
+    {
+      id: 2,
+      name: "James Rodriguez",
+      company: "Airbnb",
+      linkedinLink: "",
+      text: "Working with Morgan was a game-changer for our design system. Their attention to detail and strategic thinking helped us scale our product across multiple platforms seamlessly.",
+      avatar: ""
+    },
+    {
+      id: 3,
+      name: "Emily Watson",
+      company: "Shopify",
+      linkedinLink: "",
+      text: "Morgan brings a unique blend of creativity and analytical thinking. Their ethnographic research methods uncovered insights that shaped our entire product strategy.",
+      avatar: ""
+    },
+    {
+      id: 4,
+      name: "Alex Thompson",
+      company: "Notion",
+      linkedinLink: "",
+      text: "Our conversion rates doubled after Morgan redesigned our landing page. Sometimes simple changes make the biggest impact.",
+      avatar: ""
+    }
+  ];
+
+  const tools = [
+    {
+      id: 1,
+      name: "Figma",
+      category: "Design",
+      description: "Interface design and prototyping",
+      color: "#F24E1E"
+    },
+    {
+      id: 2,
+      name: "Adobe Creative Suite",
+      category: "Design",
+      description: "Photoshop, Illustrator, After Effects",
+      color: "#FF0000"
+    },
+    {
+      id: 3,
+      name: "Notion",
+      category: "Documentation",
+      description: "Research and documentation",
+      color: "#000000"
+    },
+    {
+      id: 4,
+      name: "Miro",
+      category: "Collaboration",
+      description: "Whiteboarding and brainstorming",
+      color: "#FFD02F"
+    },
+    {
+      id: 5,
+      name: "Framer",
+      category: "Prototyping",
+      description: "Interactive prototypes",
+      color: "#0055FF"
+    },
+    {
+      id: 6,
+      name: "Principle",
+      category: "Animation",
+      description: "Micro-interactions and animations",
+      color: "#6E56F5"
+    }
+  ];
+
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [visibleTestimonials, setVisibleTestimonials] = useState<Set<number>>(new Set());
+  const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
+  const [editingTestimonial, setEditingTestimonial] = useState<typeof testimonials[0] | null>(null);
+  const [isEditTestimonialOpen, setIsEditTestimonialOpen] = useState(false);
+  const [selectedTestimonialId, setSelectedTestimonialId] = useState<number | null>(null);
+  const [showUnsavedWarning, setShowUnsavedWarning] = useState(false);
+  const [pendingAction, setPendingAction] = useState<'close' | 'cancel' | 'switch' | null>(null);
+  const [pendingTestimonialId, setPendingTestimonialId] = useState<number | null>(null);
+  const [caseStudies, setCaseStudies] = useState<Array<{
+    id: number;
+    title: string;
+    description: string;
+    category: string;
+    image: string;
+    isHidden: boolean;
+  }>>([]);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const caseStudyTemplates = [
+    {
+      id: 'blank',
+      name: 'Blank Canvas',
+      description: 'Start fresh and make your own layout.',
+      icon: FileText,
+      color: '#FF553E',
+      mockProject: {
+        title: 'Untitled Project',
+        description: 'Start adding your content here',
+        category: 'Project'
+      }
+    },
+    {
+      id: 'show-work',
+      name: 'Show your Work',
+      description: 'Perfect for showing what you built, designed, or created.',
+      icon: Layers,
+      color: '#FFB088',
+      mockProject: {
+        title: 'My Latest Project',
+        description: 'Showcasing the work I built, designed, and created',
+        category: 'Portfolio'
+      }
+    },
+    {
+      id: 'how-solved',
+      name: 'How I Solved It',
+      description: 'Tell the story behind a challenge you faced and how you solved it.',
+      icon: MessageSquare,
+      color: '#D97DD8',
+      mockProject: {
+        title: 'Problem Solving Case Study',
+        description: 'The story of a challenge I faced and the solution I created',
+        category: 'Problem Solving'
+      }
+    },
+    {
+      id: 'research',
+      name: 'Research & Learnings',
+      description: 'Best for sharing what you discovered or tested.',
+      icon: Search,
+      color: '#B47EE8',
+      mockProject: {
+        title: 'Research Findings',
+        description: 'Insights and learnings from my research and testing',
+        category: 'Research'
+      }
+    }
+  ];
+
+  const handleTemplateSelect = (templateId: string) => {
+    const template = caseStudyTemplates.find(t => t.id === templateId);
+    if (template) {
+      const newProject = {
+        id: Date.now(),
+        title: template.mockProject.title,
+        description: template.mockProject.description,
+        category: template.mockProject.category,
+        image: '/casestudy.png',
+        isHidden: false
+      };
+      setCaseStudies(prev => [...prev, newProject]);
+    }
+    setIsTemplateDialogOpen(false);
+  };
+
+  const handleToggleVisibility = (projectId: number) => {
+    setCaseStudies(prev => prev.map(p => 
+      p.id === projectId ? { ...p, isHidden: !p.isHidden } : p
+    ));
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    
+    if (over && active.id !== over.id) {
+      setCaseStudies((items) => {
+        const oldIndex = items.findIndex(item => item.id === active.id);
+        const newIndex = items.findIndex(item => item.id === over.id);
+        
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
+
+  const handleDeleteClick = (projectId: number) => {
+    setProjectToDelete(projectId);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (projectToDelete !== null) {
+      setCaseStudies(prev => prev.filter(p => p.id !== projectToDelete));
+      setProjectToDelete(null);
+    }
+    setDeleteDialogOpen(false);
+  };
+
+  const hasUnsavedChanges = () => {
+    if (!editingTestimonial || selectedTestimonialId === null) return false;
+    const originalTestimonial = testimonials.find(t => t.id === selectedTestimonialId);
+    if (!originalTestimonial) return false;
+    
+    return (
+      editingTestimonial.name !== originalTestimonial.name ||
+      editingTestimonial.company !== originalTestimonial.company ||
+      editingTestimonial.linkedinLink !== originalTestimonial.linkedinLink ||
+      editingTestimonial.text !== originalTestimonial.text ||
+      editingTestimonial.avatar !== originalTestimonial.avatar
+    );
+  };
+
+  const handleAttemptClose = (action: 'close' | 'cancel') => {
+    if (hasUnsavedChanges()) {
+      setShowUnsavedWarning(true);
+      setPendingAction(action);
+    } else {
+      if (action === 'close') {
+        setIsEditTestimonialOpen(false);
+        setSelectedTestimonialId(null);
+      } else {
+        setIsEditTestimonialOpen(false);
+        setSelectedTestimonialId(null);
+      }
+    }
+  };
+
+  const handleConfirmDiscard = () => {
+    setShowUnsavedWarning(false);
+    setEditingTestimonial(null);
+    setIsEditTestimonialOpen(false);
+    setSelectedTestimonialId(null);
+    
+    // If switching to another testimonial, open it after discarding
+    if (pendingAction === 'switch' && pendingTestimonialId) {
+      const testimonialToOpen = testimonials.find(t => t.id === pendingTestimonialId);
+      if (testimonialToOpen) {
+        setEditingTestimonial({ ...testimonialToOpen });
+        setSelectedTestimonialId(testimonialToOpen.id);
+        setIsEditTestimonialOpen(true);
+      }
+    }
+    setPendingAction(null);
+  };
+
+  const handleEditTestimonialClick = (testimonial: typeof testimonials[0]) => {
+    // If already editing a different testimonial with unsaved changes
+    if (isEditTestimonialOpen && selectedTestimonialId !== testimonial.id && hasUnsavedChanges()) {
+      setPendingTestimonialId(testimonial.id);
+      setShowUnsavedWarning(true);
+      setPendingAction('switch');
+    } else {
+      // No unsaved changes or editing the same one, open directly
+      setEditingTestimonial(testimonial);
+      setSelectedTestimonialId(testimonial.id);
+      setIsEditTestimonialOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setIsScrolled(currentScrollY > 20);
+      
+      setIsScrolled(currentScrollY > 10);
       
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsNavVisible(false);
       } else {
         setIsNavVisible(true);
       }
+      
       setLastScrollY(currentScrollY);
-
-      if (backgroundMotion) {
-        if (rafRef.current) {
-          cancelAnimationFrame(rafRef.current);
-        }
-        rafRef.current = requestAnimationFrame(() => {
-          setScrollOffset(currentScrollY);
-        });
-      }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [lastScrollY, backgroundMotion]);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
-  const handleDragEnd = (event: any) => {
-    const { active, over } = event;
-    if (active.id !== over.id) {
-      setCaseStudies((items) => {
-        const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex((item) => item.id === over.id);
-        return arrayMove(items, oldIndex, newIndex);
+  function SortableSectionItem({ id }: { id: string }) {
+    const {
+      attributes,
+      listeners,
+      setNodeRef,
+      transform,
+      transition,
+      isDragging,
+    } = useSortable({ id });
+
+    const style: React.CSSProperties = {
+      transform: CSS.Transform.toString(transform),
+      transition,
+      zIndex: isDragging ? 50 : 'auto',
+    };
+
+    const labels: Record<string, string> = {
+      works: 'My works',
+      testimonials: 'Testimonials',
+      toolbox: 'Toolbox',
+    };
+
+    return (
+      <div
+        ref={setNodeRef}
+        style={style}
+        className={`flex items-center gap-3 p-3 rounded-xl border border-border bg-card/50 transition-all ${
+          isDragging ? 'opacity-50 shadow-lg scale-[1.02]' : 'hover:bg-accent/50'
+        }`}
+        data-testid={`item-block-${id}`}
+      >
+        <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing p-1 rounded-md hover:bg-accent text-foreground/40">
+          <GripVertical className="w-4 h-4" />
+        </div>
+        <span className="text-sm font-medium">{labels[id]}</span>
+      </div>
+    );
+  }
+
+  function SortableCard({ project }: { project: typeof caseStudies[0] }) {
+    const {
+      attributes,
+      listeners,
+      setNodeRef,
+      transform,
+      transition,
+      isDragging,
+    } = useSortable({ id: project.id });
+
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [isHovered, setIsHovered] = useState(false);
+
+    const [isHoveringInteractive, setIsHoveringInteractive] = useState(false);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
       });
-    }
-  };
+    };
 
-  const handleEditTestimonialClick = (testimonial: any) => {
-    setSelectedTestimonialId(testimonial.id);
-    setIsEditTestimonialOpen(true);
-  };
+    const style: React.CSSProperties = {
+      transform: CSS.Transform.toString(transform),
+      transition: transition || 'transform 200ms ease',
+      zIndex: isDragging ? 50 : 'auto',
+      cursor: isHoveringInteractive ? 'auto' : 'none'
+    };
 
-  const handleConfirmDiscard = () => {
-    setShowUnsavedWarning(false);
-    setIsEditTestimonialOpen(false);
-    setSelectedTestimonialId(null);
-  };
+    return (
+      <div 
+        ref={setNodeRef} 
+        style={style} 
+        className="group relative" 
+        data-testid={`card-case-study-${project.id}`}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          setIsHoveringInteractive(false);
+        }}
+      >
+        <AnimatePresence>
+          {isHovered && !isDragging && !isHoveringInteractive && (
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              className="fixed pointer-events-none z-[100] flex items-center gap-2 bg-[#FF553E] text-white px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap"
+              style={{
+                left: mousePos.x,
+                top: mousePos.y,
+                transform: 'translate(-50%, -50%)',
+                position: 'absolute'
+              }}
+            >
+              <Eye className="w-4 h-4" />
+              <span className="text-[10px] font-bold uppercase tracking-wider">View Case Study</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <motion.div 
+          className="bg-white border-0 rounded-2xl overflow-hidden relative"
+          style={{ 
+            boxShadow: isDragging 
+              ? '0 0 0 1px rgba(0,0,0,0.1), 0 20px 40px rgba(0,0,0,0.15)' 
+              : '0 0 0 1px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)',
+            opacity: isDragging ? 0.9 : 1,
+          }}
+          whileHover={{ 
+            scale: 1.02,
+            rotateX: 2,
+            rotateY: -2,
+            transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+          }}
+          initial={{ scale: 1, rotateX: 0, rotateY: 0 }}
+          animate={isDragging ? { scale: 1.02 } : { scale: 1 }}
+        >
+          <div 
+            className="w-full h-56 flex items-center justify-center relative overflow-hidden rounded-t-2xl"
+            style={{
+              background: 'linear-gradient(135deg, #FCF9F6 0%, #F9F5F1 50%, #F5F1ED 100%)'
+            }}
+            data-testid={`image-case-study-${project.id}`}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/[0.02] to-transparent" />
+            <motion.img 
+              src={project.image} 
+              alt={project.title}
+              className={`w-28 h-28 object-contain ${project.isHidden ? 'opacity-10' : 'opacity-20'}`}
+              whileHover={{ scale: 1.15 }}
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            />
+            {project.isHidden && (
+              <div className="absolute top-3 right-3 bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5">
+                <EyeOff className="w-3 h-3" />
+                Hidden from live site
+              </div>
+            )}
+          </div>
+          
+          <div className="p-6 pb-20">
+            <div className="mb-3">
+              <Badge 
+                className="text-xs font-medium bg-muted/50 text-muted-foreground hover:bg-muted/50 border-none px-2 py-0"
+                data-testid={`badge-case-study-category-${project.id}`}
+              >
+                {project.category}
+              </Badge>
+            </div>
+            
+            <h3 
+              className="text-sm font-semibold tracking-tight text-foreground mb-1 leading-snug"
+              data-testid={`text-case-study-title-${project.id}`}
+            >
+              {project.title}
+            </h3>
+            <p 
+              className="text-[12px] text-muted-foreground leading-relaxed line-clamp-2"
+              data-testid={`text-case-study-description-${project.id}`}
+            >
+              {project.description}
+            </p>
+          </div>
 
-  const handleDeleteConfirm = () => {
-    if (projectToDelete) {
-      setCaseStudies(prev => prev.filter(p => p.id !== projectToDelete));
-      setDeleteDialogOpen(false);
-      setProjectToDelete(null);
-    }
-  };
-
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        setCustomWallpaper(base64String);
-        setSelectedWallpaper(base64String);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleTemplateSelect = (templateId: string) => {
-    setIsTemplateDialogOpen(false);
-    // Add logic for template selection if needed
-  };
-
-  const caseStudyTemplates = [
-    { id: 'mobile', name: 'Mobile App', description: 'Optimized for app showcases', icon: Sparkles, color: '#2563EB' },
-    { id: 'web', name: 'Web Platform', description: 'Best for dashboard and SaaS', icon: Sparkles, color: '#7C3AED' },
-  ];
+          <div 
+            className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between bg-gradient-to-t from-white via-white to-transparent rounded-b-2xl"
+            onMouseEnter={() => setIsHoveringInteractive(true)}
+            onMouseLeave={() => setIsHoveringInteractive(false)}
+          >
+            <button
+              {...attributes}
+              {...listeners}
+              className="bg-white border border-border rounded-full px-3 py-2 flex items-center gap-2 hover-elevate cursor-grab active:cursor-grabbing"
+              aria-roledescription="Reorder"
+              data-testid={`button-drag-case-study-${project.id}`}
+            >
+              <GripVertical className="w-4 h-4 text-foreground" />
+            </button>
+            
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleToggleVisibility(project.id)}
+                className={`border rounded-full px-4 py-2 flex items-center gap-2 hover-elevate cursor-pointer text-sm font-medium ${
+                  project.isHidden 
+                    ? 'bg-amber-50 border-amber-200 text-amber-700' 
+                    : 'bg-white border-border text-foreground'
+                }`}
+                data-testid={`button-toggle-visibility-${project.id}`}
+              >
+                {project.isHidden ? (
+                  <>
+                    <EyeOff className="w-4 h-4" />
+                    <span>Hidden</span>
+                  </>
+                ) : (
+                  <>
+                    <Eye className="w-4 h-4" />
+                    <span>Visible</span>
+                  </>
+                )}
+              </button>
+              
+              <button
+                className="bg-white border border-border rounded-full px-4 py-2 flex items-center gap-2 hover-elevate cursor-pointer text-sm font-medium"
+                data-testid={`button-edit-case-study-bottom-${project.id}`}
+              >
+                <Pencil className="w-4 h-4 text-foreground" />
+                <span className="text-foreground">Edit</span>
+              </button>
+              
+              <button
+                onClick={() => handleDeleteClick(project.id)}
+                onMouseEnter={() => setIsHoveringInteractive(true)}
+                onMouseLeave={() => setIsHoveringInteractive(false)}
+                className="bg-white border border-border rounded-full w-10 h-10 flex items-center justify-center hover-elevate cursor-pointer"
+                data-testid={`button-delete-case-study-${project.id}`}
+              >
+                <Trash2 className="w-4 h-4 text-destructive" />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen flex overflow-x-hidden relative" style={{ backgroundColor: '#FAF8F5' }}>
-      {/* Background Layer */}
+    <div className="min-h-screen flex overflow-x-hidden relative" style={{ backgroundColor: '#F6F2EF' }}>
+      {/* Previous wallpaper layer (stays visible during transition) */}
+      {previousWallpaper && (
+        <div 
+          className="fixed inset-0"
+          style={{ 
+            backgroundImage: `url(${previousWallpaper})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            zIndex: 0,
+            filter: backgroundEffectType === 'blur' && backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
+            transform: `scale(${1.05 + (backgroundMotion ? scrollOffset * 0.00008 : 0)})`,
+            transition: 'transform 0.1s ease-out'
+          }}
+        />
+      )}
+      {/* Current wallpaper layer with smooth fade-in */}
       {selectedWallpaper && (
         <div 
-          className="fixed inset-0 pointer-events-none z-0"
-          style={{
+          key={selectedWallpaper}
+          className="fixed inset-0 wallpaper-transition"
+          style={{ 
             backgroundImage: `url(${selectedWallpaper})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            filter: `blur(${backgroundBlur}px)`,
-            transform: backgroundMotion ? `translateY(${scrollOffset * 0.2}px) scale(${1 + (scrollOffset * 0.0001)})` : 'none',
-            opacity: 0.15,
+            zIndex: 1,
+            filter: backgroundEffectType === 'blur' && backgroundBlur > 0 ? `blur(${backgroundBlur}px)` : 'none',
+            transform: `scale(${1.05 + (backgroundMotion ? scrollOffset * 0.00008 : 0)})`,
+            transition: 'transform 0.1s ease-out'
+          }}
+        />
+      )}
+      {/* Paper grain/noise overlay */}
+      {selectedWallpaper && backgroundEffectType === 'grain' && grainIntensity > 0 && (
+        <div 
+          className="fixed inset-0 pointer-events-none"
+          style={{ 
+            zIndex: 2,
+            opacity: grainIntensity / 100,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
             mixBlendMode: 'overlay'
           }}
         />
       )}
-      
       {/* Main Content */}
-      <div className="flex-1 w-full min-w-0 transition-all duration-300 relative z-10" style={{ marginRight: !isMobileOrTablet && isThemePanelOpen ? '320px' : '0' }}>
+      <div className="flex-1 w-full min-w-0 transition-all duration-300 relative z-10" style={{ marginRight: !isMobileOrTablet && (isThemePanelOpen || isEditTestimonialOpen) ? '320px' : '0' }}>
         <div className="max-w-4xl mx-auto px-6">
           {/* Floating Navbar */}
           <div 
@@ -453,346 +945,1766 @@ export default function Dashboard() {
               transition: 'transform 0.3s ease-in-out'
             }}
           >
-            <Card 
-              className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl px-8 py-4 mb-6 transition-shadow duration-300" 
-              style={{ 
-                boxShadow: isScrolled 
-                  ? '0 0 0 1px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.08)' 
-                  : '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' 
-              }}
-            >
-              <div className="flex items-center justify-between">
-                <Link href="/" className="cursor-pointer" data-testid="link-home">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-[#FF553E] rounded-lg flex items-center justify-center">
-                      <Sparkle className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="font-bold text-xl tracking-tight">Designfolio</span>
-                  </div>
-                </Link>
+          <Card 
+            className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl px-8 py-4 mb-6 transition-shadow duration-300" 
+            style={{ 
+              boxShadow: isScrolled 
+                ? '0 0 0 1px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.08)' 
+                : '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' 
+            }}
+          >
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <Link href="/" className="cursor-pointer" data-testid="link-home">
+                <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto" data-testid="logo-icon">
+                  <path d="M15.4028 0.779664C15.6377 -0.259891 17.1189 -0.259886 17.3537 0.779669L18.9775 7.96851C19.1297 8.64225 19.9029 8.9625 20.4869 8.59371L26.7184 4.65866C27.6195 4.08962 28.6669 5.137 28.0979 6.03812L24.1628 12.2696C23.794 12.8537 24.1143 13.6268 24.788 13.779L31.9769 15.4028C33.0164 15.6377 33.0164 17.1189 31.9769 17.3537L24.788 18.9775C24.1143 19.1297 23.794 19.9029 24.1628 20.4869L28.0979 26.7184C28.6669 27.6195 27.6195 28.6669 26.7184 28.0979L20.4869 24.1628C19.9029 23.794 19.1297 24.1143 18.9775 24.788L17.3537 31.9769C17.1189 33.0164 15.6377 33.0164 15.4028 31.9769L13.779 24.788C13.6268 24.1143 12.8537 23.794 12.2696 24.1628L6.03812 28.0979C5.137 28.6669 4.08963 27.6195 4.65866 26.7184L8.59371 20.4869C8.9625 19.9029 8.64225 19.1297 7.96851 18.9775L0.779664 17.3537C-0.259891 17.1189 -0.259886 15.6377 0.779669 15.4028L7.96851 13.779C8.64225 13.6268 8.9625 12.8537 8.59371 12.2696L4.65866 6.03812C4.08962 5.137 5.137 4.08963 6.03812 4.65866L12.2696 8.59371C12.8537 8.9625 13.6268 8.64225 13.779 7.96851L15.4028 0.779664Z" fill="#FF553E"/>
+                  <path d="M152.495 17.7614C152.495 13.6364 155.72 10.3864 159.745 10.3864C163.27 10.3864 165.645 12.6364 165.645 15.9864C165.645 20.1114 162.445 23.3614 158.395 23.3614C154.87 23.3614 152.495 21.1114 152.495 17.7614ZM155.495 17.5364C155.495 19.4864 156.67 20.7614 158.57 20.7614C160.82 20.7614 162.645 18.7364 162.645 16.2114C162.645 14.2364 161.47 12.9614 159.595 12.9614C157.345 12.9614 155.495 14.9864 155.495 17.5364Z" fill="currentColor"/>
+                  <path d="M150.066 8.21142C149.166 8.21142 148.541 7.53642 148.541 6.68643C148.541 5.58642 149.516 4.58643 150.641 4.58643C151.516 4.58643 152.166 5.23642 152.166 6.11143C152.166 7.18642 151.166 8.21142 150.066 8.21142ZM146.266 23.0614L148.216 10.7114H151.141L149.191 23.0614H146.266Z" fill="currentColor"/>
+                  <path d="M143.064 23.0614H140.139L143.064 4.46143H146.014L143.064 23.0614Z" fill="currentColor"/>
+                  <path d="M125.591 17.7614C125.591 13.6364 128.816 10.3864 132.841 10.3864C136.366 10.3864 138.741 12.6364 138.741 15.9864C138.741 20.1114 135.541 23.3614 131.491 23.3614C127.966 23.3614 125.591 21.1114 125.591 17.7614ZM128.591 17.5364C128.591 19.4864 129.766 20.7614 131.666 20.7614C133.916 20.7614 135.741 18.7364 135.741 16.2114C135.741 14.2364 134.566 12.9614 132.691 12.9614C130.441 12.9614 128.591 14.9864 128.591 17.5364Z" fill="currentColor"/>
+                  <path d="M118.183 10.7114H119.933L120.183 9.16142C120.683 6.06143 122.408 4.46143 125.233 4.46143C125.733 4.46143 126.283 4.48643 126.733 4.58643L126.333 7.11143C125.983 7.11143 125.658 7.08642 125.308 7.08642C123.983 7.08642 123.308 7.71143 123.083 9.16142L122.833 10.7114H125.733L125.333 13.1614H122.458L120.883 23.0614H117.983L119.558 13.1614H117.783L118.183 10.7114Z" fill="currentColor"/>
+                  <path d="M106.761 23.0614H103.711V10.7114H106.536L106.786 12.3114C107.561 11.0614 109.061 10.3364 110.736 10.3364C113.836 10.3364 115.436 12.2614 115.436 15.4614V23.0614H112.386V16.1864C112.386 14.1114 111.361 13.1114 109.786 13.1114C107.911 13.1114 106.761 14.4114 106.761 16.4114V23.0614Z" fill="currentColor"/>
+                  <path d="M87.6544 16.6114C87.6544 13.0114 90.0044 10.3114 93.5294 10.3114C95.3794 10.3114 96.8294 11.0864 97.5544 12.4114L97.7294 10.7114H100.554V22.4364C100.554 26.5614 98.0794 29.1364 94.0794 29.1364C90.5294 29.1364 88.1044 27.1114 87.7294 23.8114H90.7794C90.9794 25.4114 92.2044 26.3614 94.0794 26.3614C96.1794 26.3614 97.5294 25.0364 97.5294 22.9864V20.9364C96.7544 22.0864 95.2294 22.8114 93.4544 22.8114C89.9544 22.8114 87.6544 20.1864 87.6544 16.6114ZM90.7294 16.5364C90.7294 18.6114 92.0544 20.1614 94.0544 20.1614C96.1544 20.1614 97.4544 18.6864 97.4544 16.5364C97.4544 14.4364 96.1794 12.9864 94.0544 12.9864C92.0294 12.9864 90.7294 14.5114 90.7294 16.5364Z" fill="currentColor"/>
+                  <path d="M83.6782 8.2364C82.6282 8.2364 81.8032 7.4114 81.8032 6.3864C81.8032 5.3614 82.6282 4.5614 83.6782 4.5614C84.6782 4.5614 85.5032 5.3614 85.5032 6.3864C85.5032 7.4114 84.6782 8.2364 83.6782 8.2364ZM82.1532 23.0614V10.7114H85.2032V23.0614H82.1532Z" fill="currentColor"/>
+                  <path d="M69.631 19.3114H72.531C72.556 20.3864 73.356 21.0614 74.756 21.0614C76.181 21.0614 76.956 20.4864 76.956 19.5864C76.956 18.9614 76.631 18.5114 75.531 18.2614L73.306 17.7364C71.081 17.2364 70.006 16.1864 70.006 14.2114C70.006 11.7864 72.056 10.3364 74.906 10.3364C77.681 10.3364 79.556 11.9364 79.581 14.3364H76.681C76.656 13.2864 75.956 12.6114 74.781 12.6114C73.581 12.6114 72.881 13.1614 72.881 14.0864C72.881 14.7864 73.431 15.2364 74.481 15.4864L76.706 16.0114C78.781 16.4864 79.831 17.4364 79.831 19.3364C79.831 21.8364 77.706 23.3864 74.656 23.3864C71.581 23.3864 69.631 21.7364 69.631 19.3114Z" fill="currentColor"/>
+                  <path d="M62.1899 23.3864C58.5149 23.3864 55.9399 20.7114 55.9399 16.8864C55.9399 13.0114 58.4649 10.3364 62.0899 10.3364C65.7899 10.3364 68.1399 12.8114 68.1399 16.6614V17.5864L58.8399 17.6114C59.0649 19.7864 60.2149 20.8864 62.2399 20.8864C63.9149 20.8864 65.0149 20.2364 65.3649 19.0614H68.1899C67.6649 21.7614 65.4149 23.3864 62.1899 23.3864ZM62.1149 12.8364C60.3149 12.8364 59.2149 13.8114 58.9149 15.6614H65.1149C65.1149 13.9614 63.9399 12.8364 62.1149 12.8364Z" fill="currentColor"/>
+                  <path d="M46.2614 23.3864C42.6864 23.3864 40.4614 20.7614 40.4614 16.9364C40.4614 13.0864 42.7114 10.3364 46.4364 10.3364C48.1614 10.3364 49.6864 11.0614 50.4614 12.2864V4.46143H53.4864V23.0614H50.6864L50.4864 21.1364C49.7364 22.5614 48.1364 23.3864 46.2614 23.3864ZM46.9364 20.5864C49.0614 20.5864 50.4364 19.0614 50.4364 16.8364C50.4364 14.6114 49.0614 13.0614 46.9364 13.0614C44.8114 13.0614 43.5114 14.6364 43.5114 16.8364C43.5114 19.0364 44.8114 20.5864 46.9364 20.5864Z" fill="currentColor"/>
+                </svg>
+              </Link>
 
-                <div className="hidden md:flex items-center gap-3">
-                  <Button variant="outline" size="icon" className="rounded-full h-11 w-11">
-                    <Sparkles className="w-5 h-5" />
-                  </Button>
-                  <Button variant="outline" size="icon" className="rounded-full h-11 w-11">
-                    <Bell className="w-5 h-5" />
-                  </Button>
-                  <Button variant="outline" size="icon" className="rounded-full h-11 w-11" onClick={() => setIsThemePanelOpen(!isThemePanelOpen)}>
-                    <Paintbrush className="w-5 h-5" />
-                  </Button>
-                  <Button className="bg-foreground text-background hover:bg-foreground/90 border-0 rounded-full h-11 px-6 text-base font-semibold transition-colors">
-                    Publish Site
-                  </Button>
-                  <Avatar className="w-11 h-11">
-                    <AvatarFallback style={{ backgroundColor: '#FF553E', color: '#FFFFFF' }}>S</AvatarFallback>
-                  </Avatar>
-                </div>
+              {/* Nav Actions - Desktop */}
+              <div className="hidden md:flex items-center gap-3">
+                <Button 
+                  variant="outline" 
+                  size="icon"
+                  className="rounded-full h-11 w-11"
+                  data-testid="button-insights"
+                >
+                  <Sparkles className="w-5 h-5" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="icon"
+                  className="rounded-full h-11 w-11"
+                  data-testid="button-notifications"
+                >
+                  <Bell className="w-5 h-5" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="icon"
+                  className="rounded-full h-11 w-11"
+                  onClick={() => setIsThemePanelOpen(!isThemePanelOpen)}
+                  data-testid="button-theme"
+                >
+                  <Paintbrush className="w-5 h-5" />
+                </Button>
+                <Button 
+                  className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                  data-testid="button-publish-site"
+                >
+                  Publish Site
+                </Button>
+                <Avatar className="w-11 h-11" data-testid="avatar-user">
+                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarFallback className="text-base" style={{ backgroundColor: '#FF553E', color: '#FFFFFF' }}>
+                    {user.name.charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+              </div>
 
-                <div className="md:hidden">
-                  <Sheet>
-                    <SheetTrigger asChild>
-                      <Button variant="outline" size="icon" className="rounded-full h-11 w-11">
-                        <Menu className="w-5 h-5" />
+              {/* Mobile Menu */}
+              <div className="md:hidden">
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      size="icon"
+                      className="rounded-full h-11 w-11"
+                      data-testid="button-menu"
+                    >
+                      <Menu className="w-5 h-5" />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent className="w-80">
+                    <div className="flex flex-col gap-4 mt-8">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Avatar className="w-11 h-11" data-testid="avatar-user-mobile">
+                          <AvatarImage src={user.avatar} alt={user.name} />
+                          <AvatarFallback className="text-base" style={{ backgroundColor: '#FF553E', color: '#FFFFFF' }}>
+                            {user.name.charAt(0).toUpperCase()}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="font-semibold">{user.name}</div>
+                          <div className="text-sm text-foreground/50">{user.role}</div>
+                        </div>
+                      </div>
+                      
+                      <Button 
+                        className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors w-full justify-center"
+                        data-testid="button-publish-site-mobile"
+                      >
+                        Publish Site
                       </Button>
-                    </SheetTrigger>
-                    <SheetContent className="w-80">
-                      <div className="flex flex-col gap-4 mt-8">
-                        <Button className="w-full bg-foreground text-background rounded-full h-11 font-semibold">
-                          Publish Site
+                      
+                      <div className="border-t pt-4 flex flex-col gap-2">
+                        <Button 
+                          variant="outline" 
+                          className="rounded-full h-11 w-full justify-start gap-3"
+                          data-testid="button-insights-mobile"
+                        >
+                          <Sparkles className="w-5 h-5" />
+                          <span>Insights</span>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="rounded-full h-11 w-full justify-start gap-3"
+                          data-testid="button-notifications-mobile"
+                        >
+                          <Bell className="w-5 h-5" />
+                          <span>Notifications</span>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="rounded-full h-11 w-full justify-start gap-3"
+                          onClick={() => setIsThemePanelOpen(!isThemePanelOpen)}
+                          data-testid="button-theme-mobile"
+                        >
+                          <Paintbrush className="w-5 h-5" />
+                          <span>Theme</span>
                         </Button>
                       </div>
-                    </SheetContent>
-                  </Sheet>
-                </div>
-              </div>
-            </Card>
-          </div>
-
-          <main className="pb-6">
-            {/* Profile Card */}
-            <motion.div
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="z-10"
-            >
-              <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl mb-3 relative overflow-hidden" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-                <div className="absolute top-4 right-4 z-10">
-                  <Button variant="outline" size="icon" className="rounded-full h-11 w-11">
-                    <Pencil className="w-5 h-5" />
-                  </Button>
-                </div>
-
-                <div className="p-8 pb-6">
-                  <div className="flex items-center gap-6">
-                    <div className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#F5F3F1]">
-                      <Avatar className="w-24 h-24 rounded-none">
-                        <AvatarFallback className="bg-transparent text-4xl">👋</AvatarFallback>
-                      </Avatar>
                     </div>
-                    
-                    <div className="flex-1">
-                      <h1 className="text-3xl font-semibold mb-2 font-heading">
-                        Hey, I'm Shai!
-                      </h1>
-                      <p className="text-base text-foreground/50 leading-relaxed">
-                        {user.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="relative overflow-hidden border-t border-border/10 py-3 bg-[#F8F7F5] rounded-b-2xl">
-                  <div className="flex gap-4 animate-scroll px-8 opacity-40">
-                    {[...user.categories, ...user.categories].map((category, index) => (
-                      <div key={index} className="flex items-center gap-3 shrink-0">
-                        <span className="text-[12px] font-medium whitespace-nowrap uppercase tracking-normal">
-                          {category}
-                        </span>
-                        <Sparkle className="w-2.5 h-2.5" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-
-            <AnimatePresence mode="popLayout">
-              {sectionOrder.map((sectionId, index) => {
-                if (sectionId === 'works') {
-                  return (
-                    <motion.div key="works" layout initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
-                      <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-                        <div className="flex items-center justify-between mb-4">
-                          <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider">My works</h2>
-                          <Button variant="outline" size="icon" className="rounded-full h-11 w-11">
-                            <Plus className="w-5 h-5" />
-                          </Button>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {caseStudies.map((project) => (
-                            <SortableCard key={project.id} project={project} />
-                          ))}
-                        </div>
-                      </Card>
-                    </motion.div>
-                  );
-                }
-
-                if (sectionId === 'work_experience') {
-                  return (
-                    <motion.div key="work-experience" layout initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
-                      <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-                        <div className="flex items-center justify-between mb-6">
-                          <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider">Work Experience</h2>
-                          <Button variant="outline" size="icon" className="rounded-full h-11 w-11">
-                            <Plus className="w-5 h-5" />
-                          </Button>
-                        </div>
-                        <div className="space-y-4">
-                          {workExperiences.map((exp) => (
-                            <div key={exp.id} className="group flex gap-5 p-4 rounded-2xl border border-border/30 bg-[#F5F3F1] hover-elevate transition-all duration-300">
-                              <Avatar className="w-12 h-12 rounded-xl border border-border/50">
-                                <AvatarImage src={exp.logo} />
-                                <AvatarFallback className="bg-muted text-xs">{exp.company.substring(0, 2)}</AvatarFallback>
-                              </Avatar>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center justify-between mb-1">
-                                  <h3 className="font-semibold text-base truncate">{exp.role}</h3>
-                                  <span className="text-xs font-medium text-foreground/40 shrink-0">{exp.period}</span>
-                                </div>
-                                <div className="flex items-center gap-2 mb-2 text-sm font-medium text-foreground/60">{exp.company}</div>
-                                <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2">{exp.description}</p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </Card>
-                    </motion.div>
-                  );
-                }
-
-                if (sectionId === 'testimonials') {
-                  return (
-                    <motion.div key="testimonials" layout initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
-                      <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-                        <div className="flex items-center justify-between mb-4">
-                          <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider">Testimonials</h2>
-                          <Button variant="outline" size="icon" className="rounded-full h-11 w-11">
-                            <Plus className="w-5 h-5" />
-                          </Button>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {testimonials.map((testimonial) => (
-                            <div key={testimonial.id} className="border-border/30 bg-[#F5F3F1] rounded-2xl p-5 flex flex-col hover-elevate transition-all">
-                              <p className="text-sm leading-relaxed mb-4 flex-1">{testimonial.text}</p>
-                              <div className="flex items-center gap-2.5">
-                                <Avatar className="w-10 h-10 shrink-0">
-                                  <AvatarImage src={testimonial.avatar} />
-                                  <AvatarFallback>T</AvatarFallback>
-                                </Avatar>
-                                <div>
-                                  <h3 className="font-semibold text-sm mb-0">{testimonial.name}</h3>
-                                  <p className="text-xs text-foreground/50">{testimonial.company}</p>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </Card>
-                    </motion.div>
-                  );
-                }
-
-                if (sectionId === 'toolbox') {
-                  return (
-                    <React.Fragment key="toolbox-group">
-                      <motion.div key="toolbox" layout initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, delay: index * 0.1 }}>
-                        <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
-                          <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider">Toolbox</h2>
-                            <Button variant="outline" size="icon" className="rounded-full h-11 w-11">
-                              <Plus className="w-5 h-5" />
-                            </Button>
-                          </div>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {tools.map((tool) => (
-                              <div key={tool.id} className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate">
-                                <div className="flex items-center gap-3">
-                                  <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: tool.color }}>
-                                    <div className="w-5 h-5 bg-white/90 rounded" />
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-2 mb-0.5">
-                                      <h3 className="font-semibold text-sm">{tool.name}</h3>
-                                      <Badge variant="secondary" className="text-xs">{tool.category}</Badge>
-                                    </div>
-                                    <p className="text-xs text-foreground/50">{tool.description}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </Card>
-                      </motion.div>
-                      
-                      {/* Contact Section - Only visible after Toolbox */}
-                      <motion.div
-                        key="contact-section"
-                        initial={{ y: 20, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="mt-20 mb-20 px-6 max-w-2xl mx-auto"
-                      >
-                        <div className="flex flex-col gap-10">
-                          <div className="flex items-center justify-between group cursor-pointer">
-                            <div className="flex items-center gap-4">
-                              <Mail className="w-5 h-5 text-foreground/40 group-hover:text-foreground transition-colors" />
-                              <span className="text-lg font-medium">Email</span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              <span className="text-lg text-foreground/60 group-hover:text-foreground transition-colors">h.potphode0@gmail.com</span>
-                              <ArrowUpRight className="w-5 h-5 text-foreground/20 group-hover:text-foreground transition-all transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                            </div>
-                          </div>
-
-                          <div className="flex items-center justify-between group cursor-pointer">
-                            <div className="flex items-center gap-4">
-                              <Linkedin className="w-5 h-5 text-foreground/40 group-hover:text-foreground transition-colors" />
-                              <span className="text-lg font-medium">LinkedIn</span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              <span className="text-lg text-foreground/60 group-hover:text-foreground transition-colors">/in/harshpotphode</span>
-                              <ArrowUpRight className="w-5 h-5 text-foreground/20 group-hover:text-foreground transition-all transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                            </div>
-                          </div>
-
-                          <div className="flex items-center justify-between group cursor-pointer">
-                            <div className="flex items-center gap-4">
-                              <SiBehance className="w-5 h-5 text-foreground/40 group-hover:text-foreground transition-colors" />
-                              <span className="text-lg font-medium">Behance (a few more projects)</span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              <span className="text-lg text-foreground/60 group-hover:text-foreground transition-colors">@HarshPotphode</span>
-                              <ArrowUpRight className="w-5 h-5 text-foreground/20 group-hover:text-foreground transition-all transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="mt-24 flex flex-col items-center">
-                          <div className="w-48 h-24 mb-6 opacity-80 grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105 cursor-default">
-                            <svg viewBox="0 0 200 100" className="w-full h-full text-foreground fill-none stroke-current" style={{ strokeWidth: '1.5', strokeLinecap: 'round', strokeLinejoin: 'round' }}>
-                              <path d="M40,60 C45,45 55,20 60,35 C65,50 60,70 70,60 C80,50 85,30 90,45 C95,60 90,80 100,70 C110,60 115,25 120,40 C125,55 120,75 130,65 C140,55 145,20 150,35 C155,50 150,70 160,60" />
-                            </svg>
-                          </div>
-                          <p className="text-xs font-semibold text-foreground/30 tracking-[0.2em] uppercase">Harsh Potphode</p>
-                        </div>
-                      </motion.div>
-                    </React.Fragment>
-                  );
-                }
-                return null;
-              })}
-            </AnimatePresence>
-          </main>
-        </div>
-
-        {/* Theme Panel */}
-        {!isMobileOrTablet && (
-          <div className={`fixed right-0 top-0 h-full bg-white border-l border-border transition-transform duration-300 z-40 ${isThemePanelOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{ width: '320px' }}>
-            <div className="flex flex-col h-full">
-              <div className="flex items-center justify-between p-6 border-b">
-                <h2 className="text-lg font-semibold">Theme Settings</h2>
-                <Button variant="ghost" size="icon" onClick={() => setIsThemePanelOpen(false)} className="h-8 w-8">
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-              <div className="flex-1 overflow-auto p-6">
-                <Tabs defaultValue="fonts">
-                  <TabsList className="w-full mb-6">
-                    <TabsTrigger value="fonts" className="flex-1">Fonts</TabsTrigger>
-                    <TabsTrigger value="background" className="flex-1">Background</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="fonts">
-                    <div className="space-y-4">
-                      {Object.entries(fontOptions).map(([key, font]) => (
-                        <button key={key} onClick={() => setSelectedFont(key)} className={`w-full text-left p-3 rounded-xl border-2 transition-all ${selectedFont === key ? 'border-foreground bg-foreground/5' : 'border-border hover:border-foreground/30'}`}>
-                          <div className="font-semibold" style={{ fontFamily: font.family }}>{font.name}</div>
-                          <div className="text-xs text-foreground/50">{font.description}</div>
-                        </button>
-                      ))}
-                    </div>
-                  </TabsContent>
-                </Tabs>
+                  </SheetContent>
+                </Sheet>
               </div>
             </div>
+          </Card>
+        </div>
+
+        <main className="pb-6">
+          {/* Profile Card */}
+          <motion.div
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            className="z-10"
+          >
+            <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl mb-3 relative" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+            {/* Edit Button - Top Right */}
+            <div 
+              className="absolute top-4 right-4 z-10"
+            >
+              <Button 
+                variant="outline" 
+                size="icon"
+                className="rounded-full h-11 w-11"
+                data-testid="button-edit-profile"
+              >
+                <Pencil className="w-5 h-5" />
+              </Button>
+            </div>
+
+            {/* Profile Info */}
+            <div className="p-8 pb-6">
+              <div className="flex items-center gap-6">
+                <TooltipProvider>
+                  <Tooltip delayDuration={300}>
+                    <TooltipTrigger asChild>
+                      <div 
+                        className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef]" 
+                        style={{ backgroundColor: '#F5F3F1' }} 
+                        data-testid="avatar-profile"
+                      >
+                        {!imageLoaded && (
+                          <div 
+                            className="absolute inset-0 rounded-2xl"
+                            style={{
+                              background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
+                              animation: 'shimmer 1.5s infinite'
+                            }}
+                          />
+                        )}
+                        <img 
+                          src="/advanced.png" 
+                          alt={user.name} 
+                          className="w-24 h-24 object-contain"
+                          onLoad={() => setImageLoaded(true)}
+                          style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
+                        />
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent 
+                      side="top" 
+                      className="bg-[#1A1A1A] text-white border-0 px-4 py-2 rounded-xl flex items-center gap-2 shadow-xl"
+                    >
+                      <span className="text-sm font-medium">Happy to have you here</span>
+                      <img src="/handshake.png" alt="Handshake" className="w-5 h-5 object-contain" />
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                
+                <div className="flex-1">
+                  <h1 className="text-3xl font-semibold mb-2 font-heading" data-testid="text-user-name">
+                    Hey, I'm Shai!
+                  </h1>
+                  <p className="text-base text-foreground/50 leading-relaxed" data-testid="text-user-role">
+                    A 0→1 Product Designer with 6 years of experience. I design and 
+                    develop digital products, create prototypes, and design interfaces.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Skills Banner Strip */}
+            <div 
+              className="relative overflow-hidden border-t border-border/10 py-3 bg-[#F8F7F5] rounded-b-2xl" 
+              data-testid="container-categories"
+            >
+              <div className="flex gap-4 animate-scroll px-8 opacity-40">
+                {[...user.categories, ...user.categories].map((category, index) => (
+                  <div key={index} className="flex items-center gap-3 shrink-0">
+                    <span className="text-[12px] font-medium whitespace-nowrap uppercase text-[#0A0A0A] tracking-normal">
+                      {category}
+                    </span>
+                    <Sparkle className="w-2.5 h-2.5 fill-[#0A0A0A] text-[#0A0A0A]" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Card>
+          </motion.div>
+
+          <AnimatePresence mode="popLayout">
+            {sectionOrder.map((sectionId, index) => {
+              const delay = 0.15 + index * 0.15;
+              
+              if (sectionId === 'works') {
+                return (
+                  <motion.div
+                    key="works"
+                    layout
+                    id="section-works"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      ease: [0.4, 0, 0.2, 1],
+                      layout: { duration: 0.6, ease: "easeInOut" }
+                    }}
+                  >
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-section-title">
+                        My works
+                      </h2>
+                      {caseStudies.length > 0 && (
+                        <Button 
+                          onClick={() => setIsTemplateDialogOpen(true)}
+                          variant="outline"
+                          size="icon"
+                          className="rounded-full h-11 w-11"
+                          data-testid="button-add-case-study-header"
+                        >
+                          <Plus className="w-5 h-5" />
+                        </Button>
+                      )}
+                    </div>
+                    
+                    {caseStudies.length === 0 ? (
+                      <div 
+                        className="border border-border/30 rounded-2xl p-10 shadow-none"
+                        style={{
+                          backgroundColor: '#F6F2EF',
+                          boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                        }}
+                      >
+                        <div className="flex flex-col items-center justify-center text-center max-w-lg mx-auto py-4">
+                          <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                            <img src="/casestudy.png" alt="Case Study" className="w-20 h-20" />
+                          </div>
+                          
+                          <h3 className="text-xl font-semibold mb-2" data-testid="text-empty-state-title">
+                            Upload your first case study
+                          </h3>
+                          <p className="text-base text-foreground/60 mb-6" data-testid="text-empty-state-description">
+                            Show off your best work
+                          </p>
+                          
+                          <div className="flex gap-4">
+                            <Button 
+                              onClick={() => setIsTemplateDialogOpen(true)}
+                              className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                              data-testid="button-add-case-study"
+                            >
+                              <Plus className="w-5 h-5" />
+                              Add case study
+                            </Button>
+                            <div 
+                              className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                              data-testid="button-write-using-ai"
+                            >
+                              <Sparkles className="w-5 h-5 text-foreground" />
+                              <span className="text-base font-medium text-foreground">
+                                Write using AI
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <DndContext
+                        sensors={sensors}
+                        collisionDetection={closestCenter}
+                        onDragEnd={handleDragEnd}
+                      >
+                        <SortableContext
+                          items={caseStudies.map(p => p.id)}
+                          strategy={rectSortingStrategy}
+                        >
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {caseStudies.map((project) => (
+                              <SortableCard key={project.id} project={project} />
+                            ))}
+                        
+                            {/* Add New Case Study Card */}
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.95 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.3, delay: 0.1 }}
+                              className="group"
+                              data-testid="card-add-case-study"
+                            >
+                              {caseStudies.length >= 2 ? (
+                                <div
+                                  className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-8 min-h-[360px] gap-4 relative"
+                                  style={{ 
+                                    backgroundColor: '#F6F2EF',
+                                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                                  }}
+                                >
+                                  <div className="flex flex-col items-center text-center max-w-xs">
+                                    <div 
+                                      className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
+                                      style={{
+                                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                                        boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.04)'
+                                      }}
+                                    >
+                                      <Crown className="w-8 h-8 text-foreground/70" />
+                                    </div>
+                                    
+                                    <h3 className="text-xl font-semibold mb-2" data-testid="text-upgrade-title">
+                                      Upgrade to PRO
+                                    </h3>
+                                    <p className="text-sm text-foreground/60 mb-4" data-testid="text-upgrade-description">
+                                      You've used your free case studies. Get lifetime access to add unlimited case studies and unlock all premium features.
+                                    </p>
+                                    
+                                    <StardustButton 
+                                      data-testid="button-upgrade-to-pro"
+                                    >
+                                      {isMobileOrTablet ? 'Upgrade Now' : 'Get Lifetime Access'}
+                                    </StardustButton>
+                                    
+                                    <div className="mt-6 flex items-center gap-2 text-xs text-foreground/50">
+                                      <Lock className="w-3 h-3" />
+                                      <span>Free plan: 2 case studies only</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div
+                                  className="w-full h-full border border-border/30 rounded-2xl flex flex-col items-center justify-center p-8 min-h-[360px] gap-3"
+                                  style={{ 
+                                    backgroundColor: '#F6F2EF',
+                                    boxShadow: 'inset 0 3px 8px 0 rgb(0 0 0 / 0.03), inset 0 -3px 8px 0 rgb(0 0 0 / 0.02)'
+                                  }}
+                                >
+                                  <Button 
+                                    onClick={() => setIsTemplateDialogOpen(true)}
+                                    className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                                    data-testid="button-add-case-study-grid"
+                                  >
+                                    <Plus className="w-5 h-5" />
+                                    Add case study
+                                  </Button>
+                                  <div 
+                                    className="bg-white border border-border rounded-full px-6 py-3 flex items-center gap-2 hover-elevate cursor-pointer"
+                                    data-testid="button-write-using-ai-grid"
+                                  >
+                                    <Sparkles className="w-5 h-5 text-foreground" />
+                                    <span className="text-base font-medium text-foreground">
+                                      Write using AI
+                                    </span>
+                                  </div>
+                                </div>
+                              )}
+                            </motion.div>
+                          </div>
+                        </SortableContext>
+                      </DndContext>
+                    )}
+                  </Card>
+                </motion.div>
+              );
+            }
+
+              if (sectionId === 'work_experience') {
+    return (
+      <motion.div
+        key="work-experience"
+        layout
+        id="section-work-experience"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -20, opacity: 0 }}
+        transition={{ 
+          duration: 0.5, 
+          ease: [0.4, 0, 0.2, 1],
+          layout: { duration: 0.6, ease: "easeInOut" }
+        }}
+      >
+        <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-work-experience-title">
+              Work Experience
+            </h2>
+            <Button 
+              variant="outline"
+              size="icon"
+              className="rounded-full h-11 w-11"
+              data-testid="button-add-work-experience"
+            >
+              <Plus className="w-5 h-5" />
+            </Button>
           </div>
-        )}
+          
+          <div className="space-y-4">
+            {workExperiences.map((exp) => (
+              <div 
+                key={exp.id} 
+                className="group flex gap-5 p-4 rounded-2xl border border-border/30 bg-[#F5F3F1] hover-elevate transition-all duration-300"
+                data-testid={`card-work-experience-${exp.id}`}
+              >
+                <div className="shrink-0">
+                  <Avatar className="w-12 h-12 rounded-xl border border-border/50">
+                    <AvatarImage src={exp.logo} alt={exp.company} />
+                    <AvatarFallback className="bg-muted text-xs">{exp.company.substring(0, 2)}</AvatarFallback>
+                  </Avatar>
+                </div>
+                
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="font-semibold text-base truncate" data-testid={`text-experience-role-${exp.id}`}>
+                      {exp.role}
+                    </h3>
+                    <span className="text-xs font-medium text-foreground/40 shrink-0" data-testid={`text-experience-period-${exp.id}`}>
+                      {exp.period}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-sm font-medium text-foreground/60" data-testid={`text-experience-company-${exp.id}`}>
+                      {exp.company}
+                    </span>
+                  </div>
+                  <p className="text-sm text-foreground/50 leading-relaxed line-clamp-2" data-testid={`text-experience-description-${exp.id}`}>
+                    {exp.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </motion.div>
+    );
+  }
+
+  if (sectionId === 'testimonials') {
+                return (
+                  <motion.div
+                    key="testimonials"
+                    layout
+                    id="section-testimonials"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      ease: [0.4, 0, 0.2, 1],
+                      layout: { duration: 0.6, ease: "easeInOut" }
+                    }}
+                  >
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-testimonials-title">
+                        Testimonials
+                      </h2>
+                      <Button 
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full h-11 w-11"
+                        data-testid="button-add-testimonial"
+                      >
+                        <Plus className="w-5 h-5" />
+                      </Button>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ gridAutoRows: 'auto' }}>
+                      {testimonials.map((testimonial, idx) => {
+                        const isVisible = visibleTestimonials.has(testimonial.id);
+                        
+                        return (
+                          <motion.div
+                            key={testimonial.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.5, delay: idx * 0.1 }}
+                            onViewportEnter={() => {
+                              setTimeout(() => {
+                                setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
+                              }, 300 + idx * 100);
+                            }}
+                            className={`border-2 rounded-2xl p-5 flex flex-col relative transition-all duration-300 ${
+                              selectedTestimonialId === testimonial.id
+                                ? 'border-foreground/40 bg-foreground/5'
+                                : 'border-border/30 bg-white hover-elevate'
+                            }`}
+                            data-testid={`card-testimonial-${testimonial.id}`}
+                            style={{
+                              backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.03)' : '#F5F3F1'
+                            }}
+                          >
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="absolute top-4 right-4 h-8 w-8"
+                              onClick={() => handleEditTestimonialClick(testimonial)}
+                              data-testid={`button-edit-testimonial-${testimonial.id}`}
+                            >
+                              <Pencil className="w-4 h-4" />
+                            </Button>
+                            <p className="text-sm leading-relaxed mb-4 flex-1 pr-6" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                              {testimonial.text}
+                            </p>
+                            
+                            <div className="flex items-center gap-2.5">
+                              <Avatar className="w-10 h-10 shrink-0">
+                                <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                                <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
+                                  {testimonial.name.split(' ').map(n => n[0]).join('')}
+                                </AvatarFallback>
+                              </Avatar>
+                              
+                              <div>
+                                <h3 className="font-semibold text-sm mb-0" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                                  {testimonial.name}
+                                </h3>
+                                <p className="text-xs text-foreground/50" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                                  {testimonial.company}
+                                </p>
+                              </div>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            }
+
+              if (sectionId === 'toolbox') {
+                return (
+                  <motion.div
+                    key="toolbox"
+                    layout
+                    id="section-toolbox"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      ease: [0.4, 0, 0.2, 1],
+                      layout: { duration: 0.6, ease: "easeInOut" }
+                    }}
+                  >
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-2xl p-6 mt-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-toolbox-title">
+                        Toolbox
+                      </h2>
+                      <Button 
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full h-11 w-11"
+                        data-testid="button-add-tool"
+                      >
+                        <Plus className="w-5 h-5" />
+                      </Button>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {tools.map((tool) => (
+                        <div
+                          key={tool.id}
+                          className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate"
+                          data-testid={`card-tool-${tool.id}`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div 
+                              className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                              style={{ backgroundColor: tool.color }}
+                              data-testid={`icon-tool-${tool.id}`}
+                            >
+                              <div className="w-5 h-5 bg-white/90 rounded" />
+                            </div>
+                            
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-0.5">
+                                <h3 className="font-semibold text-sm" data-testid={`text-tool-name-${tool.id}`}>
+                                  {tool.name}
+                                </h3>
+                                <Badge 
+                                  variant="secondary" 
+                                  className="text-xs"
+                                  data-testid={`badge-tool-category-${tool.id}`}
+                                >
+                                  {tool.category}
+                                </Badge>
+                              </div>
+                              <p className="text-xs text-foreground/50" data-testid={`text-tool-description-${tool.id}`}>
+                                {tool.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            }
+              return null;
+            })}
+          </AnimatePresence>
+        </main>
       </div>
 
-      {/* Dialogs and Alerts */}
+      {/* Template Selection Dialog */}
       <Dialog open={isTemplateDialogOpen} onOpenChange={setIsTemplateDialogOpen}>
         <DialogContent className="sm:max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Choose a template</DialogTitle>
+            <DialogTitle className="text-2xl font-semibold" data-testid="text-dialog-title">
+              Choose a template
+            </DialogTitle>
+            <DialogDescription data-testid="text-dialog-description">
+              Select a template to get started with your case study
+            </DialogDescription>
           </DialogHeader>
           <div className="grid grid-cols-1 gap-3 mt-4">
-            {caseStudyTemplates.map((template) => (
-              <button key={template.id} onClick={() => setIsTemplateDialogOpen(false)} className="flex items-start gap-4 p-4 rounded-xl border-2 border-border hover-elevate text-left">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${template.color}15` }}>
-                  <template.icon className="w-6 h-6" style={{ color: template.color }} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-base mb-1">{template.name}</h3>
-                  <p className="text-sm text-foreground/60">{template.description}</p>
-                </div>
-              </button>
-            ))}
+            {caseStudyTemplates.map((template) => {
+              const Icon = template.icon;
+              return (
+                <button
+                  key={template.id}
+                  onClick={() => handleTemplateSelect(template.id)}
+                  className="flex items-start gap-4 p-4 rounded-xl border-2 border-border hover-elevate text-left transition-all"
+                  data-testid={`button-template-${template.id}`}
+                >
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                    style={{ backgroundColor: `${template.color}15` }}
+                  >
+                    <Icon className="w-6 h-6" style={{ color: template.color }} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-base mb-1" data-testid={`text-template-name-${template.id}`}>
+                      {template.name}
+                    </h3>
+                    <p className="text-sm text-foreground/60" data-testid={`text-template-description-${template.id}`}>
+                      {template.description}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Unsaved Changes Warning Dialog */}
+      <AlertDialog open={showUnsavedWarning} onOpenChange={setShowUnsavedWarning}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
+            <AlertDialogDescription>
+              You have made changes to this testimonial. Are you sure you want to discard them?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel 
+              onClick={() => {
+                setShowUnsavedWarning(false);
+                setPendingAction(null);
+                setPendingTestimonialId(null);
+              }}
+              className="rounded-full h-11"
+            >
+              Keep Editing
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleConfirmDiscard}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+            >
+              Discard Changes
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Project</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will permanently remove this project from your portfolio. This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDeleteConfirm}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      </div>
+      {/* Theme Panel - Desktop (pushes content) - Only on large screens */}
+      {!isMobileOrTablet && (
+        <div 
+          className={`fixed right-0 top-0 h-full bg-white border-l border-border transition-transform duration-300 z-40 ${
+            isThemePanelOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          style={{ width: '320px' }}
+        >
+          <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between p-6 border-b border-border pt-[16px] pb-[16px]">
+              <h2 className="text-lg font-semibold" data-testid="text-theme-panel-title">Theme Settings</h2>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsThemePanelOpen(false)}
+                className="h-8 w-8"
+                data-testid="button-close-theme-panel"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="flex-1 overflow-auto">
+              <Tabs defaultValue="layouts" className="w-full h-full flex flex-col">
+                <div className="sticky top-0 z-50 bg-white px-6 pt-4 pb-2 border-b border-border/30">
+                  <TabsList className="w-full bg-transparent p-0 h-auto gap-6 justify-start">
+                    <TabsTrigger 
+                      value="layouts" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-layouts"
+                    >
+                      Layouts
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="background" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-background"
+                    >
+                      Background
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="cursors" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-cursors"
+                    >
+                      Cursors
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="fonts" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-fonts"
+                    >
+                      Fonts
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="blocks" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-blocks"
+                    >
+                      Blocks
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+                <TabsContent value="layouts" className="flex-1 p-6 m-0" data-testid="content-layouts">
+                  <div className="space-y-4">
+                  </div>
+                </TabsContent>
+                <TabsContent value="background" className="flex-1 p-6 m-0" data-testid="content-background">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">Light Mode</span>
+                      </div>
+                      <Switch
+                        checked={isDarkWallpapers}
+                        onCheckedChange={setIsDarkWallpapers}
+                        data-testid="switch-wallpaper-mode"
+                      />
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">Dark Mode</span>
+                      </div>
+                    </div>
+
+                    <AnimatePresence mode="wait">
+                      {selectedWallpaper && (
+                        <motion.div 
+                          key="bg-effects"
+                          initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                          animate={{ height: "auto", opacity: 1, marginTop: 16 }}
+                          exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
+                            <div className="flex items-center justify-between mb-4">
+                              <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Background Texture</span>
+                            </div>
+                            <div className="flex p-1 bg-muted/50 rounded-lg gap-1 mb-4">
+                              <button
+                                onClick={() => setBackgroundEffectType('blur')}
+                                className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
+                                  backgroundEffectType === 'blur'
+                                    ? 'bg-background text-foreground shadow-sm'
+                                    : 'text-foreground/40 hover:text-foreground/70'
+                                }`}
+                                data-testid="button-effect-blur"
+                              >
+                                Soft Blur
+                              </button>
+                              <button
+                                onClick={() => setBackgroundEffectType('grain')}
+                                className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
+                                  backgroundEffectType === 'grain'
+                                    ? 'bg-background text-foreground shadow-sm'
+                                    : 'text-foreground/40 hover:text-foreground/70'
+                                }`}
+                                data-testid="button-effect-grain"
+                              >
+                                Fine Grain
+                              </button>
+                            </div>
+                            
+                            <div className="space-y-4">
+                              {backgroundEffectType === 'blur' ? (
+                                <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="text-[11px] font-medium text-foreground/60">Depth</span>
+                                    <span className="text-[11px] tabular-nums text-foreground/40">{backgroundBlur}px</span>
+                                  </div>
+                                  <Slider
+                                    value={[backgroundBlur]}
+                                    onValueChange={(value) => setBackgroundBlur(value[0])}
+                                    max={20}
+                                    step={1}
+                                    className="w-full"
+                                    data-testid="slider-background-blur"
+                                  />
+                                </div>
+                              ) : (
+                                <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="text-[11px] font-medium text-foreground/60">Opacity</span>
+                                    <span className="text-[11px] tabular-nums text-foreground/40">{grainIntensity}%</span>
+                                  </div>
+                                  <Slider
+                                    value={[grainIntensity]}
+                                    onValueChange={(value) => setGrainIntensity(value[0])}
+                                    max={100}
+                                    step={5}
+                                    className="w-full"
+                                    data-testid="slider-grain-intensity"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
+                            <div>
+                              <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Dynamic Motion</span>
+                              <p className="text-[11px] text-foreground/40 mt-0.5 font-medium">Parallax zoom interaction</p>
+                            </div>
+                            <Switch
+                              checked={backgroundMotion}
+                              onCheckedChange={setBackgroundMotion}
+                              data-testid="switch-background-motion"
+                              className="scale-90"
+                            />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
+                      <div className="flex items-start gap-3 mb-3">
+                        <Upload className="w-5 h-5 text-primary mt-0.5" />
+                        <div className="flex-1">
+                          <h4 className="text-sm font-semibold mb-1">Upload Custom Background</h4>
+                          <p className="text-xs text-foreground/60 mb-2">
+                            Upload your own image as background. Recommended ratio: 1920x1080. Maximum file size: 5MB.
+                          </p>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileUpload}
+                            className="hidden"
+                            id="custom-wallpaper-upload"
+                            data-testid="input-custom-wallpaper"
+                          />
+                          <label htmlFor="custom-wallpaper-upload">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              className="cursor-pointer"
+                              onClick={() => document.getElementById('custom-wallpaper-upload')?.click()}
+                              data-testid="button-upload-wallpaper"
+                            >
+                              <Upload className="w-4 h-4 mr-2" />
+                              Choose File
+                            </Button>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <button
+                        onClick={() => setSelectedWallpaper(null)}
+                        className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                          !selectedWallpaper ? 'border-primary' : 'border-border'
+                        }`}
+                        data-testid="button-wallpaper-none"
+                      >
+                        <div className="aspect-video bg-gradient-to-br from-background to-muted flex items-center justify-center">
+                          <span className="text-sm font-medium text-foreground/60">Default</span>
+                        </div>
+                        {!selectedWallpaper && (
+                          <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                        )}
+                      </button>
+
+                      {customWallpaper && (
+                        <button
+                          onClick={() => setSelectedWallpaper(customWallpaper)}
+                          className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                            selectedWallpaper === customWallpaper ? 'border-primary' : 'border-border'
+                          }`}
+                          data-testid="button-wallpaper-custom"
+                        >
+                          <img 
+                            src={customWallpaper} 
+                            alt="Custom wallpaper"
+                            className="aspect-video object-cover w-full"
+                          />
+                          {selectedWallpaper === customWallpaper && (
+                            <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                          <div className="absolute bottom-2 left-2">
+                            <Badge variant="secondary" className="text-xs">Custom</Badge>
+                          </div>
+                        </button>
+                      )}
+                      
+                      {wallpapers.map((wallpaper) => (
+                        <button
+                          key={wallpaper.id}
+                          onClick={() => setSelectedWallpaper(wallpaper.path)}
+                          className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                            selectedWallpaper === wallpaper.path ? 'border-primary' : 'border-border'
+                          }`}
+                          data-testid={`button-wallpaper-${wallpaper.id}`}
+                        >
+                          <img 
+                            src={wallpaper.path} 
+                            alt={wallpaper.name}
+                            className="aspect-video object-cover w-full"
+                          />
+                          {selectedWallpaper === wallpaper.path && (
+                            <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </TabsContent>
+                <TabsContent value="cursors" className="flex-1 p-6 m-0" data-testid="content-cursors">
+                  <div className="space-y-4">
+                  </div>
+                </TabsContent>
+                <TabsContent value="fonts" className="flex-1 p-6 m-0" data-testid="content-fonts">
+                  <div className="space-y-4">
+                    <p className="text-sm text-foreground/60 mb-4">Choose a global font for your portfolio</p>
+                    <div className="grid grid-cols-1 gap-3">
+                      {Object.entries(fontOptions).map(([key, font]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedFont(key)}
+                          className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
+                            selectedFont === key ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
+                          }`}
+                          data-testid={`button-font-${key}`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-medium" style={{ fontFamily: font.family }}>{font.name}</h4>
+                              <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: font.family }}>{font.description}</p>
+                            </div>
+                            {selectedFont === key && (
+                              <div className="bg-primary text-primary-foreground rounded-full p-1">
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                            )}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </TabsContent>
+                <TabsContent value="blocks" className="flex-1 p-6 m-0" data-testid="content-blocks">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="text-sm text-foreground/60">Re-arrange your portfolio sections</p>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSectionOrder(['works', 'testimonials', 'toolbox'])}
+                        className="h-8 px-2 text-xs gap-1.5 text-foreground/40 hover:text-foreground"
+                        data-testid="button-reset-blocks"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        Reset
+                      </Button>
+                    </div>
+                    <DndContext
+                      sensors={sensors}
+                      collisionDetection={closestCenter}
+                      onDragEnd={(event) => {
+                        const { active, over } = event;
+                        if (over && active.id !== over.id) {
+                          setSectionOrder((items) => {
+                            const oldIndex = items.indexOf(active.id as string);
+                            const newIndex = items.indexOf(over.id as string);
+                            return arrayMove(items, oldIndex, newIndex);
+                          });
+
+                          // Find the section element and scroll to it
+                          setTimeout(() => {
+                            const sectionElement = document.getElementById(`section-${active.id}`);
+                            if (sectionElement) {
+                              sectionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                          }, 100);
+                        }
+                      }}
+                    >
+                      <SortableContext items={sectionOrder} strategy={rectSortingStrategy}>
+                        <div className="space-y-2">
+                          {sectionOrder.map((id) => (
+                            <SortableSectionItem key={id} id={id} />
+                          ))}
+                        </div>
+                      </SortableContext>
+                    </DndContext>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Theme Panel - Mobile/Tablet (popup with overlay) */}
+      {isMobileOrTablet && (
+        <Sheet open={isThemePanelOpen} onOpenChange={setIsThemePanelOpen}>
+          <SheetContent className="w-80 p-0 flex flex-col">
+            <div className="flex items-center justify-between p-6 border-b border-border pt-[16px] pb-[16px]">
+              <h2 className="text-lg font-semibold" data-testid="text-theme-panel-title-mobile">Theme Settings</h2>
+            </div>
+            <div className="flex-1 overflow-auto">
+              <Tabs defaultValue="layouts" className="w-full h-full flex flex-col">
+                <div className="sticky top-0 z-50 bg-background px-6 pb-2 border-b border-border/30">
+                  <TabsList className="w-full bg-transparent p-0 h-auto gap-6 justify-start">
+                    <TabsTrigger 
+                      value="layouts" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-layouts-mobile"
+                    >
+                      Layouts
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="background" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-background-mobile"
+                    >
+                      Background
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="cursors" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-cursors-mobile"
+                    >
+                      Cursors
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="fonts" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-fonts-mobile"
+                    >
+                      Fonts
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="blocks" 
+                      className="bg-transparent border-b-2 border-transparent rounded-none px-0 pb-2 data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none text-foreground/60 data-[state=active]:text-foreground font-medium transition-all" 
+                      data-testid="tab-blocks-mobile"
+                    >
+                      Blocks
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+                <TabsContent value="layouts" className="flex-1 p-6 m-0" data-testid="content-layouts-mobile">
+                  <div className="space-y-4">
+                  </div>
+                </TabsContent>
+                <TabsContent value="background" className="flex-1 p-6 m-0" data-testid="content-background-mobile">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-3 rounded-md bg-muted/50 mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">Light Mode</span>
+                      </div>
+                      <Switch
+                        checked={isDarkWallpapers}
+                        onCheckedChange={setIsDarkWallpapers}
+                        data-testid="switch-wallpaper-mode-mobile"
+                      />
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium">Dark Mode</span>
+                      </div>
+                    </div>
+
+                    <AnimatePresence mode="wait">
+                      {selectedWallpaper && (
+                        <motion.div 
+                          key="bg-effects-mobile"
+                          initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                          animate={{ height: "auto", opacity: 1, marginTop: 16 }}
+                          exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
+                            <div className="flex items-center justify-between mb-4">
+                              <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Background Texture</span>
+                            </div>
+                            <div className="flex p-1 bg-muted/50 rounded-lg gap-1 mb-4">
+                              <button
+                                onClick={() => setBackgroundEffectType('blur')}
+                                className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
+                                  backgroundEffectType === 'blur'
+                                    ? 'bg-background text-foreground shadow-sm'
+                                    : 'text-foreground/40 hover:text-foreground/70'
+                                }`}
+                                data-testid="button-effect-blur-mobile"
+                              >
+                                Soft Blur
+                              </button>
+                              <button
+                                onClick={() => setBackgroundEffectType('grain')}
+                                className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200 ${
+                                  backgroundEffectType === 'grain'
+                                    ? 'bg-background text-foreground shadow-sm'
+                                    : 'text-foreground/40 hover:text-foreground/70'
+                                }`}
+                                data-testid="button-effect-grain-mobile"
+                              >
+                                Fine Grain
+                              </button>
+                            </div>
+                            
+                            <div className="space-y-4">
+                              {backgroundEffectType === 'blur' ? (
+                                <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="text-[11px] font-medium text-foreground/60">Depth</span>
+                                    <span className="text-[11px] tabular-nums text-foreground/40">{backgroundBlur}px</span>
+                                  </div>
+                                  <Slider
+                                    value={[backgroundBlur]}
+                                    onValueChange={(value) => setBackgroundBlur(value[0])}
+                                    max={20}
+                                    step={1}
+                                    className="w-full"
+                                    data-testid="slider-background-blur-mobile"
+                                  />
+                                </div>
+                              ) : (
+                                <div className="animate-in fade-in slide-in-from-top-1 duration-300">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="text-[11px] font-medium text-foreground/60">Opacity</span>
+                                    <span className="text-[11px] tabular-nums text-foreground/40">{grainIntensity}%</span>
+                                  </div>
+                                  <Slider
+                                    value={[grainIntensity]}
+                                    onValueChange={(value) => setGrainIntensity(value[0])}
+                                    max={100}
+                                    step={5}
+                                    className="w-full"
+                                    data-testid="slider-grain-intensity-mobile"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm mb-4">
+                            <div>
+                              <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Dynamic Motion</span>
+                              <p className="text-[11px] text-foreground/40 mt-0.5 font-medium">Parallax zoom interaction</p>
+                            </div>
+                            <Switch
+                              checked={backgroundMotion}
+                              onCheckedChange={setBackgroundMotion}
+                              data-testid="switch-background-motion-mobile"
+                              className="scale-90"
+                            />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    <div className="p-4 rounded-md border border-border bg-card/50 mb-4">
+                      <div className="flex items-start gap-3 mb-3">
+                        <Upload className="w-5 h-5 text-primary mt-0.5" />
+                        <div className="flex-1">
+                          <h4 className="text-sm font-semibold mb-1">Upload Custom Background</h4>
+                          <p className="text-xs text-foreground/60 mb-2">
+                            Upload your own image as background. Recommended ratio: 1920x1080. Maximum file size: 5MB.
+                          </p>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileUpload}
+                            className="hidden"
+                            id="custom-wallpaper-upload-mobile"
+                            data-testid="input-custom-wallpaper-mobile"
+                          />
+                          <label htmlFor="custom-wallpaper-upload-mobile">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              className="cursor-pointer"
+                              onClick={() => document.getElementById('custom-wallpaper-upload-mobile')?.click()}
+                              data-testid="button-upload-wallpaper-mobile"
+                            >
+                              <Upload className="w-4 h-4 mr-2" />
+                              Choose File
+                            </Button>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 gap-4">
+                      <button
+                        onClick={() => setSelectedWallpaper(null)}
+                        className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                          !selectedWallpaper ? 'border-primary' : 'border-border'
+                        }`}
+                        data-testid="button-wallpaper-none-mobile"
+                      >
+                        <div className="aspect-video bg-gradient-to-br from-background to-muted flex items-center justify-center">
+                          <span className="text-sm font-medium text-foreground/60">Default</span>
+                        </div>
+                        {!selectedWallpaper && (
+                          <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                        )}
+                      </button>
+
+                      {customWallpaper && (
+                        <button
+                          onClick={() => setSelectedWallpaper(customWallpaper)}
+                          className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                            selectedWallpaper === customWallpaper ? 'border-primary' : 'border-border'
+                          }`}
+                          data-testid="button-wallpaper-custom-mobile"
+                        >
+                          <img 
+                            src={customWallpaper} 
+                            alt="Custom wallpaper"
+                            className="aspect-video object-cover w-full"
+                          />
+                          {selectedWallpaper === customWallpaper && (
+                            <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                          <div className="absolute bottom-2 left-2">
+                            <Badge variant="secondary" className="text-xs">Custom</Badge>
+                          </div>
+                        </button>
+                      )}
+                      
+                      {wallpapers.map((wallpaper) => (
+                        <button
+                          key={wallpaper.id}
+                          onClick={() => setSelectedWallpaper(wallpaper.path)}
+                          className={`relative rounded-md overflow-hidden border-2 transition-all hover-elevate ${
+                            selectedWallpaper === wallpaper.path ? 'border-primary' : 'border-border'
+                          }`}
+                          data-testid={`button-wallpaper-${wallpaper.id}-mobile`}
+                        >
+                          <img 
+                            src={wallpaper.path} 
+                            alt={wallpaper.name}
+                            className="aspect-video object-cover w-full"
+                          />
+                          {selectedWallpaper === wallpaper.path && (
+                            <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </TabsContent>
+                <TabsContent value="cursors" className="flex-1 p-6 m-0" data-testid="content-cursors-mobile">
+                  <div className="space-y-4">
+                  </div>
+                </TabsContent>
+                <TabsContent value="fonts" className="flex-1 p-6 m-0" data-testid="content-fonts-mobile">
+                  <div className="space-y-4">
+                    <p className="text-sm text-foreground/60 mb-4">Choose a global font for your portfolio</p>
+                    <div className="grid grid-cols-1 gap-3">
+                      {Object.entries(fontOptions).map(([key, font]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedFont(key)}
+                          className={`p-4 rounded-md border-2 transition-all hover-elevate text-left ${
+                            selectedFont === key ? 'border-primary bg-primary/5' : 'border-border bg-card/50'
+                          }`}
+                          data-testid={`button-font-${key}-mobile`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-medium" style={{ fontFamily: font.family }}>{font.name}</h4>
+                              <p className="text-xs text-foreground/60 mt-1" style={{ fontFamily: font.family }}>{font.description}</p>
+                            </div>
+                            {selectedFont === key && (
+                              <div className="bg-primary text-primary-foreground rounded-full p-1">
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                            )}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </TabsContent>
+                <TabsContent value="blocks" className="flex-1 p-6 m-0" data-testid="content-blocks-mobile">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="text-sm text-foreground/60">Re-arrange your portfolio sections</p>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSectionOrder(['works', 'testimonials', 'toolbox'])}
+                        className="h-8 px-2 text-xs gap-1.5 text-foreground/40 hover:text-foreground"
+                        data-testid="button-reset-blocks-mobile"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        Reset
+                      </Button>
+                    </div>
+                    <DndContext
+                      sensors={sensors}
+                      collisionDetection={closestCenter}
+                      onDragEnd={(event) => {
+                        const { active, over } = event;
+                        if (over && active.id !== over.id) {
+                          setSectionOrder((items) => {
+                            const oldIndex = items.indexOf(active.id as string);
+                            const newIndex = items.indexOf(over.id as string);
+                            return arrayMove(items, oldIndex, newIndex);
+                          });
+
+                          // Find the section element and scroll to it
+                          setTimeout(() => {
+                            const sectionElement = document.getElementById(`section-${active.id}`);
+                            if (sectionElement) {
+                              sectionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                          }, 100);
+                        }
+                      }}
+                    >
+                      <SortableContext items={sectionOrder} strategy={rectSortingStrategy}>
+                        <div className="space-y-2">
+                          {sectionOrder.map((id) => (
+                            <SortableSectionItem key={id} id={id} />
+                          ))}
+                        </div>
+                      </SortableContext>
+                    </DndContext>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
+          </SheetContent>
+        </Sheet>
+      )}
+      {/* Testimonial Edit Panel - Desktop (pushes content) - Only on large screens */}
+      {!isMobileOrTablet && (
+        <div 
+          className={`fixed right-0 top-0 h-full bg-white border-l border-border transition-transform duration-300 z-40 ${
+            isEditTestimonialOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          style={{ width: '320px' }}
+        >
+          <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between p-6 border-b border-border pt-[16px] pb-[16px]">
+              <h2 className="text-lg font-semibold" data-testid="text-edit-testimonial-title">Edit Testimonial</h2>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => handleAttemptClose('close')}
+                className="h-8 w-8"
+                data-testid="button-close-edit-testimonial"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="flex-1 overflow-auto p-6 space-y-5">
+              {editingTestimonial && (
+                <>
+                  <div className="space-y-2">
+                    <Label htmlFor="testimonial-name" className="text-sm font-medium text-foreground">
+                      Name of the Person<span className="text-red-500">*</span>
+                    </Label>
+                    <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
+                      <Input
+                        id="testimonial-name"
+                        type="text"
+                        value={editingTestimonial.name}
+                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, name: e.target.value })}
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
+                        data-testid="input-testimonial-name"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="testimonial-linkedin" className="text-sm font-medium text-foreground">
+                      LinkedIn Link
+                    </Label>
+                    <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
+                      <Input
+                        id="testimonial-linkedin"
+                        type="url"
+                        value={editingTestimonial.linkedinLink || ""}
+                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, linkedinLink: e.target.value })}
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
+                        placeholder="https://linkedin.com/in/..."
+                        data-testid="input-testimonial-linkedin"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="testimonial-company" className="text-sm font-medium text-foreground">
+                      Company Name<span className="text-red-500">*</span>
+                    </Label>
+                    <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
+                      <Input
+                        id="testimonial-company"
+                        type="text"
+                        value={editingTestimonial.company}
+                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, company: e.target.value })}
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
+                        data-testid="input-testimonial-company"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium text-foreground">
+                      Testimonial Text
+                    </Label>
+                    <TiptapEditor
+                      content={editingTestimonial.text}
+                      onChange={(content) => setEditingTestimonial({ ...editingTestimonial, text: content })}
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium text-foreground">
+                      Photo of the Person
+                    </Label>
+                    <div className="flex justify-start">
+                      <label
+                        htmlFor="testimonial-avatar"
+                        className="relative w-24 h-24 rounded-full border-2 border-border bg-muted hover:border-foreground/30 cursor-pointer flex items-center justify-center transition-all duration-300 ease-out hover:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] overflow-hidden group"
+                        data-testid="label-testimonial-avatar"
+                      >
+                        {editingTestimonial.avatar ? (
+                          <>
+                            <img
+                              src={editingTestimonial.avatar}
+                              alt={editingTestimonial.name}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                              <Upload className="w-5 h-5 text-white" />
+                            </div>
+                          </>
+                        ) : (
+                          <Upload className="w-6 h-6 text-foreground/40 group-hover:text-foreground/60 transition-colors" />
+                        )}
+                      </label>
+                    </div>
+                    <input
+                      id="testimonial-avatar"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onload = (event) => {
+                            setEditingTestimonial({ ...editingTestimonial, avatar: event.target?.result as string });
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                      className="hidden"
+                      data-testid="input-testimonial-avatar"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+            
+            <div className="p-6 border-t flex gap-2">
+              <Button 
+                className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                onClick={() => {
+                  setIsEditTestimonialOpen(false);
+                  setSelectedTestimonialId(null);
+                }}
+                data-testid="button-save-testimonial"
+              >
+                Save
+              </Button>
+              <Button 
+                variant="outline"
+                className="flex-1 rounded-full h-11"
+                onClick={() => handleAttemptClose('cancel')}
+                data-testid="button-cancel-edit-testimonial"
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Testimonial Edit Panel - Mobile (Sheet overlay) */}
+      {isMobileOrTablet && (
+        <Sheet open={isEditTestimonialOpen} onOpenChange={(open) => {
+          if (!open) {
+            handleAttemptClose('close');
+          } else {
+            setIsEditTestimonialOpen(open);
+          }
+        }}>
+          <SheetContent className="w-80 p-0 flex flex-col">
+            <div className="p-6 border-b">
+              <h2 className="text-lg font-semibold" data-testid="text-edit-testimonial-title-mobile">
+                Edit Testimonial
+              </h2>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-6 space-y-5">
+              {editingTestimonial && (
+                <>
+                  <div className="space-y-2">
+                    <Label htmlFor="testimonial-name-mobile" className="text-sm font-medium text-foreground">
+                      Name of the Person<span className="text-red-500">*</span>
+                    </Label>
+                    <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
+                      <Input
+                        id="testimonial-name-mobile"
+                        type="text"
+                        value={editingTestimonial.name}
+                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, name: e.target.value })}
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
+                        data-testid="input-testimonial-name-mobile"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="testimonial-linkedin-mobile" className="text-sm font-medium text-foreground">
+                      LinkedIn Link
+                    </Label>
+                    <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
+                      <Input
+                        id="testimonial-linkedin-mobile"
+                        type="url"
+                        value={editingTestimonial.linkedinLink || ""}
+                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, linkedinLink: e.target.value })}
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
+                        placeholder="https://linkedin.com/in/..."
+                        data-testid="input-testimonial-linkedin-mobile"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="testimonial-company-mobile" className="text-sm font-medium text-foreground">
+                      Company Name<span className="text-red-500">*</span>
+                    </Label>
+                    <div className="border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out overflow-hidden">
+                      <Input
+                        id="testimonial-company-mobile"
+                        type="text"
+                        value={editingTestimonial.company}
+                        onChange={(e) => setEditingTestimonial({ ...editingTestimonial, company: e.target.value })}
+                        className="border-0 bg-transparent h-11 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
+                        data-testid="input-testimonial-company-mobile"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium text-foreground">
+                      Testimonial Text
+                    </Label>
+                    <TiptapEditor
+                      content={editingTestimonial.text}
+                      onChange={(content) => setEditingTestimonial({ ...editingTestimonial, text: content })}
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label className="text-sm font-medium text-foreground">
+                      Photo of the Person
+                    </Label>
+                    <div className="flex justify-start">
+                      <label
+                        htmlFor="testimonial-avatar-mobile"
+                        className="relative w-24 h-24 rounded-full border-2 border-border bg-muted hover:border-foreground/30 cursor-pointer flex items-center justify-center transition-all duration-300 ease-out hover:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] overflow-hidden group"
+                        data-testid="label-testimonial-avatar-mobile"
+                      >
+                        {editingTestimonial.avatar ? (
+                          <>
+                            <img
+                              src={editingTestimonial.avatar}
+                              alt={editingTestimonial.name}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                              <Upload className="w-5 h-5 text-white" />
+                            </div>
+                          </>
+                        ) : (
+                          <Upload className="w-6 h-6 text-foreground/40 group-hover:text-foreground/60 transition-colors" />
+                        )}
+                      </label>
+                    </div>
+                    <input
+                      id="testimonial-avatar-mobile"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onload = (event) => {
+                            setEditingTestimonial({ ...editingTestimonial, avatar: event.target?.result as string });
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                      className="hidden"
+                      data-testid="input-testimonial-avatar-mobile"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+            
+            <div className="p-6 border-t flex gap-2">
+              <Button 
+                className="flex-1 bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors"
+                onClick={() => {
+                  setIsEditTestimonialOpen(false);
+                  setSelectedTestimonialId(null);
+                }}
+                data-testid="button-save-testimonial-mobile"
+              >
+                Save
+              </Button>
+              <Button 
+                variant="outline"
+                className="flex-1 rounded-full h-11"
+                onClick={() => handleAttemptClose('cancel')}
+                data-testid="button-cancel-edit-testimonial-mobile"
+              >
+                Cancel
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
+      )}
+      <CourseCard />
     </div>
   );
 }
