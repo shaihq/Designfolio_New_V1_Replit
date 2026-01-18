@@ -1676,23 +1676,27 @@ export default function Dashboard() {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <span className="text-base text-foreground/50">Phone number</span>
-                <div className="flex items-center gap-3">
-                  <span className="text-base font-medium">+1 (206)-571-4546</span>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-foreground/40 hover:text-foreground transition-colors"
-                    onClick={() => {
-                      navigator.clipboard.writeText("+12065714546");
-                      toast({
-                        description: "Phone number copied to clipboard",
-                      });
-                    }}
-                    data-testid="button-copy-phone"
-                  >
-                    <Copy className="w-3.5 h-3.5" />
-                  </Button>
-                </div>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        className="text-base font-medium hover:text-primary transition-colors cursor-pointer"
+                        onClick={() => {
+                          navigator.clipboard.writeText("+12065714546");
+                          toast({
+                            description: "Phone number copied to clipboard",
+                          });
+                        }}
+                        data-testid="button-copy-phone"
+                      >
+                        +1 (206)-571-4546
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Copy</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </motion.div>
 
               <motion.div
