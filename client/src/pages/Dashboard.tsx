@@ -1614,34 +1614,62 @@ export default function Dashboard() {
         >
           <div className="flex flex-col gap-10">
             <div className="flex flex-col">
-              <div className="flex items-center justify-between py-5 border-b border-border/10 group" data-testid="footer-item-mail">
+              <motion.div
+                className="flex items-center justify-between py-5 border-b border-border/10 group"
+                data-testid="footer-item-mail"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.8 }}
+                transition={{ duration: 0.5, delay: 0 }}
+              >
                 <span className="text-base text-foreground/50">Mail</span>
-                <a 
-                  href="mailto:rakshit.design@gmail.com" 
+                <a
+                  href="mailto:rakshit.design@gmail.com"
                   className="text-base font-medium hover:underline underline-offset-4"
                 >
                   rakshit.design@gmail.com
                 </a>
-              </div>
+              </motion.div>
 
-              <div className="flex items-center justify-between py-5 border-b border-border/10 group" data-testid="footer-item-socials">
+              <motion.div
+                className="flex items-center justify-between py-5 border-b border-border/10 group"
+                data-testid="footer-item-socials"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.8 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 <span className="text-base text-foreground/50">Socials</span>
                 <div className="flex items-center gap-2">
                   <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">LinkedIn</a>
                   <span className="text-foreground/20">•</span>
                   <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">X (Prev. Twitter)</a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-center justify-between py-5 border-b border-border/10 group" data-testid="footer-item-phone">
+              <motion.div
+                className="flex items-center justify-between py-5 border-b border-border/10 group"
+                data-testid="footer-item-phone"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.8 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <span className="text-base text-foreground/50">Phone number</span>
                 <span className="text-base font-medium">+1 (206)-571-4546</span>
-              </div>
+              </motion.div>
 
-              <div className="flex items-center justify-between py-5 border-b border-border/10 group" data-testid="footer-item-blogs">
+              <motion.div
+                className="flex items-center justify-between py-5 border-b border-border/10 group"
+                data-testid="footer-item-blogs"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.8 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <span className="text-base text-foreground/50">Blogs</span>
                 <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Medium</a>
-              </div>
+              </motion.div>
             </div>
 
             <div className="pt-12 flex flex-col items-center justify-center gap-6">
