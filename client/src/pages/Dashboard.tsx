@@ -1588,10 +1588,100 @@ export default function Dashboard() {
                 </motion.div>
               );
             }
-              return null;
-            })}
-          </AnimatePresence>
-        </main>
+            return null;
+          })}
+        </AnimatePresence>
+
+        {/* Footer Section */}
+        <motion.footer 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-20 pb-20 border-t border-border/10 pt-16"
+        >
+          <div className="flex flex-col gap-8">
+            <div className="space-y-6">
+              <a 
+                href="mailto:h.potphode0@gmail.com"
+                className="flex items-center justify-between group py-2"
+                data-testid="link-footer-email"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#F5F3F1] flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-foreground/40" />
+                  </div>
+                  <span className="text-lg font-medium">Email</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-lg text-foreground/40">h.potphode0@gmail.com</span>
+                  <ArrowUpRight className="w-5 h-5 text-foreground/20 group-hover:text-foreground/60 transition-colors" />
+                </div>
+              </a>
+
+              <a 
+                href="https://linkedin.com/in/harshpotphode"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between group py-2"
+                data-testid="link-footer-linkedin"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#F5F3F1] flex items-center justify-center">
+                    <Linkedin className="w-5 h-5 text-foreground/40" />
+                  </div>
+                  <span className="text-lg font-medium">LinkedIn</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-lg text-foreground/40">/in/harshpotphode</span>
+                  <ArrowUpRight className="w-5 h-5 text-foreground/20 group-hover:text-foreground/60 transition-colors" />
+                </div>
+              </a>
+
+              <a 
+                href="https://behance.net/HarshPotphode"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between group py-2"
+                data-testid="link-footer-behance"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#F5F3F1] flex items-center justify-center">
+                    <SiBehance className="w-5 h-5 text-foreground/40" />
+                  </div>
+                  <span className="text-lg font-medium">Behance (a few more projects)</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-lg text-foreground/40">@HarshPotphode</span>
+                  <ArrowUpRight className="w-5 h-5 text-foreground/20 group-hover:text-foreground/60 transition-colors" />
+                </div>
+              </a>
+            </div>
+
+            <div className="pt-20 flex flex-col items-center justify-center gap-4">
+              <svg 
+                width="80" 
+                height="40" 
+                viewBox="0 0 80 40" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-foreground/20"
+              >
+                <path 
+                  d="M10 20C15 15 20 25 25 20C30 15 35 25 40 20C45 15 50 25 55 20C60 15 65 25 70 20" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                />
+              </svg>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/20">
+                HARSH POTPHODE
+              </span>
+            </div>
+          </div>
+        </motion.footer>
+      </main>
       </div>
 
       {/* Template Selection Dialog */}
