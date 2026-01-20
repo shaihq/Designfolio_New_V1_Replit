@@ -3293,7 +3293,7 @@ export default function Dashboard() {
               },
               { 
                 icon: MessageSquare, 
-                label: "Feedback", 
+                label: "Testimonials", 
                 active: activeTab === "feedback",
                 onClick: () => {
                   setActiveTab("feedback");
