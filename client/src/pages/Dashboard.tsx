@@ -1736,51 +1736,51 @@ export default function Dashboard() {
             <div className="flex flex-col gap-3">
               <div className="flex flex-col">
               <motion.div
-                className="flex items-center justify-between py-2.5 border-b border-border/10 group"
+                className="flex flex-col sm:flex-row sm:items-center justify-between py-3 sm:py-2.5 border-b border-border/10 group gap-1 sm:gap-4"
                 data-testid="footer-item-resume"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0 }}
               >
-                <span className="text-base text-foreground/50">Resume</span>
+                <span className="text-sm sm:text-base text-foreground/50">Resume</span>
                 <button
                   onClick={() => setIsResumeDialogOpen(true)}
-                  className="text-base font-medium hover:underline underline-offset-4 cursor-pointer"
+                  className="text-sm sm:text-base font-medium hover:underline underline-offset-4 cursor-pointer text-left sm:text-right"
                 >View Resume</button>
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-2.5 border-b border-border/10 group"
+                className="flex flex-col sm:flex-row sm:items-center justify-between py-3 sm:py-2.5 border-b border-border/10 group gap-1 sm:gap-4"
                 data-testid="footer-item-mail"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <span className="text-base text-foreground/50">Mail</span>
+                <span className="text-sm sm:text-base text-foreground/50">Mail</span>
                 <a
                   href="mailto:rakshit.design@gmail.com"
-                  className="text-base font-medium hover:underline underline-offset-4"
+                  className="text-sm sm:text-base font-medium hover:underline underline-offset-4 break-all sm:break-normal text-left sm:text-right"
                 >
                   rakshit.design@gmail.com
                 </a>
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-2.5 border-b border-border/10 group"
+                className="flex flex-col sm:flex-row sm:items-center justify-between py-3 sm:py-2.5 border-b border-border/10 group gap-1 sm:gap-4"
                 data-testid="footer-item-phone"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <span className="text-base text-foreground/50">Phone number</span>
+                <span className="text-sm sm:text-base text-foreground/50">Phone number</span>
                 <TooltipProvider>
                   <Tooltip delayDuration={0}>
                     <TooltipTrigger asChild>
                       <button
-                        className={`text-base font-medium transition-all duration-300 min-w-[180px] text-right flex items-center justify-end gap-2 ${!isCopied ? 'hover:underline underline-offset-4 cursor-pointer' : 'cursor-default'}`}
+                        className={`text-sm sm:text-base font-medium transition-all duration-300 min-w-0 sm:min-w-[180px] text-left sm:text-right flex items-center justify-start sm:justify-end gap-2 ${!isCopied ? 'hover:underline underline-offset-4 cursor-pointer' : 'cursor-default'}`}
                         onClick={() => {
                           if (!isCopied) {
                             navigator.clipboard.writeText("+12065714546");
@@ -1813,34 +1813,34 @@ export default function Dashboard() {
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-2.5 border-b border-border/10 group"
+                className="flex flex-col sm:flex-row sm:items-center justify-between py-3 sm:py-2.5 border-b border-border/10 group gap-1 sm:gap-4"
                 data-testid="footer-item-blogs"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <span className="text-base text-foreground/50">Blogs</span>
-                <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Medium</a>
+                <span className="text-sm sm:text-base text-foreground/50">Blogs</span>
+                <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-medium hover:underline underline-offset-4 text-left sm:text-right">Medium</a>
               </motion.div>
 
               <motion.div
-                className="flex items-center justify-between py-2.5 border-b border-border/10 group"
+                className="flex flex-col sm:flex-row sm:items-center justify-between py-3 sm:py-2.5 border-b border-border/10 group gap-1 sm:gap-4"
                 data-testid="footer-item-socials"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.8 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <span className="text-base text-foreground/50">Socials</span>
-                <div className="flex items-center gap-2">
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">LinkedIn</a>
+                <span className="text-sm sm:text-base text-foreground/50">Socials</span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-medium hover:underline underline-offset-4">LinkedIn</a>
                   <span className="text-foreground/20">•</span>
-                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">X</a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-medium hover:underline underline-offset-4">X</a>
                   <span className="text-foreground/20">•</span>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Instagram</a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-medium hover:underline underline-offset-4">Instagram</a>
                   <span className="text-foreground/20">•</span>
-                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-base font-medium hover:underline underline-offset-4">Dribbble</a>
+                  <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-medium hover:underline underline-offset-4">Dribbble</a>
                 </div>
               </motion.div>
             </div>
