@@ -1582,7 +1582,7 @@ export default function Dashboard() {
                       </Button>
                     </div>
 
-                    <div className="mt-6 -mx-4 px-4 overflow-visible">
+                    <div className="mt-6 -mx-10 px-10 overflow-visible">
                       <Carousel
                         opts={{
                           align: "start",
@@ -1652,7 +1652,7 @@ export default function Dashboard() {
                             ))}
                           </CarouselContent>
                         </div>
-                        <div className="flex justify-center gap-4 mt-4">
+                        <div className="flex justify-center gap-1.5 mt-4">
                           <CarouselPrevious className="static h-10 w-10 rounded-full border-border/50 bg-white shadow-sm transition-all translate-y-0" />
                           <CarouselNext className="static h-10 w-10 rounded-full border-border/50 bg-white shadow-sm transition-all translate-y-0" />
                         </div>
