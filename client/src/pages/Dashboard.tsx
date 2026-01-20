@@ -1582,7 +1582,7 @@ export default function Dashboard() {
                       </Button>
                     </div>
 
-                    <div className="relative">
+                    <div className="relative mt-2">
                       <Carousel
                         opts={{
                           align: "start",
@@ -1590,8 +1590,9 @@ export default function Dashboard() {
                         }}
                         className="w-full"
                       >
-                        <CarouselContent className="-ml-6">
-                          {testimonials.map((testimonial, idx) => (
+                        <div className="relative px-12">
+                          <CarouselContent className="-ml-6">
+                            {testimonials.map((testimonial, idx) => (
                               <CarouselItem key={testimonial.id} className="pl-6 md:basis-1/2">
                                 <motion.div
                                   initial={{ opacity: 0, y: 20 }}
@@ -1648,11 +1649,10 @@ export default function Dashboard() {
                                   </div>
                                 </motion.div>
                               </CarouselItem>
-                          ))}
-                        </CarouselContent>
-                        <div className="hidden md:block">
-                          <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm" />
-                          <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm" />
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm z-10" />
+                          <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm z-10" />
                         </div>
                       </Carousel>
                     </div>
