@@ -1682,7 +1682,7 @@ export default function Dashboard() {
                       {/* Right fade */}
                       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
                       
-                      <div className="flex overflow-hidden group">
+                      <div className="flex overflow-visible group">
                         <div className="flex animate-scroll group-hover:[animation-play-state:paused] py-4">
                           {[...tools, ...tools].map((tool, idx) => (
                             <TooltipProvider key={`${tool.id}-${idx}`}>
