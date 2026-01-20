@@ -1215,8 +1215,20 @@ export default function Dashboard() {
                         <motion.div 
                           initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
                           animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-                          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
-                          className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef]" 
+                          whileHover={{ 
+                            scale: 1.02,
+                            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                          }}
+                          drag
+                          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                          dragElastic={0.1}
+                          transition={{ 
+                            duration: 0.8, 
+                            ease: [0.4, 0, 0.2, 1], 
+                            delay: 0.1,
+                            drag: { type: "spring", stiffness: 600, damping: 30 }
+                          }}
+                          className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 cursor-grab active:cursor-grabbing bg-[#f6f2ef]" 
                           style={{ backgroundColor: '#F5F3F1' }} 
                           data-testid="avatar-profile"
                         >
