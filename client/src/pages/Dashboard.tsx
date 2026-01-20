@@ -1687,35 +1687,10 @@ export default function Dashboard() {
                           {[...tools, ...tools].map((tool, idx) => (
                             <div
                               key={`${tool.id}-${idx}`}
-                              className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate mx-2 w-[280px] shrink-0"
+                              className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate mx-2 shrink-0 flex items-center justify-center w-20 h-20"
                               data-testid={`card-tool-${tool.id}-${idx}`}
                             >
-                              <div className="flex items-center gap-3">
-                                <div 
-                                  className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-muted"
-                                  data-testid={`icon-tool-${tool.id}`}
-                                >
-                                  <img src={tool.logo} alt={tool.name} className="w-6 h-6 object-contain" />
-                                </div>
-                                
-                                <div className="flex-1 min-w-0">
-                                  <div className="flex items-center gap-2 mb-0.5">
-                                    <h3 className="font-semibold text-sm" data-testid={`text-tool-name-${tool.id}`}>
-                                      {tool.name}
-                                    </h3>
-                                    <Badge 
-                                      variant="secondary" 
-                                      className="text-xs"
-                                      data-testid={`badge-tool-category-${tool.id}`}
-                                    >
-                                      {tool.category}
-                                    </Badge>
-                                  </div>
-                                  <p className="text-xs text-foreground/50" data-testid={`text-tool-description-${tool.id}`}>
-                                    {tool.description}
-                                  </p>
-                                </div>
-                              </div>
+                              <img src={tool.logo} alt={tool.name} className="w-10 h-10 object-contain" />
                             </div>
                           ))}
                         </div>
