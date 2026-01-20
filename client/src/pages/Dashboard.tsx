@@ -1676,11 +1676,11 @@ export default function Dashboard() {
                       </Button>
                     </div>
 
-                    <div className="relative mt-2 overflow-x-hidden overflow-y-visible">
+                    <div className="relative mt-2 overflow-x-hidden overflow-y-visible -mx-6 px-6">
                       {/* Left fade */}
-                      <div className="absolute left-0 top-0 bottom-0 w-32 md:w-20 bg-gradient-to-r from-white via-white/95 to-transparent z-10 pointer-events-none" />
+                      <div className="absolute left-0 top-0 bottom-0 w-24 md:w-20 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
                       {/* Right fade */}
-                      <div className="absolute right-0 top-0 bottom-0 w-32 md:w-20 bg-gradient-to-l from-white via-white/95 to-transparent z-10 pointer-events-none" />
+                      <div className="absolute right-0 top-0 bottom-0 w-24 md:w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
                       <div className="flex group">
                         <div className="flex animate-scroll group-hover:[animation-play-state:paused] py-4">
