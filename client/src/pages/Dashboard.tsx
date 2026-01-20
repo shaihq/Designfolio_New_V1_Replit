@@ -1661,12 +1661,12 @@ export default function Dashboard() {
                       delay: index * 0.1
                     }}
                   >
-                  <Card className="bg-white border-0 rounded-2xl p-6 mt-0 mb-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                  <Card className="bg-white border-0 rounded-2xl p-6 mt-0 mb-3 overflow-visible" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider" data-testid="text-toolbox-title">
                         Toolbox
                       </h2>
-                      <Button 
+                      <Button
                         variant="outline"
                         size="icon"
                         className="rounded-full h-11 w-11"
@@ -1675,14 +1675,14 @@ export default function Dashboard() {
                         <Plus className="w-5 h-5" />
                       </Button>
                     </div>
-                    
-                    <div className="relative mt-2">
+
+                    <div className="relative mt-2 overflow-x-hidden overflow-y-visible">
                       {/* Left fade */}
                       <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
                       {/* Right fade */}
                       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
-                      
-                      <div className="flex overflow-hidden group">
+
+                      <div className="flex group">
                         <div className="flex animate-scroll group-hover:[animation-play-state:paused] py-4">
                           {[...tools, ...tools].map((tool, idx) => (
                             <TooltipProvider key={`${tool.id}-${idx}`}>
@@ -1695,7 +1695,7 @@ export default function Dashboard() {
                                     <img src={tool.logo} alt={tool.name} className="w-10 h-10 object-contain" />
                                   </div>
                                 </TooltipTrigger>
-                                <TooltipContent 
+                                <TooltipContent
                                   side="top"
                                   sideOffset={5}
                                   className="bg-foreground text-background border-none px-3 py-1.5 text-xs font-semibold rounded-full shadow-lg z-[100]"
