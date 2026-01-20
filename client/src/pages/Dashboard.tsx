@@ -1631,10 +1631,10 @@ export default function Dashboard() {
                         <div className="overflow-visible">
                           <CarouselContent className="-ml-6">
                             {testimonials.map((testimonial, idx) => (
-                              <CarouselItem key={testimonial.id} className="pl-6 md:basis-1/2 overflow-visible py-4 group/item">
+                              <CarouselItem key={testimonial.id} className="pl-6 md:basis-1/2 overflow-visible py-4">
                                 <GlowingCard
                                   isElevated={selectedTestimonialId === testimonial.id}
-                                  className="transition-all duration-300 relative group/card"
+                                  className="transition-all duration-300"
                                 >
                                   <Cursor
                                     attachToParent
@@ -1648,7 +1648,7 @@ export default function Dashboard() {
                                       duration: 0.15,
                                     }}
                                   >
-                                    <div className="rounded-full bg-[#FF553E] px-3 py-1.5 text-white text-xs font-bold shadow-xl flex items-center gap-2 whitespace-nowrap border border-white/20 pointer-events-none">
+                                    <div className="rounded-full bg-[#FF553E] px-3 py-1.5 text-white text-xs font-bold shadow-lg flex items-center gap-2 whitespace-nowrap border border-white/20">
                                       <Avatar className="w-4 h-4">
                                         <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                                         <AvatarFallback className="text-[8px] bg-white/20">
