@@ -1582,7 +1582,7 @@ export default function Dashboard() {
                       </Button>
                     </div>
 
-                    <div className="relative mt-2 overflow-visible">
+                    <div className="relative mt-4 px-12">
                       <Carousel
                         opts={{
                           align: "start",
@@ -1590,9 +1590,9 @@ export default function Dashboard() {
                         }}
                         className="w-full"
                       >
-                        <CarouselContent className="-ml-4">
+                        <CarouselContent className="-ml-6">
                           {testimonials.map((testimonial, idx) => (
-                            <CarouselItem key={testimonial.id} className="pl-4 md:basis-1/2">
+                            <CarouselItem key={testimonial.id} className="pl-6 md:basis-1/2">
                               <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -1621,7 +1621,7 @@ export default function Dashboard() {
                                     onClick={() => handleEditTestimonialClick(testimonial)}
                                     data-testid={`button-edit-testimonial-${testimonial.id}`}
                                   >
-                                    <Pencil className="w-4 h-4" />
+                                    < Pencil className="w-4 h-4" />
                                   </Button>
                                 </div>
 
@@ -1650,8 +1650,8 @@ export default function Dashboard() {
                             </CarouselItem>
                           ))}
                         </CarouselContent>
-                        <CarouselPrevious className="absolute -left-16 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm z-20" />
-                        <CarouselNext className="absolute -right-16 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm z-20" />
+                        <CarouselPrevious className="absolute left-[-48px] top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm z-20" />
+                        <CarouselNext className="absolute right-[-48px] top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm z-20" />
                       </Carousel>
                     </div>
                   </Card>
