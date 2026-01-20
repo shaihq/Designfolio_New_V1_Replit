@@ -1,5 +1,4 @@
 import { GlowingCard } from "@/components/ui/glowing-card";
-import { Cursor } from "@/components/ui/cursor";
 import { useState, useEffect, useRef } from "react";
 import { toast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
@@ -1636,28 +1635,6 @@ export default function Dashboard() {
                                   isElevated={selectedTestimonialId === testimonial.id}
                                   className="transition-all duration-300"
                                 >
-                                  <Cursor
-                                    attachToParent
-                                    variants={{
-                                      initial: { scale: 0.3, opacity: 0 },
-                                      animate: { scale: 1, opacity: 1 },
-                                      exit: { scale: 0.3, opacity: 0 },
-                                    }}
-                                    transition={{
-                                      ease: "easeInOut",
-                                      duration: 0.15,
-                                    }}
-                                  >
-                                    <div className="rounded-full bg-[#FF553E] px-3 py-1.5 text-white text-xs font-bold shadow-lg flex items-center gap-2 whitespace-nowrap border border-white/20">
-                                      <Avatar className="w-4 h-4">
-                                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                                        <AvatarFallback className="text-[8px] bg-white/20">
-                                          {testimonial.name.split(' ').map(n => n[0]).join('')}
-                                        </AvatarFallback>
-                                      </Avatar>
-                                      {testimonial.name}
-                                    </div>
-                                  </Cursor>
                                   <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
