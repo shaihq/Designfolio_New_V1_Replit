@@ -555,6 +555,7 @@ export default function Dashboard() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const [isFooterPanelOpen, setIsFooterPanelOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [visibleTestimonials, setVisibleTestimonials] = useState<Set<number>>(new Set());
   const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false);
@@ -1878,7 +1879,7 @@ export default function Dashboard() {
               variant="outline" 
               size="icon"
               className="rounded-full h-11 w-11"
-              onClick={() => setIsThemePanelOpen(true)}
+              onClick={() => setIsFooterPanelOpen(true)}
               data-testid="button-edit-footer"
             >
               <Pencil className="w-5 h-5" />
@@ -2033,6 +2034,137 @@ export default function Dashboard() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      {/* Footer Settings Panel */}
+      {!isMobileOrTablet && (
+        <div 
+          className={`fixed right-0 top-0 h-full bg-white border-l border-border transition-transform duration-300 z-40 ${
+            isFooterPanelOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          style={{ width: '320px' }}
+        >
+          <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between p-6 border-b border-border pt-[16px] pb-[16px]">
+              <h2 className="text-lg font-semibold" data-testid="text-footer-panel-title">Footer Settings</h2>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsFooterPanelOpen(false)}
+                className="h-8 w-8"
+                data-testid="button-close-footer-panel"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="flex-1 overflow-auto p-6 space-y-6">
+              <div className="space-y-4">
+                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Resume</Label>
+                <div className="p-4 rounded-xl border border-border bg-card/50">
+                  <div className="flex flex-col items-center gap-3 text-center">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Upload className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold">Update Resume</h4>
+                      <p className="text-xs text-foreground/60 mt-1">Upload PDF (Max 5MB)</p>
+                    </div>
+                    <Button variant="outline" size="sm" className="w-full">
+                      Choose File
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Contact Info</Label>
+                <div className="space-y-3">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="footer-mail" className="text-[11px] font-medium ml-1">Email</Label>
+                    <Input id="footer-mail" defaultValue="rakshit.design@gmail.com" data-testid="input-footer-mail" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="footer-phone" className="text-[11px] font-medium ml-1">Phone Number</Label>
+                    <Input id="footer-phone" defaultValue="+1 (206)-571-4546" data-testid="input-footer-phone" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Links & Socials</Label>
+                <div className="space-y-3">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="footer-blogs" className="text-[11px] font-medium ml-1">Blogs (Medium)</Label>
+                    <Input id="footer-blogs" defaultValue="https://medium.com" data-testid="input-footer-blogs" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="footer-linkedin" className="text-[11px] font-medium ml-1">LinkedIn</Label>
+                    <Input id="footer-linkedin" defaultValue="https://linkedin.com" data-testid="input-footer-linkedin" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="footer-x" className="text-[11px] font-medium ml-1">X (Twitter)</Label>
+                    <Input id="footer-x" defaultValue="https://x.com" data-testid="input-footer-x" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="footer-instagram" className="text-[11px] font-medium ml-1">Instagram</Label>
+                    <Input id="footer-instagram" defaultValue="https://instagram.com" data-testid="input-footer-instagram" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="footer-dribbble" className="text-[11px] font-medium ml-1">Dribbble</Label>
+                    <Input id="footer-dribbble" defaultValue="https://dribbble.com" data-testid="input-footer-dribbble" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="p-6 border-t border-border bg-white sticky bottom-0">
+              <Button className="w-full h-11 rounded-full font-semibold">
+                Save Changes
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Footer Panel */}
+      {isMobileOrTablet && (
+        <Sheet open={isFooterPanelOpen} onOpenChange={setIsFooterPanelOpen}>
+          <SheetContent className="w-full sm:max-w-md p-0 flex flex-col h-full">
+            <div className="flex items-center justify-between p-6 border-b border-border pt-[16px] pb-[16px]">
+              <h2 className="text-lg font-semibold">Footer Settings</h2>
+            </div>
+            <div className="flex-1 overflow-auto p-6 space-y-6">
+              {/* Reuse the same form content from desktop but adapted for mobile */}
+              <div className="space-y-4">
+                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Resume</Label>
+                <div className="p-4 rounded-xl border border-border bg-card/50">
+                  <div className="flex flex-col items-center gap-3 text-center">
+                    <Upload className="w-6 h-6 text-primary" />
+                    <h4 className="text-sm font-semibold">Update Resume</h4>
+                    <Button variant="outline" size="sm" className="w-full">
+                      Choose File
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Contact Info</Label>
+                <Input defaultValue="rakshit.design@gmail.com" placeholder="Email" />
+                <Input defaultValue="+1 (206)-571-4546" placeholder="Phone" />
+              </div>
+              <div className="space-y-3">
+                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Socials</Label>
+                <Input defaultValue="https://medium.com" placeholder="Medium" />
+                <Input defaultValue="https://linkedin.com" placeholder="LinkedIn" />
+                <Input defaultValue="https://x.com" placeholder="X" />
+              </div>
+            </div>
+            <div className="p-6 border-t border-border">
+              <Button className="w-full h-11 rounded-full font-semibold">
+                Save Changes
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
+      )}
+
       {/* Theme Panel - Desktop (pushes content) - Only on large screens */}
       {!isMobileOrTablet && (
         <div 
