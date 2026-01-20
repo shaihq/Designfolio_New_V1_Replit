@@ -1676,41 +1676,50 @@ export default function Dashboard() {
                       </Button>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {tools.map((tool) => (
-                        <div
-                          key={tool.id}
-                          className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate"
-                          data-testid={`card-tool-${tool.id}`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div 
-                              className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-muted"
-                              data-testid={`icon-tool-${tool.id}`}
+                    <div className="relative mt-2">
+                      {/* Left fade */}
+                      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+                      {/* Right fade */}
+                      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+                      
+                      <div className="flex overflow-hidden group">
+                        <div className="flex animate-scroll group-hover:[animation-play-state:paused] py-4">
+                          {[...tools, ...tools].map((tool, idx) => (
+                            <div
+                              key={`${tool.id}-${idx}`}
+                              className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate mx-2 w-[280px] shrink-0"
+                              data-testid={`card-tool-${tool.id}-${idx}`}
                             >
-                              <img src={tool.logo} alt={tool.name} className="w-6 h-6 object-contain" />
-                            </div>
-                            
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 mb-0.5">
-                                <h3 className="font-semibold text-sm" data-testid={`text-tool-name-${tool.id}`}>
-                                  {tool.name}
-                                </h3>
-                                <Badge 
-                                  variant="secondary" 
-                                  className="text-xs"
-                                  data-testid={`badge-tool-category-${tool.id}`}
+                              <div className="flex items-center gap-3">
+                                <div 
+                                  className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-muted"
+                                  data-testid={`icon-tool-${tool.id}`}
                                 >
-                                  {tool.category}
-                                </Badge>
+                                  <img src={tool.logo} alt={tool.name} className="w-6 h-6 object-contain" />
+                                </div>
+                                
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 mb-0.5">
+                                    <h3 className="font-semibold text-sm" data-testid={`text-tool-name-${tool.id}`}>
+                                      {tool.name}
+                                    </h3>
+                                    <Badge 
+                                      variant="secondary" 
+                                      className="text-xs"
+                                      data-testid={`badge-tool-category-${tool.id}`}
+                                    >
+                                      {tool.category}
+                                    </Badge>
+                                  </div>
+                                  <p className="text-xs text-foreground/50" data-testid={`text-tool-description-${tool.id}`}>
+                                    {tool.description}
+                                  </p>
+                                </div>
                               </div>
-                              <p className="text-xs text-foreground/50" data-testid={`text-tool-description-${tool.id}`}>
-                                {tool.description}
-                              </p>
                             </div>
-                          </div>
+                          ))}
                         </div>
-                      ))}
+                      </div>
                     </div>
                   </Card>
                 </motion.div>
