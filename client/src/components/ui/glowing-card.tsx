@@ -1,6 +1,6 @@
 
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ReactNode, useState, useRef } from "react";
 
 interface GlowingCardProps {
   children: ReactNode;
@@ -9,26 +9,61 @@ interface GlowingCardProps {
 }
 
 export function GlowingCard({ children, className, isElevated }: GlowingCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Mouse position for the glow effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth mouse movement
+  const springConfig = { damping: 25, stiffness: 150 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
+
   return (
-    <div className={`relative group p-[1px] rounded-2xl overflow-hidden h-full ${className}`}>
-      {/* Animated Border/Glow Effect */}
-      <motion.div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+    <div 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`relative group p-[1px] rounded-2xl overflow-hidden h-full ${className}`}
+    >
+      {/* Aesthetic Border Glow (Spotlight effect) */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-0 group-hover:opacity-100"
         style={{
-          background: "conic-gradient(from 0deg at 50% 50%, transparent 0%, #FF553E 10%, transparent 20%)",
+          background: useTransform(
+            [smoothX, smoothY],
+            ([x, y]) => `radial-gradient(400px circle at ${x}px ${y}px, rgba(255, 85, 62, 0.2), transparent 80%)`
+          ),
+        }}
+      />
+
+      {/* Moving Perimeter Glow (Soft edge trail) */}
+      <motion.div
+        className="absolute inset-[-2px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: "conic-gradient(from 0deg at 50% 50%, transparent 0%, rgba(255, 85, 62, 0.4) 10%, transparent 20%)",
         }}
         animate={{ rotate: 360 }}
         transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
       />
       
-      {/* Background Dot/Light that moves along the edges */}
+      {/* Background soft glow that follows mouse */}
       <motion.div 
-        className="absolute w-24 h-24 bg-[#FF553E]/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        animate={{
-          top: ["-10%", "-10%", "90%", "90%", "-10%"],
-          left: ["-10%", "90%", "90%", "-10%", "-10%"],
+        className="absolute w-64 h-64 bg-[#FF553E]/5 blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          x: useTransform(smoothX, (v) => v - 128),
+          y: useTransform(smoothY, (v) => v - 128),
         }}
-        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
       />
 
       {/* Main Content Card */}
