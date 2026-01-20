@@ -3276,12 +3276,6 @@ export default function Dashboard() {
                 } 
               },
               { 
-                icon: Paintbrush, 
-                label: "Theme", 
-                active: isThemePanelOpen,
-                onClick: () => setIsThemePanelOpen(!isThemePanelOpen) 
-              },
-              { 
                 icon: Mail, 
                 label: "Contact", 
                 active: activeTab === "contact",

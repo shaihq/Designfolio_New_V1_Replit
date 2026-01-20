@@ -82,14 +82,6 @@ export default function Dock({ items, className }: DockProps) {
                         />
                       )}
                     </Button>
-
-                    {/* Active indicator */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="dot"
-                        className="w-1.5 h-1.5 rounded-full bg-primary mt-1"
-                      />
-                    )}
                   </motion.div>
                 </TooltipTrigger>
                 <TooltipContent 
