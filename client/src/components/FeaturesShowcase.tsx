@@ -39,10 +39,10 @@ export default function FeaturesShowcase() {
       <div className="max-w-5xl mx-auto space-y-12">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-heading leading-tight" data-testid="text-showcase-headline">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold font-heading leading-tight" data-testid="text-showcase-headline">
               Can telling your story be simple?{" "}
               <span 
-                className="inline-block px-3 py-1 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-wide uppercase align-middle"
+                className="inline-block px-3 py-1 text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide uppercase align-middle"
                 style={{
                   background: '#FF8C00',
                   color: '#fff',
