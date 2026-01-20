@@ -1248,7 +1248,7 @@ export default function Dashboard() {
                             damping: 20,
                             mass: 0.5
                           }}
-                          className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef] preserve-3d cursor-pointer" 
+                          className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef] preserve-3d" 
                           style={{ 
                             backgroundColor: '#F5F3F1',
                             perspective: "1000px"
