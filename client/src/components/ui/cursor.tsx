@@ -72,22 +72,39 @@ export function Cursor({
     };
 
     if (attachToParent && cursorRef.current) {
-      const parent = cursorRef.current.parentElement;
+      const parent = cursorRef.current.closest('.group\\/card') as HTMLElement | null || cursorRef.current.parentElement;
       if (parent) {
         const onMouseEnter = () => {
-          parent.style.cursor = 'none';
+          parent.style.setProperty('cursor', 'none', 'important');
           handleVisibilityChange(true);
         };
         const onMouseLeave = () => {
-          parent.style.cursor = 'auto';
+          parent.style.setProperty('cursor', 'auto');
           handleVisibilityChange(false);
         };
+        
         parent.addEventListener('mouseenter', onMouseEnter);
         parent.addEventListener('mouseleave', onMouseLeave);
         
+        // Initial check
+        const checkInitial = (e: MouseEvent) => {
+          const rect = parent.getBoundingClientRect();
+          if (
+            e.clientX >= rect.left &&
+            e.clientX <= rect.right &&
+            e.clientY >= rect.top &&
+            e.clientY <= rect.bottom
+          ) {
+            onMouseEnter();
+          }
+          document.removeEventListener('mousemove', checkInitial);
+        };
+        document.addEventListener('mousemove', checkInitial);
+
         return () => {
           parent.removeEventListener('mouseenter', onMouseEnter);
           parent.removeEventListener('mouseleave', onMouseLeave);
+          parent.style.setProperty('cursor', 'auto');
         };
       }
     }
