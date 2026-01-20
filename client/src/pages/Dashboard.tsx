@@ -1582,7 +1582,7 @@ export default function Dashboard() {
                       </Button>
                     </div>
 
-                    <div className="mt-6 overflow-visible px-4">
+                    <div className="mt-6 -mx-4 px-4 overflow-visible">
                       <Carousel
                         opts={{
                           align: "start",
