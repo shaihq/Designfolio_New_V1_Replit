@@ -320,17 +320,33 @@ export default function Dashboard() {
   }, [selectedFont]);
 
   useEffect(() => {
-    if (!backgroundMotion) {
-      setScrollOffset(0);
-      return;
-    }
-
     const handleScroll = () => {
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
       rafRef.current = requestAnimationFrame(() => {
         setScrollOffset(window.scrollY);
+        
+        // Scroll spy logic
+        const sections = [
+          { id: 'home', element: document.body },
+          { id: 'works', element: document.getElementById('section-works') },
+          { id: 'feedback', element: document.getElementById('section-testimonials') },
+          { id: 'contact', element: document.getElementById('footer') }
+        ];
+
+        const currentScroll = window.scrollY + window.innerHeight / 3;
+
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = sections[i];
+          if (section.element) {
+            const top = section.id === 'home' ? 0 : section.element.offsetTop;
+            if (currentScroll >= top) {
+              setActiveTab(section.id);
+              break;
+            }
+          }
+        }
       });
     };
 
