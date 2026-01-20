@@ -1685,13 +1685,21 @@ export default function Dashboard() {
                       <div className="flex overflow-hidden group">
                         <div className="flex animate-scroll group-hover:[animation-play-state:paused] py-4">
                           {[...tools, ...tools].map((tool, idx) => (
-                            <div
-                              key={`${tool.id}-${idx}`}
-                              className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate mx-2 shrink-0 flex items-center justify-center w-20 h-20"
-                              data-testid={`card-tool-${tool.id}-${idx}`}
-                            >
-                              <img src={tool.logo} alt={tool.name} className="w-10 h-10 object-contain" />
-                            </div>
+                            <TooltipProvider key={`${tool.id}-${idx}`}>
+                              <Tooltip delayDuration={0}>
+                                <TooltipTrigger asChild>
+                                  <div
+                                    className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate mx-2 shrink-0 flex items-center justify-center w-20 h-20 cursor-help"
+                                    data-testid={`card-tool-${tool.id}-${idx}`}
+                                  >
+                                    <img src={tool.logo} alt={tool.name} className="w-10 h-10 object-contain" />
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent className="bg-foreground text-background border-none px-3 py-1.5 text-xs font-semibold rounded-full shadow-lg">
+                                  <p>{tool.name}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
                           ))}
                         </div>
                       </div>
