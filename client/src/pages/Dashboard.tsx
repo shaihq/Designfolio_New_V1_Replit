@@ -476,42 +476,70 @@ export default function Dashboard() {
       name: "Figma",
       category: "Design",
       description: "Interface design and prototyping",
-      color: "#F24E1E"
+      logo: "/tool-icons/Figma.svg"
     },
     {
       id: 2,
-      name: "Adobe Creative Suite",
-      category: "Design",
-      description: "Photoshop, Illustrator, After Effects",
-      color: "#FF0000"
+      name: "Figjam",
+      category: "Ideation",
+      description: "Whiteboarding and diagrams",
+      logo: "/tool-icons/Figjam.svg"
     },
     {
       id: 3,
-      name: "Notion",
-      category: "Documentation",
-      description: "Research and documentation",
-      color: "#000000"
+      name: "Maze",
+      category: "Research",
+      description: "User testing and insights",
+      logo: "/tool-icons/Maze.svg"
     },
     {
       id: 4,
-      name: "Miro",
-      category: "Collaboration",
-      description: "Whiteboarding and brainstorming",
-      color: "#FFD02F"
+      name: "Webflow",
+      category: "Development",
+      description: "No-code website building",
+      logo: "/tool-icons/Webflow.svg"
     },
     {
       id: 5,
-      name: "Framer",
+      name: "Protopie",
       category: "Prototyping",
-      description: "Interactive prototypes",
-      color: "#0055FF"
+      description: "High-fidelity interactions",
+      logo: "/tool-icons/Protopie.svg"
     },
     {
       id: 6,
-      name: "Principle",
-      category: "Animation",
-      description: "Micro-interactions and animations",
-      color: "#6E56F5"
+      name: "Jitter",
+      category: "Motion",
+      description: "Motion design made simple",
+      logo: "/tool-icons/Jitter.svg"
+    },
+    {
+      id: 7,
+      name: "Sketch",
+      category: "Design",
+      description: "Vector graphics and design",
+      logo: "/tool-icons/Sketch.svg"
+    },
+    {
+      id: 8,
+      name: "Zeplin",
+      category: "Handoff",
+      description: "Design to dev collaboration",
+      logo: "/tool-icons/Zeplin.svg"
+    },
+    {
+      id: 9,
+      name: "Miro",
+      category: "Collaboration",
+      description: "Visual workspace for teams",
+      logo: "/tool-icons/Miro.svg"
+    },
+    {
+      id: 10,
+      name: "Whimsical",
+      category: "Ideation",
+      description: "Flowcharts and wireframes",
+      logo: "/tool-icons/Whimsical.svg"
     }
   ];
 
