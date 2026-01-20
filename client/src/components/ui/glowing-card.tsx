@@ -37,7 +37,7 @@ export function GlowingCard({ children, className, isElevated }: GlowingCardProp
       <motion.div 
         className="absolute inset-[-50%] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"
         style={{
-          background: "conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 40%, rgba(212, 175, 55, 0.4) 50%, transparent 60%, transparent 100%)",
+          background: "conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 40%, rgba(255, 85, 62, 0.4) 50%, transparent 60%, transparent 100%)",
           filter: "blur(20px)", // Smudges the line
         }}
         animate={{ rotate: 360 }}
@@ -50,7 +50,7 @@ export function GlowingCard({ children, className, isElevated }: GlowingCardProp
         style={{
           background: useTransform(
             [smoothX, smoothY],
-            ([x, y]) => `radial-gradient(250px circle at ${x}px ${y}px, rgba(212, 175, 55, 0.15), transparent 80%)`
+            ([x, y]) => `radial-gradient(250px circle at ${x}px ${y}px, rgba(255, 85, 62, 0.15), transparent 80%)`
           ),
           filter: "blur(10px)",
         }}
