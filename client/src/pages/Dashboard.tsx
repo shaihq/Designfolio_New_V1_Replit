@@ -1678,9 +1678,9 @@ export default function Dashboard() {
 
                     <div className="relative mt-2 overflow-x-hidden overflow-y-visible">
                       {/* Left fade */}
-                      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+                      <div className="absolute left-0 top-0 bottom-0 w-32 md:w-20 bg-gradient-to-r from-white via-white/95 to-transparent z-10 pointer-events-none" />
                       {/* Right fade */}
-                      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+                      <div className="absolute right-0 top-0 bottom-0 w-32 md:w-20 bg-gradient-to-l from-white via-white/95 to-transparent z-10 pointer-events-none" />
 
                       <div className="flex group">
                         <div className="flex animate-scroll group-hover:[animation-play-state:paused] py-4">
@@ -1689,10 +1689,10 @@ export default function Dashboard() {
                               <Tooltip delayDuration={0}>
                                 <TooltipTrigger asChild>
                                   <div
-                                    className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate mx-2 shrink-0 flex items-center justify-center w-20 h-20 cursor-default"
+                                    className="bg-white border border-border/30 rounded-2xl p-3 md:p-4 hover-elevate mx-2 shrink-0 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 cursor-default"
                                     data-testid={`card-tool-${tool.id}-${idx}`}
                                   >
-                                    <img src={tool.logo} alt={tool.name} className="w-10 h-10 object-contain" />
+                                    <img src={tool.logo} alt={tool.name} className="w-8 h-8 md:w-10 md:h-10 object-contain" />
                                   </div>
                                 </TooltipTrigger>
                                 <TooltipContent
