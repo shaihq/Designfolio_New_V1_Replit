@@ -86,6 +86,7 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import { StardustButton } from '@/components/StardustButton';
 import { TiptapEditor } from '@/components/TiptapEditor';
+import Dock from "@/components/ui/dock";
 
 import { CourseCard } from "@/components/CourseCard";
 
@@ -569,6 +570,7 @@ export default function Dashboard() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [visibleTestimonials, setVisibleTestimonials] = useState<Set<number>>(new Set());
   const [isTemplateDialogOpen, setIsTemplateDialogOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("home");
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [projectToDelete, setProjectToDelete] = useState<number | null>(null);
   const [editingTestimonial, setEditingTestimonial] = useState<typeof testimonials[0] | null>(null);
@@ -3239,6 +3241,58 @@ export default function Dashboard() {
         </Sheet>
       )}
       <CourseCard />
+      
+      {/* Floating Dock */}
+      <div className="fixed bottom-8 left-0 right-0 z-[100] flex justify-center pointer-events-none">
+        <div className="pointer-events-auto">
+          <Dock 
+            items={[
+              { 
+                icon: Home, 
+                label: "Home", 
+                active: activeTab === "home",
+                onClick: () => {
+                  setActiveTab("home");
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                } 
+              },
+              { 
+                icon: Layers, 
+                label: "Works", 
+                active: activeTab === "works",
+                onClick: () => {
+                  setActiveTab("works");
+                  document.getElementById('section-works')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } 
+              },
+              { 
+                icon: MessageSquare, 
+                label: "Feedback", 
+                active: activeTab === "feedback",
+                onClick: () => {
+                  setActiveTab("feedback");
+                  document.getElementById('section-testimonials')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } 
+              },
+              { 
+                icon: Paintbrush, 
+                label: "Theme", 
+                active: isThemePanelOpen,
+                onClick: () => setIsThemePanelOpen(!isThemePanelOpen) 
+              },
+              { 
+                icon: Mail, 
+                label: "Contact", 
+                active: activeTab === "contact",
+                onClick: () => {
+                  setActiveTab("contact");
+                  document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
+                } 
+              },
+            ]} 
+          />
+        </div>
+      </div>
     </div>
   );
 }
