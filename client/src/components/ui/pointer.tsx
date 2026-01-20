@@ -33,8 +33,15 @@ export function Pointer({
           y.set(e.clientY);
         };
 
-        const handleMouseEnter = () => setIsActive(true);
-        const handleMouseLeave = () => setIsActive(false);
+        const handleMouseEnter = () => {
+          setIsActive(true);
+          document.body.style.cursor = "none";
+        };
+
+        const handleMouseLeave = () => {
+          setIsActive(false);
+          document.body.style.cursor = "";
+        };
 
         parentElement.addEventListener("mousemove", handleMouseMove);
         parentElement.addEventListener("mouseenter", handleMouseEnter);
@@ -55,10 +62,12 @@ export function Pointer({
       <AnimatePresence>
         {isActive && (
           <motion.div
-            className="pointer-events-none fixed z-[9999] -translate-x-1/2 -translate-y-1/2"
+            className="pointer-events-none fixed z-[9999]"
             style={{
               top: y,
               left: x,
+              x: "-50%",
+              y: "-50%",
               ...style,
             }}
             initial={{ scale: 0, opacity: 0 }}
