@@ -1582,7 +1582,7 @@ export default function Dashboard() {
                       </Button>
                     </div>
 
-                    <div className="relative mt-2">
+                    <div className="relative mt-2 overflow-visible">
                       <Carousel
                         opts={{
                           align: "start",
@@ -1590,70 +1590,68 @@ export default function Dashboard() {
                         }}
                         className="w-full"
                       >
-                        <div className="relative px-12">
-                          <CarouselContent className="-ml-6">
-                            {testimonials.map((testimonial, idx) => (
-                              <CarouselItem key={testimonial.id} className="pl-6 md:basis-1/2">
-                                <motion.div
-                                  initial={{ opacity: 0, y: 20 }}
-                                  whileInView={{ opacity: 1, y: 0 }}
-                                  viewport={{ once: true, amount: 0.2 }}
-                                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                  className={`group rounded-2xl p-6 flex flex-col relative transition-all duration-300 h-full ${
-                                    selectedTestimonialId === testimonial.id
-                                      ? 'bg-foreground/5'
-                                      : 'bg-white hover-elevate'
-                                  }`}
-                                  data-testid={`card-testimonial-${testimonial.id}`}
-                                  style={{
-                                    backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.04)' : '#FFFFFF',
-                                    boxShadow: '0 0 0 1px rgba(0,0,0,0.04), 0 2px 12px rgba(0,0,0,0.04)'
-                                  }}
-                                >
-                                  <div className="mb-4 mt-2 flex items-center justify-between">
-                                    <svg width="24" height="20" viewBox="0 0 40 32" fill="none" className="text-foreground/20">
-                                      <path d="M0 13.5C0 7.5 2.5 2.5 7.5 -1.5L10.5 1.5C7 4.5 5 8 5 12C5 12.5 5.1 13 5.2 13.5C6 13 7 12.5 8.5 12.5C10.5 12.5 12 13 13.5 14.5C15 16 15.5 18 15.5 20C15.5 22 15 24 13.5 25.5C12 27 10.5 27.5 8.5 27.5C6 27.5 4 26.5 2.5 24.5C1 22.5 0 19.5 0 15.5V13.5ZM24 13.5C24 7.5 26.5 2.5 31.5 -1.5L34.5 1.5C31 4.5 29 8 29 12C29 12.5 29.1 13 29.2 13.5C30 13 31 12.5 32.5 12.5C34.5 12.5 36 13 37.5 14.5C39 16 39.5 18 39.5 20C39.5 22 39 24 37.5 25.5C36 27 34.5 27.5 32.5 27.5C30 27.5 28 26.5 26.5 24.5C25 22.5 24 19.5 24 15.5V13.5Z" fill="currentColor"/>
-                                    </svg>
+                        <CarouselContent className="-ml-4">
+                          {testimonials.map((testimonial, idx) => (
+                            <CarouselItem key={testimonial.id} className="pl-4 md:basis-1/2">
+                              <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                className={`group rounded-2xl p-6 flex flex-col relative transition-all duration-300 h-full ${
+                                  selectedTestimonialId === testimonial.id
+                                    ? 'bg-foreground/5'
+                                    : 'bg-white hover-elevate'
+                                }`}
+                                data-testid={`card-testimonial-${testimonial.id}`}
+                                style={{
+                                  backgroundColor: selectedTestimonialId === testimonial.id ? 'rgba(0, 0, 0, 0.04)' : '#FFFFFF',
+                                  boxShadow: '0 0 0 1px rgba(0,0,0,0.04), 0 2px 12px rgba(0,0,0,0.04)'
+                                }}
+                              >
+                                <div className="mb-4 mt-2 flex items-center justify-between">
+                                  <svg width="24" height="20" viewBox="0 0 40 32" fill="none" className="text-foreground/20">
+                                    <path d="M0 13.5C0 7.5 2.5 2.5 7.5 -1.5L10.5 1.5C7 4.5 5 8 5 12C5 12.5 5.1 13 5.2 13.5C6 13 7 12.5 8.5 12.5C10.5 12.5 12 13 13.5 14.5C15 16 15.5 18 15.5 20C15.5 22 15 24 13.5 25.5C12 27 10.5 27.5 8.5 27.5C6 27.5 4 26.5 2.5 24.5C1 22.5 0 19.5 0 15.5V13.5ZM24 13.5C24 7.5 26.5 2.5 31.5 -1.5L34.5 1.5C31 4.5 29 8 29 12C29 12.5 29.1 13 29.2 13.5C30 13 31 12.5 32.5 12.5C34.5 12.5 36 13 37.5 14.5C39 16 39.5 18 39.5 20C39.5 22 39 24 37.5 25.5C36 27 34.5 27.5 32.5 27.5C30 27.5 28 26.5 26.5 24.5C25 22.5 24 19.5 24 15.5V13.5Z" fill="currentColor"/>
+                                  </svg>
 
-                                    <Button
-                                      variant="ghost"
-                                      size="icon"
-                                      className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
-                                      onClick={() => handleEditTestimonialClick(testimonial)}
-                                      data-testid={`button-edit-testimonial-${testimonial.id}`}
-                                    >
-                                      <Pencil className="w-4 h-4" />
-                                    </Button>
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
+                                    onClick={() => handleEditTestimonialClick(testimonial)}
+                                    data-testid={`button-edit-testimonial-${testimonial.id}`}
+                                  >
+                                    <Pencil className="w-4 h-4" />
+                                  </Button>
+                                </div>
+
+                                <p className="text-base leading-relaxed mb-8 flex-1 text-foreground/80" data-testid={`text-testimonial-content-${testimonial.id}`}>
+                                  {testimonial.text}
+                                </p>
+
+                                <div className="flex items-center gap-3 mt-auto">
+                                  <Avatar className="w-10 h-10 shrink-0">
+                                    <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                                    <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
+                                      {testimonial.name.split(' ').map(n => n[0]).join('')}
+                                    </AvatarFallback>
+                                  </Avatar>
+
+                                  <div>
+                                    <h3 className="font-semibold text-sm mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                                      {testimonial.name}
+                                    </h3>
+                                    <p className="text-xs text-foreground/60" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                                      {testimonial.company}
+                                    </p>
                                   </div>
-
-                                  <p className="text-base leading-relaxed mb-8 flex-1 text-foreground/80" data-testid={`text-testimonial-content-${testimonial.id}`}>
-                                    {testimonial.text}
-                                  </p>
-
-                                  <div className="flex items-center gap-3 mt-auto">
-                                    <Avatar className="w-10 h-10 shrink-0">
-                                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                                      <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
-                                        {testimonial.name.split(' ').map(n => n[0]).join('')}
-                                      </AvatarFallback>
-                                    </Avatar>
-
-                                    <div>
-                                      <h3 className="font-semibold text-sm mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
-                                        {testimonial.name}
-                                      </h3>
-                                      <p className="text-xs text-foreground/60" data-testid={`text-testimonial-role-${testimonial.id}`}>
-                                        {testimonial.company}
-                                      </p>
-                                    </div>
-                                  </div>
-                                </motion.div>
-                              </CarouselItem>
-                            ))}
-                          </CarouselContent>
-                          <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm z-10" />
-                          <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm z-10" />
-                        </div>
+                                </div>
+                              </motion.div>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="absolute -left-16 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm z-20" />
+                        <CarouselNext className="absolute -right-16 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm z-20" />
                       </Carousel>
                     </div>
                   </Card>
