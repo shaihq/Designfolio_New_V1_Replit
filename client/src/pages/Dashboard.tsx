@@ -337,8 +337,11 @@ export default function Dashboard() {
 
         const currentScroll = window.scrollY + window.innerHeight / 2;
         const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
+        const isTop = window.scrollY < 100;
 
-        if (isBottom) {
+        if (isTop) {
+          setActiveTab('home');
+        } else if (isBottom) {
           setActiveTab('contact');
         } else {
           for (let i = sections.length - 1; i >= 0; i--) {
