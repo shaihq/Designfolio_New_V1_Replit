@@ -58,8 +58,8 @@ export default function Dock({ items, className }: DockProps) {
                       className={cn(
                         "rounded-2xl relative w-12 h-12 no-default-hover-elevate no-default-active-elevate",
                         "transition-colors duration-200",
-                        isActive ? "bg-primary/10" : "hover:bg-primary/5",
-                        isHovered && "bg-primary/5 shadow-lg shadow-primary/20"
+                        isActive ? "bg-[#FF553E]/10" : "hover:bg-[#FF553E]/5",
+                        isHovered && "bg-[#FF553E]/5 shadow-lg shadow-[#FF553E]/10"
                       )}
                       onClick={() => {
                         item.onClick?.()
@@ -68,14 +68,14 @@ export default function Dock({ items, className }: DockProps) {
                       <item.icon
                         className={cn(
                           "h-6 w-6 transition-colors",
-                          isActive ? "text-primary" : "text-foreground"
+                          isActive ? "text-[#FF553E]" : "text-[#0A0A0A]/60"
                         )}
                       />
                       {/* Glowing ring effect */}
                       {isHovered && (
                         <motion.span
                           layoutId="glow"
-                          className="absolute inset-0 rounded-2xl border border-primary/40"
+                          className="absolute inset-0 rounded-2xl border border-[#FF553E]/30"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
