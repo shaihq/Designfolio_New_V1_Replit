@@ -63,7 +63,8 @@ import {
   Dribbble,
   ThumbsUp,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Home
 } from "lucide-react";
 import { SiBehance } from "react-icons/si";
 import { Link } from "wouter";
