@@ -1649,7 +1649,7 @@ export default function Dashboard() {
                                       </div>
                                     </div>
                                     <a
-                                      href={testimonial.linkedin || "#"}
+                                      href={testimonial.linkedinLink || "#"}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       className="text-foreground/20 hover:text-[#0077B5] transition-colors p-2 -mr-2"
