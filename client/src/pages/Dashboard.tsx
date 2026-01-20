@@ -1582,13 +1582,13 @@ export default function Dashboard() {
                       </Button>
                     </div>
 
-                    <div className="mt-6 px-1">
+                    <div className="mt-6 overflow-visible px-4">
                       <Carousel
                         opts={{
                           align: "start",
                           loop: true,
                         }}
-                        className="w-full"
+                        className="w-full overflow-visible"
                       >
                         <div className="overflow-visible">
                           <CarouselContent className="-ml-6">
