@@ -1689,13 +1689,17 @@ export default function Dashboard() {
                               <Tooltip delayDuration={0}>
                                 <TooltipTrigger asChild>
                                   <div
-                                    className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate mx-2 shrink-0 flex items-center justify-center w-20 h-20 cursor-help"
+                                    className="bg-white border border-border/30 rounded-2xl p-4 hover-elevate mx-2 shrink-0 flex items-center justify-center w-20 h-20 cursor-default"
                                     data-testid={`card-tool-${tool.id}-${idx}`}
                                   >
                                     <img src={tool.logo} alt={tool.name} className="w-10 h-10 object-contain" />
                                   </div>
                                 </TooltipTrigger>
-                                <TooltipContent className="bg-foreground text-background border-none px-3 py-1.5 text-xs font-semibold rounded-full shadow-lg">
+                                <TooltipContent 
+                                  side="top"
+                                  sideOffset={5}
+                                  className="bg-foreground text-background border-none px-3 py-1.5 text-xs font-semibold rounded-full shadow-lg z-[100]"
+                                >
                                   <p>{tool.name}</p>
                                 </TooltipContent>
                               </Tooltip>
