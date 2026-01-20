@@ -1591,21 +1591,13 @@ export default function Dashboard() {
                         className="w-full"
                       >
                         <CarouselContent className="-ml-6">
-                          {testimonials.map((testimonial, idx) => {
-                            const isVisible = visibleTestimonials.has(testimonial.id);
-
-                            return (
+                          {testimonials.map((testimonial, idx) => (
                               <CarouselItem key={testimonial.id} className="pl-6 md:basis-1/2">
                                 <motion.div
                                   initial={{ opacity: 0, y: 20 }}
                                   whileInView={{ opacity: 1, y: 0 }}
                                   viewport={{ once: true, amount: 0.2 }}
                                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                  onViewportEnter={() => {
-                                    setTimeout(() => {
-                                      setVisibleTestimonials(prev => new Set(prev).add(testimonial.id));
-                                    }, 300 + idx * 100);
-                                  }}
                                   className={`group rounded-2xl p-6 flex flex-col relative transition-all duration-300 h-full ${
                                     selectedTestimonialId === testimonial.id
                                       ? 'bg-foreground/5'
@@ -1656,8 +1648,7 @@ export default function Dashboard() {
                                   </div>
                                 </motion.div>
                               </CarouselItem>
-                            );
-                          })}
+                          ))}
                         </CarouselContent>
                         <div className="hidden md:block">
                           <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border-border/50 bg-white/80 backdrop-blur-sm hover:bg-white transition-all shadow-sm" />
