@@ -554,6 +554,15 @@ export default function Dashboard() {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setMousePosition({ x, y });
+  };
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [isFooterPanelOpen, setIsFooterPanelOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -1214,22 +1223,36 @@ export default function Dashboard() {
                       <TooltipTrigger asChild>
                         <motion.div 
                           initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
-                          animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+                          animate={{ 
+                            opacity: 1, 
+                            filter: "blur(0px)", 
+                            scale: 1,
+                            rotateX: isHovering ? mousePosition.y * -20 : 0,
+                            rotateY: isHovering ? mousePosition.x * 20 : 0,
+                            x: isHovering ? mousePosition.x * 15 : 0,
+                            y: isHovering ? mousePosition.y * 15 : 0,
+                          }}
                           whileHover={{ 
-                            scale: 1.02,
-                            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                            scale: 1.05,
+                            boxShadow: "0 25px 30px -5px rgba(0, 0, 0, 0.15), 0 15px 15px -5px rgba(0, 0, 0, 0.08)"
                           }}
-                          drag
-                          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                          dragElastic={0.1}
+                          onMouseMove={handleMouseMove}
+                          onMouseEnter={() => setIsHovering(true)}
+                          onMouseLeave={() => {
+                            setIsHovering(false);
+                            setMousePosition({ x: 0, y: 0 });
+                          }}
                           transition={{ 
-                            duration: 0.8, 
-                            ease: [0.4, 0, 0.2, 1], 
-                            delay: 0.1,
-                            drag: { type: "spring", stiffness: 600, damping: 30 }
+                            type: "spring",
+                            stiffness: 150,
+                            damping: 20,
+                            mass: 0.5
                           }}
-                          className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 cursor-grab active:cursor-grabbing bg-[#f6f2ef]" 
-                          style={{ backgroundColor: '#F5F3F1' }} 
+                          className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef] preserve-3d cursor-pointer" 
+                          style={{ 
+                            backgroundColor: '#F5F3F1',
+                            perspective: "1000px"
+                          }} 
                           data-testid="avatar-profile"
                         >
                           {!imageLoaded && (
