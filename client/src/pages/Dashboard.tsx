@@ -1811,8 +1811,22 @@ export default function Dashboard() {
                 <span className="text-sm sm:text-base text-foreground/50">Resume</span>
                 <button
                   onClick={() => setIsResumeDialogOpen(true)}
-                  className="text-sm sm:text-base font-medium hover:underline underline-offset-4 cursor-pointer text-left sm:text-right"
-                >View Resume</button>
+                  className="group/resume text-sm sm:text-base font-medium hover:underline underline-offset-4 cursor-pointer text-left sm:text-right flex items-center justify-start sm:justify-end gap-1.5"
+                >
+                  <span>View Resume</span>
+                  <motion.div
+                    whileHover={{ 
+                      rotate: [0, -15, 15, -15, 0],
+                      transition: { 
+                        duration: 0.4,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }
+                    }}
+                  >
+                    <ArrowUpRight className="w-4 h-4" />
+                  </motion.div>
+                </button>
               </motion.div>
 
               <motion.div
