@@ -1221,57 +1221,57 @@ export default function Dashboard() {
                   <TooltipProvider>
                     <Tooltip delayDuration={300}>
                       <TooltipTrigger asChild>
-                        <motion.div 
-                          initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
-                          animate={{ 
-                            opacity: 1, 
-                            filter: "blur(0px)", 
-                            scale: 1,
-                            rotateX: isHovering ? mousePosition.y * -20 : 0,
-                            rotateY: isHovering ? mousePosition.x * 20 : 0,
-                            x: isHovering ? mousePosition.x * 15 : 0,
-                            y: isHovering ? mousePosition.y * 15 : 0,
-                          }}
-                          whileHover={{ 
-                            scale: 1.05,
-                            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03)"
-                          }}
-                          onMouseMove={handleMouseMove}
-                          onMouseEnter={() => setIsHovering(true)}
-                          onMouseLeave={() => {
-                            setIsHovering(false);
-                            setMousePosition({ x: 0, y: 0 });
-                          }}
-                          transition={{ 
-                            type: "spring",
-                            stiffness: 150,
-                            damping: 20,
-                            mass: 0.5
-                          }}
-                          className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef] preserve-3d" 
-                          style={{ 
-                            backgroundColor: '#F5F3F1',
-                            perspective: "1000px"
-                          }} 
-                          data-testid="avatar-profile"
-                        >
-                          {!imageLoaded && (
-                            <div 
-                              className="absolute inset-0 rounded-2xl"
-                              style={{
-                                background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
-                                animation: 'shimmer 1.5s infinite'
-                              }}
+                        <Magnetic intensity={0.2} range={100}>
+                          <motion.div 
+                            initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
+                            animate={{ 
+                              opacity: 1, 
+                              filter: "blur(0px)", 
+                              scale: 1,
+                              rotateX: isHovering ? mousePosition.y * -20 : 0,
+                              rotateY: isHovering ? mousePosition.x * 20 : 0,
+                            }}
+                            whileHover={{ 
+                              scale: 1.05,
+                              boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03)"
+                            }}
+                            onMouseMove={handleMouseMove}
+                            onMouseEnter={() => setIsHovering(true)}
+                            onMouseLeave={() => {
+                              setIsHovering(false);
+                              setMousePosition({ x: 0, y: 0 });
+                            }}
+                            transition={{ 
+                              type: "spring",
+                              stiffness: 150,
+                              damping: 20,
+                              mass: 0.5
+                            }}
+                            className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef] preserve-3d" 
+                            style={{ 
+                              backgroundColor: '#F5F3F1',
+                              perspective: "1000px"
+                            }} 
+                            data-testid="avatar-profile"
+                          >
+                            {!imageLoaded && (
+                              <div 
+                                className="absolute inset-0 rounded-2xl"
+                                style={{
+                                  background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
+                                  animation: 'shimmer 1.5s infinite'
+                                }}
+                              />
+                            )}
+                            <img 
+                              src="/advanced.png" 
+                              alt={user.name} 
+                              className="w-24 h-24 object-contain"
+                              onLoad={() => setImageLoaded(true)}
+                              style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
                             />
-                          )}
-                          <img 
-                            src="/advanced.png" 
-                            alt={user.name} 
-                            className="w-24 h-24 object-contain"
-                            onLoad={() => setImageLoaded(true)}
-                            style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
-                          />
-                        </motion.div>
+                          </motion.div>
+                        </Magnetic>
                       </TooltipTrigger>
                       <TooltipContent 
                         side="top" 
