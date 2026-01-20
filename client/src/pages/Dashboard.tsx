@@ -1685,11 +1685,10 @@ export default function Dashboard() {
                         >
                           <div className="flex items-center gap-3">
                             <div 
-                              className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-                              style={{ backgroundColor: tool.color }}
+                              className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-muted"
                               data-testid={`icon-tool-${tool.id}`}
                             >
-                              <div className="w-5 h-5 bg-white/90 rounded" />
+                              <img src={tool.logo} alt={tool.name} className="w-6 h-6 object-contain" />
                             </div>
                             
                             <div className="flex-1 min-w-0">
