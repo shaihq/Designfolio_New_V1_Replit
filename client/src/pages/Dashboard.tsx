@@ -1787,6 +1787,7 @@ export default function Dashboard() {
 
       {/* Footer Section */}
       <motion.footer
+        id="footer"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -3274,6 +3275,12 @@ export default function Dashboard() {
                   setActiveTab("feedback");
                   document.getElementById('section-testimonials')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } 
+              },
+              { 
+                icon: FileText, 
+                label: "Resume", 
+                active: isResumeDialogOpen,
+                onClick: () => setIsResumeDialogOpen(true) 
               },
               { 
                 icon: Mail, 
