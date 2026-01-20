@@ -335,15 +335,20 @@ export default function Dashboard() {
           { id: 'contact', element: document.getElementById('footer') }
         ];
 
-        const currentScroll = window.scrollY + window.innerHeight / 3;
+        const currentScroll = window.scrollY + window.innerHeight / 2;
+        const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
 
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const section = sections[i];
-          if (section.element) {
-            const top = section.id === 'home' ? 0 : section.element.offsetTop;
-            if (currentScroll >= top) {
-              setActiveTab(section.id);
-              break;
+        if (isBottom) {
+          setActiveTab('contact');
+        } else {
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i];
+            if (section.element) {
+              const top = section.id === 'home' ? 0 : section.element.offsetTop;
+              if (currentScroll >= top) {
+                setActiveTab(section.id);
+                break;
+              }
             }
           }
         }
