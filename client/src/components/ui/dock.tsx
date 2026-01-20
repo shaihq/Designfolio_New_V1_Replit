@@ -31,7 +31,7 @@ export default function Dock({ items, className }: DockProps) {
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className={cn(
           "flex items-end gap-2 px-3 py-2 rounded-3xl",
-          "border border-border/50 bg-background/70 backdrop-blur-2xl shadow-xl shadow-black/5"
+          "border border-border/40 bg-white/90 backdrop-blur-2xl shadow-xl shadow-black/5"
         )}
       >
         <TooltipProvider delayDuration={100}>
