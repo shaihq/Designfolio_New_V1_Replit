@@ -1630,22 +1630,33 @@ export default function Dashboard() {
                                     {testimonial.text}
                                   </p>
 
-                                  <div className="flex items-center gap-3 mt-auto">
-                                    <Avatar className="w-10 h-10 shrink-0">
-                                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                                      <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
-                                        {testimonial.name.split(' ').map(n => n[0]).join('')}
-                                      </AvatarFallback>
-                                    </Avatar>
+                                  <div className="flex items-center justify-between gap-3 mt-auto">
+                                    <div className="flex items-center gap-3">
+                                      <Avatar className="w-10 h-10 shrink-0">
+                                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                                        <AvatarFallback style={{ backgroundColor: '#FFB088', color: '#FFFFFF' }}>
+                                          {testimonial.name.split(' ').map(n => n[0]).join('')}
+                                        </AvatarFallback>
+                                      </Avatar>
 
-                                    <div>
-                                      <h3 className="font-semibold text-sm mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
-                                        {testimonial.name}
-                                      </h3>
-                                      <p className="text-xs text-foreground/60" data-testid={`text-testimonial-role-${testimonial.id}`}>
-                                        {testimonial.company}
-                                      </p>
+                                      <div>
+                                        <h3 className="font-semibold text-sm mb-0.5 text-foreground" data-testid={`text-testimonial-name-${testimonial.id}`}>
+                                          {testimonial.name}
+                                        </h3>
+                                        <p className="text-xs text-foreground/60" data-testid={`text-testimonial-role-${testimonial.id}`}>
+                                          {testimonial.company}
+                                        </p>
+                                      </div>
                                     </div>
+                                    <a
+                                      href={testimonial.linkedin || "#"}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-foreground/20 hover:text-[#0077B5] transition-colors p-2 -mr-2"
+                                      data-testid={`link-testimonial-linkedin-${testimonial.id}`}
+                                    >
+                                      <Linkedin className="w-5 h-5" />
+                                    </a>
                                   </div>
                                 </motion.div>
                               </CarouselItem>
