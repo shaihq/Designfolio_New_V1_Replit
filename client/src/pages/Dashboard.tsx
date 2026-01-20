@@ -1874,14 +1874,14 @@ export default function Dashboard() {
             </div>
 
           <div className="pt-6 flex flex-col items-center justify-center gap-4">
-            <Button
-              variant="ghost"
+            <Button 
+              variant="outline" 
               size="icon"
-              className="h-8 w-8 rounded-full opacity-20 hover:opacity-100 transition-opacity"
+              className="rounded-full h-11 w-11"
               onClick={() => setIsThemePanelOpen(true)}
               data-testid="button-edit-footer"
             >
-              <Pencil className="w-4 h-4" />
+              <Pencil className="w-5 h-5" />
             </Button>
             <svg
               width="120"
