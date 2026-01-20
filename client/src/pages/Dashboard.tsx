@@ -2055,100 +2055,80 @@ export default function Dashboard() {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            <div className="flex-1 overflow-auto p-6 space-y-6">
+            <div className="flex-1 overflow-auto p-6 space-y-8">
               <div className="space-y-4">
-                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/40">Resume</Label>
+                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/40 px-1">Resume</Label>
                 <div 
-                  className="p-6 rounded-2xl border border-border/30 bg-[#F5F3F1] hover-elevate transition-all duration-300 group"
-                  style={{ boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.02)' }}
+                  className="p-8 rounded-[2rem] border-2 border-border/40 bg-white hover-elevate transition-all duration-300 group cursor-pointer"
                 >
                   <div className="flex flex-col items-center gap-4 text-center">
-                    <div className="w-12 h-12 rounded-xl bg-white border border-border/50 flex items-center justify-center shadow-sm">
-                      <Upload className="w-6 h-6 text-foreground/40 group-hover:text-primary transition-colors" />
+                    <div className="w-14 h-14 rounded-2xl bg-muted/30 flex items-center justify-center">
+                      <Upload className="w-7 h-7 text-foreground/30 group-hover:text-primary transition-colors" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold">Update Resume</h4>
-                      <p className="text-[11px] text-foreground/40 mt-1 font-medium">PDF format only • Max 5MB</p>
+                      <h4 className="text-base font-semibold text-foreground">Update Resume</h4>
+                      <p className="text-sm text-foreground/40 mt-1 font-medium">PDF format only • Max 5MB</p>
                     </div>
-                    <Button variant="outline" size="sm" className="w-full rounded-full h-10 border-border/50 bg-white hover:bg-muted/50">
+                    <Button variant="outline" size="lg" className="w-full rounded-full h-12 border-2 border-border/50 bg-white hover:bg-muted/50 font-semibold">
                       Choose File
                     </Button>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/40">Contact Info</Label>
-                <div className="space-y-4">
+              <div className="space-y-6">
+                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/40 px-1">Contact Info</Label>
+                <div className="space-y-5">
                   <div className="space-y-2">
-                    <Label htmlFor="footer-mail" className="text-[11px] font-semibold text-foreground/50 ml-1">Email</Label>
-                    <Input 
-                      id="footer-mail" 
-                      defaultValue="rakshit.design@gmail.com" 
-                      className="h-11 rounded-xl bg-[#F5F3F1] border-0 focus-visible:ring-1 focus-visible:ring-primary/20"
-                      data-testid="input-footer-mail" 
-                    />
+                    <Label htmlFor="footer-mail" className="text-sm font-medium text-foreground ml-1">Email<span className="text-red-500">*</span></Label>
+                    <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                      <Input 
+                        id="footer-mail" 
+                        type="email"
+                        defaultValue="rakshit.design@gmail.com" 
+                        className="border-0 bg-transparent h-12 px-5 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-muted-foreground/60"
+                        data-testid="input-footer-mail" 
+                      />
+                    </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="footer-phone" className="text-[11px] font-semibold text-foreground/50 ml-1">Phone Number</Label>
-                    <Input 
-                      id="footer-phone" 
-                      defaultValue="+1 (206)-571-4546" 
-                      className="h-11 rounded-xl bg-[#F5F3F1] border-0 focus-visible:ring-1 focus-visible:ring-primary/20"
-                      data-testid="input-footer-phone" 
-                    />
+                    <Label htmlFor="footer-phone" className="text-sm font-medium text-foreground ml-1">Phone Number<span className="text-red-500">*</span></Label>
+                    <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                      <Input 
+                        id="footer-phone" 
+                        type="tel"
+                        defaultValue="+1 (206)-571-4546" 
+                        className="border-0 bg-transparent h-12 px-5 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-muted-foreground/60"
+                        data-testid="input-footer-phone" 
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/40">Links & Socials</Label>
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="footer-blogs" className="text-[11px] font-semibold text-foreground/50 ml-1">Blogs (Medium)</Label>
-                    <Input 
-                      id="footer-blogs" 
-                      defaultValue="https://medium.com" 
-                      className="h-11 rounded-xl bg-[#F5F3F1] border-0 focus-visible:ring-1 focus-visible:ring-primary/20"
-                      data-testid="input-footer-blogs" 
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="footer-linkedin" className="text-[11px] font-semibold text-foreground/50 ml-1">LinkedIn</Label>
-                    <Input 
-                      id="footer-linkedin" 
-                      defaultValue="https://linkedin.com" 
-                      className="h-11 rounded-xl bg-[#F5F3F1] border-0 focus-visible:ring-1 focus-visible:ring-primary/20"
-                      data-testid="input-footer-linkedin" 
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="footer-x" className="text-[11px] font-semibold text-foreground/50 ml-1">X (Twitter)</Label>
-                    <Input 
-                      id="footer-x" 
-                      defaultValue="https://x.com" 
-                      className="h-11 rounded-xl bg-[#F5F3F1] border-0 focus-visible:ring-1 focus-visible:ring-primary/20"
-                      data-testid="input-footer-x" 
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="footer-instagram" className="text-[11px] font-semibold text-foreground/50 ml-1">Instagram</Label>
-                    <Input 
-                      id="footer-instagram" 
-                      defaultValue="https://instagram.com" 
-                      className="h-11 rounded-xl bg-[#F5F3F1] border-0 focus-visible:ring-1 focus-visible:ring-primary/20"
-                      data-testid="input-footer-instagram" 
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="footer-dribbble" className="text-[11px] font-semibold text-foreground/50 ml-1">Dribbble</Label>
-                    <Input 
-                      id="footer-dribbble" 
-                      defaultValue="https://dribbble.com" 
-                      className="h-11 rounded-xl bg-[#F5F3F1] border-0 focus-visible:ring-1 focus-visible:ring-primary/20"
-                      data-testid="input-footer-dribbble" 
-                    />
-                  </div>
+              <div className="space-y-6">
+                <Label className="text-xs font-semibold uppercase tracking-wider text-foreground/40 px-1">Links & Socials</Label>
+                <div className="space-y-5">
+                  {[
+                    { id: 'blogs', label: 'Blogs (Medium)', value: 'https://medium.com' },
+                    { id: 'linkedin', label: 'LinkedIn', value: 'https://linkedin.com' },
+                    { id: 'x', label: 'X (Twitter)', value: 'https://x.com' },
+                    { id: 'instagram', label: 'Instagram', value: 'https://instagram.com' },
+                    { id: 'dribbble', label: 'Dribbble', value: 'https://dribbble.com' }
+                  ].map((social) => (
+                    <div key={social.id} className="space-y-2">
+                      <Label htmlFor={`footer-${social.id}`} className="text-sm font-medium text-foreground ml-1">{social.label}</Label>
+                      <div className="bg-white dark:bg-white border-2 border-border rounded-full hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)] transition-all duration-300 ease-out">
+                        <Input 
+                          id={`footer-${social.id}`} 
+                          type="url"
+                          defaultValue={social.value} 
+                          className="border-0 bg-transparent h-12 px-5 focus-visible:ring-0 focus-visible:ring-offset-0 text-base text-foreground placeholder:text-muted-foreground/60"
+                          data-testid={`input-footer-${social.id}`} 
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
