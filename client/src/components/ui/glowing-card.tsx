@@ -32,7 +32,12 @@ export function GlowingCard({ children, className, isElevated }: GlowingCardProp
       />
 
       {/* Main Content Card */}
-      <div className={`relative h-full w-full rounded-[15px] bg-white transition-all duration-300 ${isElevated ? 'bg-foreground/5' : ''}`}>
+      <div 
+        className={`relative h-full w-full rounded-[15px] bg-white transition-all duration-300 ${isElevated ? 'bg-foreground/5' : ''}`}
+        style={{
+          boxShadow: '0 0 0 1px rgba(0,0,0,0.04), 0 2px 12px rgba(0,0,0,0.04)'
+        }}
+      >
         {children}
       </div>
     </div>
