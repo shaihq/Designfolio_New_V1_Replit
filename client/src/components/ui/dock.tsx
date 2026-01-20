@@ -46,8 +46,8 @@ export default function Dock({ items, className }: DockProps) {
                     onMouseEnter={() => setHovered(i)}
                     onMouseLeave={() => setHovered(null)}
                     animate={{
-                      scale: isHovered ? 1.15 : 1,
-                      y: isHovered ? -4 : 0,
+                      scale: isHovered ? 1.2 : 1,
+                      rotate: isHovered ? -5 : 0,
                     }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
                     className="relative flex flex-col items-center"
@@ -59,7 +59,7 @@ export default function Dock({ items, className }: DockProps) {
                         "rounded-2xl relative w-12 h-12 no-default-hover-elevate no-default-active-elevate",
                         "transition-colors duration-200",
                         isActive ? "bg-primary/10" : "hover:bg-primary/5",
-                        isHovered && "bg-primary/5 shadow-sm shadow-primary/10"
+                        isHovered && "bg-primary/5 shadow-lg shadow-primary/20"
                       )}
                       onClick={() => {
                         item.onClick?.()
@@ -67,35 +67,29 @@ export default function Dock({ items, className }: DockProps) {
                     >
                       <item.icon
                         className={cn(
-                          "h-5 w-5 transition-colors duration-200",
-                          isActive ? "text-primary" : "text-foreground/60"
+                          "h-6 w-6 transition-colors",
+                          isActive ? "text-primary" : "text-foreground"
                         )}
                       />
-                      
-                      <AnimatePresence>
-                        {isHovered && (
-                          <motion.span
-                            layoutId="glow"
-                            className="absolute inset-0 rounded-2xl border border-primary/20"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                          />
-                        )}
-                      </AnimatePresence>
-                    </Button>
-
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.div
-                          layoutId="dot"
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0, opacity: 0 }}
-                          className="w-1 h-1 rounded-full bg-primary absolute -bottom-1"
+                      {/* Glowing ring effect */}
+                      {isHovered && (
+                        <motion.span
+                          layoutId="glow"
+                          className="absolute inset-0 rounded-2xl border border-primary/40"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
                         />
                       )}
-                    </AnimatePresence>
+                    </Button>
+
+                    {/* Active indicator */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="dot"
+                        className="w-1.5 h-1.5 rounded-full bg-primary mt-1"
+                      />
+                    )}
                   </motion.div>
                 </TooltipTrigger>
                 <TooltipContent 
