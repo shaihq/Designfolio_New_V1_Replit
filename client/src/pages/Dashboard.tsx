@@ -1234,7 +1234,7 @@ export default function Dashboard() {
                           }}
                           whileHover={{ 
                             scale: 1.05,
-                            boxShadow: "0 25px 30px -5px rgba(0, 0, 0, 0.15), 0 15px 15px -5px rgba(0, 0, 0, 0.08)"
+                            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03)"
                           }}
                           onMouseMove={handleMouseMove}
                           onMouseEnter={() => setIsHovering(true)}
