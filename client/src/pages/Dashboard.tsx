@@ -1546,7 +1546,39 @@ export default function Dashboard() {
               );
             }
 
-              if (sectionId === 'work_experience') {
+            if (sectionId === 'about') {
+              return (
+                <motion.div
+                  key="about"
+                  layout
+                  id="section-about"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.01 }}
+                  transition={{
+                    duration: 0.7,
+                    ease: [0.21, 0.47, 0.32, 0.98],
+                    delay: index * 0.1
+                  }}
+                >
+                  <Card className="bg-white border-0 rounded-2xl p-6 mt-0 mb-3" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 0 40px rgba(0,0,0,0.015)' }}>
+                    <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider mb-6" data-testid="text-about-title">
+                      About Me
+                    </h2>
+                    <div className="space-y-4 text-foreground/80 leading-relaxed">
+                      <p data-testid="text-about-description-1">
+                        I am a passionate product designer dedicated to creating intuitive and impactful digital experiences. With over 6 years of experience, I specialize in bridging the gap between user needs and business goals through thoughtful design and prototyping.
+                      </p>
+                      <p data-testid="text-about-description-2">
+                        My approach is rooted in human-centered design principles, leveraging ethnographic research and design thinking to solve complex problems. I believe that great design is not just about how it looks, but how it works and feels for the end user.
+                      </p>
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            }
+
+            if (sectionId === 'work_experience') {
     return (
       <motion.div
         key="work-experience"
