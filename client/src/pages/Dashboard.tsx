@@ -1591,39 +1591,44 @@ export default function Dashboard() {
                       </p>
                     </div>
 
-                    {/* Pin Board */}
-                    <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FAF9F7] rounded-2xl border border-border/20 mb-4 shadow-inner">
+                    {/* Pin Board (Pegboard Style) */}
+                    <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F5F5F5] rounded-[2rem] border border-black/5 mb-4 shadow-[inset_0_2px_8px_rgba(0,0,0,0.02)] overflow-hidden">
+                      {/* Pegboard Holes Pattern */}
                       <div 
-                        className="absolute inset-0 opacity-[0.03] rounded-2xl overflow-hidden" 
+                        className="absolute inset-0 opacity-[0.08]" 
                         style={{ 
-                          backgroundImage: `radial-gradient(circle at 2px 2px, black 1px, transparent 0)`,
-                          backgroundSize: '24px 24px'
+                          backgroundImage: `radial-gradient(circle at center, #000 30%, transparent 35%)`,
+                          backgroundSize: '32px 48px',
+                          backgroundPosition: '16px 24px'
                         }} 
                       />
                       
+                      {/* Pegboard Subtle Texture */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none" />
+
                       {/* Photo 1 */}
                       <motion.div
                         drag
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: -5, left: '20%', top: '20%' }}
-                        className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-10"
+                        className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[4/3] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-10 rounded-sm"
                         style={{ 
-                          boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
                           x: "-50%",
                           y: "-50%"
                         }}
-                        whileDrag={{ scale: 1.05, zIndex: 50 }}
+                        whileDrag={{ scale: 1.05, zIndex: 50, boxShadow: '0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)' }}
                       >
-                        <div className="w-full h-full overflow-hidden">
+                        <div className="w-full h-full overflow-hidden rounded-sm">
                           <img 
                             src="/portraits/portrait1.png" 
                             alt="Portrait 1" 
                             className="w-full h-full object-cover pointer-events-none"
                           />
                         </div>
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
-                          <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                        {/* Realistic Pin */}
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#E5E5E5] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.1),inset_0_-1px_2px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/20 pointer-events-none z-20">
+                          <div className="w-2 h-2 bg-white/40 rounded-full blur-[1px]" />
                         </div>
                       </motion.div>
 
@@ -1633,23 +1638,23 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: 3, left: '75%', top: '30%' }}
-                        className="absolute w-28 sm:w-32 md:w-40 lg:w-44 aspect-square p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-20"
+                        className="absolute w-28 sm:w-32 md:w-40 lg:w-44 aspect-square p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-20 rounded-sm"
                         style={{ 
-                          boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
                           x: "-50%",
                           y: "-50%"
                         }}
-                        whileDrag={{ scale: 1.05, zIndex: 50 }}
+                        whileDrag={{ scale: 1.05, zIndex: 50, boxShadow: '0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)' }}
                       >
-                        <div className="w-full h-full overflow-hidden">
+                        <div className="w-full h-full overflow-hidden rounded-sm">
                           <img 
                             src="/portraits/portrait2.png" 
                             alt="Portrait 2" 
                             className="w-full h-full object-cover pointer-events-none"
                           />
                         </div>
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
-                          <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                        {/* Realistic Pin */}
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#E5E5E5] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.1),inset_0_-1px_2px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/20 pointer-events-none z-20">
+                          <div className="w-2 h-2 bg-white/40 rounded-full blur-[1px]" />
                         </div>
                       </motion.div>
 
@@ -1659,23 +1664,23 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: -2, left: '30%', top: '65%' }}
-                        className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[3/4] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-30"
+                        className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[3/4] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-30 rounded-sm"
                         style={{ 
-                          boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
                           x: "-50%",
                           y: "-50%"
                         }}
-                        whileDrag={{ scale: 1.05, zIndex: 50 }}
+                        whileDrag={{ scale: 1.05, zIndex: 50, boxShadow: '0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)' }}
                       >
-                        <div className="w-full h-full overflow-hidden">
+                        <div className="w-full h-full overflow-hidden rounded-sm">
                           <img 
                             src="/portraits/portrait3.png" 
                             alt="Portrait 3" 
                             className="w-full h-full object-cover pointer-events-none"
                           />
                         </div>
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
-                          <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                        {/* Realistic Pin */}
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#E5E5E5] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.1),inset_0_-1px_2px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/20 pointer-events-none z-20">
+                          <div className="w-2 h-2 bg-white/40 rounded-full blur-[1px]" />
                         </div>
                       </motion.div>
 
@@ -1685,23 +1690,23 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: 4, left: '70%', top: '75%' }}
-                        className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-40"
+                        className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-[4/3] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-40 rounded-sm"
                         style={{ 
-                          boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
                           x: "-50%",
                           y: "-50%"
                         }}
-                        whileDrag={{ scale: 1.05, zIndex: 50 }}
+                        whileDrag={{ scale: 1.05, zIndex: 50, boxShadow: '0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)' }}
                       >
-                        <div className="w-full h-full overflow-hidden">
+                        <div className="w-full h-full overflow-hidden rounded-sm">
                           <img 
                             src="/portraits/portrait4.png" 
                             alt="Portrait 4" 
                             className="w-full h-full object-cover pointer-events-none"
                           />
                         </div>
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
-                          <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                        {/* Realistic Pin */}
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#E5E5E5] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.1),inset_0_-1px_2px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/20 pointer-events-none z-20">
+                          <div className="w-2 h-2 bg-white/40 rounded-full blur-[1px]" />
                         </div>
                       </motion.div>
 
@@ -1721,10 +1726,11 @@ export default function Dashboard() {
                         <img 
                           src="/portraits/sticker1.png" 
                           alt="Sticker 1" 
-                          className="w-full h-full object-contain pointer-events-none drop-shadow-md"
+                          className="w-full h-full object-contain pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]"
                         />
-                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
-                          <div className="w-1.5 h-1.5 bg-gray-300 rounded-full" />
+                        {/* Realistic Pin for Sticker */}
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#E5E5E5] rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.1),inset_0_-0.5px_1px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/10 pointer-events-none z-20">
+                          <div className="w-1 h-1 bg-white/40 rounded-full blur-[0.5px]" />
                         </div>
                       </motion.div>
 
@@ -1744,10 +1750,11 @@ export default function Dashboard() {
                         <img 
                           src="/portraits/sticker2.png" 
                           alt="Sticker 2" 
-                          className="w-full h-full object-contain pointer-events-none drop-shadow-md"
+                          className="w-full h-full object-contain pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]"
                         />
-                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
-                          <div className="w-1.5 h-1.5 bg-gray-300 rounded-full" />
+                        {/* Realistic Pin for Sticker */}
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#E5E5E5] rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.1),inset_0_-0.5px_1px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/10 pointer-events-none z-20">
+                          <div className="w-1 h-1 bg-white/40 rounded-full blur-[0.5px]" />
                         </div>
                       </motion.div>
 
