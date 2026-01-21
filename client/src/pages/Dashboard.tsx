@@ -1727,8 +1727,8 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         dragElastic={0.1}
-                        initial={{ rotate: -15, left: '45%', top: '40%' }}
-                        className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-square cursor-grab active:cursor-grabbing z-50"
+                        initial={{ rotate: -15, left: '40%', top: '35%' }}
+                        className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-square cursor-grab active:cursor-grabbing z-50"
                         style={{ 
                           x: "-50%",
                           y: "-50%"
