@@ -1617,7 +1617,7 @@ export default function Dashboard() {
                       >
                         <div className="w-full h-full overflow-hidden">
                           <img 
-                            src="/attached_assets/stock_images/portrait_of_a_person_49d72843.jpg" 
+                            src="/portraits/portrait1.png" 
                             alt="Portrait 1" 
                             className="w-full h-full object-cover pointer-events-none"
                           />
@@ -1669,7 +1669,7 @@ export default function Dashboard() {
                       >
                         <div className="w-full h-full overflow-hidden">
                           <img 
-                            src="/attached_assets/stock_images/portrait_of_a_person_d88a2864.jpg" 
+                            src="/portraits/portrait3.png" 
                             alt="Portrait 3" 
                             className="w-full h-full object-cover pointer-events-none"
                           />
