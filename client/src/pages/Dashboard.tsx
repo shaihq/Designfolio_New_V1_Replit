@@ -1582,9 +1582,9 @@ export default function Dashboard() {
                     </div>
 
                     {/* Pin Board */}
-                    <div ref={pinBoardRef} className="relative w-full aspect-[16/9] bg-[#FAF9F7] rounded-2xl border border-border/20 overflow-hidden mb-4 shadow-inner">
+                    <div ref={pinBoardRef} className="relative w-full aspect-[16/9] bg-[#FAF9F7] rounded-2xl border border-border/20 mb-4 shadow-inner">
                       <div 
-                        className="absolute inset-0 opacity-[0.03]" 
+                        className="absolute inset-0 opacity-[0.03] rounded-2xl overflow-hidden" 
                         style={{ 
                           backgroundImage: `radial-gradient(circle at 2px 2px, black 1px, transparent 0)`,
                           backgroundSize: '24px 24px'
@@ -1598,7 +1598,11 @@ export default function Dashboard() {
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: -5, left: '10%', top: '15%' }}
                         className="absolute w-40 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-10"
-                        style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
+                        style={{ 
+                          boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
+                          x: "-50%",
+                          y: "-50%"
+                        }}
                         whileDrag={{ scale: 1.05, zIndex: 50 }}
                       >
                         <div className="w-full h-full overflow-hidden">
@@ -1620,7 +1624,11 @@ export default function Dashboard() {
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: 3, left: '50%', top: '10%' }}
                         className="absolute w-44 aspect-square p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-20"
-                        style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
+                        style={{ 
+                          boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
+                          x: "-50%",
+                          y: "-50%"
+                        }}
                         whileDrag={{ scale: 1.05, zIndex: 50 }}
                       >
                         <div className="w-full h-full overflow-hidden">
@@ -1642,7 +1650,11 @@ export default function Dashboard() {
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: -2, left: '30%', top: '50%' }}
                         className="absolute w-40 aspect-[3/4] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-30"
-                        style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
+                        style={{ 
+                          boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
+                          x: "-50%",
+                          y: "-50%"
+                        }}
                         whileDrag={{ scale: 1.05, zIndex: 50 }}
                       >
                         <div className="w-full h-full overflow-hidden">
