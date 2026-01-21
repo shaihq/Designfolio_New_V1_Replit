@@ -193,7 +193,7 @@ export default function Dashboard() {
   const [sectionOrder, setSectionOrder] = useState<string[]>(() => {
     const saved = localStorage.getItem('dashboard-section-order');
     // Ensure work_experience is in the list and placed before testimonials
-    let order = saved ? JSON.parse(saved) : ['works', 'work_experience', 'testimonials', 'about', 'toolbox'];
+    let order = saved ? JSON.parse(saved) : ['works', 'work_experience', 'about', 'testimonials', 'toolbox'];
     if (!order.includes('work_experience')) {
       const testimonialIndex = order.indexOf('testimonials');
       if (testimonialIndex !== -1) {
@@ -211,6 +211,16 @@ export default function Dashboard() {
         order.push('about');
       }
     }
+
+    // Explicitly reorder to move testimonials below about if they are both present
+    const aboutIdx = order.indexOf('about');
+    const testimonialsIdx = order.indexOf('testimonials');
+    if (aboutIdx !== -1 && testimonialsIdx !== -1 && testimonialsIdx < aboutIdx) {
+      order.splice(testimonialsIdx, 1);
+      const newAboutIdx = order.indexOf('about');
+      order.splice(newAboutIdx + 1, 0, 'testimonials');
+    }
+    
     return order;
   });
   const [workExperiences, setWorkExperiences] = useState([
