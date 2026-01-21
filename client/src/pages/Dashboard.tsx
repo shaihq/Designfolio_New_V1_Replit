@@ -1643,7 +1643,7 @@ export default function Dashboard() {
                       >
                         <div className="w-full h-full overflow-hidden">
                           <img 
-                            src="/attached_assets/stock_images/portrait_of_a_person_390e8abb.jpg" 
+                            src="/portraits/portrait2.png" 
                             alt="Portrait 2" 
                             className="w-full h-full object-cover pointer-events-none"
                           />
@@ -1695,7 +1695,7 @@ export default function Dashboard() {
                       >
                         <div className="w-full h-full overflow-hidden">
                           <img 
-                            src="/attached_assets/stock_images/portrait_of_a_person_9b22c365.jpg" 
+                            src="/portraits/portrait4.png" 
                             alt="Portrait 4" 
                             className="w-full h-full object-cover pointer-events-none"
                           />
@@ -1703,6 +1703,46 @@ export default function Dashboard() {
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
                           <div className="w-2 h-2 bg-gray-300 rounded-full" />
                         </div>
+                      </motion.div>
+
+                      {/* Sticker 1 */}
+                      <motion.div
+                        drag
+                        dragMomentum={false}
+                        dragConstraints={pinBoardRef}
+                        initial={{ rotate: -15, left: '45%', top: '40%' }}
+                        className="absolute w-12 sm:w-16 md:w-20 lg:w-24 aspect-square cursor-grab active:cursor-grabbing z-50"
+                        style={{ 
+                          x: "-50%",
+                          y: "-50%"
+                        }}
+                        whileDrag={{ scale: 1.1, zIndex: 60 }}
+                      >
+                        <img 
+                          src="/stickers/sticker1.png" 
+                          alt="Sticker 1" 
+                          className="w-full h-full object-contain pointer-events-none drop-shadow-md"
+                        />
+                      </motion.div>
+
+                      {/* Sticker 2 */}
+                      <motion.div
+                        drag
+                        dragMomentum={false}
+                        dragConstraints={pinBoardRef}
+                        initial={{ rotate: 10, left: '55%', top: '60%' }}
+                        className="absolute w-12 sm:w-16 md:w-20 lg:w-24 aspect-square cursor-grab active:cursor-grabbing z-50"
+                        style={{ 
+                          x: "-50%",
+                          y: "-50%"
+                        }}
+                        whileDrag={{ scale: 1.1, zIndex: 60 }}
+                      >
+                        <img 
+                          src="/stickers/sticker2.png" 
+                          alt="Sticker 2" 
+                          className="w-full h-full object-contain pointer-events-none drop-shadow-md"
+                        />
                       </motion.div>
 
                     </div>
