@@ -1719,7 +1719,7 @@ export default function Dashboard() {
                         whileDrag={{ scale: 1.1, zIndex: 60 }}
                       >
                         <img 
-                          src="/stickers/sticker1.png" 
+                          src="/portraits/sticker1.png" 
                           alt="Sticker 1" 
                           className="w-full h-full object-contain pointer-events-none drop-shadow-md"
                         />
@@ -1739,7 +1739,7 @@ export default function Dashboard() {
                         whileDrag={{ scale: 1.1, zIndex: 60 }}
                       >
                         <img 
-                          src="/stickers/sticker2.png" 
+                          src="/portraits/sticker2.png" 
                           alt="Sticker 2" 
                           className="w-full h-full object-contain pointer-events-none drop-shadow-md"
                         />
