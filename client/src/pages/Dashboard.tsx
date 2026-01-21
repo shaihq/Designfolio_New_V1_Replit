@@ -1695,9 +1695,9 @@ export default function Dashboard() {
                         </div>
                       </motion.div>
 
-                      <div className="absolute bottom-4 left-0 right-0 text-center text-[10px] text-foreground/20 font-medium tracking-widest uppercase pointer-events-none">
-                        Try moving things :)
-                      </div>
+                    </div>
+                    <div className="text-center text-[10px] text-foreground/20 font-medium tracking-widest uppercase pointer-events-none mb-4">
+                      Try moving things around :)
                     </div>
                   </Card>
                 </motion.div>
