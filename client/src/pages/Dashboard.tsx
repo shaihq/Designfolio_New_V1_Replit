@@ -1728,7 +1728,7 @@ export default function Dashboard() {
                         dragConstraints={pinBoardRef}
                         dragElastic={0.1}
                         initial={{ rotate: -15, left: '45%', top: '40%' }}
-                        className="absolute w-12 sm:w-16 md:w-20 lg:w-24 aspect-square cursor-grab active:cursor-grabbing z-50"
+                        className="absolute w-16 sm:w-20 md:w-24 lg:w-28 aspect-square cursor-grab active:cursor-grabbing z-50"
                         style={{ 
                           x: "-50%",
                           y: "-50%"
@@ -1753,7 +1753,7 @@ export default function Dashboard() {
                         dragConstraints={pinBoardRef}
                         dragElastic={0.1}
                         initial={{ rotate: 10, left: '55%', top: '60%' }}
-                        className="absolute w-12 sm:w-16 md:w-20 lg:w-24 aspect-square cursor-grab active:cursor-grabbing z-50"
+                        className="absolute w-16 sm:w-20 md:w-24 lg:w-28 aspect-square cursor-grab active:cursor-grabbing z-50"
                         style={{ 
                           x: "-50%",
                           y: "-50%"
