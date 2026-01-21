@@ -1723,6 +1723,9 @@ export default function Dashboard() {
                           alt="Sticker 1" 
                           className="w-full h-full object-contain pointer-events-none drop-shadow-md"
                         />
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
+                          <div className="w-1.5 h-1.5 bg-gray-300 rounded-full" />
+                        </div>
                       </motion.div>
 
                       {/* Sticker 2 */}
@@ -1743,6 +1746,9 @@ export default function Dashboard() {
                           alt="Sticker 2" 
                           className="w-full h-full object-contain pointer-events-none drop-shadow-md"
                         />
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
+                          <div className="w-1.5 h-1.5 bg-gray-300 rounded-full" />
+                        </div>
                       </motion.div>
 
                     </div>
