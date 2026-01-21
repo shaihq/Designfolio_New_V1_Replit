@@ -237,6 +237,7 @@ export default function Dashboard() {
   });
   const [scrollOffset, setScrollOffset] = useState(0);
   const rafRef = useRef<number | null>(null);
+  const pinBoardRef = useRef<HTMLDivElement>(null);
   const [user] = useState({
     name: "Shai!",
     role: "A 0→1 Product Designer with 6 years of experience. I design and develop digital products, create prototypes, and design interfaces.",
@@ -1581,7 +1582,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* Pin Board */}
-                    <div id="pin-board-container" className="relative w-full aspect-[16/9] bg-[#FAF9F7] rounded-2xl border border-border/20 overflow-hidden mb-4 shadow-inner">
+                    <div ref={pinBoardRef} className="relative w-full aspect-[16/9] bg-[#FAF9F7] rounded-2xl border border-border/20 overflow-hidden mb-4 shadow-inner">
                       <div 
                         className="absolute inset-0 opacity-[0.03]" 
                         style={{ 
@@ -1594,7 +1595,7 @@ export default function Dashboard() {
                       <motion.div
                         drag
                         dragMomentum={false}
-                        dragConstraints={{ left: 0, right: 600, top: 0, bottom: 300 }}
+                        dragConstraints={pinBoardRef}
                         initial={{ rotate: -5, left: '10%', top: '15%' }}
                         className="absolute w-40 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-10"
                         style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
@@ -1616,7 +1617,7 @@ export default function Dashboard() {
                       <motion.div
                         drag
                         dragMomentum={false}
-                        dragConstraints={{ left: 0, right: 600, top: 0, bottom: 300 }}
+                        dragConstraints={pinBoardRef}
                         initial={{ rotate: 3, left: '50%', top: '10%' }}
                         className="absolute w-44 aspect-square p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-20"
                         style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
@@ -1638,7 +1639,7 @@ export default function Dashboard() {
                       <motion.div
                         drag
                         dragMomentum={false}
-                        dragConstraints={{ left: 0, right: 600, top: 0, bottom: 300 }}
+                        dragConstraints={pinBoardRef}
                         initial={{ rotate: -2, left: '30%', top: '50%' }}
                         className="absolute w-40 aspect-[3/4] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-30"
                         style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
