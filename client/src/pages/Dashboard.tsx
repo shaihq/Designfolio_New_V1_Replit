@@ -1591,27 +1591,35 @@ export default function Dashboard() {
                       </p>
                     </div>
 
-                    {/* Pin Board (Pegboard Style with 3D Edges) */}
+                    {/* Pin Board (Pegboard Style with 3D Contoured Edges) */}
                     <div className="relative group/pegboard mb-4">
-                      {/* 3D Edge/Depth Effect */}
-                      <div className="absolute inset-0 bg-[#DEDEDE] rounded-[2rem] translate-y-[6px] blur-[1px]" />
+                      {/* Deep 3D Shadow / Drop Shadow */}
+                      <div className="absolute inset-0 bg-black/10 rounded-[2.5rem] blur-[20px] translate-y-4" />
                       
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F5F5F5] rounded-[2rem] border border-black/5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.02),0_4px_12px_rgba(0,0,0,0.05)] z-10">
-                        {/* Pegboard Holes Pattern */}
-                        <div 
-                          className="absolute inset-0 opacity-[0.08] rounded-[2rem] overflow-hidden" 
-                          style={{ 
-                            backgroundImage: `radial-gradient(circle at center, #000 30%, transparent 35%)`,
-                            backgroundSize: '32px 48px',
-                            backgroundPosition: '16px 24px'
-                          }} 
-                        />
+                      {/* Main 3D Body Container */}
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F5F5F5] rounded-[2.5rem] border border-black/5 z-10 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.1)]">
                         
-                        {/* Pegboard Subtle Texture and Lighting */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-black/5 pointer-events-none rounded-[2rem] overflow-hidden" />
+                        {/* 3D Bend / Beveled Edge (All sides) */}
+                        <div className="absolute inset-0 rounded-[2.5rem] border-[10px] border-[#E8E8E8] shadow-[inset_0_2px_4px_rgba(255,255,255,0.8),inset_0_-2px_4px_rgba(0,0,0,0.05)] pointer-events-none z-20" />
                         
-                        {/* Bevel Effect */}
-                        <div className="absolute inset-0 rounded-[2rem] border-[3px] border-white/20 pointer-events-none z-20" />
+                        {/* Inner Bevel Detail */}
+                        <div className="absolute inset-[10px] rounded-[1.8rem] border border-black/5 pointer-events-none z-20" />
+
+                        {/* Pegboard Content Area */}
+                        <div className="absolute inset-[10px] rounded-[1.8rem] overflow-hidden pointer-events-none">
+                          {/* Pegboard Holes Pattern */}
+                          <div 
+                            className="absolute inset-0 opacity-[0.08]" 
+                            style={{ 
+                              backgroundImage: `radial-gradient(circle at center, #000 30%, transparent 35%)`,
+                              backgroundSize: '32px 48px',
+                              backgroundPosition: '16px 24px'
+                            }} 
+                          />
+                          
+                          {/* Pegboard Subtle Texture and Lighting */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-black/5" />
+                        </div>
 
                         {/* Photo 1 */}
                       <motion.div
