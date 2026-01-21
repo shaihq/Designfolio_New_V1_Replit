@@ -1593,37 +1593,26 @@ export default function Dashboard() {
 
                     {/* Pin Board (Pegboard Style with 3D Edges) */}
                     <div className="relative group/pegboard mb-4">
-                      {/* 3D Edge/Depth Effect */}
-                      <div className="absolute inset-0 bg-[#D8D8D8] rounded-[2rem] translate-y-[8px] blur-[0.5px] shadow-[0_10px_20px_rgba(0,0,0,0.1)]" />
-                      
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F0F0F0] rounded-[2rem] border-t border-white/40 border-x border-black/5 shadow-[inset_0_2px_10px_rgba(0,0,0,0.03)] z-10">
-                        {/* Pegboard Holes Pattern with Depth */}
-                        <div 
-                          className="absolute inset-0 opacity-[0.1] rounded-[2rem] overflow-hidden" 
-                          style={{ 
-                            backgroundImage: `radial-gradient(circle at center, #000 35%, transparent 45%)`,
-                            backgroundSize: '24px 32px',
-                            backgroundPosition: '12px 16px',
-                            filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.6))'
-                          }} 
-                        />
-                        
-                        {/* Pegboard Wood/Hardboard Texture Overlay */}
-                        <div 
-                          className="absolute inset-0 opacity-[0.02] mix-blend-multiply rounded-[2rem] overflow-hidden pointer-events-none"
+                      {/* 3D Edge/Depth Effect - Subtle */}
+                      <div className="absolute inset-0 bg-[#E8E8E8] rounded-[2rem] translate-y-[6px] blur-[0.5px] shadow-[0_8px_16px_rgba(0,0,0,0.06)]" />
+
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F8F8F8] rounded-[2rem] border border-black/[0.04] shadow-[inset_0_1px_3px_rgba(0,0,0,0.02)] z-10">
+                        {/* Pegboard Holes Pattern - Minimal & Spaced Out */}
+                        <div
+                          className="absolute inset-0 opacity-[0.04] rounded-[2rem] overflow-hidden"
                           style={{
-                            backgroundImage: `url("https://www.transparenttextures.com/patterns/wood-pattern.png")`,
+                            backgroundImage: `radial-gradient(circle at center, #000 30%, transparent 40%)`,
+                            backgroundSize: '48px 48px',
+                            backgroundPosition: '24px 24px',
+                            filter: 'drop-shadow(0 0.5px 0.5px rgba(255,255,255,0.3))'
                           }}
                         />
-                        
-                        {/* Pegboard Lighting & Vignette */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-black/5 pointer-events-none rounded-[2rem] overflow-hidden" />
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.15),transparent_70%)] pointer-events-none rounded-[2rem]" />
-                        
-                        {/* Realistic Bevel/Frame Effect */}
-                        <div className="absolute inset-0 rounded-[2rem] border-[4px] border-black/[0.03] pointer-events-none z-20" />
-                        <div className="absolute inset-0 rounded-[2rem] border-t-[1.5px] border-white/50 pointer-events-none z-30" />
-                        <div className="absolute inset-0 rounded-[2rem] border-b-[1.5px] border-black/10 pointer-events-none z-30" />
+
+                        {/* Subtle Top Lighting */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-transparent pointer-events-none rounded-[2rem] overflow-hidden" />
+
+                        {/* Minimal Border Highlight */}
+                        <div className="absolute inset-0 rounded-[2rem] border-t border-white/30 pointer-events-none z-30" />
 
                         {/* Photo 1 */}
                       <motion.div
