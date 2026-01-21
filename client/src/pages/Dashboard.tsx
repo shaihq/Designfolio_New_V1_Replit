@@ -1593,26 +1593,25 @@ export default function Dashboard() {
 
                     {/* Pin Board (Pegboard Style with 3D Edges) */}
                     <div className="relative group/pegboard mb-4">
-                      {/* 3D Edge/Depth Effect - Subtle */}
-                      <div className="absolute inset-0 bg-[#E8E8E8] rounded-[2rem] translate-y-[6px] blur-[0.5px] shadow-[0_8px_16px_rgba(0,0,0,0.06)]" />
+                      {/* 3D Edge/Depth Effect - Very Light */}
+                      <div className="absolute inset-0 bg-[#F0F0F0] rounded-[2rem] translate-y-[4px] shadow-[0_4px_8px_rgba(0,0,0,0.02)]" />
 
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F8F8F8] rounded-[2rem] border border-black/[0.04] shadow-[inset_0_1px_3px_rgba(0,0,0,0.02)] z-10">
-                        {/* Pegboard Holes Pattern - Minimal & Spaced Out */}
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F8F8F8] rounded-[2rem] border border-black/[0.04] shadow-[inset_0_1px_2px_rgba(0,0,0,0.01)] z-10">
+                        {/* Pegboard Holes Pattern - Realistic Inset Holes */}
                         <div
-                          className="absolute inset-0 opacity-[0.04] rounded-[2rem] overflow-hidden"
+                          className="absolute inset-0 rounded-[2rem] overflow-hidden"
                           style={{
-                            backgroundImage: `radial-gradient(circle at center, #000 30%, transparent 40%)`,
+                            backgroundImage: `radial-gradient(circle at center, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.04) 20%, #FFFFFF 30%, #FFFFFF 100%)`,
                             backgroundSize: '48px 48px',
-                            backgroundPosition: '24px 24px',
-                            filter: 'drop-shadow(0 0.5px 0.5px rgba(255,255,255,0.3))'
+                            backgroundPosition: '24px 24px'
                           }}
                         />
 
                         {/* Subtle Top Lighting */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-transparent pointer-events-none rounded-[2rem] overflow-hidden" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent pointer-events-none rounded-[2rem] overflow-hidden" />
 
                         {/* Minimal Border Highlight */}
-                        <div className="absolute inset-0 rounded-[2rem] border-t border-white/30 pointer-events-none z-30" />
+                        <div className="absolute inset-0 rounded-[2rem] border-t border-white/20 pointer-events-none z-30" />
 
                         {/* Photo 1 */}
                       <motion.div
