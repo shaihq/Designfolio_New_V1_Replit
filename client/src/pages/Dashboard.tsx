@@ -1581,7 +1581,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* Pin Board */}
-                    <div className="relative w-full aspect-[16/9] bg-[#FAF9F7] rounded-2xl border border-border/20 overflow-hidden mb-4 shadow-inner">
+                    <div id="pin-board-container" className="relative w-full aspect-[16/9] bg-[#FAF9F7] rounded-2xl border border-border/20 overflow-hidden mb-4 shadow-inner">
                       <div 
                         className="absolute inset-0 opacity-[0.03]" 
                         style={{ 
@@ -1593,20 +1593,20 @@ export default function Dashboard() {
                       {/* Photo 1 */}
                       <motion.div
                         drag
-                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                        dragElastic={0.1}
-                        initial={{ rotate: -5, x: '10%', y: '15%' }}
+                        dragMomentum={false}
+                        initial={{ rotate: -5, left: '10%', top: '15%' }}
                         className="absolute w-40 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-10"
                         style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
+                        whileDrag={{ scale: 1.05, zIndex: 50 }}
                       >
                         <div className="w-full h-full overflow-hidden">
                           <img 
                             src="/attached_assets/stock_images/portrait_of_a_person_49d72843.jpg" 
                             alt="Portrait 1" 
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover pointer-events-none"
                           />
                         </div>
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
                           <div className="w-2 h-2 bg-gray-300 rounded-full" />
                         </div>
                       </motion.div>
@@ -1614,20 +1614,20 @@ export default function Dashboard() {
                       {/* Photo 2 */}
                       <motion.div
                         drag
-                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                        dragElastic={0.1}
-                        initial={{ rotate: 3, x: '50%', y: '10%' }}
+                        dragMomentum={false}
+                        initial={{ rotate: 3, left: '50%', top: '10%' }}
                         className="absolute w-44 aspect-square p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-20"
                         style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
+                        whileDrag={{ scale: 1.05, zIndex: 50 }}
                       >
                         <div className="w-full h-full overflow-hidden">
                           <img 
                             src="/attached_assets/stock_images/portrait_of_a_person_390e8abb.jpg" 
                             alt="Portrait 2" 
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover pointer-events-none"
                           />
                         </div>
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
                           <div className="w-2 h-2 bg-gray-300 rounded-full" />
                         </div>
                       </motion.div>
@@ -1635,25 +1635,25 @@ export default function Dashboard() {
                       {/* Photo 3 */}
                       <motion.div
                         drag
-                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                        dragElastic={0.1}
-                        initial={{ rotate: -2, x: '30%', y: '50%' }}
+                        dragMomentum={false}
+                        initial={{ rotate: -2, left: '30%', top: '50%' }}
                         className="absolute w-40 aspect-[3/4] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-30"
                         style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
+                        whileDrag={{ scale: 1.05, zIndex: 50 }}
                       >
                         <div className="w-full h-full overflow-hidden">
                           <img 
                             src="/attached_assets/stock_images/portrait_of_a_person_d88a2864.jpg" 
                             alt="Portrait 3" 
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover pointer-events-none"
                           />
                         </div>
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
                           <div className="w-2 h-2 bg-gray-300 rounded-full" />
                         </div>
                       </motion.div>
 
-                      <div className="absolute bottom-4 left-0 right-0 text-center text-[10px] text-foreground/20 font-medium tracking-widest uppercase">
+                      <div className="absolute bottom-4 left-0 right-0 text-center text-[10px] text-foreground/20 font-medium tracking-widest uppercase pointer-events-none">
                         Try moving things :)
                       </div>
                     </div>
