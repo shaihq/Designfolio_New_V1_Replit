@@ -1596,10 +1596,10 @@ export default function Dashboard() {
                       {/* 3D Edge/Depth Effect */}
                       <div className="absolute inset-0 bg-[#DEDEDE] rounded-[2rem] translate-y-[6px] blur-[1px]" />
                       
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F5F5F5] rounded-[2rem] border border-black/5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.02),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden z-10">
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F5F5F5] rounded-[2rem] border border-black/5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.02),0_4px_12px_rgba(0,0,0,0.05)] z-10">
                         {/* Pegboard Holes Pattern */}
                         <div 
-                          className="absolute inset-0 opacity-[0.08]" 
+                          className="absolute inset-0 opacity-[0.08] rounded-[2rem] overflow-hidden" 
                           style={{ 
                             backgroundImage: `radial-gradient(circle at center, #000 30%, transparent 35%)`,
                             backgroundSize: '32px 48px',
@@ -1608,7 +1608,7 @@ export default function Dashboard() {
                         />
                         
                         {/* Pegboard Subtle Texture and Lighting */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-black/5 pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-black/5 pointer-events-none rounded-[2rem] overflow-hidden" />
                         
                         {/* Bevel Effect */}
                         <div className="absolute inset-0 rounded-[2rem] border-[3px] border-white/20 pointer-events-none z-20" />
@@ -1618,6 +1618,7 @@ export default function Dashboard() {
                         drag
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
+                        dragElastic={0.1}
                         initial={{ rotate: -5, left: '20%', top: '20%' }}
                         className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[4/3] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-10 rounded-sm"
                         style={{ 
@@ -1644,6 +1645,7 @@ export default function Dashboard() {
                         drag
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
+                        dragElastic={0.1}
                         initial={{ rotate: 3, left: '75%', top: '30%' }}
                         className="absolute w-28 sm:w-32 md:w-40 lg:w-44 aspect-square p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-20 rounded-sm"
                         style={{ 
@@ -1670,6 +1672,7 @@ export default function Dashboard() {
                         drag
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
+                        dragElastic={0.1}
                         initial={{ rotate: -2, left: '30%', top: '65%' }}
                         className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[3/4] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-30 rounded-sm"
                         style={{ 
@@ -1696,6 +1699,7 @@ export default function Dashboard() {
                         drag
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
+                        dragElastic={0.1}
                         initial={{ rotate: 4, left: '70%', top: '75%' }}
                         className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-[4/3] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-40 rounded-sm"
                         style={{ 
@@ -1722,6 +1726,7 @@ export default function Dashboard() {
                         drag
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
+                        dragElastic={0.1}
                         initial={{ rotate: -15, left: '45%', top: '40%' }}
                         className="absolute w-12 sm:w-16 md:w-20 lg:w-24 aspect-square cursor-grab active:cursor-grabbing z-50"
                         style={{ 
@@ -1746,6 +1751,7 @@ export default function Dashboard() {
                         drag
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
+                        dragElastic={0.1}
                         initial={{ rotate: 10, left: '55%', top: '60%' }}
                         className="absolute w-12 sm:w-16 md:w-20 lg:w-24 aspect-square cursor-grab active:cursor-grabbing z-50"
                         style={{ 
