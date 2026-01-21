@@ -1582,7 +1582,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* Pin Board */}
-                    <div ref={pinBoardRef} className="relative w-full aspect-[16/9] bg-[#FAF9F7] rounded-2xl border border-border/20 mb-4 shadow-inner">
+                    <div ref={pinBoardRef} className="relative w-full aspect-[3/2] sm:aspect-[4/3] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FAF9F7] rounded-2xl border border-border/20 mb-4 shadow-inner">
                       <div 
                         className="absolute inset-0 opacity-[0.03] rounded-2xl overflow-hidden" 
                         style={{ 
@@ -1597,7 +1597,7 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: -5, left: '20%', top: '25%' }}
-                        className="absolute w-40 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-10"
+                        className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-10"
                         style={{ 
                           boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
                           x: "-50%",
@@ -1623,7 +1623,7 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: 3, left: '50%', top: '35%' }}
-                        className="absolute w-44 aspect-square p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-20"
+                        className="absolute w-28 sm:w-32 md:w-40 lg:w-44 aspect-square p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-20"
                         style={{ 
                           boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
                           x: "-50%",
@@ -1649,7 +1649,7 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: -2, left: '80%', top: '30%' }}
-                        className="absolute w-40 aspect-[3/4] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-30"
+                        className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[3/4] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-30"
                         style={{ 
                           boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
                           x: "-50%",
@@ -1675,7 +1675,7 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         initial={{ rotate: 4, left: '35%', top: '70%' }}
-                        className="absolute w-36 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-40"
+                        className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-40"
                         style={{ 
                           boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
                           x: "-50%",
