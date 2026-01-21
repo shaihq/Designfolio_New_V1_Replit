@@ -1591,22 +1591,29 @@ export default function Dashboard() {
                       </p>
                     </div>
 
-                    {/* Pin Board (Pegboard Style) */}
-                    <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F5F5F5] rounded-[2rem] border border-black/5 mb-4 shadow-[inset_0_2px_8px_rgba(0,0,0,0.02)] overflow-hidden">
-                      {/* Pegboard Holes Pattern */}
-                      <div 
-                        className="absolute inset-0 opacity-[0.08]" 
-                        style={{ 
-                          backgroundImage: `radial-gradient(circle at center, #000 30%, transparent 35%)`,
-                          backgroundSize: '32px 48px',
-                          backgroundPosition: '16px 24px'
-                        }} 
-                      />
+                    {/* Pin Board (Pegboard Style with 3D Edges) */}
+                    <div className="relative group/pegboard mb-4">
+                      {/* 3D Edge/Depth Effect */}
+                      <div className="absolute inset-0 bg-[#DEDEDE] rounded-[2rem] translate-y-[6px] blur-[1px]" />
                       
-                      {/* Pegboard Subtle Texture */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none" />
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F5F5F5] rounded-[2rem] border border-black/5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.02),0_4px_12px_rgba(0,0,0,0.05)] overflow-hidden z-10">
+                        {/* Pegboard Holes Pattern */}
+                        <div 
+                          className="absolute inset-0 opacity-[0.08]" 
+                          style={{ 
+                            backgroundImage: `radial-gradient(circle at center, #000 30%, transparent 35%)`,
+                            backgroundSize: '32px 48px',
+                            backgroundPosition: '16px 24px'
+                          }} 
+                        />
+                        
+                        {/* Pegboard Subtle Texture and Lighting */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-black/5 pointer-events-none" />
+                        
+                        {/* Bevel Effect */}
+                        <div className="absolute inset-0 rounded-[2rem] border-[3px] border-white/20 pointer-events-none z-20" />
 
-                      {/* Photo 1 */}
+                        {/* Photo 1 */}
                       <motion.div
                         drag
                         dragMomentum={false}
@@ -1759,6 +1766,7 @@ export default function Dashboard() {
                       </motion.div>
 
                     </div>
+                  </div>
                     <div className="text-center text-[10px] text-foreground/20 font-medium tracking-widest uppercase pointer-events-none mb-4">
                       Try moving things around :)
                     </div>
