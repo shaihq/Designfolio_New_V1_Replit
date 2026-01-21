@@ -1574,13 +1574,88 @@ export default function Dashboard() {
                     <h2 className="text-sm font-medium text-foreground/50 uppercase tracking-wider mb-6" data-testid="text-about-title">
                       About Me
                     </h2>
-                    <div className="space-y-4 text-foreground/80 leading-relaxed">
+                    <div className="space-y-4 text-foreground/80 leading-relaxed mb-8">
                       <p data-testid="text-about-description-1">
                         I am a passionate product designer dedicated to creating intuitive and impactful digital experiences. With over 6 years of experience, I specialize in bridging the gap between user needs and business goals through thoughtful design and prototyping.
                       </p>
-                      <p data-testid="text-about-description-2">
-                        My approach is rooted in human-centered design principles, leveraging ethnographic research and design thinking to solve complex problems. I believe that great design is not just about how it looks, but how it works and feels for the end user.
-                      </p>
+                    </div>
+
+                    {/* Pin Board */}
+                    <div className="relative w-full aspect-[16/9] bg-[#FAF9F7] rounded-2xl border border-border/20 overflow-hidden mb-4 shadow-inner">
+                      <div 
+                        className="absolute inset-0 opacity-[0.03]" 
+                        style={{ 
+                          backgroundImage: `radial-gradient(circle at 2px 2px, black 1px, transparent 0)`,
+                          backgroundSize: '24px 24px'
+                        }} 
+                      />
+                      
+                      {/* Photo 1 */}
+                      <motion.div
+                        drag
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        dragElastic={0.1}
+                        initial={{ rotate: -5, x: '10%', y: '15%' }}
+                        className="absolute w-40 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-10"
+                        style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
+                      >
+                        <div className="w-full h-full overflow-hidden">
+                          <img 
+                            src="/attached_assets/stock_images/portrait_of_a_person_49d72843.jpg" 
+                            alt="Portrait 1" 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
+                          <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                        </div>
+                      </motion.div>
+
+                      {/* Photo 2 */}
+                      <motion.div
+                        drag
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        dragElastic={0.1}
+                        initial={{ rotate: 3, x: '50%', y: '10%' }}
+                        className="absolute w-44 aspect-square p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-20"
+                        style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
+                      >
+                        <div className="w-full h-full overflow-hidden">
+                          <img 
+                            src="/attached_assets/stock_images/portrait_of_a_person_390e8abb.jpg" 
+                            alt="Portrait 2" 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
+                          <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                        </div>
+                      </motion.div>
+
+                      {/* Photo 3 */}
+                      <motion.div
+                        drag
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        dragElastic={0.1}
+                        initial={{ rotate: -2, x: '30%', y: '50%' }}
+                        className="absolute w-40 aspect-[3/4] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-30"
+                        style={{ boxShadow: '0 10px 20px rgba(0,0,0,0.08)' }}
+                      >
+                        <div className="w-full h-full overflow-hidden">
+                          <img 
+                            src="/attached_assets/stock_images/portrait_of_a_person_d88a2864.jpg" 
+                            alt="Portrait 3" 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20">
+                          <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                        </div>
+                      </motion.div>
+
+                      <div className="absolute bottom-4 left-0 right-0 text-center text-[10px] text-foreground/20 font-medium tracking-widest uppercase">
+                        Try moving things :)
+                      </div>
                     </div>
                   </Card>
                 </motion.div>
