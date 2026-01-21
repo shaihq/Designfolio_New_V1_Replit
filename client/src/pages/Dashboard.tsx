@@ -1597,13 +1597,13 @@ export default function Dashboard() {
                       <div className="absolute inset-0 bg-black/10 rounded-[2.5rem] blur-[20px] translate-y-4" />
                       
                       {/* Main 3D Body Container */}
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F5F5F5] rounded-[2.5rem] border border-black/5 z-10 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.1)]">
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F5F5F5] rounded-[2.5rem] z-10 shadow-sm">
                         
                         {/* 3D Bend / Beveled Edge (All sides) */}
-                        <div className="absolute inset-0 rounded-[2.5rem] border-[10px] border-[#E8E8E8] shadow-[inset_0_2px_4px_rgba(255,255,255,0.8),inset_0_-2px_4px_rgba(0,0,0,0.05)] pointer-events-none z-20" />
+                        <div className="absolute inset-0 rounded-[2.5rem] border-[10px] border-[#E8E8E8] shadow-inner pointer-events-none z-20" />
                         
                         {/* Inner Bevel Detail */}
-                        <div className="absolute inset-[10px] rounded-[1.8rem] border border-black/5 pointer-events-none z-20" />
+                        <div className="absolute inset-[10px] rounded-[1.8rem] pointer-events-none z-20" />
 
                         {/* Pegboard Content Area */}
                         <div className="absolute inset-[10px] rounded-[1.8rem] overflow-hidden pointer-events-none">
