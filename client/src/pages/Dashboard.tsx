@@ -1669,6 +1669,32 @@ export default function Dashboard() {
                         </div>
                       </motion.div>
 
+                      {/* Photo 4 */}
+                      <motion.div
+                        drag
+                        dragMomentum={false}
+                        dragConstraints={pinBoardRef}
+                        initial={{ rotate: 4, left: '35%', top: '70%' }}
+                        className="absolute w-36 aspect-[4/3] p-1.5 bg-white shadow-lg cursor-grab active:cursor-grabbing z-40"
+                        style={{ 
+                          boxShadow: '0 10px 20px rgba(0,0,0,0.08)',
+                          x: "-50%",
+                          y: "-50%"
+                        }}
+                        whileDrag={{ scale: 1.05, zIndex: 50 }}
+                      >
+                        <div className="w-full h-full overflow-hidden">
+                          <img 
+                            src="/attached_assets/stock_images/portrait_of_a_person_9b22c365.jpg" 
+                            alt="Portrait 4" 
+                            className="w-full h-full object-cover pointer-events-none"
+                          />
+                        </div>
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center border border-border/20 pointer-events-none">
+                          <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                        </div>
+                      </motion.div>
+
                       <div className="absolute bottom-4 left-0 right-0 text-center text-[10px] text-foreground/20 font-medium tracking-widest uppercase pointer-events-none">
                         Try moving things :)
                       </div>
