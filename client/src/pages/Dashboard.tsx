@@ -1601,23 +1601,18 @@ export default function Dashboard() {
 
                       <div ref={pinBoardRef} className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-2xl shadow-[0_1px_4px_rgba(0,0,0,0.02)] z-10 overflow-visible border border-black/[0.03]">
                         
-                        {/* Authentic Pegboard Holes Pattern - CSS Grid Generated */}
+                        {/* Authentic Pegboard Holes Pattern - CSS Repeating Background for perfect alignment */}
                         <div
-                          className="absolute inset-0 pointer-events-none grid overflow-hidden rounded-2xl"
+                          className="absolute inset-0 pointer-events-none rounded-2xl"
                           style={{
-                            gridTemplateColumns: 'repeat(auto-fill, minmax(24px, 1fr))',
-                            gridTemplateRows: 'repeat(auto-fill, minmax(24px, 1fr))',
-                            padding: '24px',
-                            gap: '12px',
+                            backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.06) 1.5px, transparent 1.5px)`,
+                            backgroundSize: '24px 24px',
+                            backgroundPosition: '12px 12px',
+                            padding: '12px',
+                            backgroundOrigin: 'content-box',
+                            backgroundClip: 'content-box',
                           }}
-                        >
-                          {Array.from({ length: 600 }).map((_, i) => (
-                            <div 
-                              key={i} 
-                              className="w-1.5 h-1.5 rounded-full bg-black/[0.06] shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] justify-self-center align-self-center" 
-                            />
-                          ))}
-                        </div>
+                        />
 
                         {/* Subtle Material Grain */}
                         <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] overflow-hidden" />
