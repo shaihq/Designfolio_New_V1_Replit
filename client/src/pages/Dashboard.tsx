@@ -1594,42 +1594,40 @@ export default function Dashboard() {
                     {/* Pin Board (Pegboard Style with 3D Edges) */}
                     <div className="relative group/pegboard mb-4">
                       {/* 3D Edge/Depth Effect - Subtle */}
-                      <div className="absolute inset-0 bg-[#E8E8E8] rounded-[1rem] translate-y-[4px] blur-[0.5px] shadow-[0_4px_12px_rgba(0,0,0,0.08)]" />
+                      <div className="absolute inset-0 bg-[#E0E0E0] rounded-[1.5rem] translate-y-[4px] blur-[0.5px] shadow-[0_8px_20px_rgba(0,0,0,0.08)]" />
 
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-[1rem] border border-black/[0.05] shadow-[inset_0_1px_2px_rgba(0,0,0,0.01)] z-10 overflow-hidden">
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-[1.5rem] border border-black/[0.03] shadow-[inset_0_1px_4px_rgba(0,0,0,0.02)] z-10 overflow-hidden">
                         {/* Pegboard Holes Pattern - Elongated Vertical Slots */}
                         <div
-                          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+                          className="absolute inset-0 opacity-[0.12] pointer-events-none"
                           style={{
                             backgroundImage: `
-                              linear-gradient(to bottom, #000 0%, #000 100%),
-                              linear-gradient(to bottom, #fff 0%, #fff 100%)
+                              linear-gradient(to bottom, #222 0%, #222 70%, transparent 70%, transparent 100%)
                             `,
-                            backgroundSize: '3px 14px, 3px 14px',
-                            backgroundPosition: '24px 24px, 24px 25px',
+                            backgroundSize: '2px 12px',
+                            backgroundPosition: '24px 24px',
                             backgroundRepeat: 'repeat',
                           }}
                         />
                         
                         {/* Secondary staggered row for the pegboard effect */}
                         <div
-                          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+                          className="absolute inset-0 opacity-[0.12] pointer-events-none"
                           style={{
                             backgroundImage: `
-                              linear-gradient(to bottom, #000 0%, #000 100%),
-                              linear-gradient(to bottom, #fff 0%, #fff 100%)
+                              linear-gradient(to bottom, #222 0%, #222 70%, transparent 70%, transparent 100%)
                             `,
-                            backgroundSize: '3px 14px, 3px 14px',
-                            backgroundPosition: '48px 40px, 48px 41px',
+                            backgroundSize: '2px 12px',
+                            backgroundPosition: '48px 40px',
                             backgroundRepeat: 'repeat',
                           }}
                         />
 
                         {/* Subtle Top Lighting / Finish */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/20 pointer-events-none" />
 
                         {/* Minimal Border Highlight */}
-                        <div className="absolute inset-0 rounded-[1rem] border-t border-white/40 pointer-events-none z-30" />
+                        <div className="absolute inset-0 rounded-[1.5rem] border-t border-white/60 pointer-events-none z-30" />
 
                         {/* Photo 1 */}
                       <motion.div
