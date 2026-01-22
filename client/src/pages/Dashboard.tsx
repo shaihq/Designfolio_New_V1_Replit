@@ -1602,22 +1602,9 @@ export default function Dashboard() {
                         <div
                           className="absolute inset-0 pointer-events-none"
                           style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48' fill='none'%3E%3Cg filter='url(%23f)'%3E%3Cpath d='M18 11c0-2.76 2.24-5 5-5h2c2.76 0 5 2.24 5 5v26c0 2.76-2.24 5-5 5h-2c-2.76 0-5-2.24-5-5V11z' fill='%23E0E0E0'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='f' x='17' y='6' width='14' height='37' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BG'/%3E%3CfeBlend in='SourceGraphic' in2='BG'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hA'/%3E%3CfeOffset dx='-1' dy='2'/%3E%3CfeComposite in2='hA' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0'/%3E%3CfeBlend in2='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E")`,
-                            backgroundSize: '48px 48px',
-                            backgroundPosition: '24px 24px',
-                            padding: '48px',
-                            backgroundOrigin: 'content-box',
-                            backgroundClip: 'content-box',
-                          }}
-                        />
-
-                        {/* Staggered Row for SVG Inspired Slots */}
-                        <div
-                          className="absolute inset-0 pointer-events-none"
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48' fill='none'%3E%3Cg filter='url(%23f)'%3E%3Cpath d='M18 11c0-2.76 2.24-5 5-5h2c2.76 0 5 2.24 5 5v26c0 2.76-2.24 5-5 5h-2c-2.76 0-5-2.24-5-5V11z' fill='%23E0E0E0'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='f' x='17' y='6' width='14' height='37' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BG'/%3E%3CfeBlend in='SourceGraphic' in2='BG'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hA'/%3E%3CfeOffset dx='-1' dy='2'/%3E%3CfeComposite in2='hA' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0'/%3E%3CfeBlend in2='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E")`,
-                            backgroundSize: '48px 48px',
-                            backgroundPosition: '0px 0px',
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='64' viewBox='0 0 48 64' fill='none'%3E%3Cg filter='url(%23f)'%3E%3Cpath d='M17 14c0-2.76 2.24-5 5-5h4c2.76 0 5 2.24 5 5v36c0 2.76-2.24 5-5 5h-4c-2.76 0-5-2.24-5-5V14z' fill='%23E8E8E8'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='f' x='16' y='9' width='16' height='47' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BG'/%3E%3CfeBlend in='SourceGraphic' in2='BG'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hA'/%3E%3CfeOffset dx='-1' dy='2'/%3E%3CfeComposite in2='hA' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/%3E%3CfeBlend in2='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E")`,
+                            backgroundSize: '48px 64px',
+                            backgroundPosition: '24px 32px',
                             padding: '48px',
                             backgroundOrigin: 'content-box',
                             backgroundClip: 'content-box',
