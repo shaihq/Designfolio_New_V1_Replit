@@ -1599,7 +1599,7 @@ export default function Dashboard() {
                       <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-[1rem] border border-black/[0.05] shadow-[inset_0_1px_2px_rgba(0,0,0,0.01)] z-10 overflow-hidden">
                         {/* Pegboard Holes Pattern - Elongated Vertical Slots */}
                         <div
-                          className="absolute inset-0 opacity-[0.07] pointer-events-none"
+                          className="absolute inset-0 opacity-[0.05] pointer-events-none"
                           style={{
                             backgroundImage: `
                               linear-gradient(to bottom, #000 0%, #000 100%),
@@ -1608,14 +1608,12 @@ export default function Dashboard() {
                             backgroundSize: '3px 14px, 3px 14px',
                             backgroundPosition: '24px 24px, 24px 25px',
                             backgroundRepeat: 'repeat',
-                            maskImage: 'radial-gradient(ellipse at center, black 70%, transparent 100%)',
-                            WebkitMaskImage: 'radial-gradient(ellipse at center, black 70%, transparent 100%)',
                           }}
                         />
                         
                         {/* Secondary staggered row for the pegboard effect */}
                         <div
-                          className="absolute inset-0 opacity-[0.07] pointer-events-none"
+                          className="absolute inset-0 opacity-[0.05] pointer-events-none"
                           style={{
                             backgroundImage: `
                               linear-gradient(to bottom, #000 0%, #000 100%),
