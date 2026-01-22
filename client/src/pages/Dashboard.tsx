@@ -1452,17 +1452,17 @@ export default function Dashboard() {
                             Show off your best work
                           </p>
                           
-                          <div className="flex gap-4">
+                          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0">
                             <Button 
                               onClick={() => setIsTemplateDialogOpen(true)}
-                              className="bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center gap-2"
+                              className="w-full sm:w-auto bg-foreground text-background hover:bg-foreground/90 focus-visible:outline-none border-0 rounded-full h-11 px-6 text-base font-semibold no-default-hover-elevate no-default-active-elevate transition-colors flex items-center justify-center gap-2"
                               data-testid="button-add-case-study"
                             >
                               <Plus className="w-5 h-5" />
                               Add case study
                             </Button>
                             <div 
-                              className="bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
+                              className="w-full sm:w-auto bg-white border border-border rounded-full px-6 py-3 flex items-center justify-center gap-3 hover-elevate cursor-pointer"
                               data-testid="button-write-using-ai"
                             >
                               <Sparkles className="w-5 h-5 text-foreground" />
