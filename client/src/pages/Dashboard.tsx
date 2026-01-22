@@ -1592,11 +1592,11 @@ export default function Dashboard() {
                     </div>
 
                     {/* Pin Board (Authentic Pegboard) */}
-                    <div className="relative group/pegboard -mx-6 mb-8 p-0">
-                      {/* Realistic Board Depth/Shadow - Reduced */}
-                      <div className="absolute inset-0 bg-black/5 rounded-none translate-y-[4px] translate-x-[2px] blur-[3px] pointer-events-none" />
+                    <div className="relative group/pegboard mb-8 p-4">
+                      {/* Realistic Board Depth/Shadow - Restored and balanced */}
+                      <div className="absolute inset-4 bg-black/15 rounded-none translate-y-[8px] translate-x-[4px] blur-[6px] pointer-events-none" />
 
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[21/9] bg-[#FFFFFF] rounded-none shadow-[0_1px_2px_rgba(0,0,0,0.03)] z-10 overflow-visible border border-black/[0.03]">
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-none shadow-[0_2px_10px_rgba(0,0,0,0.1)] z-10 overflow-visible border border-black/[0.05]">
                         
                         {/* Wood-Core Side Edges */}
                         <div className="absolute inset-y-0 -right-[4px] w-[4px] bg-[#C1A27A] border-l border-black/10 z-20" />
