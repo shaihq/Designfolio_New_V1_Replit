@@ -1628,7 +1628,8 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: -5, left: '20%', top: '20%' }}
+                        initial={{ rotate: -5, left: '25%', top: '30%' }}
+                        animate={{ left: '25%', top: '30%' }}
                         className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[4/3] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-10 rounded-sm"
                         style={{ 
                           x: "-50%",
@@ -1666,6 +1667,7 @@ export default function Dashboard() {
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
                         initial={{ rotate: 3, left: '75%', top: '30%' }}
+                        animate={{ left: '75%', top: '30%' }}
                         className="absolute w-28 sm:w-32 md:w-40 lg:w-44 aspect-square p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-20 rounded-sm"
                         style={{ 
                           x: "-50%",
@@ -1702,7 +1704,8 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: -2, left: '30%', top: '65%' }}
+                        initial={{ rotate: -2, left: '30%', top: '70%' }}
+                        animate={{ left: '30%', top: '70%' }}
                         className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[3/4] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-30 rounded-sm"
                         style={{ 
                           x: "-50%",
@@ -1739,7 +1742,8 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: 4, left: '70%', top: '75%' }}
+                        initial={{ rotate: 4, left: '70%', top: '70%' }}
+                        animate={{ left: '70%', top: '70%' }}
                         className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-[4/3] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-40 rounded-sm"
                         style={{ 
                           x: "-50%",
@@ -1776,7 +1780,8 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: -15, left: '40%', top: '35%' }}
+                        initial={{ rotate: -15, left: '50%', top: '45%' }}
+                        animate={{ left: '50%', top: '45%' }}
                         className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-square cursor-grab active:cursor-grabbing z-50"
                         style={{ 
                           x: "-50%",
