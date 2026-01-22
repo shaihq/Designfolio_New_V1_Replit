@@ -3560,7 +3560,7 @@ export default function Dashboard() {
       </div>
       
       {/* Floating Dock */}
-      <div className="fixed bottom-2 sm:bottom-4 left-0 right-0 z-[100] flex justify-center pointer-events-none">
+      <div className="fixed bottom-1 sm:bottom-4 left-0 right-0 z-[100] flex justify-center pointer-events-none">
         <div className="pointer-events-auto">
           <Dock 
             items={[
