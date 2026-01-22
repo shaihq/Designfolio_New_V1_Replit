@@ -1607,11 +1607,11 @@ export default function Dashboard() {
                           style={{
                             gridTemplateColumns: 'repeat(auto-fill, minmax(24px, 1fr))',
                             gridTemplateRows: 'repeat(auto-fill, minmax(24px, 1fr))',
-                            padding: '32px',
+                            padding: '24px',
                             gap: '12px',
                           }}
                         >
-                          {Array.from({ length: 200 }).map((_, i) => (
+                          {Array.from({ length: 300 }).map((_, i) => (
                             <div 
                               key={i} 
                               className="w-1.5 h-1.5 rounded-full bg-black/[0.06] shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] justify-self-center align-self-center" 
