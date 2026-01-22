@@ -1601,14 +1601,14 @@ export default function Dashboard() {
 
                       <div ref={pinBoardRef} className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-2xl shadow-[0_1px_4px_rgba(0,0,0,0.02)] z-10 overflow-visible border border-black/[0.03]">
                         
-                        {/* Authentic Pegboard Holes Pattern - CSS Repeating Background with content-box masking */}
+                        {/* Authentic Pegboard Holes Pattern - Centered Repeating Background */}
                         <div
                           className="absolute inset-0 pointer-events-none rounded-2xl"
                           style={{
                             backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 2px)`,
                             backgroundSize: '36px 36px',
-                            backgroundPosition: '18px 18px',
-                            padding: '24px',
+                            backgroundPosition: 'center',
+                            padding: '18px',
                             backgroundOrigin: 'content-box',
                             backgroundClip: 'content-box',
                           }}
