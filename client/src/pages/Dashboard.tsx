@@ -1598,10 +1598,6 @@ export default function Dashboard() {
 
                       <div ref={pinBoardRef} className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-none shadow-[0_2px_10px_rgba(0,0,0,0.1)] z-10 overflow-visible border border-black/[0.05]">
                         
-                        {/* Wood-Core Side Edges */}
-                        <div className="absolute inset-y-0 -right-[4px] w-[4px] bg-[#C1A27A] border-l border-black/10 z-20" />
-                        <div className="absolute inset-x-0 -bottom-[4px] h-[4px] bg-[#A68962] border-t border-black/10 z-20" />
-                        
                         {/* Authentic Pegboard Holes Pattern */}
                         <div
                           className="absolute inset-0 pointer-events-none overflow-hidden"
