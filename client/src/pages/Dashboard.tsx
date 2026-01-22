@@ -1267,8 +1267,8 @@ export default function Dashboard() {
               </div>
 
               {/* Profile Info */}
-              <div className="p-8 pb-6">
-                <div className="flex items-center gap-6">
+              <div className="p-6 sm:p-8 pb-6">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
                   <TooltipProvider>
                     <Tooltip delayDuration={300}>
                           <Magnetic intensity={0.2} range={100}>
@@ -1298,7 +1298,7 @@ export default function Dashboard() {
                                   damping: 20,
                                   mass: 0.5
                                 }}
-                                className="w-32 h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef] preserve-3d" 
+                                className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 bg-[#f6f2ef] preserve-3d" 
                                 style={{ 
                                   backgroundColor: '#F5F3F1',
                                   perspective: "1000px"
@@ -1317,7 +1317,7 @@ export default function Dashboard() {
                                 <img 
                                   src="/advanced.png" 
                                   alt={user.name} 
-                                  className="w-24 h-24 object-contain"
+                                  className="w-16 h-16 sm:w-24 sm:h-24 object-contain"
                                   onLoad={() => setImageLoaded(true)}
                                   style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s' }}
                                 />
@@ -1339,7 +1339,7 @@ export default function Dashboard() {
                       initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
                       animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                       transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
-                      className="text-3xl font-semibold mb-2 font-heading" 
+                      className="text-2xl sm:text-3xl font-semibold mb-2 font-heading" 
                       data-testid="text-user-name"
                     >
                       Hey, I'm Shai!
@@ -1348,7 +1348,7 @@ export default function Dashboard() {
                       initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
                       animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                       transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
-                      className="text-base text-foreground/50 leading-relaxed" 
+                      className="text-sm sm:text-base text-foreground/50 leading-relaxed max-w-2xl" 
                       data-testid="text-user-role"
                     >
                       A 0→1 Product Designer with 6 years of experience. I design and 
