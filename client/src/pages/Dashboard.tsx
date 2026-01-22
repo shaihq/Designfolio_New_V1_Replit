@@ -3553,7 +3553,9 @@ export default function Dashboard() {
           </SheetContent>
         </Sheet>
       )}
-      <CourseCard />
+      <div className="hidden sm:block">
+        <CourseCard />
+      </div>
       
       {/* Floating Dock */}
       <div className="fixed bottom-8 left-0 right-0 z-[100] flex justify-center pointer-events-none">
