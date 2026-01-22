@@ -1602,11 +1602,10 @@ export default function Dashboard() {
                         <div
                           className="absolute inset-0 pointer-events-none"
                           style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='56' viewBox='0 0 40 56' fill='none'%3E%3Cg filter='url(%23f)'%3E%3Cpath d='M15 12c0-2.21 1.79-4 4-4h2c2.21 0 4 1.79 4 4v32c0 2.21-1.79 4-4 4h-2c-2.21 0-4-1.79-4-4V12z' fill='%23E8E8E8'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='f' x='14' y='7' width='12' height='43' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BG'/%3E%3CfeBlend in='SourceGraphic' in2='BG'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hA'/%3E%3CfeOffset dx='-0.8' dy='1.5'/%3E%3CfeComposite in2='hA' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0'/%3E%3CfeBlend in2='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E")`,
-                            backgroundSize: '40px 56px',
-                            backgroundPosition: '20px 28px',
-                            backgroundRepeat: 'round',
-                            padding: '40px',
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='80' viewBox='0 0 60 80' fill='none'%3E%3Cg filter='url(%23f)'%3E%3Cpath d='M25 15c0-2.21 1.79-4 4-4h2c2.21 0 4 1.79 4 4v40c0 2.21-1.79 4-4 4h-2c-2.21 0-4-1.79-4-4V15z' fill='%23E8E8E8'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='f' x='24' y='10' width='12' height='51' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BG'/%3E%3CfeBlend in='SourceGraphic' in2='BG'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hA'/%3E%3CfeOffset dx='-0.8' dy='1.5'/%3E%3CfeComposite in2='hA' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0'/%3E%3CfeBlend in2='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E")`,
+                            backgroundSize: '60px 80px',
+                            backgroundPosition: '30px 40px',
+                            padding: '60px',
                             backgroundOrigin: 'content-box',
                             backgroundClip: 'content-box',
                           }}
