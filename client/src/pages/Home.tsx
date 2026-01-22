@@ -22,7 +22,9 @@ export default function Home() {
         <Footer />
         <FooterBottom />
         <ScrollingBanner />
-        <CourseCard />
+        <div className="hidden sm:block">
+          <CourseCard />
+        </div>
       </div>
     </div>
   );
