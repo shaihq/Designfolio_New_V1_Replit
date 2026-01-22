@@ -1591,43 +1591,32 @@ export default function Dashboard() {
                       </p>
                     </div>
 
-                    {/* Pin Board (Pegboard Style with 3D Edges) */}
+                    {/* Pin Board (Classic Pegboard Style) */}
                     <div className="relative group/pegboard mb-4">
-                      {/* 3D Edge/Depth Effect - Subtle */}
-                      <div className="absolute inset-0 bg-[#E0E0E0] rounded-[1.5rem] translate-y-[4px] blur-[0.5px] shadow-[0_8px_20px_rgba(0,0,0,0.08)]" />
+                      {/* Realistic Shadow beneath the board */}
+                      <div className="absolute inset-0 bg-black/5 rounded-[4px] translate-y-[8px] translate-x-[4px] blur-[6px] pointer-events-none" />
 
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-[1.5rem] border border-black/[0.03] shadow-[inset_0_1px_4px_rgba(0,0,0,0.02)] z-10 overflow-hidden">
-                        {/* Pegboard Holes Pattern - Elongated Vertical Slots */}
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-[4px] border border-black/[0.05] shadow-[0_2px_10px_rgba(0,0,0,0.05)] z-10 overflow-hidden">
+                        {/* Classic Pegboard Holes Pattern - Small Circular Holes */}
                         <div
-                          className="absolute inset-0 opacity-[0.12] pointer-events-none"
+                          className="absolute inset-0 opacity-[0.2] pointer-events-none"
                           style={{
-                            backgroundImage: `
-                              linear-gradient(to bottom, #222 0%, #222 70%, transparent 70%, transparent 100%)
-                            `,
-                            backgroundSize: '2px 12px',
-                            backgroundPosition: '24px 24px',
+                            backgroundImage: `radial-gradient(circle at center, #1A1A1A 35%, transparent 45%)`,
+                            backgroundSize: '24px 24px',
+                            backgroundPosition: '12px 12px',
                             backgroundRepeat: 'repeat',
                           }}
                         />
+
+                        {/* Wood Grain/Material Texture Overlay */}
+                        <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')]" />
+
+                        {/* Subtle Side Lighting */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/[0.02] via-transparent to-transparent pointer-events-none" />
                         
-                        {/* Secondary staggered row for the pegboard effect */}
-                        <div
-                          className="absolute inset-0 opacity-[0.12] pointer-events-none"
-                          style={{
-                            backgroundImage: `
-                              linear-gradient(to bottom, #222 0%, #222 70%, transparent 70%, transparent 100%)
-                            `,
-                            backgroundSize: '2px 12px',
-                            backgroundPosition: '48px 40px',
-                            backgroundRepeat: 'repeat',
-                          }}
-                        />
-
-                        {/* Subtle Top Lighting / Finish */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/20 pointer-events-none" />
-
-                        {/* Minimal Border Highlight */}
-                        <div className="absolute inset-0 rounded-[1.5rem] border-t border-white/60 pointer-events-none z-30" />
+                        {/* Realistic Edge Bevel */}
+                        <div className="absolute inset-0 rounded-[4px] border-l border-t border-white/80 pointer-events-none z-30" />
+                        <div className="absolute inset-0 rounded-[4px] border-r border-b border-black/[0.05] pointer-events-none z-30" />
 
                         {/* Photo 1 */}
                       <motion.div
