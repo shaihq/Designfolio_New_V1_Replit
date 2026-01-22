@@ -1601,18 +1601,23 @@ export default function Dashboard() {
 
                       <div ref={pinBoardRef} className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-2xl shadow-[0_1px_4px_rgba(0,0,0,0.02)] z-10 overflow-visible border border-black/[0.03]">
                         
-                        {/* Authentic Pegboard Holes Pattern - SVG Inspired Elongated Slots */}
+                        {/* Authentic Pegboard Holes Pattern - CSS Grid Generated */}
                         <div
-                          className="absolute inset-0 pointer-events-none"
+                          className="absolute inset-0 pointer-events-none grid"
                           style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='64' viewBox='0 0 48 64' fill='none'%3E%3Cg filter='url(%23f)'%3E%3Cpath d='M17 14c0-2.76 2.24-5 5-5h4c2.76 0 5 2.24 5 5v36c0 2.76-2.24 5-5 5h-4c-2.76 0-5-2.24-5-5V14z' fill='%23E8E8E8'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='f' x='16' y='9' width='16' height='47' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BG'/%3E%3CfeBlend in='SourceGraphic' in2='BG'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hA'/%3E%3CfeOffset dx='-1' dy='2'/%3E%3CfeComposite in2='hA' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'/%3E%3CfeBlend in2='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E")`,
-                            backgroundSize: '48px 64px',
-                            backgroundPosition: '24px 32px',
-                            padding: '48px',
-                            backgroundOrigin: 'content-box',
-                            backgroundClip: 'content-box',
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(24px, 1fr))',
+                            gridTemplateRows: 'repeat(auto-fill, minmax(24px, 1fr))',
+                            padding: '32px',
+                            gap: '12px',
                           }}
-                        />
+                        >
+                          {Array.from({ length: 200 }).map((_, i) => (
+                            <div 
+                              key={i} 
+                              className="w-1.5 h-1.5 rounded-full bg-black/[0.06] shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] justify-self-center align-self-center" 
+                            />
+                          ))}
+                        </div>
 
                         {/* Subtle Material Grain */}
                         <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] overflow-hidden" />
