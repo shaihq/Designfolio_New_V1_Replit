@@ -1605,7 +1605,9 @@ export default function Dashboard() {
                             backgroundImage: `radial-gradient(circle, #333 1px, transparent 1.5px)`,
                             backgroundSize: '32px 32px',
                             backgroundPosition: '16px 16px',
-                            opacity: 0.2
+                            opacity: 0.2,
+                            maskImage: 'inset(16px 16px 16px 16px)',
+                            WebkitMaskImage: 'inset(16px 16px 16px 16px)',
                           }}
                         />
 
