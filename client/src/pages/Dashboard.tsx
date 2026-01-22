@@ -1592,35 +1592,35 @@ export default function Dashboard() {
                     </div>
 
                     {/* Pin Board (Authentic Pegboard) */}
-                    <div className="relative group/pegboard mb-8 p-4">
-                      {/* Realistic Board Depth/Shadow */}
-                      <div className="absolute inset-0 bg-black/10 rounded-none translate-y-[12px] translate-x-[6px] blur-[8px] pointer-events-none" />
+                    <div className="relative group/pegboard -mx-6 mb-8 p-0">
+                      {/* Realistic Board Depth/Shadow - Reduced */}
+                      <div className="absolute inset-0 bg-black/5 rounded-none translate-y-[4px] translate-x-[2px] blur-[3px] pointer-events-none" />
 
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-none shadow-[0_1px_4px_rgba(0,0,0,0.05)] z-10 overflow-hidden border border-black/[0.05]">
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[21/9] bg-[#FFFFFF] rounded-none shadow-[0_1px_2px_rgba(0,0,0,0.03)] z-10 overflow-visible border border-black/[0.03]">
                         
                         {/* Wood-Core Side Edges */}
-                        <div className="absolute inset-y-0 -right-[6px] w-[6px] bg-[#C1A27A] border-l border-black/20 z-20" />
-                        <div className="absolute inset-x-0 -bottom-[6px] h-[6px] bg-[#A68962] border-t border-black/20 z-20" />
+                        <div className="absolute inset-y-0 -right-[4px] w-[4px] bg-[#C1A27A] border-l border-black/10 z-20" />
+                        <div className="absolute inset-x-0 -bottom-[4px] h-[4px] bg-[#A68962] border-t border-black/10 z-20" />
                         
                         {/* Authentic Pegboard Holes Pattern */}
                         <div
-                          className="absolute inset-0 pointer-events-none"
+                          className="absolute inset-0 pointer-events-none overflow-hidden"
                           style={{
                             backgroundImage: `radial-gradient(circle, #333 1px, transparent 1.5px)`,
                             backgroundSize: '32px 32px',
                             backgroundPosition: '16px 16px',
-                            opacity: 0.25
+                            opacity: 0.2
                           }}
                         />
 
                         {/* Subtle Material Grain */}
-                        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
+                        <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] overflow-hidden" />
 
                         {/* Lighting */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-black/[0.02] via-transparent to-white/[0.1] pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-black/[0.01] via-transparent to-white/[0.05] pointer-events-none overflow-hidden" />
                         
                         {/* Top Edge Highlight */}
-                        <div className="absolute inset-0 border-t border-white/60 pointer-events-none z-30" />
+                        <div className="absolute inset-0 border-t border-white/40 pointer-events-none z-30 overflow-hidden" />
 
                         {/* Photo 1 */}
                       <motion.div
