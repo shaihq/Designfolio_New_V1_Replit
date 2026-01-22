@@ -157,9 +157,11 @@ const CrypticText = ({ text, className }: { text: string; className?: string }) 
 };
 
 import { usePegboardSounds } from "@/hooks/use-pegboard-sounds";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Dashboard() {
   const { playPick, playPlace } = usePegboardSounds();
+  const isMobile = useIsMobile();
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [isResumeDialogOpen, setIsResumeDialogOpen] = useState(false);
@@ -1628,8 +1630,8 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: -5, left: '20%', top: '25%', x: '-50%', y: '-50%' }}
-                        animate={{ left: '20%', top: '25%', x: '-50%', y: '-50%' }}
+                        initial={{ rotate: -5, left: isMobile ? '15%' : '20%', top: isMobile ? '18%' : '25%', x: '-50%', y: '-50%' }}
+                        animate={{ left: isMobile ? '15%' : '20%', top: isMobile ? '18%' : '25%', x: '-50%', y: '-50%' }}
                         className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[4/3] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-10 rounded-sm"
                         whileDrag={{ scale: 1.05, zIndex: 50, boxShadow: '0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)' }}
                       >
@@ -1662,8 +1664,8 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: 3, left: '80%', top: '30%', x: '-50%', y: '-50%' }}
-                        animate={{ left: '80%', top: '30%', x: '-50%', y: '-50%' }}
+                        initial={{ rotate: 3, left: isMobile ? '72%' : '80%', top: isMobile ? '22%' : '30%', x: '-50%', y: '-50%' }}
+                        animate={{ left: isMobile ? '72%' : '80%', top: isMobile ? '22%' : '30%', x: '-50%', y: '-50%' }}
                         className="absolute w-28 sm:w-32 md:w-40 lg:w-44 aspect-square p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-20 rounded-sm"
                         whileDrag={{ scale: 1.05, zIndex: 50, boxShadow: '0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)' }}
                       >
@@ -1696,8 +1698,8 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: -2, left: '25%', top: '75%', x: '-50%', y: '-50%' }}
-                        animate={{ left: '25%', top: '75%', x: '-50%', y: '-50%' }}
+                        initial={{ rotate: -2, left: isMobile ? '18%' : '25%', top: isMobile ? '58%' : '75%', x: '-50%', y: '-50%' }}
+                        animate={{ left: isMobile ? '18%' : '25%', top: isMobile ? '58%' : '75%', x: '-50%', y: '-50%' }}
                         className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[3/4] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-30 rounded-sm"
                         whileDrag={{ scale: 1.05, zIndex: 50, boxShadow: '0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)' }}
                       >
@@ -1730,8 +1732,8 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: 4, left: '75%', top: '75%', x: '-50%', y: '-50%' }}
-                        animate={{ left: '75%', top: '75%', x: '-50%', y: '-50%' }}
+                        initial={{ rotate: 4, left: isMobile ? '68%' : '75%', top: isMobile ? '68%' : '75%', x: '-50%', y: '-50%' }}
+                        animate={{ left: isMobile ? '68%' : '75%', top: isMobile ? '68%' : '75%', x: '-50%', y: '-50%' }}
                         className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-[4/3] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-40 rounded-sm"
                         whileDrag={{ scale: 1.05, zIndex: 50, boxShadow: '0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)' }}
                       >
@@ -1764,8 +1766,8 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: -15, left: '44%', top: '48%', x: '-50%', y: '-50%' }}
-                        animate={{ left: '44%', top: '48%', x: '-50%', y: '-50%' }}
+                        initial={{ rotate: -15, left: isMobile ? '45%' : '44%', top: isMobile ? '40%' : '48%', x: '-50%', y: '-50%' }}
+                        animate={{ left: isMobile ? '45%' : '44%', top: isMobile ? '40%' : '48%', x: '-50%', y: '-50%' }}
                         className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-square cursor-grab active:cursor-grabbing z-50"
                         whileDrag={{ scale: 1.1, zIndex: 60 }}
                       >
@@ -1796,9 +1798,9 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: 10, left: '55%', top: '60%' }}
+                        initial={{ rotate: 10, left: isMobile ? '50%' : '55%', top: isMobile ? '85%' : '60%' }}
                         className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-square cursor-grab active:cursor-grabbing z-50"
-                        style={{ 
+                        style={{
                           x: "-50%",
                           y: "-50%"
                         }}
