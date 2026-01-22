@@ -1600,14 +1600,15 @@ export default function Dashboard() {
                         
                         {/* Authentic Pegboard Holes Pattern */}
                         <div
-                          className="absolute inset-0 pointer-events-none overflow-hidden"
+                          className="absolute inset-0 pointer-events-none"
                           style={{
                             backgroundImage: `radial-gradient(circle, #333 1px, transparent 1.5px)`,
                             backgroundSize: '32px 32px',
                             backgroundPosition: '16px 16px',
                             opacity: 0.2,
-                            maskImage: 'inset(16px 16px 16px 16px)',
-                            WebkitMaskImage: 'inset(16px 16px 16px 16px)',
+                            padding: '32px',
+                            backgroundOrigin: 'content-box',
+                            backgroundClip: 'content-box',
                           }}
                         />
 
