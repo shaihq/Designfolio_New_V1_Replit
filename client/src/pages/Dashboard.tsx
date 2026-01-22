@@ -1764,8 +1764,8 @@ export default function Dashboard() {
                         dragElastic={0.1}
                         onDragStart={() => playPick()}
                         onDragEnd={() => playPlace()}
-                        initial={{ rotate: -15, left: '50%', top: '50%', x: '-50%', y: '-50%' }}
-                        animate={{ left: '50%', top: '50%', x: '-50%', y: '-50%' }}
+                        initial={{ rotate: -15, left: '44%', top: '48%', x: '-50%', y: '-50%' }}
+                        animate={{ left: '44%', top: '48%', x: '-50%', y: '-50%' }}
                         className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-square cursor-grab active:cursor-grabbing z-50"
                         whileDrag={{ scale: 1.1, zIndex: 60 }}
                       >
