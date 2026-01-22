@@ -1598,15 +1598,27 @@ export default function Dashboard() {
 
                       <div ref={pinBoardRef} className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-2xl shadow-[0_1px_4px_rgba(0,0,0,0.02)] z-10 overflow-visible border border-black/[0.03]">
                         
-                        {/* Authentic Pegboard Holes Pattern */}
+                        {/* Authentic Pegboard Holes Pattern - SVG Inspired Elongated Slots */}
                         <div
                           className="absolute inset-0 pointer-events-none"
                           style={{
-                            backgroundImage: `radial-gradient(circle, #333 1px, transparent 1.5px)`,
-                            backgroundSize: '32px 32px',
-                            backgroundPosition: '16px 16px',
-                            opacity: 0.2,
-                            padding: '32px',
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48' fill='none'%3E%3Cg filter='url(%23f)'%3E%3Cpath d='M18 11c0-2.76 2.24-5 5-5h2c2.76 0 5 2.24 5 5v26c0 2.76-2.24 5-5 5h-2c-2.76 0-5-2.24-5-5V11z' fill='%23E0E0E0'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='f' x='17' y='6' width='14' height='37' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BG'/%3E%3CfeBlend in='SourceGraphic' in2='BG'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hA'/%3E%3CfeOffset dx='-1' dy='2'/%3E%3CfeComposite in2='hA' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0'/%3E%3CfeBlend in2='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E")`,
+                            backgroundSize: '48px 48px',
+                            backgroundPosition: '24px 24px',
+                            padding: '48px',
+                            backgroundOrigin: 'content-box',
+                            backgroundClip: 'content-box',
+                          }}
+                        />
+
+                        {/* Staggered Row for SVG Inspired Slots */}
+                        <div
+                          className="absolute inset-0 pointer-events-none"
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48' fill='none'%3E%3Cg filter='url(%23f)'%3E%3Cpath d='M18 11c0-2.76 2.24-5 5-5h2c2.76 0 5 2.24 5 5v26c0 2.76-2.24 5-5 5h-2c-2.76 0-5-2.24-5-5V11z' fill='%23E0E0E0'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='f' x='17' y='6' width='14' height='37' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BG'/%3E%3CfeBlend in='SourceGraphic' in2='BG'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hA'/%3E%3CfeOffset dx='-1' dy='2'/%3E%3CfeComposite in2='hA' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0'/%3E%3CfeBlend in2='SourceGraphic'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E")`,
+                            backgroundSize: '48px 48px',
+                            backgroundPosition: '0px 0px',
+                            padding: '48px',
                             backgroundOrigin: 'content-box',
                             backgroundClip: 'content-box',
                           }}
