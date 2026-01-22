@@ -1636,8 +1636,16 @@ export default function Dashboard() {
                           />
                         </div>
                         {/* Realistic Pin */}
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#E5E5E5] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.1),inset_0_-1px_2px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/20 pointer-events-none z-20">
-                          <div className="w-2 h-2 bg-white/40 rounded-full blur-[1px]" />
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 flex items-center justify-center pointer-events-none z-20">
+                          {/* Pin Head (Plastic) */}
+                          <div className="w-5 h-5 rounded-full bg-[#FF553E] shadow-[0_2px_4px_rgba(0,0,0,0.2),inset_0_-1px_2px_rgba(0,0,0,0.2)] relative">
+                            {/* Highlight/Reflection */}
+                            <div className="absolute top-1 left-1.5 w-1.5 h-1.5 bg-white/40 rounded-full blur-[0.5px]" />
+                            {/* Subtle Depth Gradient */}
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-black/10 to-transparent" />
+                          </div>
+                          {/* Pin Needle Shadow */}
+                          <div className="absolute top-4 w-[1px] h-2 bg-black/20 blur-[0.5px] -rotate-12" />
                         </div>
                       </motion.div>
 
@@ -1663,8 +1671,16 @@ export default function Dashboard() {
                           />
                         </div>
                         {/* Realistic Pin */}
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#E5E5E5] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.1),inset_0_-1px_2px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/20 pointer-events-none z-20">
-                          <div className="w-2 h-2 bg-white/40 rounded-full blur-[1px]" />
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 flex items-center justify-center pointer-events-none z-20">
+                          {/* Pin Head (Plastic) */}
+                          <div className="w-5 h-5 rounded-full bg-[#FF553E] shadow-[0_2px_4px_rgba(0,0,0,0.2),inset_0_-1px_2px_rgba(0,0,0,0.2)] relative">
+                            {/* Highlight/Reflection */}
+                            <div className="absolute top-1 left-1.5 w-1.5 h-1.5 bg-white/40 rounded-full blur-[0.5px]" />
+                            {/* Subtle Depth Gradient */}
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-black/10 to-transparent" />
+                          </div>
+                          {/* Pin Needle Shadow */}
+                          <div className="absolute top-4 w-[1px] h-2 bg-black/20 blur-[0.5px] -rotate-12" />
                         </div>
                       </motion.div>
 
@@ -1690,8 +1706,16 @@ export default function Dashboard() {
                           />
                         </div>
                         {/* Realistic Pin */}
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#E5E5E5] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.1),inset_0_-1px_2px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/20 pointer-events-none z-20">
-                          <div className="w-2 h-2 bg-white/40 rounded-full blur-[1px]" />
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 flex items-center justify-center pointer-events-none z-20">
+                          {/* Pin Head (Plastic) */}
+                          <div className="w-5 h-5 rounded-full bg-[#FF553E] shadow-[0_2px_4px_rgba(0,0,0,0.2),inset_0_-1px_2px_rgba(0,0,0,0.2)] relative">
+                            {/* Highlight/Reflection */}
+                            <div className="absolute top-1 left-1.5 w-1.5 h-1.5 bg-white/40 rounded-full blur-[0.5px]" />
+                            {/* Subtle Depth Gradient */}
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-black/10 to-transparent" />
+                          </div>
+                          {/* Pin Needle Shadow */}
+                          <div className="absolute top-4 w-[1px] h-2 bg-black/20 blur-[0.5px] -rotate-12" />
                         </div>
                       </motion.div>
 
@@ -1717,8 +1741,16 @@ export default function Dashboard() {
                           />
                         </div>
                         {/* Realistic Pin */}
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#E5E5E5] rounded-full shadow-[0_2px_4px_rgba(0,0,0,0.1),inset_0_-1px_2px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/20 pointer-events-none z-20">
-                          <div className="w-2 h-2 bg-white/40 rounded-full blur-[1px]" />
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 flex items-center justify-center pointer-events-none z-20">
+                          {/* Pin Head (Plastic) */}
+                          <div className="w-5 h-5 rounded-full bg-[#FF553E] shadow-[0_2px_4px_rgba(0,0,0,0.2),inset_0_-1px_2px_rgba(0,0,0,0.2)] relative">
+                            {/* Highlight/Reflection */}
+                            <div className="absolute top-1 left-1.5 w-1.5 h-1.5 bg-white/40 rounded-full blur-[0.5px]" />
+                            {/* Subtle Depth Gradient */}
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-black/10 to-transparent" />
+                          </div>
+                          {/* Pin Needle Shadow */}
+                          <div className="absolute top-4 w-[1px] h-2 bg-black/20 blur-[0.5px] -rotate-12" />
                         </div>
                       </motion.div>
 
@@ -1742,8 +1774,16 @@ export default function Dashboard() {
                           className="w-full h-full object-contain pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]"
                         />
                         {/* Realistic Pin for Sticker */}
-                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#E5E5E5] rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.1),inset_0_-0.5px_1px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/10 pointer-events-none z-20">
-                          <div className="w-1 h-1 bg-white/40 rounded-full blur-[0.5px]" />
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 flex items-center justify-center pointer-events-none z-20">
+                          {/* Pin Head (Plastic) */}
+                          <div className="w-3.5 h-3.5 rounded-full bg-[#3B82F6] shadow-[0_1.5px_3px_rgba(0,0,0,0.2),inset_0_-0.75px_1.5px_rgba(0,0,0,0.2)] relative">
+                            {/* Highlight/Reflection */}
+                            <div className="absolute top-0.5 left-1 w-1 h-1 bg-white/40 rounded-full blur-[0.5px]" />
+                            {/* Subtle Depth Gradient */}
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-black/10 to-transparent" />
+                          </div>
+                          {/* Pin Needle Shadow */}
+                          <div className="absolute top-3 w-[1px] h-1.5 bg-black/20 blur-[0.5px] -rotate-12" />
                         </div>
                       </motion.div>
 
@@ -1767,8 +1807,16 @@ export default function Dashboard() {
                           className="w-full h-full object-contain pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)]"
                         />
                         {/* Realistic Pin for Sticker */}
-                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#E5E5E5] rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.1),inset_0_-0.5px_1px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/10 pointer-events-none z-20">
-                          <div className="w-1 h-1 bg-white/40 rounded-full blur-[0.5px]" />
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 flex items-center justify-center pointer-events-none z-20">
+                          {/* Pin Head (Plastic) */}
+                          <div className="w-3.5 h-3.5 rounded-full bg-[#3B82F6] shadow-[0_1.5px_3px_rgba(0,0,0,0.2),inset_0_-0.75px_1.5px_rgba(0,0,0,0.2)] relative">
+                            {/* Highlight/Reflection */}
+                            <div className="absolute top-0.5 left-1 w-1 h-1 bg-white/40 rounded-full blur-[0.5px]" />
+                            {/* Subtle Depth Gradient */}
+                            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-black/10 to-transparent" />
+                          </div>
+                          {/* Pin Needle Shadow */}
+                          <div className="absolute top-3 w-[1px] h-1.5 bg-black/20 blur-[0.5px] -rotate-12" />
                         </div>
                       </motion.div>
 
