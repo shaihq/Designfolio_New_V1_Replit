@@ -1605,10 +1605,10 @@ export default function Dashboard() {
                         <div
                           className="absolute inset-0 pointer-events-none rounded-2xl"
                           style={{
-                            backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.06) 1.5px, transparent 1.5px)`,
-                            backgroundSize: '24px 24px',
-                            backgroundPosition: '12px 12px',
-                            padding: '12px',
+                            backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.08) 2px, transparent 2px)`,
+                            backgroundSize: '40px 40px',
+                            backgroundPosition: '20px 20px',
+                            padding: '20px',
                             backgroundOrigin: 'content-box',
                             backgroundClip: 'content-box',
                           }}
