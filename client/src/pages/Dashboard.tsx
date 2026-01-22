@@ -1615,9 +1615,6 @@ export default function Dashboard() {
                         {/* Lighting */}
                         <div className="absolute inset-0 bg-gradient-to-tr from-black/[0.01] via-transparent to-white/[0.05] pointer-events-none overflow-hidden" />
                         
-                        {/* Top Edge Highlight */}
-                        <div className="absolute inset-0 border-t border-white/40 pointer-events-none z-30 overflow-hidden" />
-
                         {/* Photo 1 */}
                       <motion.div
                         drag
