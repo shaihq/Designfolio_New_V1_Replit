@@ -1591,32 +1591,36 @@ export default function Dashboard() {
                       </p>
                     </div>
 
-                    {/* Pin Board (Classic Pegboard Style) */}
-                    <div className="relative group/pegboard mb-4">
-                      {/* Realistic Shadow beneath the board */}
-                      <div className="absolute inset-0 bg-black/5 rounded-[4px] translate-y-[8px] translate-x-[4px] blur-[6px] pointer-events-none" />
+                    {/* Pin Board (Authentic Pegboard) */}
+                    <div className="relative group/pegboard mb-4 p-4">
+                      {/* Realistic Board Depth/Shadow */}
+                      <div className="absolute inset-0 bg-black/10 rounded-none translate-y-[8px] translate-x-[4px] blur-[6px] pointer-events-none" />
 
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-[4px] border border-black/[0.05] shadow-[0_2px_10px_rgba(0,0,0,0.05)] z-10 overflow-hidden">
-                        {/* Classic Pegboard Holes Pattern - Small Circular Holes */}
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-none shadow-[0_1px_3px_rgba(0,0,0,0.1)] z-10 overflow-hidden">
+                        
+                        {/* Wood-Core Side Edges (Realistic Layering) */}
+                        <div className="absolute inset-y-0 -right-[4px] w-[4px] bg-[#D2B48C] border-l border-black/10 z-20" />
+                        <div className="absolute inset-x-0 -bottom-[4px] h-[4px] bg-[#C1A27A] border-t border-black/10 z-20" />
+                        
+                        {/* Authentic Pegboard Holes Pattern - Authentic Spacing */}
                         <div
-                          className="absolute inset-0 opacity-[0.2] pointer-events-none"
+                          className="absolute inset-0 opacity-[0.45] pointer-events-none"
                           style={{
-                            backgroundImage: `radial-gradient(circle at center, #1A1A1A 35%, transparent 45%)`,
-                            backgroundSize: '24px 24px',
-                            backgroundPosition: '12px 12px',
+                            backgroundImage: `radial-gradient(circle at center, #1F110B 45%, #3A251B 75%, transparent 90%)`,
+                            backgroundSize: '48px 48px',
+                            backgroundPosition: '24px 24px',
                             backgroundRepeat: 'repeat',
                           }}
                         />
 
-                        {/* Wood Grain/Material Texture Overlay */}
-                        <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')]" />
+                        {/* Surface Material Finish (Authentic Matte Laminate) */}
+                        <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/fabric-of-the-nation.png')]" />
 
-                        {/* Subtle Side Lighting */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/[0.02] via-transparent to-transparent pointer-events-none" />
+                        {/* Natural Directional Lighting */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/[0.04] pointer-events-none" />
                         
-                        {/* Realistic Edge Bevel */}
-                        <div className="absolute inset-0 rounded-[4px] border-l border-t border-white/80 pointer-events-none z-30" />
-                        <div className="absolute inset-0 rounded-[4px] border-r border-b border-black/[0.05] pointer-events-none z-30" />
+                        {/* Sharp Laminated Edge Detail */}
+                        <div className="absolute inset-0 rounded-none border border-black/[0.08] pointer-events-none z-30" />
 
                         {/* Photo 1 */}
                       <motion.div
