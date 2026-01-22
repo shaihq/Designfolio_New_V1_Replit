@@ -1594,25 +1594,44 @@ export default function Dashboard() {
                     {/* Pin Board (Pegboard Style with 3D Edges) */}
                     <div className="relative group/pegboard mb-4">
                       {/* 3D Edge/Depth Effect - Subtle */}
-                      <div className="absolute inset-0 bg-[#E8E8E8] rounded-[2rem] translate-y-[6px] blur-[0.5px] shadow-[0_8px_16px_rgba(0,0,0,0.06)]" />
+                      <div className="absolute inset-0 bg-[#E8E8E8] rounded-[1rem] translate-y-[4px] blur-[0.5px] shadow-[0_4px_12px_rgba(0,0,0,0.08)]" />
 
-                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#F8F8F8] rounded-[2rem] border border-black/[0.04] shadow-[inset_0_1px_3px_rgba(0,0,0,0.02)] z-10">
-                        {/* Pegboard Holes Pattern - Minimal & Spaced Out */}
+                      <div ref={pinBoardRef} className="relative w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/10] lg:aspect-[16/9] bg-[#FFFFFF] rounded-[1rem] border border-black/[0.05] shadow-[inset_0_1px_2px_rgba(0,0,0,0.01)] z-10 overflow-hidden">
+                        {/* Pegboard Holes Pattern - Elongated Vertical Slots */}
                         <div
-                          className="absolute inset-0 opacity-[0.04] rounded-[2rem] overflow-hidden"
+                          className="absolute inset-0 opacity-[0.07] pointer-events-none"
                           style={{
-                            backgroundImage: `radial-gradient(circle at center, #000 30%, transparent 40%)`,
-                            backgroundSize: '48px 48px',
-                            backgroundPosition: '24px 24px',
-                            filter: 'drop-shadow(0 0.5px 0.5px rgba(255,255,255,0.3))'
+                            backgroundImage: `
+                              linear-gradient(to bottom, #000 0%, #000 100%),
+                              linear-gradient(to bottom, #fff 0%, #fff 100%)
+                            `,
+                            backgroundSize: '3px 14px, 3px 14px',
+                            backgroundPosition: '24px 24px, 24px 25px',
+                            backgroundRepeat: 'repeat',
+                            maskImage: 'radial-gradient(ellipse at center, black 70%, transparent 100%)',
+                            WebkitMaskImage: 'radial-gradient(ellipse at center, black 70%, transparent 100%)',
+                          }}
+                        />
+                        
+                        {/* Secondary staggered row for the pegboard effect */}
+                        <div
+                          className="absolute inset-0 opacity-[0.07] pointer-events-none"
+                          style={{
+                            backgroundImage: `
+                              linear-gradient(to bottom, #000 0%, #000 100%),
+                              linear-gradient(to bottom, #fff 0%, #fff 100%)
+                            `,
+                            backgroundSize: '3px 14px, 3px 14px',
+                            backgroundPosition: '48px 40px, 48px 41px',
+                            backgroundRepeat: 'repeat',
                           }}
                         />
 
-                        {/* Subtle Top Lighting */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-transparent pointer-events-none rounded-[2rem] overflow-hidden" />
+                        {/* Subtle Top Lighting / Finish */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
 
                         {/* Minimal Border Highlight */}
-                        <div className="absolute inset-0 rounded-[2rem] border-t border-white/30 pointer-events-none z-30" />
+                        <div className="absolute inset-0 rounded-[1rem] border-t border-white/40 pointer-events-none z-30" />
 
                         {/* Photo 1 */}
                       <motion.div
