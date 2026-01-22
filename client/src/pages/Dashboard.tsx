@@ -156,7 +156,10 @@ const CrypticText = ({ text, className }: { text: string; className?: string }) 
   );
 };
 
+import { usePegboardSounds } from "@/hooks/use-pegboard-sounds";
+
 export default function Dashboard() {
+  const { playPick, playPlace } = usePegboardSounds();
   const [isThemePanelOpen, setIsThemePanelOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [isResumeDialogOpen, setIsResumeDialogOpen] = useState(false);
@@ -1623,6 +1626,8 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         dragElastic={0.1}
+                        onDragStart={() => playPick()}
+                        onDragEnd={() => playPlace()}
                         initial={{ rotate: -5, left: '20%', top: '20%' }}
                         className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[4/3] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-10 rounded-sm"
                         style={{ 
@@ -1658,6 +1663,8 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         dragElastic={0.1}
+                        onDragStart={() => playPick()}
+                        onDragEnd={() => playPlace()}
                         initial={{ rotate: 3, left: '75%', top: '30%' }}
                         className="absolute w-28 sm:w-32 md:w-40 lg:w-44 aspect-square p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-20 rounded-sm"
                         style={{ 
@@ -1693,6 +1700,8 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         dragElastic={0.1}
+                        onDragStart={() => playPick()}
+                        onDragEnd={() => playPlace()}
                         initial={{ rotate: -2, left: '30%', top: '65%' }}
                         className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-[3/4] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-30 rounded-sm"
                         style={{ 
@@ -1728,6 +1737,8 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         dragElastic={0.1}
+                        onDragStart={() => playPick()}
+                        onDragEnd={() => playPlace()}
                         initial={{ rotate: 4, left: '70%', top: '75%' }}
                         className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-[4/3] p-1 bg-white shadow-[0_8px_16px_rgba(0,0,0,0.06),0_2px_4px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing z-40 rounded-sm"
                         style={{ 
@@ -1763,6 +1774,8 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         dragElastic={0.1}
+                        onDragStart={() => playPick()}
+                        onDragEnd={() => playPlace()}
                         initial={{ rotate: -15, left: '40%', top: '35%' }}
                         className="absolute w-20 sm:w-24 md:w-32 lg:w-36 aspect-square cursor-grab active:cursor-grabbing z-50"
                         style={{ 
@@ -1796,6 +1809,8 @@ export default function Dashboard() {
                         dragMomentum={false}
                         dragConstraints={pinBoardRef}
                         dragElastic={0.1}
+                        onDragStart={() => playPick()}
+                        onDragEnd={() => playPlace()}
                         initial={{ rotate: 10, left: '55%', top: '60%' }}
                         className="absolute w-24 sm:w-28 md:w-36 lg:w-40 aspect-square cursor-grab active:cursor-grabbing z-50"
                         style={{ 
