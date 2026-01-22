@@ -1603,7 +1603,7 @@ export default function Dashboard() {
                         
                         {/* Authentic Pegboard Holes Pattern - CSS Grid Generated */}
                         <div
-                          className="absolute inset-0 pointer-events-none grid"
+                          className="absolute inset-0 pointer-events-none grid overflow-hidden rounded-2xl"
                           style={{
                             gridTemplateColumns: 'repeat(auto-fill, minmax(24px, 1fr))',
                             gridTemplateRows: 'repeat(auto-fill, minmax(24px, 1fr))',
@@ -1611,7 +1611,7 @@ export default function Dashboard() {
                             gap: '12px',
                           }}
                         >
-                          {Array.from({ length: 300 }).map((_, i) => (
+                          {Array.from({ length: 600 }).map((_, i) => (
                             <div 
                               key={i} 
                               className="w-1.5 h-1.5 rounded-full bg-black/[0.06] shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] justify-self-center align-self-center" 
