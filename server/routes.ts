@@ -35,11 +35,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let text = "";
       if (req.file.mimetype === "application/pdf") {
         try {
-          // pdf-parse can be tricky with ESM/CJS interop
-          const parsePdf = typeof pdf === "function" ? pdf : pdf.default;
+          // Robust PDF parser initialization
+          const parsePdf = pdf.default || pdf;
           if (typeof parsePdf !== "function") {
-            throw new Error("PDF parser initialization failed");
+            throw new Error(`PDF parser initialization failed: received ${typeof parsePdf}`);
           }
+          
           const data = await parsePdf(req.file.buffer);
           text = data.text;
           
@@ -50,9 +51,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         } catch (pdfError: any) {
           console.error("PDF Parsing Error:", pdfError);
           // If it's a validation error we threw, use that message
-          const errorMessage = pdfError.message.includes("sufficient text") 
+          const errorMessage = pdfError.message?.includes("sufficient text") 
             ? "We couldn't read your resume text. Please ensure it's not a scanned image and try a different PDF or a TXT file."
-            : "There was an error processing your PDF. Please try a different file.";
+            : `Technical error parsing PDF: ${pdfError.message || 'Unknown error'}. Please try a different file.`;
           
           return res.status(400).json({ message: errorMessage });
         }
