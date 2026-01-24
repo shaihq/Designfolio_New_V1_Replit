@@ -37,8 +37,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let text = "";
       if (req.file.mimetype === "application/pdf") {
         try {
-          // Re-attempting with a more standard import for pdf-parse which is usually more reliable for text
-          const data = await pdfParse(req.file.buffer);
+          // Robust initialization of pdf-parse
+          let parsePdf = pdfParse;
+          if (pdfParse.default) parsePdf = pdfParse.default;
+          if (typeof parsePdf !== 'function' && pdfParse && typeof pdfParse === 'object') {
+             // Try common nested keys
+             parsePdf = pdfParse.pdf || pdfParse.parse || parsePdf;
+          }
+
+          if (typeof parsePdf !== "function") {
+            throw new Error(`PDF parser initialization failed: ${typeof parsePdf}`);
+          }
+
+          const data = await parsePdf(req.file.buffer);
           text = data.text;
           
           if (!text || text.trim().length < 50) {

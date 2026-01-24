@@ -1,0 +1,39 @@
+ Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+  POST https://7d4e6e27-ef20-45e6-8af6-245d1421fd1c-00-2juz73k0x3fbb.pike.replit.dev/api/convert-resume 400 (Bad Request)
+processFile @ /src/components/HeroSection.tsx:56
+handleFileUpload @ /src/components/HeroSection.tsx:75
+callCallback2 @ chunk-WERSD76P.js:3674
+invokeGuardedCallbackDev @ chunk-WERSD76P.js:3699
+invokeGuardedCallback @ chunk-WERSD76P.js:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-WERSD76P.js:3736
+executeDispatch @ chunk-WERSD76P.js:7014
+processDispatchQueueItemsInOrder @ chunk-WERSD76P.js:7034
+processDispatchQueue @ chunk-WERSD76P.js:7043
+dispatchEventsForPlugins @ chunk-WERSD76P.js:7051
+(anonymous) @ chunk-WERSD76P.js:7174
+batchedUpdates$1 @ chunk-WERSD76P.js:18913
+batchedUpdates @ chunk-WERSD76P.js:3579
+dispatchEventForPluginEventSystem @ chunk-WERSD76P.js:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-WERSD76P.js:5478
+dispatchEvent @ chunk-WERSD76P.js:5472
+dispatchDiscreteEvent @ chunk-WERSD76P.js:5449
+ Error converting resume: Error: We couldn't read your resume text. Please ensure it's not a scanned image and try a different PDF or a TXT file.
+    at processFile (/src/components/HeroSection.tsx:62:15)
+processFile @ /src/components/HeroSection.tsx:67
+await in processFile
+handleFileUpload @ /src/components/HeroSection.tsx:75
+callCallback2 @ chunk-WERSD76P.js:3674
+invokeGuardedCallbackDev @ chunk-WERSD76P.js:3699
+invokeGuardedCallback @ chunk-WERSD76P.js:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-WERSD76P.js:3736
+executeDispatch @ chunk-WERSD76P.js:7014
+processDispatchQueueItemsInOrder @ chunk-WERSD76P.js:7034
+processDispatchQueue @ chunk-WERSD76P.js:7043
+dispatchEventsForPlugins @ chunk-WERSD76P.js:7051
+(anonymous) @ chunk-WERSD76P.js:7174
+batchedUpdates$1 @ chunk-WERSD76P.js:18913
+batchedUpdates @ chunk-WERSD76P.js:3579
+dispatchEventForPluginEventSystem @ chunk-WERSD76P.js:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-WERSD76P.js:5478
+dispatchEvent @ chunk-WERSD76P.js:5472
+dispatchDiscreteEvent @ chunk-WERSD76P.js:5449
