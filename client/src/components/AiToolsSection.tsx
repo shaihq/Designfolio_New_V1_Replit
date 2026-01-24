@@ -63,23 +63,23 @@ export default function AiToolsSection() {
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
           >
-            <Card className="p-8 h-full flex flex-col items-start gap-4 bg-white border-border/50 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-4 mb-2">
-                <div className={`${tool.iconBg} p-3 rounded-xl`}>
-                  <tool.icon className={`h-6 w-6 ${tool.iconColor}`} />
+            <Card className="p-6 h-full flex flex-col items-start gap-4 bg-white/50 backdrop-blur-sm border-border/40 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex items-center gap-3 mb-1">
+                <div className={`${tool.iconBg} p-2.5 rounded-2xl`}>
+                  <tool.icon className={`h-5 w-5 ${tool.iconColor}`} />
                 </div>
-                <h3 className="text-xl font-bold text-foreground">
+                <h3 className="text-lg font-bold text-foreground">
                   {tool.title}
                 </h3>
               </div>
               
-              <p className="text-muted-foreground text-base mb-6 text-left">
+              <p className="text-sm text-muted-foreground/80 mb-4 text-left leading-relaxed">
                 {tool.description}
               </p>
 
               <Button 
                 variant="outline" 
-                className="w-full justify-center gap-2 rounded-full py-6 text-base font-medium border-border/60 hover:bg-accent/5"
+                className="w-full justify-center gap-2 rounded-full h-11 px-6 text-sm font-semibold border-border/60 hover:bg-accent/5 no-default-hover-elevate no-default-active-elevate transition-colors"
                 data-testid={`button-${tool.testId}`}
               >
                 <ArrowUpRight className="h-4 w-4" />
