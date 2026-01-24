@@ -37,13 +37,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         try {
           const data = await pdf(req.file.buffer);
           text = data.text;
+          
+          // Validate that we actually got meaningful text
+          if (!text || text.trim().length < 50) {
+            throw new Error("Could not extract sufficient text from PDF. It might be an image-only PDF or protected.");
+          }
         } catch (pdfError) {
           console.error("PDF Parsing Error:", pdfError);
-          // Fallback to buffer string if pdf-parse fails
-          text = req.file.buffer.toString("utf-8").replace(/[^\x20-\x7E\n]/g, "");
+          return res.status(400).json({ 
+            message: "We couldn't read your resume text. Please ensure it's not a scanned image and try a different PDF or a TXT file." 
+          });
         }
       } else {
         text = req.file.buffer.toString("utf-8");
+        if (!text || text.trim().length < 50) {
+          return res.status(400).json({ message: "The uploaded file appears to be empty or too short." });
+        }
       }
 
       const prompt = `Based on the following resume text, generate a professional portfolio website content in a clear, structured text format. Include sections like About Me, Experience, Skills, and Projects. Focus on making it ready to be displayed as a portfolio.

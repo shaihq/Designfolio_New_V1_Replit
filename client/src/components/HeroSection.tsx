@@ -50,12 +50,16 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
         body: formData,
       });
 
-      if (!response.ok) throw new Error("Conversion failed");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Conversion failed");
+      }
 
       const data = await response.json();
       setResultContent(data.content);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error converting resume:", error);
+      alert(error.message || "Failed to convert resume. Please try again with a different file.");
     } finally {
       setIsConverting(false);
     }
