@@ -532,7 +532,7 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
                   className={cn(
                     "max-w-xl mx-auto rounded-[1.25rem] sm:rounded-[1.5rem] p-[1px] relative z-10 bg-gradient-to-b shadow-lg group transition-all duration-300",
                     isDragging 
-                      ? "from-primary/60 via-primary/30 to-primary/60 scale-[1.02] ring-4 ring-primary/10" 
+                      ? "from-primary/80 via-primary/40 to-primary/80 scale-[1.01] ring-8 ring-primary/5" 
                       : "from-border/60 via-border/30 to-border/60"
                   )}
                   data-testid="card-resume-upload"
@@ -542,7 +542,7 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
                 >
                   <div className={cn(
                     "bg-white dark:bg-[#1a1a1a] rounded-[1.125rem] sm:rounded-[1.375rem] overflow-hidden transition-colors duration-300",
-                    isDragging && "bg-primary/5 dark:bg-primary/5"
+                    isDragging && "bg-primary/[0.02] dark:bg-primary/[0.02]"
                   )}>
                     <div className="bg-[#f6f6f6] dark:bg-[#252525] border-b border-border/50 px-4 py-2.5 flex items-center gap-2">
                       <div className="flex gap-1.5">
@@ -559,8 +559,11 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
                     </div>
 
                     <div className="p-8 sm:p-10 flex flex-col items-center gap-5">
-                      <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                        <Upload className="w-7 h-7 text-primary" />
+                      <div className={cn(
+                        "w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300",
+                        isDragging ? "bg-primary text-white scale-110 shadow-lg shadow-primary/20" : "bg-primary/10 text-primary"
+                      )}>
+                        <Upload className="w-7 h-7" />
                       </div>
                       
                       <div className="space-y-1.5 text-center">
