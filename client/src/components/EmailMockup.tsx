@@ -5,7 +5,7 @@ export default function EmailMockup() {
     <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
         <div 
-          className="rounded-[1.25rem] sm:rounded-[1.75rem] p-[2px] relative z-10 bg-gradient-to-tr from-border/80 via-border/40 to-border/80 shadow-xl"
+          className="rounded-[1.25rem] sm:rounded-[1.75rem] p-[2px] relative z-10 bg-gradient-to-r from-border/80 via-border/20 to-border/80 shadow-xl"
           data-testid="container-portfolio-gradient"
         >
           <BorderBeam size={400} duration={8} delay={9} borderWidth={4} colorFrom="#FF553E" colorTo="#FF8C7E" />
