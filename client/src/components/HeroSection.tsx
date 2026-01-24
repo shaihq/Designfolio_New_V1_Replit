@@ -8,6 +8,8 @@ import { Sun } from "lucide-react";
 
 import { TextEffect } from "@/components/ui/text-effect";
 
+import { SegmentedControl } from "@/components/ui/segmented-control";
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const leftCardRef = useRef<HTMLDivElement>(null);
@@ -15,6 +17,7 @@ export default function HeroSection() {
   const isMobile = useIsMobile();
   const lastWidthRef = useRef<number>(0);
   
+  const [activeTab, setActiveTab] = useState("Claim Domain");
   const [leftCardOffset, setLeftCardOffset] = useState({ x: 0, y: 0 });
   const [rightCardOffset, setRightCardOffset] = useState({ x: 0, y: 0 });
   const [leftInitialScale, setLeftInitialScale] = useState(1);
@@ -384,6 +387,19 @@ export default function HeroSection() {
           >
             Skip the busywork with Designfolio — publish in hours, not weeks.
           </motion.p>
+
+          <motion.div
+            className="flex flex-col items-center gap-6 mb-8"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <SegmentedControl 
+              options={["Claim Domain", "Convert Resume"]}
+              value={activeTab}
+              onChange={setActiveTab}
+            />
+          </motion.div>
 
           <motion.div 
             className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto"
