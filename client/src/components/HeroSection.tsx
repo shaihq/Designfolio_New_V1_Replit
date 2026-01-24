@@ -4,11 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionTemplate, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Typewriter } from "@/components/ui/typewriter";
-import { Sun, Upload } from "lucide-react";
+import { Sun, Upload, Loader2 } from "lucide-react";
 
 import { TextEffect } from "@/components/ui/text-effect";
 
 import { SegmentedControl } from "@/components/ui/segmented-control";
+import { ResultPopup } from "./ResultPopup";
 
 interface HeroSectionProps {
   activeTab?: string;
@@ -23,13 +24,40 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
   const lastWidthRef = useRef<number>(0);
   
   const [internalActiveTab, setInternalActiveTab] = useState("Claim Domain");
-  
+  const [isConverting, setIsConverting] = useState(false);
+  const [resultContent, setResultContent] = useState<string | null>(null);
+
   const activeTab = propActiveTab !== undefined ? propActiveTab : internalActiveTab;
   const setActiveTab = (tab: string) => {
     if (onTabChange) {
       onTabChange(tab);
     } else {
       setInternalActiveTab(tab);
+    }
+  };
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setIsConverting(true);
+    const formData = new FormData();
+    formData.append("resume", file);
+
+    try {
+      const response = await fetch("/api/convert-resume", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error("Conversion failed");
+
+      const data = await response.json();
+      setResultContent(data.content);
+    } catch (error) {
+      console.error("Error converting resume:", error);
+    } finally {
+      setIsConverting(false);
     }
   };
 
@@ -498,19 +526,36 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
                           id="resume-upload"
                           accept=".pdf,.docx,.txt"
                           data-testid="input-resume-file"
+                          onChange={handleFileUpload}
+                          disabled={isConverting}
                         />
                         <Button 
                           asChild
+                          disabled={isConverting}
                           className="w-full rounded-full h-12 text-base font-semibold bg-[#FF553E] hover:bg-[#E64935] text-white border-none transition-transform active:scale-[0.98]"
                         >
-                          <label htmlFor="resume-upload" className="cursor-pointer">
-                            Select Resume
+                          <label htmlFor="resume-upload" className="cursor-pointer flex items-center justify-center gap-2">
+                            {isConverting ? (
+                              <>
+                                <Loader2 className="w-5 h-5 animate-spin" />
+                                Processing...
+                              </>
+                            ) : (
+                              "Select Resume"
+                            )}
                           </label>
                         </Button>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                {resultContent && (
+                  <ResultPopup 
+                    content={resultContent} 
+                    onClose={() => setResultContent(null)} 
+                  />
+                )}
 
                 <p className="text-muted-foreground text-base mt-8">
                   By uploading, you agree to our <a href="/terms-conditions" className="underline hover:text-foreground transition-colors">Terms of Service</a>

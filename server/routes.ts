@@ -1,8 +1,20 @@
-import type { Express } from "express";
+import type { Express, Request } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { randomBytes } from "crypto";
 import { z } from "zod";
+import multer from "multer";
+import { createRequire } from "module";
+import { getAiCompletion } from "./ai";
+
+const require = createRequire(import.meta.url);
+const pdf = require("pdf-parse");
+
+interface MulterRequest extends Request {
+  file?: Express.Multer.File;
+}
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 const forgotPasswordSchema = z.object({
   email: z.string().email(),
@@ -14,6 +26,32 @@ const resetPasswordSchema = z.object({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  app.post("/api/convert-resume", upload.single("resume"), async (req: MulterRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: "No resume file uploaded" });
+      }
+
+      let text = "";
+      if (req.file.mimetype === "application/pdf") {
+        const data = await pdf(req.file.buffer);
+        text = data.text;
+      } else {
+        text = req.file.buffer.toString("utf-8");
+      }
+
+      const prompt = `Based on the following resume text, generate a professional portfolio website content in a clear, structured text format. Include sections like About Me, Experience, Skills, and Projects. Focus on making it ready to be displayed as a portfolio.
+      
+      Resume Text:
+      ${text}`;
+
+      const content = await getAiCompletion(prompt);
+      res.json({ content });
+    } catch (error) {
+      console.error("Conversion error:", error);
+      res.status(500).json({ message: "Failed to convert resume" });
+    }
+  });
   app.post("/api/forgot-password", async (req, res) => {
     try {
       const { email } = forgotPasswordSchema.parse(req.body);
