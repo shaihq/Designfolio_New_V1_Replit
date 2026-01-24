@@ -440,12 +440,16 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.4 }}
               >
-                <motion.h1 
+                <TextEffect 
+                  as="h1"
+                  preset="blur"
+                  per="word"
                   className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground max-w-3xl mx-auto" 
                   data-testid="text-resume-headline"
+                  delay={0.1}
                 >
                   Turn your resume into a personal website
-                </motion.h1>
+                </TextEffect>
                 
                 <motion.p 
                   className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" 
