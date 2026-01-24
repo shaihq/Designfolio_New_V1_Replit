@@ -1,11 +1,14 @@
+import { BorderBeam } from "@/components/ui/border-beam";
+
 export default function EmailMockup() {
   return (
     <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
         <div 
-          className="rounded-[1.25rem] sm:rounded-[1.75rem] p-1 sm:p-1.5 gradient-border-animate relative z-10"
+          className="rounded-[1.25rem] sm:rounded-[1.75rem] p-[1px] relative z-10 bg-border/50"
           data-testid="container-portfolio-gradient"
         >
+          <BorderBeam size={250} duration={12} delay={9} />
           <div 
             className="bg-white rounded-[1.125rem] sm:rounded-[1.625rem] overflow-hidden flex flex-col"
             data-testid="container-portfolio-mockup"
