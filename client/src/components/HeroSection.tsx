@@ -425,9 +425,9 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
             transition={{ duration: 0.6, delay: 0.05 }}
           >
             <SegmentedControl 
-              options={["Claim Domain", "Convert Resume"]}
-              value={activeTab}
-              onChange={setActiveTab}
+              options={["Start from Scratch", "Use my Resume"]}
+              value={activeTab === "Claim Domain" ? "Start from Scratch" : "Use my Resume"}
+              onChange={(val) => setActiveTab(val === "Start from Scratch" ? "Claim Domain" : "Convert Resume")}
             />
           </motion.div>
 

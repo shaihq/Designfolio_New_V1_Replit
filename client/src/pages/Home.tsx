@@ -22,7 +22,7 @@ export default function Home() {
           activeTab={activeTab} 
           onTabChange={setActiveTab} 
         />
-        {activeTab !== "Convert Resume" && <EmailMockup />}
+        {activeTab === "Claim Domain" && <EmailMockup />}
         <TrustedBySection />
         <FeaturesSection />
         <AiToolsSection />
