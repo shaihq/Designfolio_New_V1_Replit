@@ -10,14 +10,29 @@ import { TextEffect } from "@/components/ui/text-effect";
 
 import { SegmentedControl } from "@/components/ui/segmented-control";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  activeTab?: string;
+  onTabChange?: (tab: string) => void;
+}
+
+export default function HeroSection({ activeTab: propActiveTab, onTabChange }: HeroSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const leftCardRef = useRef<HTMLDivElement>(null);
   const rightCardRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const lastWidthRef = useRef<number>(0);
   
-  const [activeTab, setActiveTab] = useState("Claim Domain");
+  const [internalActiveTab, setInternalActiveTab] = useState("Claim Domain");
+  
+  const activeTab = propActiveTab !== undefined ? propActiveTab : internalActiveTab;
+  const setActiveTab = (tab: string) => {
+    if (onTabChange) {
+      onTabChange(tab);
+    } else {
+      setInternalActiveTab(tab);
+    }
+  };
+
   const isResumeMode = activeTab === "Convert Resume";
 
   const [leftCardOffset, setLeftCardOffset] = useState({ x: 0, y: 0 });
@@ -258,7 +273,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute top-0 left-0 right-0 h-[600px] sm:h-[700px] pointer-events-none z-0"
+            className="absolute -top-16 sm:-top-20 left-0 right-0 h-[600px] sm:h-[700px] pointer-events-none z-0"
           >
             <div 
               className="absolute inset-0"
