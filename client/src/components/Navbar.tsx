@@ -31,9 +31,6 @@ export default function Navbar() {
     }`}>
       <nav 
         className="max-w-[640px] w-full mx-auto border border-border bg-background/80 backdrop-blur-md rounded-xl"
-        style={{
-          boxShadow: '0 0 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(23, 24, 26, 0.03), 0 8px 16px rgba(23, 24, 26, 0.04)'
-        }}
       >
         <div className="px-4 sm:px-6">
           <div className="flex items-center justify-between h-14 sm:h-16">
