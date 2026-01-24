@@ -19,7 +19,6 @@ export default function Resume() {
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       <Navbar />
-      
       <main className="flex-1 flex flex-col items-center px-6 pt-32 sm:pt-40 pb-16 relative">
         {/* Blue Sky Hero Section with contained gradient and clouds */}
         <div className="absolute top-0 left-0 right-0 h-[500px] sm:h-[550px] overflow-hidden pointer-events-none">
@@ -69,9 +68,7 @@ export default function Resume() {
               delay: 0.1,
               ease: [0.22, 1, 0.36, 1]
             }}
-          >
-            Upload your resume to generate a beautiful personal site in seconds
-          </motion.h1>
+          >Turn your resume into a personal website</motion.h1>
           
           <motion.p 
             className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" 
@@ -159,7 +156,6 @@ export default function Resume() {
           </motion.p>
         </div>
       </main>
-
       <Footer />
       <FooterBottom />
     </div>
