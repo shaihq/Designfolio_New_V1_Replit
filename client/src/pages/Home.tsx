@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import EmailMockup from "@/components/EmailMockup";
 import TrustedBySection from "@/components/TrustedBySection";
 import FeaturesSection from "@/components/FeaturesSection";
+import AiToolsSection from "@/components/AiToolsSection";
 import FeaturesShowcase from "@/components/FeaturesShowcase";
 import Footer from "@/components/Footer";
 import FooterBottom from "@/components/FooterBottom";
@@ -18,6 +19,7 @@ export default function Home() {
         <EmailMockup />
         <TrustedBySection />
         <FeaturesSection />
+        <AiToolsSection />
         <FeaturesShowcase />
         <Footer />
         <FooterBottom />
