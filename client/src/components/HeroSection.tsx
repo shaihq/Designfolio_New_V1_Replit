@@ -26,9 +26,11 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
   const [internalActiveTab, setInternalActiveTab] = useState("Claim Domain");
   const [isConverting, setIsConverting] = useState(false);
   const [resultContent, setResultContent] = useState<string | null>(null);
+  const [conversionError, setConversionError] = useState<string | null>(null);
 
   const activeTab = propActiveTab !== undefined ? propActiveTab : internalActiveTab;
   const setActiveTab = (tab: string) => {
+    setConversionError(null);
     if (onTabChange) {
       onTabChange(tab);
     } else {
@@ -41,6 +43,7 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
     if (!file) return;
 
     setIsConverting(true);
+    setConversionError(null);
     const formData = new FormData();
     formData.append("resume", file);
 
@@ -59,7 +62,7 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
       setResultContent(data.content);
     } catch (error: any) {
       console.error("Error converting resume:", error);
-      alert(error.message || "Failed to convert resume. Please try again with a different file.");
+      setConversionError(error.message || "Failed to convert resume. Please try again with a different file.");
     } finally {
       setIsConverting(false);
     }
@@ -515,12 +518,35 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
                       </div>
                       
                       <div className="space-y-1.5 text-center">
-                        <p className="text-lg sm:text-xl font-semibold text-foreground">
-                          Click to upload or drag and drop
-                        </p>
-                        <p className="text-muted-foreground text-sm">
-                          PDF, DOCX, or TXT (max. 10MB)
-                        </p>
+                        <AnimatePresence mode="wait">
+                          {conversionError ? (
+                            <motion.div
+                              key="error"
+                              initial={{ opacity: 0, y: 5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -5 }}
+                              className="px-4 py-2 rounded-lg bg-destructive/10 border border-destructive/20"
+                            >
+                              <p className="text-destructive text-sm font-medium">
+                                {conversionError}
+                              </p>
+                            </motion.div>
+                          ) : (
+                            <motion.div
+                              key="instructions"
+                              initial={{ opacity: 0, y: 5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -5 }}
+                            >
+                              <p className="text-lg sm:text-xl font-semibold text-foreground">
+                                Click to upload or drag and drop
+                              </p>
+                              <p className="text-muted-foreground text-sm">
+                                PDF, DOCX, or TXT (max. 10MB)
+                              </p>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
 
                       <div className="w-full max-w-xs mx-auto pt-2">
