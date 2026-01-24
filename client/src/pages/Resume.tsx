@@ -11,32 +11,41 @@ export default function Resume() {
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       <Navbar />
       
-      <main className="flex-1 flex flex-col items-center justify-center px-6 pt-32 sm:pt-40 pb-16 relative">
-        {/* Blue Sky Gradient Background */}
-        <div 
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{
-            background: 'linear-gradient(180deg, #7DD3FC 0%, #BAE6FD 25%, #E0F2FE 50%, #F0F9FF 75%, hsl(var(--background)) 100%)'
-          }}
-        />
-        
-        {/* Cloud decorations */}
-        <img 
-          src="/cloud.avif" 
-          alt="" 
-          className="absolute left-0 top-32 w-48 sm:w-64 opacity-90 pointer-events-none z-0"
-          style={{ transform: 'scaleX(-1)' }}
-        />
-        <img 
-          src="/cloud.avif" 
-          alt="" 
-          className="absolute right-0 top-48 w-56 sm:w-72 opacity-90 pointer-events-none z-0"
-        />
-        <img 
-          src="/cloud.avif" 
-          alt="" 
-          className="absolute left-10 bottom-32 w-40 sm:w-52 opacity-70 pointer-events-none z-0"
-        />
+      <main className="flex-1 flex flex-col items-center px-6 pt-32 sm:pt-40 pb-16 relative">
+        {/* Blue Sky Hero Section with contained gradient and clouds */}
+        <div className="absolute top-0 left-0 right-0 h-[500px] sm:h-[550px] overflow-hidden pointer-events-none">
+          {/* Blue Sky Gradient Background */}
+          <div 
+            className="absolute inset-0 z-0"
+            style={{
+              background: 'linear-gradient(180deg, #7DD3FC 0%, #BAE6FD 30%, #E0F2FE 60%, #F0F9FF 85%, hsl(var(--background)) 100%)'
+            }}
+          />
+          
+          {/* Cloud decorations - masked within the sky section */}
+          <img 
+            src="/cloud.avif" 
+            alt="" 
+            className="absolute left-0 top-20 w-48 sm:w-64 opacity-90 z-[1]"
+            style={{ transform: 'scaleX(-1)' }}
+          />
+          <img 
+            src="/cloud.avif" 
+            alt="" 
+            className="absolute right-0 top-28 w-56 sm:w-72 opacity-90 z-[1]"
+          />
+          <img 
+            src="/cloud.avif" 
+            alt="" 
+            className="absolute left-[10%] bottom-0 w-40 sm:w-52 opacity-80 z-[1]"
+          />
+          <img 
+            src="/cloud.avif" 
+            alt="" 
+            className="absolute right-[15%] bottom-10 w-36 sm:w-48 opacity-70 z-[1]"
+            style={{ transform: 'scaleX(-1)' }}
+          />
+        </div>
 
         <div className="max-w-5xl mx-auto w-full relative z-10 text-center">
           <motion.h1 
