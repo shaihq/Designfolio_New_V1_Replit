@@ -34,8 +34,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       let text = "";
       if (req.file.mimetype === "application/pdf") {
-        const data = await pdf(req.file.buffer);
-        text = data.text;
+        try {
+          const data = await pdf(req.file.buffer);
+          text = data.text;
+        } catch (pdfError) {
+          console.error("PDF Parsing Error:", pdfError);
+          // Fallback to buffer string if pdf-parse fails
+          text = req.file.buffer.toString("utf-8").replace(/[^\x20-\x7E\n]/g, "");
+        }
       } else {
         text = req.file.buffer.toString("utf-8");
       }
