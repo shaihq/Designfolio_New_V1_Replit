@@ -12,17 +12,30 @@ export default function Resume() {
       <Navbar />
       
       <main className="flex-1 flex flex-col items-center justify-center px-6 pt-32 sm:pt-40 pb-16 relative">
-        {/* Background Grid - matching HeroSection */}
+        {/* Blue Sky Gradient Background */}
         <div 
           className="absolute inset-0 z-0 pointer-events-none"
           style={{
-            backgroundImage: `
-              radial-gradient(ellipse 80% 60% at center, transparent 20%, hsl(var(--background)) 70%),
-              linear-gradient(to right, hsl(var(--foreground) / 0.05) 1px, transparent 1px),
-              linear-gradient(to bottom, hsl(var(--foreground) / 0.05) 1px, transparent 1px)
-            `,
-            backgroundSize: '100% 100%, 80px 80px, 80px 80px'
+            background: 'linear-gradient(180deg, #7DD3FC 0%, #BAE6FD 25%, #E0F2FE 50%, #F0F9FF 75%, hsl(var(--background)) 100%)'
           }}
+        />
+        
+        {/* Cloud decorations */}
+        <img 
+          src="/cloud.avif" 
+          alt="" 
+          className="absolute left-0 top-32 w-48 sm:w-64 opacity-90 pointer-events-none z-0"
+          style={{ transform: 'scaleX(-1)' }}
+        />
+        <img 
+          src="/cloud.avif" 
+          alt="" 
+          className="absolute right-0 top-48 w-56 sm:w-72 opacity-90 pointer-events-none z-0"
+        />
+        <img 
+          src="/cloud.avif" 
+          alt="" 
+          className="absolute left-10 bottom-32 w-40 sm:w-52 opacity-70 pointer-events-none z-0"
         />
 
         <div className="max-w-5xl mx-auto w-full relative z-10 text-center">
