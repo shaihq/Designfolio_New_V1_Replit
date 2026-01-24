@@ -6,15 +6,15 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
   apiKey: OPENROUTER_API_KEY,
   defaultHeaders: {
-    "HTTP-Referer": "https://replit.com", // Optional, for OpenRouter rankings
-    "X-Title": "Designfolio", // Optional, for OpenRouter rankings
+    "HTTP-Referer": "https://replit.com",
+    "X-Title": "Designfolio",
   }
 });
 
 export async function getAiCompletion(prompt: string) {
   try {
     const completion = await openai.chat.completions.create({
-      model: "google/gemini-2.0-flash-001", // Using a fast, reliable model by default
+      model: "google/gemma-3-27b-it:free",
       messages: [
         {
           role: "user",
