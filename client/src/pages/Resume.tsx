@@ -28,14 +28,32 @@ export default function Resume() {
 
         <div className="max-w-5xl mx-auto w-full relative z-10 text-center">
           <motion.h1 
-            className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-8 sm:mb-12 text-foreground max-w-4xl mx-auto" 
+            className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground max-w-3xl mx-auto" 
             data-testid="text-resume-headline"
             initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
             animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ 
+              duration: 0.6, 
+              delay: 0.1,
+              ease: [0.22, 1, 0.36, 1]
+            }}
           >
             Upload your resume to generate a beautiful personal site in seconds
           </motion.h1>
+          
+          <motion.p 
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" 
+            data-testid="text-resume-description"
+            initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ 
+              duration: 0.6, 
+              delay: 0.2,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+          >
+            Skip the busywork with Designfolio — publish in hours, not weeks.
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
