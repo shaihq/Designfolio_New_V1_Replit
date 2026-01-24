@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterBottom from "@/components/FooterBottom";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
@@ -60,43 +59,61 @@ export default function Resume() {
             animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Card 
-              className="max-w-2xl mx-auto p-12 sm:p-20 border-2 border-dashed border-border bg-white dark:bg-card/50 hover:border-primary/50 hover:bg-muted/5 transition-all duration-300 cursor-pointer group relative overflow-hidden rounded-3xl shadow-sm" 
+            <div 
+              className="max-w-xl mx-auto rounded-[1.25rem] sm:rounded-[1.5rem] p-[1px] relative z-10 bg-gradient-to-b from-border/60 via-border/30 to-border/60 shadow-lg group"
               data-testid="card-resume-upload"
             >
-              <div className="flex flex-col items-center gap-8">
-                <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                  <Upload className="w-10 h-10 text-primary" />
-                </div>
-                
-                <div className="space-y-3">
-                  <p className="text-xl sm:text-2xl font-semibold text-foreground">
-                    Click to upload or drag and drop
-                  </p>
-                  <p className="text-muted-foreground text-lg">
-                    PDF, DOCX, or TXT (max. 10MB)
-                  </p>
+              <div className="bg-white dark:bg-[#1a1a1a] rounded-[1.125rem] sm:rounded-[1.375rem] overflow-hidden">
+                {/* Mac Chrome Frame Header */}
+                <div className="bg-[#f6f6f6] dark:bg-[#252525] border-b border-border/50 px-4 py-2.5 flex items-center gap-2">
+                  <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56] border border-[#e0443e]"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] border border-[#dea123]"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f] border border-[#1aab29]"></div>
+                  </div>
+                  <div className="flex-1 flex justify-center">
+                    <div className="bg-white dark:bg-[#2a2a2a] rounded-md px-3 py-1 text-[10px] text-foreground/40 border border-border/40 min-w-[140px] text-center truncate">
+                      yourname.designfolio.me
+                    </div>
+                  </div>
+                  <div className="w-10"></div>
                 </div>
 
-                <div className="w-full max-w-xs mx-auto pt-4">
-                  <Input 
-                    type="file" 
-                    className="hidden" 
-                    id="resume-upload"
-                    accept=".pdf,.docx,.txt"
-                    data-testid="input-resume-file"
-                  />
-                  <Button 
-                    asChild
-                    className="w-full rounded-full h-14 sm:h-16 text-lg font-semibold bg-[#FF553E] hover:bg-[#E64935] text-white border-none transition-transform active:scale-95"
-                  >
-                    <label htmlFor="resume-upload" className="cursor-pointer">
-                      Select Resume
-                    </label>
-                  </Button>
+                {/* Upload Content */}
+                <div className="p-8 sm:p-10 flex flex-col items-center gap-5">
+                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <Upload className="w-7 h-7 text-primary" />
+                  </div>
+                  
+                  <div className="space-y-1.5 text-center">
+                    <p className="text-lg sm:text-xl font-semibold text-foreground">
+                      Click to upload or drag and drop
+                    </p>
+                    <p className="text-muted-foreground text-sm">
+                      PDF, DOCX, or TXT (max. 10MB)
+                    </p>
+                  </div>
+
+                  <div className="w-full max-w-xs mx-auto pt-2">
+                    <Input 
+                      type="file" 
+                      className="hidden" 
+                      id="resume-upload"
+                      accept=".pdf,.docx,.txt"
+                      data-testid="input-resume-file"
+                    />
+                    <Button 
+                      asChild
+                      className="w-full rounded-full h-12 text-base font-semibold bg-[#FF553E] hover:bg-[#E64935] text-white border-none transition-transform active:scale-[0.98]"
+                    >
+                      <label htmlFor="resume-upload" className="cursor-pointer">
+                        Select Resume
+                      </label>
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </Card>
+            </div>
           </motion.div>
 
           <motion.p 
