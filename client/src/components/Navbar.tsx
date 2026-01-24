@@ -30,7 +30,7 @@ export default function Navbar() {
       isVisible ? 'translate-y-0' : '-translate-y-24'
     }`}>
       <nav 
-        className="max-w-[1200px] w-full mx-auto border border-border bg-background/80 backdrop-blur-md rounded-full"
+        className="max-w-[768px] w-full mx-auto border border-border bg-background/80 backdrop-blur-md rounded-full"
         style={{
           boxShadow: '0 0 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(23, 24, 26, 0.03), 0 8px 16px rgba(23, 24, 26, 0.04)'
         }}
