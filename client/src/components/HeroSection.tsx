@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform, useSpring, useMotionTemplate } from "f
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Typewriter } from "@/components/ui/typewriter";
 import { Sun } from "lucide-react";
-import { AnimatedGrid } from "@/components/ui/animated-grid";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -238,7 +237,19 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-8 sm:py-12 md:py-16 px-6">
-      <AnimatedGrid />
+      <div 
+        className="absolute left-0 right-0 z-0"
+        style={{
+          top: '40%',
+          bottom: '-120%',
+          backgroundImage: `
+            radial-gradient(ellipse 80% 60% at center, transparent 20%, hsl(var(--background)) 70%),
+            linear-gradient(to right, hsl(var(--foreground) / 0.08) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--foreground) / 0.08) 1px, transparent 1px)
+          `,
+          backgroundSize: 'cover, 80px 80px, 80px 80px'
+        }}
+      />
       
       <motion.div 
         ref={leftCardRef}
