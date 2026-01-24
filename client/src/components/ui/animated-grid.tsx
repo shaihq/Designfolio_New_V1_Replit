@@ -68,9 +68,9 @@ export function AnimatedGrid() {
           p.opacity -= 0.008;
           if (p.opacity <= 0) reset(p);
         }
-        // Use current foreground color with low opacity for the particles
-        ctx.fillStyle = `rgba(100, 100, 100, ${p.opacity * 0.2})`;
-        ctx.fillRect(p.x, p.y, 0.6, Math.random() * 2 + 1);
+        // Increased particle visibility and size
+        ctx.fillStyle = `rgba(150, 150, 150, ${p.opacity * 0.4})`;
+        ctx.fillRect(p.x, p.y, 1.2, Math.random() * 3 + 1);
       });
       raf = requestAnimationFrame(draw);
     };
@@ -92,16 +92,16 @@ export function AnimatedGrid() {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-      <canvas ref={canvasRef} className="w-full h-full mix-blend-screen opacity-40" />
+      <canvas ref={canvasRef} className="w-full h-full mix-blend-screen opacity-60" />
       
       {/* Accent Lines */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="hline absolute h-[1px] left-0 right-0 bg-border/40 top-[20%] animate-draw-x" />
-        <div className="hline absolute h-[1px] left-0 right-0 bg-border/40 top-[50%] animate-draw-x delay-200" />
-        <div className="hline absolute h-[1px] left-0 right-0 bg-border/40 top-[80%] animate-draw-x delay-400" />
-        <div className="vline absolute w-[1px] top-0 bottom-0 bg-border/40 left-[20%] animate-draw-y delay-500" />
-        <div className="vline absolute w-[1px] top-0 bottom-0 bg-border/40 left-[50%] animate-draw-y delay-700" />
-        <div className="vline absolute w-[1px] top-0 bottom-0 bg-border/40 left-[80%] animate-draw-y delay-900" />
+      <div className="absolute inset-0 opacity-40">
+        <div className="hline absolute h-[1.5px] left-0 right-0 bg-foreground/10 top-[20%] animate-draw-x" />
+        <div className="hline absolute h-[1.5px] left-0 right-0 bg-foreground/10 top-[50%] animate-draw-x delay-200" />
+        <div className="hline absolute h-[1.5px] left-0 right-0 bg-foreground/10 top-[80%] animate-draw-x delay-400" />
+        <div className="vline absolute w-[1.5px] top-0 bottom-0 bg-foreground/10 left-[20%] animate-draw-y delay-500" />
+        <div className="vline absolute w-[1.5px] top-0 bottom-0 bg-foreground/10 left-[50%] animate-draw-y delay-700" />
+        <div className="vline absolute w-[1.5px] top-0 bottom-0 bg-foreground/10 left-[80%] animate-draw-y delay-900" />
       </div>
 
       <style>{`
