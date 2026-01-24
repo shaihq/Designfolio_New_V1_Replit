@@ -16,18 +16,16 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-700 ${
-      isScrolled ? 'px-4 pt-4' : 'px-0 pt-3'
-    }`}>
+    <div className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-700 pt-3 px-4`}>
       <nav 
-        className={`w-full mx-auto transition-all duration-700 ease-in-out ${
+        className={`w-full mx-auto transition-all duration-700 ease-in-out border border-border backdrop-blur-md rounded-full shadow-sm max-w-[640px] ${
           isScrolled 
-            ? 'max-w-[640px] border border-border backdrop-blur-md rounded-full shadow-sm' 
-            : 'max-w-full bg-transparent border-transparent'
+            ? 'bg-white/80 dark:bg-[#1a1a1a]/80' 
+            : 'bg-transparent border-transparent shadow-none'
         }`}
         style={isScrolled ? { background: 'linear-gradient(180deg, #fff6 10%, #fffc)' } : undefined}
       >
-        <div className={`transition-all duration-700 ease-in-out ${isScrolled ? 'px-4 sm:px-6' : 'px-4 sm:px-8 lg:px-16'}`}>
+        <div className={`transition-all duration-700 ease-in-out px-4 sm:px-6`}>
           <div className="flex items-center justify-between h-14 sm:h-16">
             <Link href="/" data-testid="logo-icon">
               <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-5 sm:h-7 w-auto cursor-pointer">
