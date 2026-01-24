@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useMotionTemplate } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useMotionTemplate, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Typewriter } from "@/components/ui/typewriter";
-import { Sun } from "lucide-react";
+import { Sun, Upload } from "lucide-react";
 
 import { TextEffect } from "@/components/ui/text-effect";
 
@@ -18,6 +18,8 @@ export default function HeroSection() {
   const lastWidthRef = useRef<number>(0);
   
   const [activeTab, setActiveTab] = useState("Claim Domain");
+  const isResumeMode = activeTab === "Convert Resume";
+
   const [leftCardOffset, setLeftCardOffset] = useState({ x: 0, y: 0 });
   const [rightCardOffset, setRightCardOffset] = useState({ x: 0, y: 0 });
   const [leftInitialScale, setLeftInitialScale] = useState(1);
@@ -174,6 +176,12 @@ export default function HeroSection() {
 
   const { scrollY } = useScroll();
 
+  // Cloud parallax transforms
+  const cloud1Y = useTransform(scrollY, [0, 500], [0, 120]);
+  const cloud2Y = useTransform(scrollY, [0, 500], [0, -40]);
+  const cloud3Y = useTransform(scrollY, [0, 500], [0, 160]);
+  const cloud4Y = useTransform(scrollY, [0, 500], [0, 60]);
+
   // Spring configuration - more responsive on mobile for better performance
   const springConfig = isMobile 
     ? { stiffness: 200, damping: 30, mass: 0.5 }
@@ -242,103 +250,156 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative overflow-visible py-8 sm:py-12 md:py-16 px-6">
-      <div 
-        className="absolute left-0 right-0 z-0"
-        style={{
-          top: '40%',
-          bottom: '-120%',
-          backgroundImage: `
-            radial-gradient(ellipse 80% 60% at center, transparent 20%, hsl(var(--background)) 70%),
-            linear-gradient(to right, hsl(var(--foreground) / 0.08) 1px, transparent 1px),
-            linear-gradient(to bottom, hsl(var(--foreground) / 0.08) 1px, transparent 1px)
-          `,
-          backgroundSize: 'cover, 80px 80px, 80px 80px'
-        }}
-      />
+      {/* Dynamic Background */}
+      <AnimatePresence mode="wait">
+        {isResumeMode ? (
+          <motion.div 
+            key="sky-bg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute top-0 left-0 right-0 h-[600px] sm:h-[700px] pointer-events-none z-0"
+          >
+            <div 
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(180deg, #7DD3FC 0%, #BAE6FD 20%, #E0F2FE 45%, #F0F9FF 70%, hsl(var(--background)) 100%)'
+              }}
+            />
+            <motion.img 
+              src="/cloud.avif" 
+              alt="" 
+              className="absolute left-0 top-20 w-48 sm:w-64 opacity-90 z-[1]"
+              style={{ transform: 'scaleX(-1)', y: cloud1Y }}
+            />
+            <motion.img 
+              src="/cloud.avif" 
+              alt="" 
+              className="absolute right-0 top-28 w-56 sm:w-72 opacity-90 z-[1]"
+              style={{ y: cloud2Y }}
+            />
+            <motion.img 
+              src="/cloud.avif" 
+              alt="" 
+              className="absolute left-[10%] bottom-0 w-40 sm:w-52 opacity-80 z-[1]"
+              style={{ y: cloud3Y }}
+            />
+            <motion.img 
+              src="/cloud.avif" 
+              alt="" 
+              className="absolute right-[15%] bottom-10 w-36 sm:w-48 opacity-70 z-[1]"
+              style={{ transform: 'scaleX(-1)', y: cloud4Y }}
+            />
+          </motion.div>
+        ) : (
+          <motion.div 
+            key="grid-bg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute left-0 right-0 z-0"
+            style={{
+              top: '40%',
+              bottom: '-120%',
+              backgroundImage: `
+                radial-gradient(ellipse 80% 60% at center, transparent 20%, hsl(var(--background)) 70%),
+                linear-gradient(to right, hsl(var(--foreground) / 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, hsl(var(--foreground) / 0.08) 1px, transparent 1px)
+              `,
+              backgroundSize: 'cover, 80px 80px, 80px 80px'
+            }}
+          />
+        )}
+      </AnimatePresence>
       
-      <motion.div 
-        ref={leftCardRef}
-        className="absolute -left-40 -top-12 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 z-[31] will-change-transform"
-        style={{
-          width: leftCardWidth ? `${leftCardWidth}px` : undefined,
-          y: leftCardTranslateY,
-          x: leftCardTranslateX,
-          z: 0,
-          rotate: leftCardRotate,
-          scale: leftScale,
-          transformOrigin: "center",
-          backfaceVisibility: "hidden",
-          WebkitBackfaceVisibility: "hidden",
-          transformStyle: "preserve-3d",
-          WebkitFontSmoothing: "antialiased",
-        }}
-      >
-        <motion.div 
-          className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden flex flex-col" 
-          style={{
-            boxShadow: cardBoxShadow
-          }}
-          data-testid="card-project-left"
-        >
-          <div className="aspect-video relative overflow-hidden">
-            <img 
-              src="/casestudyux1.svg" 
-              alt="Fitness app redesign case study" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="p-4 md:p-5 flex-1 flex flex-col">
-            <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-project-left-title">
-              Redesigning fitness app experience for 4M users.
-            </h3>
-            <p className="text-xs md:text-sm text-foreground/50" data-testid="text-project-left-category">
-              AI Fitness Tracker
-            </p>
-          </div>
-        </motion.div>
-      </motion.div>
+      {/* Portfolio Mockup Cards - Only show in Domain mode */}
+      {!isResumeMode && (
+        <>
+          <motion.div 
+            ref={leftCardRef}
+            className="absolute -left-40 -top-12 lg:-left-8 xl:left-4 2xl:left-16 lg:top-20 xl:top-28 z-[31] will-change-transform"
+            style={{
+              width: leftCardWidth ? `${leftCardWidth}px` : undefined,
+              y: leftCardTranslateY,
+              x: leftCardTranslateX,
+              z: 0,
+              rotate: leftCardRotate,
+              scale: leftScale,
+              transformOrigin: "center",
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+              transformStyle: "preserve-3d",
+              WebkitFontSmoothing: "antialiased",
+            }}
+          >
+            <motion.div 
+              className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden flex flex-col" 
+              style={{
+                boxShadow: cardBoxShadow
+              }}
+              data-testid="card-project-left"
+            >
+              <div className="aspect-video relative overflow-hidden">
+                <img 
+                  src="/casestudyux1.svg" 
+                  alt="Fitness app redesign case study" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-4 md:p-5 flex-1 flex flex-col">
+                <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-project-left-title">
+                  Redesigning fitness app experience for 4M users.
+                </h3>
+                <p className="text-xs md:text-sm text-foreground/50" data-testid="text-project-left-category">
+                  AI Fitness Tracker
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
 
-      <motion.div 
-        ref={rightCardRef}
-        className="absolute -right-32 -bottom-20 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto z-[29] will-change-transform"
-        style={{
-          width: rightCardWidth ? `${rightCardWidth}px` : undefined,
-          y: rightCardTranslateY,
-          x: rightCardTranslateX,
-          z: 0,
-          rotate: rightCardRotate,
-          scale: rightScale,
-          transformOrigin: "center",
-          backfaceVisibility: "hidden",
-          WebkitBackfaceVisibility: "hidden",
-          transformStyle: "preserve-3d",
-          WebkitFontSmoothing: "antialiased",
-        }}
-      >
-        <motion.div 
-          className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden flex flex-col" 
-          style={{
-            boxShadow: cardBoxShadow
-          }}
-          data-testid="card-project-right"
-        >
-          <div className="aspect-video relative overflow-hidden">
-            <img 
-              src="/casestudyux2.svg" 
-              alt="Blockchain crypto app case study" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="p-4 md:p-5 flex-1 flex flex-col">
-            <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-project-right-title">
-              Built a blockchain crypto app using Next.js
-            </h3>
-            <p className="text-xs md:text-sm text-foreground/50" data-testid="text-project-right-category">
-              Launched on Product Hunt
-            </p>
-          </div>
-        </motion.div>
-      </motion.div>
+          <motion.div 
+            ref={rightCardRef}
+            className="absolute -right-32 -bottom-20 lg:-right-8 xl:right-4 2xl:right-16 lg:top-32 xl:top-40 lg:bottom-auto z-[29] will-change-transform"
+            style={{
+              width: rightCardWidth ? `${rightCardWidth}px` : undefined,
+              y: rightCardTranslateY,
+              x: rightCardTranslateX,
+              z: 0,
+              rotate: rightCardRotate,
+              scale: rightScale,
+              transformOrigin: "center",
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+              transformStyle: "preserve-3d",
+              WebkitFontSmoothing: "antialiased",
+            }}
+          >
+            <motion.div 
+              className="bg-white dark:bg-card rounded-lg md:rounded-xl lg:rounded-2xl border border-border overflow-hidden flex flex-col" 
+              style={{
+                boxShadow: cardBoxShadow
+              }}
+              data-testid="card-project-right"
+            >
+              <div className="aspect-video relative overflow-hidden">
+                <img 
+                  src="/casestudyux2.svg" 
+                  alt="Blockchain crypto app case study" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-4 md:p-5 flex-1 flex flex-col">
+                <h3 className="font-heading text-base md:text-lg lg:text-xl font-semibold text-foreground mb-1 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]" data-testid="text-project-right-title">
+                  Built a blockchain crypto app using Next.js
+                </h3>
+                <p className="text-xs md:text-sm text-foreground/50" data-testid="text-project-right-category">
+                  Launched on Product Hunt
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </>
+      )}
 
       <div className="max-w-5xl mx-auto relative z-50">
         <div className="max-w-3xl mx-auto text-center px-4 sm:px-6 md:px-12 lg:px-0">
@@ -355,122 +416,214 @@ export default function HeroSection() {
             />
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center justify-center gap-2 mb-4"
-          >
-            <Sun className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-            <p className="text-xs sm:text-sm font-medium text-foreground/60 uppercase tracking-wider">
-              Built for{" "}
-              <Typewriter
-                text={["Product Designers", "Product Managers", "DEVs"]}
-                speed={40}
-                className="text-foreground font-semibold"
-                waitTime={1000}
-                deleteSpeed={25}
-                loop={true}
-                cursorChar={"_"}
-              />
-            </p>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            {isResumeMode ? (
+              <motion.div
+                key="resume-content"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4 }}
+              >
+                <motion.h1 
+                  className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground max-w-3xl mx-auto" 
+                  data-testid="text-resume-headline"
+                >
+                  Turn your resume into a personal website
+                </motion.h1>
+                
+                <motion.p 
+                  className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" 
+                  data-testid="text-resume-description"
+                >
+                  Skip the busywork with Designfolio — publish in hours, not weeks.
+                </motion.p>
 
-          <TextEffect 
-            as="h1"
-            preset="blur"
-            per="word"
-            className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground" 
-            data-testid="text-hero-headline"
-            delay={0.1}
-          >
-            Building a portfolio was never meant to be hard.
-          </TextEffect>
-          
-          <motion.p 
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" 
-            data-testid="text-hero-description"
-            initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
-            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-            transition={{ 
-              duration: 0.6, 
-              delay: 0.2,
-              ease: [0.22, 1, 0.36, 1]
-            }}
-          >
-            Skip the busywork with Designfolio — publish in hours, not weeks.
-          </motion.p>
+                <div 
+                  className="max-w-xl mx-auto rounded-[1.25rem] sm:rounded-[1.5rem] p-[1px] relative z-10 bg-gradient-to-b from-border/60 via-border/30 to-border/60 shadow-lg group"
+                  data-testid="card-resume-upload"
+                >
+                  <div className="bg-white dark:bg-[#1a1a1a] rounded-[1.125rem] sm:rounded-[1.375rem] overflow-hidden">
+                    <div className="bg-[#f6f6f6] dark:bg-[#252525] border-b border-border/50 px-4 py-2.5 flex items-center gap-2">
+                      <div className="flex gap-1.5">
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56] border border-[#e0443e]"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] border border-[#dea123]"></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f] border border-[#1aab29]"></div>
+                      </div>
+                      <div className="flex-1 flex justify-center">
+                        <div className="bg-white dark:bg-[#2a2a2a] rounded-md px-3 py-1 text-[10px] text-foreground/40 border border-border/40 min-w-[140px] text-center truncate">
+                          yourname.designfolio.me
+                        </div>
+                      </div>
+                      <div className="w-10"></div>
+                    </div>
 
-          <motion.div 
-            className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto"
-            initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
-            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-            transition={{ 
-              duration: 0.6, 
-              delay: 0.35,
-              ease: [0.22, 1, 0.36, 1]
-            }}
-          >
-            <div className="relative w-full sm:flex-1">
-              <div className={`flex items-center bg-white dark:bg-white border-2 rounded-full w-full transition-all duration-300 ease-out cursor-text overflow-hidden ${
-                error 
-                  ? 'border-red-500 shadow-[0_0_0_4px_rgba(239,68,68,0.12)]' 
-                  : 'border-border hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)]'
-              }`}>
-                <div className="relative flex-1 h-14 sm:h-16">
-                  <Input 
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) => {
-                      setInputValue(e.target.value);
-                      if (error) setError("");
-                    }}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
-                    placeholder={isFocused && !inputValue ? "username" : ""}
-                    className="border-0 bg-transparent h-full w-full px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60 relative z-10"
-                    data-testid="input-name"
-                  />
-                {!inputValue && !isFocused && (
-                  <motion.span
-                    key={currentNameIndex}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute left-5 sm:left-6 top-0 h-full flex items-center pointer-events-none text-lg text-foreground"
-                  >
-                    {names[currentNameIndex]}
-                  </motion.span>
-                )}
+                    <div className="p-8 sm:p-10 flex flex-col items-center gap-5">
+                      <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                        <Upload className="w-7 h-7 text-primary" />
+                      </div>
+                      
+                      <div className="space-y-1.5 text-center">
+                        <p className="text-lg sm:text-xl font-semibold text-foreground">
+                          Click to upload or drag and drop
+                        </p>
+                        <p className="text-muted-foreground text-sm">
+                          PDF, DOCX, or TXT (max. 10MB)
+                        </p>
+                      </div>
+
+                      <div className="w-full max-w-xs mx-auto pt-2">
+                        <Input 
+                          type="file" 
+                          className="hidden" 
+                          id="resume-upload"
+                          accept=".pdf,.docx,.txt"
+                          data-testid="input-resume-file"
+                        />
+                        <Button 
+                          asChild
+                          className="w-full rounded-full h-12 text-base font-semibold bg-[#FF553E] hover:bg-[#E64935] text-white border-none transition-transform active:scale-[0.98]"
+                        >
+                          <label htmlFor="resume-upload" className="cursor-pointer">
+                            Select Resume
+                          </label>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <span className="text-base sm:text-lg text-muted-foreground/60 pr-5 sm:pr-6 whitespace-nowrap">
-                  .designfolio.me
-                </span>
-              </div>
-              {error && (
-                <p className="text-sm text-red-500 mt-2 ml-5" data-testid="error-username">
-                  {error}
+
+                <p className="text-muted-foreground text-base mt-8">
+                  By uploading, you agree to our <a href="/terms-conditions" className="underline hover:text-foreground transition-colors">Terms of Service</a>
                 </p>
-              )}
-            </div>
-            <Button 
-              onClick={() => {
-                if (!inputValue.trim()) {
-                  setError("Username is required");
-                  return;
-                }
-                console.log("Username submitted:", inputValue);
-              }}
-              className="text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors w-full sm:w-auto whitespace-nowrap"
-              style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF553E'}
-              data-testid="button-start-building"
-            >
-              Get started for free
-            </Button>
-          </motion.div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="domain-content"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4 }}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="flex items-center justify-center gap-2 mb-4"
+                >
+                  <Sun className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                  <p className="text-xs sm:text-sm font-medium text-foreground/60 uppercase tracking-wider">
+                    Built for{" "}
+                    <Typewriter
+                      text={["Product Designers", "Product Managers", "DEVs"]}
+                      speed={40}
+                      className="text-foreground font-semibold"
+                      waitTime={1000}
+                      deleteSpeed={25}
+                      loop={true}
+                      cursorChar={"_"}
+                    />
+                  </p>
+                </motion.div>
+
+                <TextEffect 
+                  as="h1"
+                  preset="blur"
+                  per="word"
+                  className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground" 
+                  data-testid="text-hero-headline"
+                  delay={0.1}
+                >
+                  Building a portfolio was never meant to be hard.
+                </TextEffect>
+                
+                <motion.p 
+                  className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" 
+                  data-testid="text-hero-description"
+                  initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
+                  animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.2,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                >
+                  Skip the busywork with Designfolio — publish in hours, not weeks.
+                </motion.p>
+
+                <motion.div 
+                  className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto"
+                  initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
+                  animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.35,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                >
+                  <div className="relative w-full sm:flex-1">
+                    <div className={`flex items-center bg-white dark:bg-white border-2 rounded-full w-full transition-all duration-300 ease-out cursor-text overflow-hidden ${
+                      error 
+                        ? 'border-red-500 shadow-[0_0_0_4px_rgba(239,68,68,0.12)]' 
+                        : 'border-border hover:border-foreground/20 focus-within:border-foreground/30 focus-within:shadow-[0_0_0_4px_hsl(var(--foreground)/0.12)]'
+                    }`}>
+                      <div className="relative flex-1 h-14 sm:h-16">
+                        <Input 
+                          type="text"
+                          value={inputValue}
+                          onChange={(e) => {
+                            setInputValue(e.target.value);
+                            if (error) setError("");
+                          }}
+                          onFocus={() => setIsFocused(true)}
+                          onBlur={() => setIsFocused(false)}
+                          placeholder={isFocused && !inputValue ? "username" : ""}
+                          className="border-0 bg-transparent h-full w-full px-5 sm:px-6 focus-visible:ring-0 focus-visible:ring-offset-0 !text-lg text-foreground placeholder:!text-lg placeholder:text-muted-foreground/60 relative z-10"
+                          data-testid="input-name"
+                        />
+                      {!inputValue && !isFocused && (
+                        <motion.span
+                          key={currentNameIndex}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3 }}
+                          className="absolute left-5 sm:left-6 top-0 h-full flex items-center pointer-events-none text-lg text-foreground"
+                        >
+                          {names[currentNameIndex]}
+                        </motion.span>
+                      )}
+                      </div>
+                      <span className="text-base sm:text-lg text-muted-foreground/60 pr-5 sm:pr-6 whitespace-nowrap">
+                        .designfolio.me
+                      </span>
+                    </div>
+                    {error && (
+                      <p className="text-sm text-red-500 mt-2 ml-5" data-testid="error-username">
+                        {error}
+                      </p>
+                    )}
+                  </div>
+                  <Button 
+                    onClick={() => {
+                      if (!inputValue.trim()) {
+                        setError("Username is required");
+                        return;
+                      }
+                      console.log("Username submitted:", inputValue);
+                    }}
+                    className="text-white rounded-full h-14 sm:h-16 px-8 sm:px-10 text-base sm:text-lg font-semibold no-default-hover-elevate no-default-active-elevate transition-colors w-full sm:w-auto whitespace-nowrap"
+                    style={{ backgroundColor: '#FF553E', borderColor: '#FF553E' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E64935'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF553E'}
+                    data-testid="button-start-building"
+                  >
+                    Get started for free
+                  </Button>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>
