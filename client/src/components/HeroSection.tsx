@@ -348,10 +348,10 @@ export default function HeroSection() {
               Built for{" "}
               <Typewriter
                 text={["Product Designers", "Product Managers", "DEVs"]}
-                speed={55}
+                speed={80}
                 className="text-foreground font-semibold"
-                waitTime={1200}
-                deleteSpeed={35}
+                waitTime={2000}
+                deleteSpeed={50}
                 cursorChar={"_"}
               />
             </p>
