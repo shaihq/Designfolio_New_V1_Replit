@@ -3,43 +3,30 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 
 export default function Navbar() {
-  const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      setIsScrolled(currentScrollY > 50);
-      
-      if (currentScrollY < 10) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      
-      setLastScrollY(currentScrollY);
+      setIsScrolled(currentScrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   return (
-    <div className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
-      isVisible ? 'translate-y-0' : '-translate-y-24'
-    } ${isScrolled ? 'px-4 pt-4' : 'px-0 pt-0'}`}>
+    <div className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-700 ${
+      isScrolled ? 'px-4 pt-4' : 'px-0 pt-0'
+    }`}>
       <nav 
-        className={`w-full mx-auto transition-all duration-300 ${
+        className={`w-full mx-auto transition-all duration-700 ease-in-out ${
           isScrolled 
-            ? 'max-w-[640px] border border-border bg-background/80 backdrop-blur-md rounded-full' 
+            ? 'max-w-[640px] border border-border bg-background/80 backdrop-blur-md rounded-full shadow-sm' 
             : 'max-w-full bg-transparent border-transparent'
         }`}
       >
-        <div className={`transition-all duration-300 ${isScrolled ? 'px-4 sm:px-6' : 'px-4 sm:px-8 lg:px-16'}`}>
+        <div className={`transition-all duration-700 ease-in-out ${isScrolled ? 'px-4 sm:px-6' : 'px-4 sm:px-8 lg:px-16'}`}>
           <div className="flex items-center justify-between h-14 sm:h-16">
             <Link href="/" data-testid="logo-icon">
               <svg width="166" height="33" viewBox="0 0 166 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-5 sm:h-7 w-auto cursor-pointer">
