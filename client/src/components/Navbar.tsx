@@ -30,7 +30,7 @@ export default function Navbar() {
       isVisible ? 'translate-y-0' : '-translate-y-24'
     }`}>
       <nav 
-        className="max-w-[640px] w-full mx-auto border border-border bg-background/80 backdrop-blur-md rounded-xl"
+        className="max-w-[640px] w-full mx-auto border border-border bg-background/80 backdrop-blur-md rounded-full"
       >
         <div className="px-4 sm:px-6">
           <div className="flex items-center justify-between h-14 sm:h-16">
