@@ -35,13 +35,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let text = "";
       if (req.file.mimetype === "application/pdf") {
         try {
-          // Robust PDF parser initialization
-          const parsePdf = pdf.default || pdf;
-          if (typeof parsePdf !== "function") {
-            throw new Error(`PDF parser initialization failed: received ${typeof parsePdf}`);
-          }
-          
-          const data = await parsePdf(req.file.buffer);
+          const data = await pdf(req.file.buffer);
           text = data.text;
           
           // Validate that we actually got meaningful text
