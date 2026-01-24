@@ -5,10 +5,10 @@ export default function EmailMockup() {
     <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto">
         <div 
-          className="rounded-[1.25rem] sm:rounded-[1.75rem] p-[2px] relative z-10 bg-border"
+          className="rounded-[1.25rem] sm:rounded-[1.75rem] p-[2px] relative z-10 bg-gradient-to-b from-border/80 via-border/40 to-border/80 shadow-2xl"
           data-testid="container-portfolio-gradient"
         >
-          <BorderBeam size={300} duration={12} delay={9} borderWidth={3} />
+          <BorderBeam size={400} duration={8} delay={9} borderWidth={4} colorFrom="#FF553E" colorTo="#FF8C7E" />
           <div 
             className="bg-white rounded-[1.125rem] sm:rounded-[1.625rem] overflow-hidden flex flex-col"
             data-testid="container-portfolio-mockup"
