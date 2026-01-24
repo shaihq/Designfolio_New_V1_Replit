@@ -12,7 +12,7 @@ import ScrollingBanner from "@/components/ScrollingBanner";
 import { CourseCard } from "@/components/CourseCard";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("Home");
+  const [activeTab, setActiveTab] = useState("Claim Domain");
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
