@@ -23,11 +23,11 @@ export default function Resume() {
       <main className="flex-1 flex flex-col items-center px-6 pt-32 sm:pt-40 pb-16 relative">
         {/* Blue Sky Hero Section with contained gradient and clouds */}
         <div className="absolute top-0 left-0 right-0 h-[500px] sm:h-[550px] overflow-hidden pointer-events-none">
-          {/* Blue Sky Gradient Background */}
+          {/* Orange Sky Gradient Background */}
           <div 
             className="absolute inset-0 z-0"
             style={{
-              background: 'linear-gradient(180deg, #7DD3FC 0%, #BAE6FD 30%, #E0F2FE 60%, #F0F9FF 85%, hsl(var(--background)) 100%)'
+              background: 'linear-gradient(180deg, #FDBA74 0%, #FED7AA 30%, #FFEDD5 60%, #FFF7ED 85%, hsl(var(--background)) 100%)'
             }}
           />
           
