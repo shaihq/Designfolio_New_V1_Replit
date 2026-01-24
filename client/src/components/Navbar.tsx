@@ -29,7 +29,12 @@ export default function Navbar() {
     <div className={`fixed top-4 left-0 right-0 z-[9999] px-4 transition-transform duration-300 ${
       isVisible ? 'translate-y-0' : '-translate-y-24'
     }`}>
-      <nav className="max-w-5xl mx-auto border border-border bg-background/80 backdrop-blur-md rounded-full shadow-lg">
+      <nav 
+        className="max-w-5xl mx-auto border border-border bg-background/80 backdrop-blur-md rounded-full"
+        style={{
+          boxShadow: '0 0 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(23, 24, 26, 0.03), 0 8px 16px rgba(23, 24, 26, 0.04)'
+        }}
+      >
         <div className="px-4 sm:px-6">
           <div className="flex items-center justify-between h-14 sm:h-16">
             <Link href="/" data-testid="logo-icon">
