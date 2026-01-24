@@ -4,11 +4,9 @@ import { storage } from "./storage";
 import { randomBytes } from "crypto";
 import { z } from "zod";
 import multer from "multer";
-import { createRequire } from "module";
 import { getAiCompletion } from "./ai";
 
-const require = createRequire(import.meta.url);
-const pdf = require("pdf-parse");
+const pdfParse = require("pdf-parse");
 
 interface MulterRequest extends Request {
   file?: Express.Multer.File;
@@ -25,6 +23,8 @@ const resetPasswordSchema = z.object({
   newPassword: z.string().min(6),
 });
 
+import { PDFDocument } from "pdf-lib";
+
 export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/convert-resume", upload.single("resume"), async (req: MulterRequest, res) => {
     try {
@@ -35,26 +35,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let text = "";
       if (req.file.mimetype === "application/pdf") {
         try {
-          // pdf-parse doesn't export a default in all versions/environments when using require in ESM
-          const parsePdf = typeof pdf === 'function' ? pdf : (pdf.default || pdf);
-          if (typeof parsePdf !== "function") {
-            throw new Error("PDF parser not found");
-          }
-          const data = await parsePdf(req.file.buffer);
+          const pdfDoc = await PDFDocument.load(req.file.buffer);
+          const pages = pdfDoc.getPages();
+          let extractedText = "";
+
+          // pdf-lib is great for manipulation but basic for text extraction
+          // However, for this SaaS, we want a robust way to get content
+          // Let's try to get text from form fields if any, otherwise we'll fall back to a more direct extraction if possible
+          // For now, let's use pdf-parse as a fallback or better yet, use a more standard approach
+          
+          // Re-attempting with a more standard import for pdf-parse which is usually more reliable for text
+          const pdfParse = require("pdf-parse");
+          const data = await pdfParse(req.file.buffer);
           text = data.text;
           
-          // Validate that we actually got meaningful text
           if (!text || text.trim().length < 50) {
-            throw new Error("Could not extract sufficient text from PDF. It might be an image-only PDF or protected.");
+            throw new Error("Could not extract sufficient text from PDF.");
           }
         } catch (pdfError: any) {
           console.error("PDF Parsing Error:", pdfError);
-          // If it's a validation error we threw, use that message
-          const errorMessage = pdfError.message?.includes("sufficient text") 
-            ? "We couldn't read your resume text. Please ensure it's not a scanned image and try a different PDF or a TXT file."
-            : `Technical error parsing PDF: ${pdfError.message || 'Unknown error'}. Please try a different file.`;
-          
-          return res.status(400).json({ message: errorMessage });
+          return res.status(400).json({ 
+            message: "We couldn't read your resume text. Please ensure it's not a scanned image and try a different PDF or a TXT file." 
+          });
         }
       } else {
         text = req.file.buffer.toString("utf-8");
