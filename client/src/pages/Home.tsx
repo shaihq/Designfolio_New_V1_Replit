@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import EmailMockup from "@/components/EmailMockup";
@@ -11,6 +12,8 @@ import ScrollingBanner from "@/components/ScrollingBanner";
 import { CourseCard } from "@/components/CourseCard";
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("Home");
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
