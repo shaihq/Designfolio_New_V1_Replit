@@ -10,6 +10,7 @@ import { TextEffect } from "@/components/ui/text-effect";
 
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { ResultPopup } from "./ResultPopup";
+import { cn } from "@/lib/utils";
 
 interface HeroSectionProps {
   activeTab?: string;
@@ -27,6 +28,7 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
   const [isConverting, setIsConverting] = useState(false);
   const [resultContent, setResultContent] = useState<string | null>(null);
   const [conversionError, setConversionError] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   const activeTab = propActiveTab !== undefined ? propActiveTab : internalActiveTab;
   const setActiveTab = (tab: string) => {
@@ -38,10 +40,7 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
     }
   };
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
+  const processFile = async (file: File) => {
     setIsConverting(true);
     setConversionError(null);
     const formData = new FormData();
@@ -65,6 +64,42 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
       setConversionError(error.message || "Failed to convert resume. Please try again with a different file.");
     } finally {
       setIsConverting(false);
+    }
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) processFile(file);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!isConverting) setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    if (isConverting) return;
+
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      const validTypes = [".pdf", ".docx", ".txt"];
+      const fileExt = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
+      if (validTypes.includes(fileExt) || file.type === "application/pdf" || file.type === "text/plain") {
+        processFile(file);
+      } else {
+        setConversionError("Invalid file type. Please upload a PDF, DOCX, or TXT file.");
+      }
     }
   };
 
@@ -494,10 +529,21 @@ export default function HeroSection({ activeTab: propActiveTab, onTabChange }: H
                 </motion.p>
 
                 <div 
-                  className="max-w-xl mx-auto rounded-[1.25rem] sm:rounded-[1.5rem] p-[1px] relative z-10 bg-gradient-to-b from-border/60 via-border/30 to-border/60 shadow-lg group"
+                  className={cn(
+                    "max-w-xl mx-auto rounded-[1.25rem] sm:rounded-[1.5rem] p-[1px] relative z-10 bg-gradient-to-b shadow-lg group transition-all duration-300",
+                    isDragging 
+                      ? "from-primary/60 via-primary/30 to-primary/60 scale-[1.02] ring-4 ring-primary/10" 
+                      : "from-border/60 via-border/30 to-border/60"
+                  )}
                   data-testid="card-resume-upload"
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
                 >
-                  <div className="bg-white dark:bg-[#1a1a1a] rounded-[1.125rem] sm:rounded-[1.375rem] overflow-hidden">
+                  <div className={cn(
+                    "bg-white dark:bg-[#1a1a1a] rounded-[1.125rem] sm:rounded-[1.375rem] overflow-hidden transition-colors duration-300",
+                    isDragging && "bg-primary/5 dark:bg-primary/5"
+                  )}>
                     <div className="bg-[#f6f6f6] dark:bg-[#252525] border-b border-border/50 px-4 py-2.5 flex items-center gap-2">
                       <div className="flex gap-1.5">
                         <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56] border border-[#e0443e]"></div>
