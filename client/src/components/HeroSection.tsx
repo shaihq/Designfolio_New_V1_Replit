@@ -343,9 +343,22 @@ export default function HeroSection() {
       <div className="max-w-5xl mx-auto relative z-50">
         <div className="max-w-3xl mx-auto text-center px-4 sm:px-6 md:px-12 lg:px-0">
           <motion.div
+            className="flex flex-col items-center gap-6 mb-8"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
+          >
+            <SegmentedControl 
+              options={["Claim Domain", "Convert Resume"]}
+              value={activeTab}
+              onChange={setActiveTab}
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="flex items-center justify-center gap-2 mb-4"
           >
             <Sun className="w-4 h-4 text-yellow-500 fill-yellow-500" />
@@ -387,19 +400,6 @@ export default function HeroSection() {
           >
             Skip the busywork with Designfolio — publish in hours, not weeks.
           </motion.p>
-
-          <motion.div
-            className="flex flex-col items-center gap-6 mb-8"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <SegmentedControl 
-              options={["Claim Domain", "Convert Resume"]}
-              value={activeTab}
-              onChange={setActiveTab}
-            />
-          </motion.div>
 
           <motion.div 
             className="flex flex-col sm:flex-row items-stretch justify-center gap-3 max-w-2xl mx-auto"
