@@ -3,6 +3,8 @@ import { Input } from "@/components/ui/input";
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionTemplate } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Typewriter } from "@/components/ui/typewriter";
+import { Sun } from "lucide-react";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -335,6 +337,26 @@ export default function HeroSection() {
 
       <div className="max-w-5xl mx-auto relative z-50">
         <div className="max-w-3xl mx-auto text-center px-4 sm:px-6 md:px-12 lg:px-0">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.05 }}
+            className="flex items-center justify-center gap-2 mb-4"
+          >
+            <Sun className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+            <p className="text-xs sm:text-sm font-medium text-foreground/60 uppercase tracking-wider">
+              Built for{" "}
+              <Typewriter
+                text={["Product Designers", "Product Managers", "DEVs"]}
+                speed={70}
+                className="text-foreground font-semibold"
+                waitTime={1500}
+                deleteSpeed={40}
+                cursorChar={"_"}
+              />
+            </p>
+          </motion.div>
+
           <motion.h1 
             className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground" 
             data-testid="text-hero-headline"
