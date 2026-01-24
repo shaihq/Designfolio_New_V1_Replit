@@ -61,16 +61,16 @@ export function AnimatedGrid() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p) => {
-        p.y -= p.speed;
+        p.y -= p.speed * 1.5; // Increased movement speed
         if (p.y < 0) reset(p);
         if (!p.fadingOut && Date.now() > p.fadeStart) p.fadingOut = true;
         if (p.fadingOut) {
-          p.opacity -= 0.008;
+          p.opacity -= 0.01; // Faster fade
           if (p.opacity <= 0) reset(p);
         }
-        // Increased particle visibility and size
-        ctx.fillStyle = `rgba(150, 150, 150, ${p.opacity * 0.4})`;
-        ctx.fillRect(p.x, p.y, 1.2, Math.random() * 3 + 1);
+        // Much higher visibility for particles
+        ctx.fillStyle = `rgba(180, 180, 180, ${p.opacity * 0.8})`;
+        ctx.fillRect(p.x, p.y, 1.5, Math.random() * 4 + 2);
       });
       raf = requestAnimationFrame(draw);
     };
@@ -92,34 +92,45 @@ export function AnimatedGrid() {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-      <canvas ref={canvasRef} className="w-full h-full mix-blend-screen opacity-60" />
+      <canvas ref={canvasRef} className="w-full h-full mix-blend-screen opacity-80" />
       
-      {/* Accent Lines */}
-      <div className="absolute inset-0 opacity-40">
-        <div className="hline absolute h-[1.5px] left-0 right-0 bg-foreground/10 top-[20%] animate-draw-x" />
-        <div className="hline absolute h-[1.5px] left-0 right-0 bg-foreground/10 top-[50%] animate-draw-x delay-200" />
-        <div className="hline absolute h-[1.5px] left-0 right-0 bg-foreground/10 top-[80%] animate-draw-x delay-400" />
-        <div className="vline absolute w-[1.5px] top-0 bottom-0 bg-foreground/10 left-[20%] animate-draw-y delay-500" />
-        <div className="vline absolute w-[1.5px] top-0 bottom-0 bg-foreground/10 left-[50%] animate-draw-y delay-700" />
-        <div className="vline absolute w-[1.5px] top-0 bottom-0 bg-foreground/10 left-[80%] animate-draw-y delay-900" />
+      {/* Accent Lines with continuous scanning effect */}
+      <div className="absolute inset-0 opacity-50">
+        <div className="hline absolute h-[1px] left-0 right-0 bg-foreground/20 top-[20%] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/40 to-transparent w-[30%] animate-scan-h" />
+        </div>
+        <div className="hline absolute h-[1px] left-0 right-0 bg-foreground/20 top-[50%] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/40 to-transparent w-[30%] animate-scan-h [animation-delay:1.5s]" />
+        </div>
+        <div className="hline absolute h-[1px] left-0 right-0 bg-foreground/20 top-[80%] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/40 to-transparent w-[30%] animate-scan-h [animation-delay:3s]" />
+        </div>
+        
+        <div className="vline absolute w-[1px] top-0 bottom-0 bg-foreground/20 left-[20%] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-foreground/40 to-transparent h-[30%] animate-scan-v [animation-delay:0.7s]" />
+        </div>
+        <div className="vline absolute w-[1px] top-0 bottom-0 bg-foreground/20 left-[50%] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-foreground/40 to-transparent h-[30%] animate-scan-v [animation-delay:2.2s]" />
+        </div>
+        <div className="vline absolute w-[1px] top-0 bottom-0 bg-foreground/20 left-[80%] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-foreground/40 to-transparent h-[30%] animate-scan-v [animation-delay:3.7s]" />
+        </div>
       </div>
 
       <style>{`
-        @keyframes draw-x {
-          0% { transform: scaleX(0); opacity: 0; }
-          100% { transform: scaleX(1); opacity: 1; }
+        @keyframes scan-h {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(400%); }
         }
-        @keyframes draw-y {
-          0% { transform: scaleY(0); opacity: 0; }
-          100% { transform: scaleY(1); opacity: 1; }
+        @keyframes scan-v {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(400%); }
         }
-        .animate-draw-x {
-          transform-origin: center;
-          animation: draw-x 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        .animate-scan-h {
+          animation: scan-h 4s linear infinite;
         }
-        .animate-draw-y {
-          transform-origin: top;
-          animation: draw-y 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        .animate-scan-v {
+          animation: scan-v 4s linear infinite;
         }
       `}</style>
     </div>
