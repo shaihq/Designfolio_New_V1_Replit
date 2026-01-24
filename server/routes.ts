@@ -35,7 +35,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let text = "";
       if (req.file.mimetype === "application/pdf") {
         try {
-          const data = await pdf(req.file.buffer);
+          // pdf-parse doesn't export a default in all versions/environments when using require in ESM
+          const parsePdf = typeof pdf === 'function' ? pdf : (pdf.default || pdf);
+          if (typeof parsePdf !== "function") {
+            throw new Error("PDF parser not found");
+          }
+          const data = await parsePdf(req.file.buffer);
           text = data.text;
           
           // Validate that we actually got meaningful text
