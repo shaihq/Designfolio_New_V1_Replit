@@ -8,7 +8,6 @@ import { getAiCompletion } from "./ai";
 import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
-const pdfParse = require("pdf-parse");
 
 interface MulterRequest extends Request {
   file?: Express.Multer.File;
@@ -37,6 +36,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let text = "";
       if (req.file.mimetype === "application/pdf") {
         try {
+          // Lazy load pdf-parse only when needed
+          const pdfParse = require("pdf-parse");
+
           // Robust initialization of pdf-parse
           let parsePdf = pdfParse;
           if (pdfParse.default) parsePdf = pdfParse.default;
