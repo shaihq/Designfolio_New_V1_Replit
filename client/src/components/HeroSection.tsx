@@ -238,7 +238,7 @@ export default function HeroSection() {
   const cardBoxShadow = useMotionTemplate`0 10px 15px -3px rgba(0, 0, 0, ${useTransform(shadowOpacity, (v) => v * 0.1)}), 0 4px 6px -4px rgba(0, 0, 0, ${useTransform(shadowOpacity, (v) => v * 0.1)})`;
 
   return (
-    <section ref={sectionRef} className="relative overflow-visible py-8 sm:py-12 md:py-16 px-6">
+    <section ref={sectionRef} className="relative overflow-visible py-8 sm:py-12 lg:py-8 px-6">
       <div 
         className="absolute left-0 right-0 z-0"
         style={{
