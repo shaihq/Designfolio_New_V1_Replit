@@ -21,12 +21,12 @@ export default function Resume() {
       <Navbar />
       <main className="flex-1 flex flex-col items-center px-6 pt-32 sm:pt-40 pb-16 relative">
         {/* Blue Sky Hero Section with contained gradient and clouds */}
-        <div className="absolute top-0 left-0 right-0 h-[500px] sm:h-[550px] overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-[600px] sm:h-[700px] pointer-events-none">
           {/* Blue Sky Gradient Background */}
           <div 
             className="absolute inset-0 z-0"
             style={{
-              background: 'linear-gradient(180deg, #7DD3FC 0%, #BAE6FD 30%, #E0F2FE 60%, #F0F9FF 85%, hsl(var(--background)) 100%)'
+              background: 'linear-gradient(180deg, #7DD3FC 0%, #BAE6FD 20%, #E0F2FE 45%, #F0F9FF 70%, hsl(var(--background)) 100%)'
             }}
           />
           
