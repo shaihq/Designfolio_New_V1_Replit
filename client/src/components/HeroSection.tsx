@@ -6,6 +6,8 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Typewriter } from "@/components/ui/typewriter";
 import { Sun } from "lucide-react";
 
+import { TextEffect } from "@/components/ui/text-effect";
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const leftCardRef = useRef<HTMLDivElement>(null);
@@ -358,19 +360,16 @@ export default function HeroSection() {
             </p>
           </motion.div>
 
-          <motion.h1 
+          <TextEffect 
+            as="h1"
+            preset="blur"
+            per="word"
             className="font-heading font-semibold text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl leading-tight mb-4 sm:mb-6 text-foreground" 
             data-testid="text-hero-headline"
-            initial={{ opacity: 0, filter: "blur(4px)", y: 8 }}
-            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-            transition={{ 
-              duration: 0.6, 
-              delay: 0.1,
-              ease: [0.22, 1, 0.36, 1]
-            }}
+            delay={0.1}
           >
             Building a portfolio was never meant to be hard.
-          </motion.h1>
+          </TextEffect>
           
           <motion.p 
             className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8" 
