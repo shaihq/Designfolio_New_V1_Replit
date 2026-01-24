@@ -1,0 +1,39 @@
+chunk-WERSD76P.js?v=1f40be68:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+HeroSection.tsx:50  POST https://7d4e6e27-ef20-45e6-8af6-245d1421fd1c-00-2juz73k0x3fbb.pike.replit.dev/api/convert-resume 400 (Bad Request)
+processFile @ HeroSection.tsx:50
+handleDrop @ HeroSection.tsx:99
+callCallback2 @ chunk-WERSD76P.js?v=1f40be68:3674
+invokeGuardedCallbackDev @ chunk-WERSD76P.js?v=1f40be68:3699
+invokeGuardedCallback @ chunk-WERSD76P.js?v=1f40be68:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-WERSD76P.js?v=1f40be68:3736
+executeDispatch @ chunk-WERSD76P.js?v=1f40be68:7014
+processDispatchQueueItemsInOrder @ chunk-WERSD76P.js?v=1f40be68:7034
+processDispatchQueue @ chunk-WERSD76P.js?v=1f40be68:7043
+dispatchEventsForPlugins @ chunk-WERSD76P.js?v=1f40be68:7051
+(anonymous) @ chunk-WERSD76P.js?v=1f40be68:7174
+batchedUpdates$1 @ chunk-WERSD76P.js?v=1f40be68:18913
+batchedUpdates @ chunk-WERSD76P.js?v=1f40be68:3579
+dispatchEventForPluginEventSystem @ chunk-WERSD76P.js?v=1f40be68:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-WERSD76P.js?v=1f40be68:5478
+dispatchEvent @ chunk-WERSD76P.js?v=1f40be68:5472
+dispatchDiscreteEvent @ chunk-WERSD76P.js?v=1f40be68:5449
+HeroSection.tsx:63 Error converting resume: Error: Technical error parsing PDF: PDF parser initialization failed: received object. Please try a different file.
+    at processFile (HeroSection.tsx:57:15)
+processFile @ HeroSection.tsx:63
+await in processFile
+handleDrop @ HeroSection.tsx:99
+callCallback2 @ chunk-WERSD76P.js?v=1f40be68:3674
+invokeGuardedCallbackDev @ chunk-WERSD76P.js?v=1f40be68:3699
+invokeGuardedCallback @ chunk-WERSD76P.js?v=1f40be68:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-WERSD76P.js?v=1f40be68:3736
+executeDispatch @ chunk-WERSD76P.js?v=1f40be68:7014
+processDispatchQueueItemsInOrder @ chunk-WERSD76P.js?v=1f40be68:7034
+processDispatchQueue @ chunk-WERSD76P.js?v=1f40be68:7043
+dispatchEventsForPlugins @ chunk-WERSD76P.js?v=1f40be68:7051
+(anonymous) @ chunk-WERSD76P.js?v=1f40be68:7174
+batchedUpdates$1 @ chunk-WERSD76P.js?v=1f40be68:18913
+batchedUpdates @ chunk-WERSD76P.js?v=1f40be68:3579
+dispatchEventForPluginEventSystem @ chunk-WERSD76P.js?v=1f40be68:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-WERSD76P.js?v=1f40be68:5478
+dispatchEvent @ chunk-WERSD76P.js?v=1f40be68:5472
+dispatchDiscreteEvent @ chunk-WERSD76P.js?v=1f40be68:5449
