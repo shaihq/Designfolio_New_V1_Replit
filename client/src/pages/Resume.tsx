@@ -4,9 +4,18 @@ import FooterBottom from "@/components/FooterBottom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Resume() {
+  const { scrollY } = useScroll();
+  
+  // Create different parallax speeds for different clouds
+  // Use different ranges to create "alternating" movement feel
+  const cloud1Y = useTransform(scrollY, [0, 500], [0, 120]);
+  const cloud2Y = useTransform(scrollY, [0, 500], [0, -40]);
+  const cloud3Y = useTransform(scrollY, [0, 500], [0, 160]);
+  const cloud4Y = useTransform(scrollY, [0, 500], [0, 60]);
+
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       <Navbar />
@@ -23,27 +32,29 @@ export default function Resume() {
           />
           
           {/* Cloud decorations - masked within the sky section */}
-          <img 
+          <motion.img 
             src="/cloud.avif" 
             alt="" 
             className="absolute left-0 top-20 w-48 sm:w-64 opacity-90 z-[1]"
-            style={{ transform: 'scaleX(-1)' }}
+            style={{ transform: 'scaleX(-1)', y: cloud1Y }}
           />
-          <img 
+          <motion.img 
             src="/cloud.avif" 
             alt="" 
             className="absolute right-0 top-28 w-56 sm:w-72 opacity-90 z-[1]"
+            style={{ y: cloud2Y }}
           />
-          <img 
+          <motion.img 
             src="/cloud.avif" 
             alt="" 
             className="absolute left-[10%] bottom-0 w-40 sm:w-52 opacity-80 z-[1]"
+            style={{ y: cloud3Y }}
           />
-          <img 
+          <motion.img 
             src="/cloud.avif" 
             alt="" 
             className="absolute right-[15%] bottom-10 w-36 sm:w-48 opacity-70 z-[1]"
-            style={{ transform: 'scaleX(-1)' }}
+            style={{ transform: 'scaleX(-1)', y: cloud4Y }}
           />
         </div>
 
