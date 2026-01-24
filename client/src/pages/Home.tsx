@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
-      <div className="pt-16 sm:pt-20 lg:pt-12">
+      <div className="pt-16 sm:pt-20">
         <HeroSection />
         <EmailMockup />
         <TrustedBySection />
