@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <div className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-700 ${
-      isScrolled ? 'px-4 pt-4' : 'px-0 pt-0'
+      isScrolled ? 'px-4 pt-4' : 'px-0 pt-3'
     }`}>
       <nav 
         className={`w-full mx-auto transition-all duration-700 ease-in-out ${
