@@ -5,7 +5,9 @@ import { randomBytes } from "crypto";
 import { z } from "zod";
 import multer from "multer";
 import { getAiCompletion } from "./ai";
+import { createRequire } from "module";
 
+const require = createRequire(import.meta.url);
 const pdfParse = require("pdf-parse");
 
 interface MulterRequest extends Request {
@@ -35,17 +37,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let text = "";
       if (req.file.mimetype === "application/pdf") {
         try {
-          const pdfDoc = await PDFDocument.load(req.file.buffer);
-          const pages = pdfDoc.getPages();
-          let extractedText = "";
-
-          // pdf-lib is great for manipulation but basic for text extraction
-          // However, for this SaaS, we want a robust way to get content
-          // Let's try to get text from form fields if any, otherwise we'll fall back to a more direct extraction if possible
-          // For now, let's use pdf-parse as a fallback or better yet, use a more standard approach
-          
           // Re-attempting with a more standard import for pdf-parse which is usually more reliable for text
-          const pdfParse = require("pdf-parse");
           const data = await pdfParse(req.file.buffer);
           text = data.text;
           
