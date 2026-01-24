@@ -8,7 +8,7 @@ export default function EmailMockup() {
           className="rounded-[1.25rem] sm:rounded-[1.75rem] p-[2px] relative z-10 bg-gradient-to-r from-border/80 via-border/20 to-border/80 shadow-xl"
           data-testid="container-portfolio-gradient"
         >
-          <BorderBeam size={400} duration={8} delay={9} borderWidth={4} colorFrom="#FF553E" colorTo="#FF8C7E" />
+          <BorderBeam size={400} duration={8} delay={0} borderWidth={4} colorFrom="#FF553E" colorTo="#FF8C7E" />
           <div 
             className="bg-white rounded-[1.125rem] sm:rounded-[1.625rem] overflow-hidden flex flex-col"
             data-testid="container-portfolio-mockup"
