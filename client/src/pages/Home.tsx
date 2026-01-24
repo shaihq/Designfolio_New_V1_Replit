@@ -15,8 +15,11 @@ export default function Home() {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
       <div className="pt-16 sm:pt-20">
-        <HeroSection />
-        <EmailMockup />
+        <HeroSection 
+          activeTab={activeTab} 
+          onTabChange={setActiveTab} 
+        />
+        {activeTab !== "Convert Resume" && <EmailMockup />}
         <TrustedBySection />
         <FeaturesSection />
         <AiToolsSection />
